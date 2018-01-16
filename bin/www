@@ -5,9 +5,8 @@
  */
 
 var app = require('../app/app');
-var debug = require('debug')('vuzuk:server');
 var http = require('http');
-
+var debug = require('debug')('http');
 /**
  * Get port from environment and store in Express.
  */
