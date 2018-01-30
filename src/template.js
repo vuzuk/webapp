@@ -19,6 +19,7 @@ export default ({ body, title }) => {
     <html>
       <head>
         <title>Vuzuk</title>
+        <link rel='stylesheet' href='bundle.css'>
       </head>
       <body>
         <div id="root"></div>

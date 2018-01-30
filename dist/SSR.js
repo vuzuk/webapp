@@ -130,7 +130,7 @@ exports.default = function (_ref) {
   if (process.env.NODE_ENV === "PRODUCTION") {
     return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>" + title + "</title>\n        <link rel='stylesheet' href='bundle.css'>\n      </head>\n      <body>\n        <div id=\"root\">" + body + "</div>\n        <!-- <script src='bundle.js'></script> -->\n      </body>\n    </html>\n  ";
   } else {
-    return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>Vuzuk</title>\n      </head>\n      <body>\n        <div id=\"root\"></div>\n        <script src='bundle.js'></script>\n      </body>\n    </html>\n  ";
+    return "\n    <!DOCTYPE html>\n    <html>\n      <head>\n        <title>Vuzuk</title>\n        <link rel='stylesheet' href='bundle.css'>\n      </head>\n      <body>\n        <div id=\"root\"></div>\n        <script src='bundle.js'></script>\n      </body>\n    </html>\n  ";
   }
 };
 
@@ -159,7 +159,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-if (process.env.WEBPACK) __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./App.css\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+console.log(process.env.WEBPACK);
+if (process.env.WEBPACK) {
+  __webpack_require__(5);
+};
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -190,6 +193,12 @@ var App = function (_Component) {
 }(_react.Component);
 
 exports.default = App;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+
 
 /***/ })
 /******/ ]);

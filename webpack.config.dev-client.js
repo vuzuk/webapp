@@ -24,7 +24,13 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract('style-loader','css-loader'),
+        use: ExtractTextPlugin.extract({
+          use: [{
+              loader: "css-loader"
+          }],
+          // use style-loader in development 
+          fallback: "style-loader"
+      }),
         include: path.join(__dirname, '.', 'src')
       },
       {test: /\.js$/ , loader:'babel-loader', exclude: '/node_modules/'},
