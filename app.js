@@ -15,8 +15,8 @@ dotenv.load();
 const routes = {
     // secure: require('./routes/secure'),
     // insecure: require('./routes/insecure'),
-    index : require('./routes/index'),
-    users : require('./routes/users'),
+    index: require('./routes/index'),
+    users: require('./routes/users'),
 };
 
 const app = express();
@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 const render = require('./dist/SSR');
 
-if(process.env.NODE_ENV !== 'PRODUCTION') {
+if (process.env.NODE_ENV !== 'PRODUCTION') {
     console.log("In Development Environment");
     const webpack = require('webpack');
     const webpackConfig = require('./webpack.config.dev-client');
@@ -48,7 +48,7 @@ if(process.env.NODE_ENV !== 'PRODUCTION') {
     app.use(express.static('dist'));
 }
 
-app.get('/',render.default);
+app.get('/', render.default);
 app.use('/', routes.index);
 app.use('/users', routes.users);
 
@@ -63,7 +63,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.locals.error = req.app.get('env') === 'DEVELOPMENT' ? err : {};
 
     // render the error page
     res.status(err.status || 500);
