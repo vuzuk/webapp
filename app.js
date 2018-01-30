@@ -11,15 +11,9 @@ const dotenv = require('dotenv');
 
 require('dotenv').config();
 dotenv.load();
-
-const routes = {
-    // secure: require('./routes/secure'),
-    // insecure: require('./routes/insecure'),
-    index: require('./app/routes/index'),
-    users: require('./app/routes/users'),
-};
-
 const app = express();
+
+const apiRoutes = require("./app/apiRoutes");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -49,8 +43,6 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
 }
 
 app.get('/', render.default);
-app.use('/', routes.index);
-app.use('/users', routes.users);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
