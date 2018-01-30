@@ -27,11 +27,10 @@ if(process.env.NODE_ENV !== 'PRODUCTION') {
     publicPath: webpackConfig.output.publicPath,
     log: console.log
   }));
-  console.log("hot");
   app.use(require("webpack-hot-middleware")(compiler));
 } else {
   console.log("PRODUCTION ENVIRONMENT");
-  app.use(express.static('dist/bundle.js'));
+  app.use(express.static('dist'));
 }
 
 app.get('/',render.default);
