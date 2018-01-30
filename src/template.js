@@ -1,5 +1,4 @@
 export default ({ body, title }) => {
-  if(process.env.NODE_ENV === "PRODUCTION") {
     return `
     <!DOCTYPE html>
     <html>
@@ -9,23 +8,8 @@ export default ({ body, title }) => {
       </head>
       <body>
         <div id="root">${body}</div>
-        <!-- <script src='bundle.js'></script> -->
+        ${process.env.NODE_ENV === "PRODUCTION" ? "" : "<script src='bundle.js'></script>"}
       </body>
     </html>
   `;
-  } else {
-    return `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Vuzuk</title>
-        <link rel='stylesheet' href='bundle.css'>
-      </head>
-      <body>
-        <div id="root"></div>
-        <script src='bundle.js'></script>
-      </body>
-    </html>
-  `;
-  }
 };
