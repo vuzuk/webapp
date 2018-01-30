@@ -5,9 +5,6 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-var index = require('../routes/index');
-var users = require('../routes/users');
-
 const app = express();
 
 // uncomment after placing your favicon in /public
@@ -18,8 +15,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+const render = require('../dist/SSR');
+
+if(process.env.NODE_ENV !== 'PRODUCTION') {
+  console.log("In Development Environment");
+  const webpack = require('webpack');
+  const webpackConfig = require('../webpack.config.dev-client');
+  const compiler = webpack(webpackConfig);
+  app.use(require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath,
+    log: console.log
+  }));
+  console.log("hot");
+  app.use(require("webpack-hot-middleware")(compiler));
+} else {
+  console.log("PRODUCTION ENVIRONMENT");
+  app.use(express.static('dist/bundle.js'));
+}
+
+app.get('/',render.default);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
