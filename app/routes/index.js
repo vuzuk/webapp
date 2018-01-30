@@ -1,10 +1,11 @@
-const router = require('express').Router;
-const route = router();
+const Router = require("express").Router;
+const route = Router();
+const controllers = require("../db/controllers");
 
-/* GET home page. */
-route.get('/', function (req, res, next) {
-    // res.render('index', { title: 'Express' });
-    res.send("hey there");
+route.get('/', function (req, res) {
+    res.send('hey you got it');
 });
+
+route.get('/addBlogger', controllers.bloggers.bloggers.create);
 
 module.exports = route;

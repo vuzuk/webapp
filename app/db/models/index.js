@@ -10,7 +10,6 @@ const db = {
 };
 
 let sequelize;
-// let penv = process.env
 if (config.use_env_variable) {
     config.logging = console.log;
     sequelize = new Sequelize(process.env[config.use_env_variable], config);

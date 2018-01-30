@@ -13,7 +13,7 @@ require('dotenv').config();
 dotenv.load();
 const app = express();
 
-const apiRoutes = require("./app/apiRoutes");
+const apiRoutes = require("./app/routes");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -43,6 +43,8 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
 }
 
 app.get('/', render.default);
+
+app.use('/api/v1', apiRoutes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
