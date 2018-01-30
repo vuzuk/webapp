@@ -1,5 +1,5 @@
 {
-  "development": {
+  "DEVELOPMENT": {
     "use_env_variable": "DATABASE_URL",
     "maxConcurrentQueries": 100,
     "dialectOptions": {
@@ -11,14 +11,14 @@
     },
     "language": "en"
   },
-  "test": {
+  "TEST": {
     "username": "root",
     "password": "null",
     "database": "vuzuk",
     "host": "localhost",
     "dialect": "mysql"
   },
-  "production": {
+  "PRODUCTION": {
     "username": "root",
     "password": null,
     "database": "database_production",
