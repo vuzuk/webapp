@@ -1,9 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const cookieParser = require('cookie-parser');
-// const passport = require('passport');
-// const passportLocal = require('passport-local');
-// const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 // const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -18,14 +15,12 @@ const apiRoutes = require("./app/routes");
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-
-app.use('/public', express.static(path.join(__dirname, 'public')));
-// app.use(cookieParser());
+route.use(cookieParser(process.env.SECRET));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-const render = require('./dist/SSR');
 
+const render = require('./dist/SSR');
 if (process.env.NODE_ENV !== 'PRODUCTION') {
     console.log("In Development Environment");
     const webpack = require('webpack');
@@ -43,7 +38,6 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
 }
 
 app.get('/', render.default);
-
 app.use('/api/v1', apiRoutes);
 
 // catch 404 and forward to error handler
