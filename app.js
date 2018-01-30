@@ -15,8 +15,8 @@ dotenv.load();
 const routes = {
     // secure: require('./routes/secure'),
     // insecure: require('./routes/insecure'),
-    index: require('./routes/index'),
-    users: require('./routes/users'),
+    index: require('./app/routes/index'),
+    users: require('./app/routes/users'),
 };
 
 const app = express();
