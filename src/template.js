@@ -8,7 +8,7 @@ export default ({ body, title }) => {
       </head>
       <body>
         <div id="root">${body}</div>
-        ${process.env.NODE_ENV === "PRODUCTION" ? "" : "<script src='bundle.js'></script>"}
+        <script src='bundle.js'></script>
       </body>
     </html>
   `;
