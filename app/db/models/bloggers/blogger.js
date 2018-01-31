@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
             }
         },
         dob: {
-            type: DataTypes.DATE,
-            defaultValue: DataTypes.NOW,
+            type: DataTypes.DATEONLY,
+            allowNull: false,
             validate: {
                 isDate: true
             }

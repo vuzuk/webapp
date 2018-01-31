@@ -2,11 +2,24 @@ const blogger = require('../../models').bloggers.blogger;
 
 module.exports = {
     create(req, res) {
+        console.log(req.body);
         return blogger
             .create({
-                name: req.body.name,
+                username: req.body.username,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                dob: req.body.dob,              // "yyyy-MM-dd"
+                gender: req.body.gender,        // 'M' or 'F'
+                email: req.body.email,
+                contact: req.body.contact
             })
-            .then(todo => res.status(201).send(todo))
+            .then(blogger => res.status(201).send(blogger))
+            .catch(error => res.status(400).send(error));
+    },
+    list(req, res) {
+        return blogger
+            .all()
+            .then(bloggers => res.status(200).send(bloggers))
             .catch(error => res.status(400).send(error));
     },
 };

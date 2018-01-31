@@ -6,7 +6,13 @@ module.exports = {
             .create({
                 name: req.body.name,
             })
-            .then(todo => res.status(201).send(todo))
+            .then(blog => res.status(201).send(blog))
+            .catch(error => res.status(400).send(error));
+    },
+    list(req, res) {
+        return blog
+            .all()
+            .then(blogs => res.status(200).send(blogs))
             .catch(error => res.status(400).send(error));
     },
 };
