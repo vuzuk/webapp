@@ -9,7 +9,7 @@ const path = require('path');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 
-require('dotenv').config();
+dotenv.config();
 dotenv.load();
 const app = express();
 
