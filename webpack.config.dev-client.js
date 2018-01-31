@@ -31,10 +31,11 @@ module.exports = {
           // use style-loader in development 
           fallback: "style-loader"
       }),
-        include: path.join(__dirname, '.', 'src')
+        include: path.join(__dirname, '.', 'src'),
+        exclude: /node_modules/
       },
-      {test: /\.js$/ , loader:'babel-loader', exclude: '/node_modules/'},
-      {test: /\.jsx$/ , loader:'babel-loader', exclude: '/node_modules/'}
+      {test: /\.js$/ , loader:'babel-loader', exclude: /node_modules/},
+      {test: /\.jsx$/ , loader:'babel-loader', exclude: /node_modules/}
     ]
   },
 };
