@@ -3,9 +3,12 @@ const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
-
-module.exports = [{
+const dotenv = require('dotenv');
+dotenv.config();
+dotenv.load();
+const webpackConfig = [{
   name: 'SSR',
   context: path.join(__dirname, '.', 'src'),
   entry: './SSR.js',  
@@ -39,12 +42,14 @@ module.exports = [{
 				NODE_ENV: JSON.stringify('PRODUCTION'),
 				WEBPACK: true
 			}
-		}),
+    }),
 		new webpack.optimize.UglifyJsPlugin({
 			compressor: {
-				warnings: false
+				unused: true,
+        dead_code: true,
+        warnings: false,
 			}
-		}),
+    }),
 		// new CopyWebpackPlugin([
 		// 	{
 		// 		from: path.resolve(__dirname, 'src'),
@@ -64,10 +69,17 @@ module.exports = [{
           // use style-loader in development 
           fallback: "style-loader"
       }),
-        include: path.join(__dirname, '.', 'src')
+        include: path.join(__dirname, '.', 'src'),
+        exclude: /node_modules/
       },
-      {test: /\.js$/ , loader:'babel-loader', exclude: '/node_modules/'},
-      {test: /\.jsx$/ , loader:'babel-loader', exclude: '/node_modules/'}
+      {test: /\.js$/ , loader:'babel-loader', exclude: /node_modules/},
+      {test: /\.jsx$/ , loader:'babel-loader', exclude: /node_modules/}
     ]
 	}
 }];
+if (process.env.ANALYZE) {
+  console.log(webpackConfig[1])
+  webpackConfig[1].plugins.push(new BundleAnalyzerPlugin())
+}
+
+module.exports = webpackConfig;

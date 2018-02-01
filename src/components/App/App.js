@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css'
+import Navbar from '../Navbar/Navbar';
+// import './App.css'
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ export default class App extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         Hello world!!<h1>para</h1>
         <p>{this.state.count}</p>
       </div>
