@@ -15,7 +15,8 @@ module.exports = (app) => {
     };
     const sessionStore = new MySQLStore(dbConf);
 
-    passport.use(require('./functions/localStrategy'));
+    require('./functions/localStrategy')(app, passport);
+    require('./functions/facebookStrategy')(app, passport);
 
     app.use(session({
         secret: process.env["SECRET"],
