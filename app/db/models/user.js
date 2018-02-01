@@ -1,10 +1,10 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const blogger = sequelize.define('blogger', {
+    const user = sequelize.define('user', {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
+            validate:{
                 notEmpty: true,
                 isAlphanumeric: true
             }
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
+            validate:{
                 notEmpty: true,
                 isAlpha: true
             }
@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         last_name: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
+            validate:{
                 notEmpty: true,
                 isAlpha: true
             }
@@ -28,21 +28,21 @@ module.exports = (sequelize, DataTypes) => {
         dob: {
             type: DataTypes.DATEONLY,
             allowNull: false,
-            validate: {
+            validate:{
                 isDate: true
             }
         },
         gender: {
             type: DataTypes.ENUM('M', 'F'),
             allowNull: false,
-            validate: {
+            validate:{
                 notEmpty: true
             }
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
+            validate:{
                 notEmpty: true,
                 isEmail: true
             }
@@ -50,10 +50,17 @@ module.exports = (sequelize, DataTypes) => {
         contact: {
             type: DataTypes.BIGINT.UNSIGNED,
             allowNull: false,
-            validate: {
+            validate:{
                 max: 9999999999,
                 min: 1000000000,
                 isInt: true
+            }
+        },
+        liking: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate:{
+                notEmpty: true
             }
         }
     }, {
@@ -64,12 +71,14 @@ module.exports = (sequelize, DataTypes) => {
         }]
     });
 
-    blogger.associate = (models) => {
-        blogger.hasMany(models.bloggers.blog, {
-            foreignKey: 'blogger_id',
+    user.associate = (models) => {
+        user.hasMany(models.comment, {
+            foreignKey: 'user_id',
         });
-        blogger.belongsToMany(models.users.user, {through: models.users.follower});
+        user.belongsToMany(models.comment, {through: 'comment_like'});
+        user.belongsToMany(models.blog, {through: 'blog_like'});
+        user.belongsToMany(models.blogger, {through: models.follower});
     };
 
-    return blogger;
+    return user;
 };

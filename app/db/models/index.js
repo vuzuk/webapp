@@ -4,10 +4,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || 'DEVELOPMENT';
 const config = require(`${__dirname}/../config/config.json`)[env];
-const db = {
-    bloggers: {},
-    users: {}
-};
+const db = {};
 
 let sequelize;
 if (config.use_env_variable) {
@@ -19,38 +16,24 @@ if (config.use_env_variable) {
     );
 }
 
-// Reading bloggers models
+// Reading models
 fs
-    .readdirSync(path.join(__dirname, 'bloggers'))
+    .readdirSync(__dirname)
     .filter(file =>
         (file.indexOf('.') !== 0) &&
         (file !== basename) &&
         (file.slice(-3) === '.js'))
     .forEach(file => {
-        const model = sequelize.import(path.join(__dirname, 'bloggers', file));
-        db['bloggers'][model.name] = model;
+        const model = sequelize.import(path.join(__dirname, file));
+        db[model.name] = model;
     });
 
-// Reading users models
-fs
-    .readdirSync(path.join(__dirname, 'users'))
-    .filter(file =>
-        (file.indexOf('.') !== 0) &&
-        (file !== basename) &&
-        (file.slice(-3) === '.js'))
-    .forEach(file => {
-        const model = sequelize.import(path.join(__dirname, 'users', file));
-        db['users'][model.name] = model;
-    });
-
-
-Object.keys(db).forEach(modelFolder => {
-    Object.keys(db[modelFolder]).forEach(modelName => {
-        if (db[modelFolder][modelName].associate) {
-            db[modelFolder][modelName].associate(db);
-        }
-    });
+Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+        db[modelName].associate(db);
+    }
 });
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

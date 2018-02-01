@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-    const tag = sequelize.define('tag', {
+    const category = sequelize.define('category', {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -13,9 +13,11 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true,
     });
 
-    tag.associate = (models) => {
-        tag.belongsToMany(models.bloggers.blog, {through: 'blog_tag'});
+    category.associate = (models) => {
+        category.hasMany(models.blog, {
+            foreignKey: 'category_id',
+        });
     };
 
-    return tag;
+    return category;
 };

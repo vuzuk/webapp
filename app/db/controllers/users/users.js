@@ -15,4 +15,15 @@ module.exports = {
             .then(users => res.status(200).send(users))
             .catch(error => res.status(400).send(error));
     },
+    getOne(req, res, cb) {
+        email = req.body.email, username = req.body.username, password = req.body.password;
+        whereObj = {password: req.body.password};
+        req.body.email ? whereObj['email'] = email : whereObj['username'] = username;
+
+        return user
+            .findOne({
+                where: whereObj,
+                attributes: ['id']
+            })
+    }
 };

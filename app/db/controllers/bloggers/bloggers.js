@@ -1,8 +1,7 @@
-const blogger = require('../../models').bloggers.blogger;
+const blogger = require('../../models').blogger;
 
 module.exports = {
     create(req, res) {
-        console.log(req.body);
         return blogger
             .create({
                 username: req.body.username,

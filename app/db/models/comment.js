@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     comment.associate = (models) => {
-        comment.belongsTo(models.bloggers.blog, {
+        comment.belongsTo(models.blog, {
             foreignKey: 'blog_id',
         });
-        comment.belongsTo(models.users.user, {
+        comment.belongsTo(models.user, {
             foreignKey: 'user_id',
         });
-        comment.belongsToMany(models.users.user, {through: 'comment_like'});
+        comment.belongsToMany(models.user, {through: 'comment_like'});
     };
 
     return comment;

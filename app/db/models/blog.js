@@ -45,17 +45,17 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     blog.associate = (models) => {
-        blog.belongsTo(models.bloggers.blogger, {
+        blog.belongsTo(models.blogger, {
             foreignKey: 'blogger_id',
         });
-        blog.belongsTo(models.bloggers.category, {
+        blog.belongsTo(models.category, {
             foreignKey: 'category_id',
         });
-        blog.belongsToMany(models.bloggers.tag, {through: 'blog_tag'});
-        blog.hasMany(models.users.comment, {
+        blog.belongsToMany(models.tag, {through: 'blog_tag'});
+        blog.hasMany(models.comment, {
             foreignKey: 'blog_id',
         });
-        blog.belongsToMany(models.users.user, {through: 'blog_like'});
+        blog.belongsToMany(models.user, {through: 'blog_like'});
     };
 
     return blog;
