@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: true,
             }
         },
-        image: {
+        images: {   // stringified array
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         date_published: {
             type: DataTypes.DATE,
-            allowNull:true,
+            allowNull: true,
             validate: {
                 isDate: true
             }
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BIGINT.UNSIGNED,
             allowNull: false,
             defaultValue: 0,
-            validate:{
+            validate: {
                 isInt: true
             }
         }
@@ -45,17 +45,36 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     blog.associate = (models) => {
-        blog.belongsTo(models.blogger, {
-            foreignKey: 'blogger_id',
-        });
         blog.belongsTo(models.category, {
             foreignKey: 'category_id',
         });
+        blog.belongsTo(models.blogger, {
+            foreignKey: 'blogger_id',
+        });
         blog.belongsToMany(models.tag, {through: 'blog_tag'});
+        blog.belongsToMany(models.user, {
+            through: 'blog_like',
+            foreignKey: 'blog_id',
+            constraints: false,
+        });
+        blog.belongsToMany(models.blogger, {
+            through: 'blog_like',
+            foreignKey: 'blog_id',
+            constraints: false,
+        });
         blog.hasMany(models.comment, {
             foreignKey: 'blog_id',
         });
-        blog.belongsToMany(models.user, {through: 'blog_like'});
+        blog.belongsToMany(models.user, {
+            through: 'views',
+            foreignKey: 'blog_id',
+            constraints: false,
+        });
+        blog.belongsToMany(models.blogger, {
+            through: 'views',
+            foreignKey: 'blog_id',
+            constraints: false,
+        });
     };
 
     return blog;

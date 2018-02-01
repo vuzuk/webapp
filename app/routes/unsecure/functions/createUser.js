@@ -1,5 +1,5 @@
 const path = require("path");
-const models = require(path.join(process.env.APP_ROOT,"db/models"));
+const models = require(path.join(process.env.APP_ROOT,"/app/db/models"));
 const Blogger = models.user;
 
 module.exports = (req, res) => {

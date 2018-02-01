@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 notEmpty: true,
                 isAlphanumeric: true
             }
@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
         first_name: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 notEmpty: true,
                 isAlpha: true
             }
@@ -20,46 +20,62 @@ module.exports = (sequelize, DataTypes) => {
         last_name: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 notEmpty: true,
                 isAlpha: true
+            }
+        },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
             }
         },
         dob: {
             type: DataTypes.DATEONLY,
             allowNull: false,
-            validate:{
+            validate: {
                 isDate: true
             }
         },
         gender: {
             type: DataTypes.ENUM('M', 'F'),
             allowNull: false,
-            validate:{
+            validate: {
                 notEmpty: true
             }
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 notEmpty: true,
                 isEmail: true
             }
         },
         contact: {
             type: DataTypes.BIGINT.UNSIGNED,
-            allowNull: false,
-            validate:{
+            allowNull: true,
+            validate: {
                 max: 9999999999,
                 min: 1000000000,
                 isInt: true
             }
         },
-        liking: {
+        points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
+        liking: {   // stringified array
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 notEmpty: true
             }
         }
@@ -72,12 +88,26 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     user.associate = (models) => {
-        user.hasMany(models.comment, {
-            foreignKey: 'user_id',
-        });
-        user.belongsToMany(models.comment, {through: 'comment_like'});
-        user.belongsToMany(models.blog, {through: 'blog_like'});
         user.belongsToMany(models.blogger, {through: models.follower});
+        user.belongsToMany(models.blog, {
+            through: 'blog_like',
+            foreignKey: 'liker_id',
+            constraints: false,
+        });
+        user.hasMany(models.comment, {
+            foreignKey: 'commenter_id',
+            constraints: false,
+        });
+        user.belongsToMany(models.comment, {
+            through: 'comment_like',
+            foreignKey: 'liker_id',
+            constraints: false,
+        });
+        user.belongsToMany(models.blog, {
+            through: 'views',
+            foreignKey: 'viewer_id',
+            constraints: false,
+        });
     };
 
     return user;

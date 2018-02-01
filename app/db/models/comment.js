@@ -17,9 +17,24 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'blog_id',
         });
         comment.belongsTo(models.user, {
-            foreignKey: 'user_id',
+            foreignKey: 'commenter_id',
+            constraints: false
         });
-        comment.belongsToMany(models.user, {through: 'comment_like'});
+        comment.belongsTo(models.blogger, {
+            foreignKey: 'commenter_id',
+            constraints: false
+        });
+        comment.hasOne(models.comment, {as: 'parent'});
+        comment.belongsToMany(models.user, {
+            through: 'comment_like',
+            foreignKey: 'comment_id',
+            constraints: false,
+        });
+        comment.belongsToMany(models.blogger, {
+            through: 'comment_like',
+            foreignKey: 'comment_id',
+            constraints: false,
+        });
     };
 
     return comment;
