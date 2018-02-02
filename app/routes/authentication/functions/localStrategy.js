@@ -40,6 +40,8 @@ let ls = new LocalStrategy({
 
 module.exports = (app, passport) => {
     passport.use(ls);
+
+    //body = {email_username, password, isBlogger}
     app.post('/login/local', function (req, res, next) {
         req.body.email_username_isBlogger = req.body.email_username + ";" + (req.body.isBlogger ? "true" : "false");
         passport.authenticate('local', function (err, user, info) {
@@ -58,5 +60,40 @@ module.exports = (app, passport) => {
                 return res.redirect("/", 200);
             })
         })(req, res, next);
+    });
+
+    //body = {email, username, password, first_name, last_name, dob, gender, contact, isBlogger}
+    app.post('/signUp/local', function (req, res) {
+        let model_to_use = JSON.parse(req.body.isBlogger) ? Blogger : User;
+        model_to_use
+            .findOrCreate({
+                where: {
+                    email: req.body.email,
+                    password: req.body.password,
+                },
+                defaults: {
+                    username: req.body.username,
+                    first_name: req.body.first_name,
+                    last_name: req.body.name.last_name,
+                    dob: req.body.dob,
+                    gender: req.body.gender,
+                    contact: req.body.contact,
+                    signed_up_via: 'local',
+                }
+            })
+            .spread((user, created) => {
+                user.isBlogger = JSON.parse(req.body.isBlogger);
+                req.login(user, function (err) {
+                    if (err) {
+                        console.log(err);
+                        return res.status(503).json({status: false, msg: "error in processing"});
+                    }
+                    return res.redirect("/", 200);
+                })
+            })
+            .catch((err) => {
+                console.log("hi");
+                return res.status(503).json({status: false, msg: "error in database"})
+            })
     })
 };
