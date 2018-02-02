@@ -25,6 +25,14 @@ module.exports = (sequelize, DataTypes) => {
                 isAlpha: true
             }
         },
+        image: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: '/images/users/default.jpg',
+            validate: {
+                notEmpty: true,
+            }
+        },
         dob: {
             type: DataTypes.DATEONLY,
             allowNull: false,
@@ -55,7 +63,25 @@ module.exports = (sequelize, DataTypes) => {
                 min: 1000000000,
                 isInt: true
             }
-        }
+        },
+        signed_up_via: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "local",
+            validate: {
+                notEmpty: true,
+                isAlpha: true,
+            }
+        },
+        points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
     }, {
         underscored: true,
         indexes: [{
@@ -65,10 +91,29 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     blogger.associate = (models) => {
-        blogger.hasMany(models.bloggers.blog, {
+        blogger.hasMany(models.blog, {
             foreignKey: 'blogger_id',
         });
-        blogger.belongsToMany(models.users.user, {through: models.users.follower});
+        blogger.belongsToMany(models.user, {through: models.follower});
+        blogger.belongsToMany(models.blog, {
+            through: 'blog_like',
+            foreignKey: 'liker_id',
+            constraints: false,
+        });
+        blogger.hasMany(models.comment, {
+            foreignKey: 'commenter_id',
+            constraints: false,
+        });
+        blogger.belongsToMany(models.comment, {
+            through: 'comment_like',
+            foreignKey: 'liker_id',
+            constraints: false,
+        });
+        blogger.belongsToMany(models.blog, {
+            through: 'views',
+            foreignKey: 'viewer_id',
+            constraints: false,
+        });
     };
 
     return blogger;

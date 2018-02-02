@@ -6,11 +6,12 @@ const path = require('path');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 
+process.env.APP_ROOT = __dirname;
 dotenv.config();
 dotenv.load();
 const app = express();
 
-const apiRoutes = require("./app/routes");
+const routes = require("./app/routes");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -37,8 +38,7 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
     app.use(express.static('dist'));
 }
 
-app.get('/', render.default);
-app.use('/api/v1', apiRoutes);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
