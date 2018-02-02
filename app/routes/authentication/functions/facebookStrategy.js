@@ -10,6 +10,7 @@ let fs = new FacebookStrategy({
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: "http://" + process.env.DOMAIN + "/login/facebook/user/callback"
 }, function (accessToken, refreshToken, profile, done) {
+    console.log(profile);
     User.findOrCreate({
         where: {
             email: profile.email,

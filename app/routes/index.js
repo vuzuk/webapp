@@ -18,7 +18,4 @@ route.use('/api/secure', routes.api.secure);
 route.use('/api/unsecure', routes.api.unSecure);
 route.use('/', routes.react);
 
-
-
-
 module.exports = route;
