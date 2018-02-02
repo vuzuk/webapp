@@ -4,9 +4,9 @@ const Blogger = models.blogger;
 
 
 module.exports = (obj, cb) => {
-    let modelToQuery = User;
-    if (!obj.isUser) {
-        modelToQuery = Blogger;
+    let modelToQuery = Blogger;
+    if (!obj.isBlogger) {
+        modelToQuery = User;
     }
 
     modelToQuery.findById(obj.id)
@@ -14,7 +14,7 @@ module.exports = (obj, cb) => {
             if (!user_blogger) {
                 return cb("error");
             }
-            user_blogger["isUser"] = obj.isUser;
+            user_blogger["isBlogger"] = obj.isBlogger;
             return cb(null, user_blogger);
         })
         .catch((err) => cb(err))

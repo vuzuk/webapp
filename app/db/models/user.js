@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         image: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: '/users/images/default.png',
             validate: {
                 notEmpty: true,
             }
@@ -63,6 +64,15 @@ module.exports = (sequelize, DataTypes) => {
                 isInt: true
             }
         },
+        signed_up_via: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "local",
+            validate: {
+                notEmpty: true,
+                isAlpha: true,
+            }
+        },
         points: {
             type: DataTypes.BIGINT.UNSIGNED,
             allowNull: false,
@@ -75,6 +85,7 @@ module.exports = (sequelize, DataTypes) => {
         liking: {   // stringified array
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: '[]',
             validate: {
                 notEmpty: true
             }

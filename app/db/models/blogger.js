@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         image: {
             type: DataTypes.STRING,
             allowNull: false,
+            defaultValue: '/images/users/default.jpg',
             validate: {
                 notEmpty: true,
             }
@@ -62,7 +63,25 @@ module.exports = (sequelize, DataTypes) => {
                 min: 1000000000,
                 isInt: true
             }
-        }
+        },
+        signed_up_via: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "local",
+            validate: {
+                notEmpty: true,
+                isAlpha: true,
+            }
+        },
+        points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
     }, {
         underscored: true,
         indexes: [{

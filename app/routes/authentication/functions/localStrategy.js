@@ -5,46 +5,33 @@ const User = models.user;
 const Blogger = models.blogger;
 
 let ls = new LocalStrategy({
-        usernameField: 'email_username',
+        usernameField: 'email_username_isBlogger',
         passwordField: 'password',
     },
-    (email_username, password, done) => {
+    (email_username_isBlogger, password, done) => {
         console.log("Checking credentials");
-        User.findOne({
-            where: {
-                $or: [{
-                    email: email_username
-                }, {
-                    username: email_username
-                }],
-                password: password
-            }
+        let arr = email_username_isBlogger.split(";");
+        let isBlogger = JSON.parse(arr[1].toLowerCase());
+        let model_to_use = isBlogger ? Blogger : User;
+        let whereObj = {
+            $or: [{
+                email: arr[0]
+            }, {
+                username: arr[0]
+            }],
+            password: password,
+            signed_up_via: 'local'
+        };
+
+        model_to_use.findOne({
+            where: whereObj
         })
-            .then(function (user) {
-                if (user) {
-                    user["isUser"] = true;
-                    return done(null, user, {message: "success"});
+            .then(function (user_blogger) {
+                if (!user_blogger) {
+                    return done(null, false, {message: "invalid username or password"});
                 }
-                Blogger.findOne({
-                    where: {
-                        $or: [{
-                            email: email_username
-                        }, {
-                            username: email_username
-                        }],
-                        password: password
-                    }
-                })
-                    .then(function (blogger) {
-                        if (!blogger) {
-                            return done(null, false, {message: "invalid username or password"});
-                        }
-                        blogger["isUser"] = false;
-                        return done(null, blogger, {message: "success"});
-                    })
-                    .catch(function (err) {
-                        return done(err);
-                    })
+                user_blogger["isBlogger"] = isBlogger;
+                return done(null, user_blogger, {message: "success"});
             })
             .catch(function (err) {
                 return done(err);
@@ -54,22 +41,22 @@ let ls = new LocalStrategy({
 module.exports = (app, passport) => {
     passport.use(ls);
     app.post('/login/local', function (req, res, next) {
+        req.body.email_username_isBlogger = req.body.email_username + ";" + (req.body.isBlogger ? "true" : "false");
         passport.authenticate('local', function (err, user, info) {
-            // modify after this line to adapt to our database ************************
-            // if (err) {
-            //     console.log(err);
-            //     return res.status(503).json({status: false, msg: "error in database"});
-            // }
-            // if (!user) {
-            //     return res.status(404).json({status: false, msg: info['message']});
-            // }
-            // req.logIn(user, function (err) {
-            //     if (err) {
-            //         console.log(err);
-            //         return res.status(503).json({status: false, msg: "error in database"});
-            //     }
-            //     return res.status(200).json({status: true, msg: info['message']});
-            // });
+            if (err) {
+                console.log(err);
+                return res.status(503).json({status: false, msg: "error in database"});
+            }
+            if (!user) {
+                return res.status(404).json({status: false, msg: info.message});
+            }
+            req.login(user, function (err) {
+                if (err) {
+                    console.log(err);
+                    return res.status(503).json({status: false, msg: "error in processing"});
+                }
+                return res.redirect("/", 200);
+            })
         })(req, res, next);
     })
 };

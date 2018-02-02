@@ -28,7 +28,7 @@ module.exports = (app) => {
     app.use(passport.session());
 
     passport.serializeUser(function (user, cb) {
-        return cb(null, {id: user.id, isUser: user.isUser});
+        return cb(null, {id: user.id, isBlogger: user.isBlogger});
     });
     passport.deserializeUser(require("./functions/deserializeUser"));
 
