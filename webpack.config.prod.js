@@ -77,7 +77,7 @@ const webpackConfig = [{
     ]
 	}
 }];
-if (process.env.ANALYZE) {
+if (process.env.ANALYZE !== "FALSE") {
   webpackConfig[1].plugins.push(new BundleAnalyzerPlugin())
 }
 

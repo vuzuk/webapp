@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": false,
   "scripts": {
-    "start:dev": "npm run build:dev && NODE_ENV=DEVELOPMENT node ./bin/www",
+    "start:dev": "rm ./dist/* && npm run build:dev && NODE_ENV=DEVELOPMENT node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build:prod && NODE_ENV=PRODUCTION node ./bin/www",
     "start:hard": "DB_RECREATE=true node ./bin/www",
@@ -28,6 +28,7 @@
     "randomstring": "^1.1.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-slick": "^0.17.1",
     "semantic-ui-react": "^0.77.2",
     "sequelize": "^4.31.2",
     "serve-favicon": "~2.4.5"
