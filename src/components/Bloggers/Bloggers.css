@@ -1,0 +1,23 @@
+.bloggers {
+    margin-top: 2% !important;
+}
+
+.bloggers .list, .bloggers h3{
+    margin: 0 !important;
+}
+
+.bloggers h3 {
+    background: #213D56;
+    color: white !important;
+    padding: 10px !important;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+.list .header {
+    font-size: 0.7em !important;
+}
+
+.list .description {
+    font-size: 0.5em !important;
+}

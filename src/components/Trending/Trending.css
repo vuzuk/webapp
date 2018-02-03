@@ -1,0 +1,29 @@
+.slides {
+    position: relative;
+    background: yellow;
+}
+
+.slick-prev, .slick-next {
+    position: absolute;
+    top: 50%;
+}
+
+.slick-prev::before, .slick-next::before {
+    color: #1b1c1d !important;
+}
+
+.slick-list {
+    width: 89%;
+    margin: auto;
+}
+
+.slick-prev {
+    left: 2%;
+}
+.slick-next {
+    right: 2%;
+}
+
+.slides ul {
+    background: yellow;
+}
