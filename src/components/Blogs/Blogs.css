@@ -1,0 +1,54 @@
+.food-slide {
+    background: #F4511E;
+    background: -moz-linear-gradient(-45deg, #F4511E 0%, #FF7043 50%, #FF5722 51%, #FF7043 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #F4511E 0%,#FF7043 50%,#FF5722 51%,#FF7043 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #F4511E 0%,#FF7043 50%,#FF5722 51%,#FF7043 100%);
+}
+
+#post-slides > div.ui.vertical.padded.segment:nth-of-type(3),
+#post-slides > div.ui.vertical.padded.segment:nth-of-type(5),
+#post-slides > div.ui.vertical.padded.segment:nth-of-type(7) {
+    margin-top: 25px !important;
+}
+
+.food-slide ul {
+    background: #F4511E !important;
+}
+
+.tech-slide {
+    background: #7CB342;
+    background: -moz-linear-gradient(-45deg, #7CB342 0%, #9CCC65 50%, #8BC34A 51%, #9CCC65 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #7CB342 0%,#9CCC65 50%,#8BC34A 51%,#9CCC65 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #7CB342 0%,#9CCC65 50%,#8BC34A 51%,#9CCC65 100%);
+}
+
+.tech-slide ul {
+    background: #7CB342 !important;
+}
+
+.fashion-slide {
+    background: #1E88E5;
+    background: -moz-linear-gradient(-45deg, #1E88E5 0%, #42A5F5 50%, #2196F3 51%, #42A5F5 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #1E88E5 0%,#42A5F5 50%,#2196F3 51%,#42A5F5 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #1E88E5 0%,#42A5F5 50%,#2196F3 51%,#42A5F5 100%);
+}
+
+.fashion-slide ul {
+    background: #1E88E5 !important;
+}
+
+.travel-slide {
+    background: #6D4C41;
+    background: -moz-linear-gradient(-45deg, #6D4C41 0%, #8D6E63 50%, #795548 51%, #8D6E63 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #6D4C41 0%,#8D6E63 50%,#795548 51%,#8D6E63 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #6D4C41 0%,#8D6E63 50%,#795548 51%,#8D6E63 100%);
+}
+
+.travel-slide ul {
+    background: #6D4C41 !important;
+}
+
+.category-title {
+    letter-spacing: 1px !important;
+    margin-bottom: 0 !important;
+}
