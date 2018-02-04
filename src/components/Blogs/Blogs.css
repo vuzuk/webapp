@@ -7,7 +7,8 @@
 
 #post-slides > div.ui.vertical.padded.segment:nth-of-type(3),
 #post-slides > div.ui.vertical.padded.segment:nth-of-type(5),
-#post-slides > div.ui.vertical.padded.segment:nth-of-type(7) {
+#post-slides > div.ui.vertical.padded.segment:nth-of-type(7),
+#photo-slides > div.ui.vertical.padded.segment {
     margin-top: 25px !important;
 }
 

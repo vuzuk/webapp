@@ -4,6 +4,7 @@ import SearchBar from '../SearchBar/SearchBar';
 import Trending from '../Trending/Trending';
 import Bloggers from '../Bloggers/Bloggers';
 import Food from '../Blogs/Blogs'
+import Photos from '../Photos/Photos';
 import './App.css'
 export default class App extends Component {
   render() {
@@ -14,6 +15,7 @@ export default class App extends Component {
         <Trending />
         <Bloggers />
         <Food />
+        <Photos />
       </div>
     );
   }
