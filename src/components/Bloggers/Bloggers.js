@@ -30,6 +30,20 @@ class Bloggers extends Component {
                                 <List.Description>Punjab</List.Description>
                             </List.Content>
                         </List.Item>
+                        <List.Item>
+                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/veronika.jpg' />
+                            <List.Content>
+                                <List.Header as='a'>Veronika</List.Header>
+                                <List.Description>West Bengal</List.Description>
+                            </List.Content>
+                        </List.Item>
+                        <List.Item>
+                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
+                            <List.Content>
+                                <List.Header as='a'>Joe</List.Header>
+                                <List.Description>Jharkhand</List.Description>
+                            </List.Content>
+                        </List.Item>
                     </List>
                 </Segment> 
             <Segment>
@@ -54,6 +68,20 @@ class Bloggers extends Component {
                         <List.Content>
                             <List.Header as='a'>Elliot Fu</List.Header>
                             <List.Description>Punjab</List.Description>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item>
+                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/veronika.jpg' />
+                        <List.Content>
+                            <List.Header as='a'>Veronika</List.Header>
+                            <List.Description>West Bengal</List.Description>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item>
+                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
+                        <List.Content>
+                            <List.Header as='a'>Joe</List.Header>
+                            <List.Description>Jharkhand</List.Description>
                         </List.Content>
                     </List.Item>
                 </List>

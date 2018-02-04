@@ -1,3 +1,7 @@
+.post-footer {
+    font-weight: 700 !important;
+}
+
 .food-slide {
     background: #F4511E;
     background: -moz-linear-gradient(-45deg, #F4511E 0%, #FF7043 50%, #FF5722 51%, #FF7043 100%); /* FF3.6-15 */
