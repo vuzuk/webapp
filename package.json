@@ -4,7 +4,6 @@
   "private": false,
   "scripts": {
     "start:dev": "rm ./dist/* && npm run build:dev && NODE_ENV=DEVELOPMENT node ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run build:prod && NODE_ENV=PRODUCTION node ./bin/www",
     "start:hard": "DB_RECREATE=true node ./bin/www",
     "build:prod": "webpack --config ./webpack.config.prod.js",
