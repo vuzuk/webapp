@@ -10,7 +10,8 @@ class Blogs extends Component {
             speed: 500,
             slidesToShow: 3,
             slidesToScroll: 1,
-            adaptiveHeight: true
+            adaptiveHeight: true,
+            autoplay: true
         };
 
         return(

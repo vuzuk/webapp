@@ -38,7 +38,8 @@ class Trending extends Component {
             slidesToShow: 3,
             slidesToScroll: 1,
             className: 'slides',
-            adaptiveHeight: true
+            adaptiveHeight: true,
+            autoplay: true
         };
 
         const labels = {
@@ -50,9 +51,9 @@ class Trending extends Component {
 
         return(
             <Slider {...settings}>
-                {[1,0,2,1,3,0].map(i => {
+                {[1,0,2,1,3,0].map((i,x) => {
                     return(
-                        <div>
+                        <div key={x}>
             <Card>
             <Card.Content extra>
             <Label size="large" as='a' image>

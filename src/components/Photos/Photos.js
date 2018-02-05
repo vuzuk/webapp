@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import { Segment, Icon, Header, Dimmer, Image } from 'semantic-ui-react';
 import './Photos.css';
 
+function imagesLoaded(parentNode) {
+    const imgElements = [...parentNode.querySelectorAll("img")];
+    for (let i = 0; i < imgElements.length; i += 1) {
+      const img = imgElements[i];
+      if (!img.complete) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 class Photos extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +32,7 @@ class Photos extends Component {
 
         return imgs.map((img,i) => {
             return (
-                <Dimmer.Dimmable as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active} className="custom-dimmer">
+                <Dimmer.Dimmable as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
                     <a href="#">
                     <Dimmer active={this.state.active === i} onClickOutside={this.handleHide}>
                         <Header as='h2' inverted>
@@ -36,7 +47,7 @@ class Photos extends Component {
                 </Dimmer.Dimmable>
             )
         })
-    }
+    }  
 
     render() {
         return (

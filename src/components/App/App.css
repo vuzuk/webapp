@@ -1,3 +1,15 @@
 body {
     background: #ECEFF1;
 }
+
+#root > div:nth-of-type(1) {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+#root > div:nth-of-type(1) > div.ui.dimmer:first-child {
+    width: 100vw !important;
+    height: 100vh !important;
+    background: black !important;
+}
