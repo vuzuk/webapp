@@ -41,7 +41,7 @@ module.exports = (passport) => {
                     first_name: req.body.first_name,
                     last_name: req.body.last_name,
                     dob: req.body.dob,
-                    gender: req.body.gender,
+                    gender: req.body.gender.toUpperCase(),
                     contact: req.body.contact,
                     signed_up_via: 'local',
                 }
