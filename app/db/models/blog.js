@@ -1,6 +1,13 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
     const blog = sequelize.define('blog', {
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            }
+        },
         blog: {
             type: DataTypes.TEXT,
             allowNull: false,

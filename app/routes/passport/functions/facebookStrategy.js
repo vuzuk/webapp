@@ -1,9 +1,6 @@
 const passportFacebook = require('passport-facebook');
 const FacebookStrategy = passportFacebook.Strategy;
-var randomstring = require("randomstring");
-const models = require(process.env.APP_ROOT + "/app/db/models");
-const User = models.user;
-const Blogger = models.blogger;
+var randomString = require("randomstring");
 
 let fs = new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
@@ -16,7 +13,7 @@ let fs = new FacebookStrategy({
             email: profile.email,
         },
         defaults: {
-            username: profile.displayName + randomstring.generate(7),
+            username: profile.displayName + randomString.generate(7),
             first_name: profile.name.givenName,
             last_name: profile.name.familyName,
             image: profile.photos[0],
@@ -33,13 +30,6 @@ let fs = new FacebookStrategy({
         .catch((err) => done(err))
 });
 
-module.exports = (app, passport) => {
+module.exports = (passport) => {
     passport.use(fs);
-    app.get('/login/facebook/user', passport.authenticate('facebook', {
-        scope: ['public_profile', 'email', 'user_birthday',]
-    }));
-    app.post('/login/facebook/user/callback', passport.authenticate('facebook', {
-        successRedirect: '/',
-        failureRedirect: '/'
-    }));
 };

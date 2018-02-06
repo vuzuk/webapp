@@ -1,10 +1,9 @@
 const Router = require("express").Router;
 const route = Router();
-passport = require("./authentication")(route);
-const models = require("../db/models");
-
+const passport = require("./passport")(route);
 const routes = {
     api: {
+        auth: require("./auth")(passport),
         secure: require("./secure"),
         unSecure: require("./unsecure")
     },
@@ -14,6 +13,7 @@ const routes = {
 route.get('/api', function (req, res) {
     res.send('hey you! go ahead :)');
 });
+route.use('/api/auth', routes.api.auth);
 route.use('/api/secure', routes.api.secure);
 route.use('/api/unsecure', routes.api.unSecure);
 route.use('/', routes.react);

@@ -1,8 +1,6 @@
 const passport = require('passport');
-const passportLocal = require('passport-local');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
-const LocalStrategy = passportLocal.Strategy;
 const models = require(process.env.APP_ROOT + "/app/db/models");
 
 module.exports = (app) => {
@@ -15,8 +13,8 @@ module.exports = (app) => {
     };
     const sessionStore = new MySQLStore(dbConf);
 
-    require('./functions/localStrategy')(app, passport);
-    require('./functions/facebookStrategy')(app, passport);
+    require('./functions/localStrategy')(passport);
+    require('./functions/facebookStrategy')(passport);
 
     app.use(session({
         secret: process.env["SECRET"],
