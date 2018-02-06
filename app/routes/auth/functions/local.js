@@ -44,7 +44,8 @@ module.exports = (passport) => {
                     gender: req.body.gender.toUpperCase(),
                     contact: req.body.contact,
                     signed_up_via: 'local',
-                }
+                },
+                logging: false
             })
             .spread((user, created) => {
                 user.isBlogger = JSON.parse(req.body.isBlogger);

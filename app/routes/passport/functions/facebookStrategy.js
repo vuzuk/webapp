@@ -21,13 +21,14 @@ let fs = new FacebookStrategy({
             gender: profile.gender,
             contact: null,
             signed_up_via: profile.provider,
-        }
+        },
+        // logging: false
     })
         .spread((user, created) => {
             user.isBlogger = false;
             return done(null, user)
         })
-        .catch((err) => done(err))
+        .catch((err) => done(err));
 });
 
 module.exports = (passport) => {

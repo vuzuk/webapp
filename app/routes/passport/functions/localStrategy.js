@@ -24,7 +24,8 @@ let ls = new LocalStrategy({
         };
 
         model_to_use.findOne({
-            where: whereObj
+            where: whereObj,
+            logging: false
         })
             .then(function (user_blogger) {
                 if (!user_blogger) {
