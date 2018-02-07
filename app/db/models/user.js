@@ -107,11 +107,6 @@ module.exports = (sequelize, DataTypes) => {
 
     user.associate = (models) => {
         user.belongsToMany(models.blogger, {through: models.follower});
-        user.belongsToMany(models.blog, {
-            through: 'blog_like',
-            foreignKey: 'liker_id',
-            constraints: false,
-        });
         user.hasMany(models.comment, {
             foreignKey: 'commenter_id',
             constraints: false,

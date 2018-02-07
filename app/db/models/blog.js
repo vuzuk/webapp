@@ -22,6 +22,14 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: true,
             }
         },
+        date_updated: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW,
+            allowNull: false,
+            validate: {
+                isDate: true
+            }
+        },
         date_published: {
             type: DataTypes.DATE,
             allowNull: true,
@@ -31,13 +39,13 @@ module.exports = (sequelize, DataTypes) => {
         },
         is_deleted: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
             defaultValue: false,
+            allowNull: false,
         },
         is_published: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
             defaultValue: false,
+            allowNull: false,
         },
         views: {
             type: DataTypes.BIGINT.UNSIGNED,
@@ -59,16 +67,6 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'blogger_id',
         });
         blog.belongsToMany(models.tag, {through: 'blog_tag'});
-        blog.belongsToMany(models.user, {
-            through: 'blog_like',
-            foreignKey: 'blog_id',
-            constraints: false,
-        });
-        blog.belongsToMany(models.blogger, {
-            through: 'blog_like',
-            foreignKey: 'blog_id',
-            constraints: false,
-        });
         blog.hasMany(models.comment, {
             foreignKey: 'blog_id',
         });
