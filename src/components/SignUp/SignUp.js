@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { Card, Form, Input, Button } from 'semantic-ui-react'
+import axios from 'axios';
 import './SignUp.css';
 
 const options = [
@@ -20,6 +21,22 @@ class SignUp extends Component {
         }
     }
 
+    submit = () => {
+        axios({
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: '/api/auth/local/signup',
+            data: "data"
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     render() {
         return (
             <div id="register">
@@ -29,49 +46,49 @@ class SignUp extends Component {
                             <Card.Header as="h1">SIGN UP</Card.Header>
                         </Card.Content>
                         <Card.Content>
-                        <Form>
+                        <Form as="form" action="/api/auth/local/signup">
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label>First name</label>
-                                    <Input fluid placeholder='First name' />
+                                    <Input name="first_name" fluid placeholder='First name' />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Last name</label>
-                                    <Input fluid placeholder='Last name' />
+                                    <Input name="last_name" fluid placeholder='Last name' />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label>Username</label>
-                                    <Input fluid placeholder='Username' />
+                                    <Input name="username" fluid placeholder='Username' />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Phone No.</label>
-                                    <Input fluid placeholder='Phone No.' />
+                                    <Input name="contact" fluid placeholder='Phone No.' />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label>Password</label>
-                                    <Input type="password" fluid placeholder='Password' />
+                                    <Input name="password" type="password" fluid placeholder='Password' />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Confirm Password</label>
-                                    <Input fluid type="password" placeholder='Confirm Password' />
+                                    <Input name="cpassword" fluid type="password" placeholder='Confirm Password' />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label>Date Of Birth</label>
-                                    <Input fluid type="date" />
+                                    <Input name="dob" fluid type="date" />
                                 </Form.Field>
                                 <Form.Field>
-                                    <Form.Select fluid label='Gender' options={options} placeholder='Gender' />
+                                    <Form.Select name="gender" fluid label='Gender' options={options} placeholder='Gender' />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Field>
                                 <label>Email</label>
-                                <Input fluid placeholder='Email' />
+                                <Input name="email" fluid placeholder='Email' />
                             </Form.Field>
                             <Form.Checkbox label='I agree to the Terms and Conditions' />
                             <Button type='submit'>Submit</Button>
