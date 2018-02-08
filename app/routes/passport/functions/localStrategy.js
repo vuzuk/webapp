@@ -23,12 +23,13 @@ let ls = new LocalStrategy({
             signed_up_via: 'local'
         };
 
-        model_to_use.findOne({
+        model_to_use.findAll({
             where: whereObj,
+            limit: 1,
             logging: false
         })
             .then(function (user_blogger) {
-                if (!user_blogger) {
+                if (user_blogger.length === 0) {
                     return done(null, false, {message: "invalid username"});
                 }
                 bcrypt.compare(password, user_blogger['password'], function(err, res) {

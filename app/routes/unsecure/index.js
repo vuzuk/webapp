@@ -8,9 +8,15 @@ route.get('/getLatestBlogs', require("./functions/getLatestBlogs"));
 
 // get blog     query = {blogId}
 route.get('/getBlog', require("./functions/getBlog"));
-
 // get blogger details      query = {bloggerId}
 route.get('/getBlogger', require("./functions/getBlogger"));
+
+// check username   query = {username, isBlogger}
+route.get('/checkUsername', require("./functions/checkUsername"));
+// check email   query = {email, isBlogger}
+route.get('/checkEmail', require("./functions/checkEmail"));
+// check contact (for blogger only)   query = {contact}
+route.get('/checkContact', require("./functions/checkContact"));
 
 
 module.exports = route;

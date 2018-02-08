@@ -1,6 +1,7 @@
 const express = require("express");
 const Router = express.Router;
 const route = Router();
+require("./functions/configEmail");
 const passport = require("./passport")(route);
 const routes = {
     api: {

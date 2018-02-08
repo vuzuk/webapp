@@ -15,10 +15,11 @@ module.exports = (req, res) => {
                 model: Blogger,
                 attributes: ["id", "username", "first_name", "last_name", "image"]
             }],
+            limit:1,
             raw: true
         })
         .then((blog) => {
-            if (!blog) {
+            if (blog.length === 0) {
                 return res.status(400).json({status: true, msg: "blog not found"});
             }
             return res.status(200).json({status: true, msg: blog});

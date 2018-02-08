@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
             validate: {
                 notEmpty: true,
                 isAlphanumeric: true
@@ -15,6 +16,35 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 notEmpty: true,
             }
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                notEmpty: true,
+                isEmail: true
+            }
+        },
+        isEmailVerified: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        isContactVerified: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: false
+        },
+        emailVerifKey: {
+            type: DataTypes.STRING,
+            unique: true,
+            allowNull: true
+        },
+        otp: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            unique: true,
+            allowNull: true
         },
         first_name: {
             type: DataTypes.STRING,
@@ -52,14 +82,6 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             validate: {
                 notEmpty: true
-            }
-        },
-        email: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                notEmpty: true,
-                isEmail: true
             }
         },
         contact: {
@@ -101,7 +123,7 @@ module.exports = (sequelize, DataTypes) => {
         underscored: true,
         indexes: [{
             unique: true,
-            fields: ['username', 'email', 'contact']
+            fields: ['username', 'email']
         }]
     });
 
