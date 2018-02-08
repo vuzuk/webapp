@@ -28,10 +28,11 @@ let ls = new LocalStrategy({
             limit: 1,
             logging: false
         })
-            .then(function (user_blogger) {
-                if (user_blogger.length === 0) {
+            .then(function (user_bloggers) {
+                if (user_bloggers.length === 0) {
                     return done(null, false, {message: "invalid username"});
                 }
+                let user_blogger = user_bloggers[0];
                 bcrypt.compare(password, user_blogger['password'], function(err, res) {
                     if(err){
                         return done(err);

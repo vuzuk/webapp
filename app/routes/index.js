@@ -1,12 +1,12 @@
 const express = require("express");
 const Router = express.Router;
 const route = Router();
-require("./functions/configEmail");
+const mailTransporter = require("./functions/configEmail");
 const passport = require("./passport")(route);
 const routes = {
     api: {
         admin: require("./admin"),
-        auth: require("./auth")(passport),
+        auth: require("./auth")(passport, mailTransporter),
         secure: require("./secure"),
         unSecure: require("./unsecure")
     },
