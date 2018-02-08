@@ -33,12 +33,12 @@ export default class Navbar extends Component {
         </Menu.Item>
 
         <Menu.Menu position='right'>
-          <Menu.Item name='signup' active={activeItem === 'signup'} onClick={this.handleItemClick}>
+          <Menu.Item name='signup' href="/signup">
             <Button primary>Sign Up</Button>
           </Menu.Item>
 
-          <Menu.Item name='login' active={activeItem === 'login'} onClick={this.handleItemClick}>
-           <Button>Log In</Button>
+          <Menu.Item name='login' href="/login">
+            <Button>Log In</Button>
           </Menu.Item>
         </Menu.Menu>
       </Menu>

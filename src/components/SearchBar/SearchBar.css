@@ -10,19 +10,19 @@
     width: 65%;
 }
 
-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+#searchbar input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: #1b1c1d !important;
     opacity: 0.8 !important;
 }
-input::-moz-placeholder { /* Firefox 19+ */
+#searchbar input::-moz-placeholder { /* Firefox 19+ */
     color: #1b1c1d !important;
     opacity: 0.8 !important;
 }
-input:-ms-input-placeholder { /* IE 10+ */
+#searchbar input:-ms-input-placeholder { /* IE 10+ */
     color: #1b1c1d !important;
     opacity: 0.8 !important;
 }
-input:-moz-placeholder { /* Firefox 18- */
+#searchbar input:-moz-placeholder { /* Firefox 18- */
     color: #1b1c1d !important;
     opacity: 0.8 !important;
 }

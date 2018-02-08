@@ -1,0 +1,9 @@
+#register div.card.fluid{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+#register h1.header {
+    text-align: center;
+}
