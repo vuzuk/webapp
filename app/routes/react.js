@@ -4,4 +4,5 @@ const render = require(process.env.APP_ROOT+'/dist/SSR');
 
 route.get('/', render.default);
 route.get('/signup',render.signup);
+route.get('/login', render.login);
 module.exports = route;
