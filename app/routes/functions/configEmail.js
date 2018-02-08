@@ -12,6 +12,4 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-process.env["mailTransporter"] = transporter;
-
 module.exports = transporter;

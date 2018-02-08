@@ -7,7 +7,7 @@ const Blogger = models.blogger;
 const bcrypt = require('bcrypt');
 const salt = parseInt(process.env.SALT);
 
-module.exports = (passport) => {
+module.exports = (passport, mailTransporter) => {
     //body = {email_username, password, isBlogger}
     route.post('/login', function (req, res, next) {
         req.body.email_username_isBlogger = req.body.email_username + ";" + (JSON.parse(req.body.isBlogger) ? "true" : "false");
@@ -61,7 +61,7 @@ module.exports = (passport) => {
                         gender: req.body.gender.toUpperCase(),
                         contact: req.body.contact,
                         signed_up_via: 'local',
-                        emailVerfKey: randomString.generate(15),
+                        emailVerifKey: randomString.generate(15),
                     },
                     logging: false
                 })
@@ -72,7 +72,7 @@ module.exports = (passport) => {
                     user.isBlogger = JSON.parse(req.body.isBlogger);
                     //send verification email and otp
                     // setup email data with unicode symbols
-                    let emailLink = process.env.DOMAIN + "/api/auth/verification/verifyEmail?email=" + user.email + "&emailVerifKey=" + user.emailVerifKey+"&isBlogger="+isBlogger;
+                    let emailLink = "http://"+process.env.DOMAIN + "/api/auth/verification/verifyEmail?email=" + user.email + "&emailVerifKey=" + user.emailVerifKey+"&isBlogger="+isBlogger;
                     let mailOptions = {
                         from: process.env.ADMIN_EMAIL_ID, // sender address
                         to: user.email, // list of receivers
@@ -81,7 +81,7 @@ module.exports = (passport) => {
                     };
 
                     // send mail with defined transport object
-                    process.env.mailTransporter.sendMail(mailOptions, (error, info) => {
+                    mailTransporter.sendMail(mailOptions, (error, info) => {
                         if (error) {
                             return console.log(error);
                         }

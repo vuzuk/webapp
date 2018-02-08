@@ -1,11 +1,11 @@
 const Router = require("express").Router;
 const route = Router();
 
-module.exports = (passport) => {
+module.exports = (passport, mailTransporter) => {
     const routes = {
-        local: require("./functions/local")(passport),
+        local: require("./functions/local")(passport, mailTransporter),
         facebook: require("./functions/facebook")(passport),
-        verify: require("./functions/verify")
+        verify: require("./functions/verify")(mailTransporter)
     };
 
     route.use('/local', routes.local);
