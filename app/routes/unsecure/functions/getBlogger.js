@@ -11,10 +11,11 @@ module.exports = (req, res) => {
             where: {
                 id: bloggerId
             },
+            limit: 1,
             raw: true
         })
         .then((blogger) => {
-            if (!blogger) {
+            if (blogger.length === 0) {
                 return res.status(400).json({status: true, msg: "blogger not found"});
             }
             return res.status(200).json({status: true, msg: blogger});
