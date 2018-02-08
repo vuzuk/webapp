@@ -4,8 +4,9 @@ const randomString = require("randomstring");
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const User = models.user;
 const Blogger = models.blogger;
-let plivo = require('plivo');
-let client = new plivo.Client();
+const accountSid = process.env.TWILIO_ACCOUNTSID;
+const authToken = process.env.TWILIO_AUTHTOKEN;
+const client = require('twilio')(accountSid, authToken);
 
 module.exports = (mailTransporter) => {
 //query = {isBlogger, emailVerifKey, email}
@@ -32,7 +33,8 @@ module.exports = (mailTransporter) => {
                         emailVerifKey: null
                     })
                     .then(() => {
-                        return res.status(200).json({status: true, msg: "email verified successfully"});
+                        // return res.status(200).json({status: true, msg: "email verified successfully"});
+                        return res.redirect('/verify/phone', 200);
                     })
                     .catch((err) => {
                         console.log(err);
@@ -62,7 +64,7 @@ module.exports = (mailTransporter) => {
                     return res.status(400).json({status: false, msg: "not found"});
                 }
                 let user = obj[0];
-                let emailLink = "http://"+process.env.DOMAIN + "/api/auth/verification/verifyEmail?email=" + user.email + "&emailVerifKey=" + user.emailVerifKey + "&isBlogger=" + isBlogger;
+                let emailLink = "http://" + process.env.DOMAIN + "/api/auth/verification/verifyEmail?email=" + user.email + "&emailVerifKey=" + user.emailVerifKey + "&isBlogger=" + isBlogger;
                 let mailOptions = {
                     from: process.env.ADMIN_EMAIL_ID, // sender address
                     to: user.email, // list of receivers
@@ -151,17 +153,17 @@ module.exports = (mailTransporter) => {
                     })
                     .then(() => {
                         //sending the otp
-                        client.messages.create(
-                            process.env.ADMIN_CONTACT,
-                            "" + user.contact,
-                            "Hi, your otp for vuzuk id is " + otp
-                        ).then(function (message_created) {
-                            console.log(message_created)
-                            if (status !== 0) {
+                        client.messages.create({
+                            body: "Hi, your otp for vuzuk id is " + otp,
+                            to: "+91" + user.contact,
+                            from: "+" + process.env.TWILIO_ADMIN_CONTACT,
+                        })
+                            .then((message) => {
+                                return res.status(200).json({status: true, msg: "otp sent"});
+                            })
+                            .catch(err => {
                                 return res.status(503).json({status: false, msg: "error in sending otp"})
-                            }
-                            return res.status(200).json({status: true, msg: "otp sent"});
-                        });
+                            });
                     })
                     .catch((err) => {
                         console.log(err);

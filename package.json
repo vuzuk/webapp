@@ -37,6 +37,7 @@
     "semantic-ui-react": "^0.77.2",
     "sequelize": "^4.31.2",
     "serve-favicon": "~2.4.5",
+    "twilio": "^3.11.2",
     "typed.js": "^2.0.6"
   },
   "devDependencies": {
