@@ -6,26 +6,35 @@ const Blog = models["blog"];
 const Blog_like = models["blog_like"];
 
 module.exports = (req, res) => {
-    let blogId = JSON.parse(req.query["blogId"]);
+    let blogId = parseInt(req.query["blogId"]);
     Blog
         .findById(blogId)
         .then((blog) => {
             if (!blog) {
                 return res.status(404).json({status: false, msg: "blog not found"});
             }
+            let whereObj = {
+                blog_id: blogId
+            };
+            whereObj[req["user"]["isBlogger"] ? "blogger_id" : "user_id"] = req["user"]["id"];
             Blog_like
                 .findOrCreate({
-                    where: {
-                        blogger_id: req["user"]["id"],
-                        blog_id: blogId
-                    },
+                    where: whereObj,
                     logging: false
                 })
                 .spread((obj, created) => {
-                    if (!created) {
-                        return res.status(400).json({status: false, msg: "already liked"});
+                    if (created) {
+                        return res.status(200).json({status: true, msg: "blog liked"});
                     }
-                    return res.status(200).json({status: true, msg: "like success"});
+                    obj
+                        .destroy()
+                        .then(() => {
+                            return res.status(200).json({status: true, msg: "blog unLiked"});
+                        })
+                        .catch((err) => {
+                            console.log(err);
+                            return res.status(503).json({status: false, msg: "error in database"});
+                        })
                 })
                 .catch((err) => {
                     console.log(err);

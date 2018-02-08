@@ -68,17 +68,10 @@ module.exports = (sequelize, DataTypes) => {
         });
         blog.belongsToMany(models.tag, {through: 'blog_tag'});
         blog.hasMany(models.comment, {
-            foreignKey: 'blog_id',
-        });
-        blog.belongsToMany(models.user, {
-            through: 'views',
-            foreignKey: 'blog_id',
-            constraints: false,
-        });
-        blog.belongsToMany(models.blogger, {
-            through: 'views',
-            foreignKey: 'blog_id',
-            constraints: false,
+            foreignKey: {
+                name: 'blog_id',
+                allowNull: false
+            }
         });
     };
 

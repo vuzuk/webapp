@@ -5,7 +5,7 @@ module.exports = (req, res) => {
     Blog
         .findById(req.query["blogId"])
         .then(blog => {
-            if (!blog || blog["blogger_id"] !== JSON.parse(req["user"]["id"])) {
+            if (!blog || blog["blogger_id"] !== parseInt(req["user"]["id"])) {
                 return res.status(404).json({status: false, msg: "blog not found"});
             }
             blog

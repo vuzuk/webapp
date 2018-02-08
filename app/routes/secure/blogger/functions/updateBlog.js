@@ -5,7 +5,7 @@ const Blog = models["blog"];
 const Tag = models["tag"];
 
 module.exports = (req, res) => {
-    let blogId = JSON.parse(req.query["blogId"]);
+    let blogId = parseInt(req.query["blogId"]);
     Blog
         .findById(blogId)
         .then((blog) => {
@@ -17,11 +17,13 @@ module.exports = (req, res) => {
                     title: req.body.title,
                     blog: req.body.blog,
                     category_id: req.body.category_id,
-                    date_updated: Sequelize.DataTypes.NOW
+                    date_updated: Sequelize.DataTypes.NOW,
+                    is_published: false
                 }, {
                     logging: false
                 })
                 .then((updatedBlog) => {
+                    console.log("new unPublished Blog " + blogId);
                     return res.status(200).json({status: true, msg: "Blog updated"});
                 })
                 .catch((err) => {

@@ -103,18 +103,10 @@ module.exports = (sequelize, DataTypes) => {
         });
         blogger.belongsToMany(models.user, {through: models.follower});
         blogger.hasMany(models.comment, {
-            foreignKey: 'commenter_id',
-            constraints: false,
-        });
-        blogger.belongsToMany(models.comment, {
-            through: 'comment_like',
-            foreignKey: 'liker_id',
-            constraints: false,
-        });
-        blogger.belongsToMany(models.blog, {
-            through: 'views',
-            foreignKey: 'viewer_id',
-            constraints: false,
+            foreignKey: {
+                name: 'blogger_id',
+                allowNull: true
+            }
         });
     };
 

@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
         comment: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate:{
+            validate: {
                 notEmpty: true,
             }
         },
@@ -14,27 +14,26 @@ module.exports = (sequelize, DataTypes) => {
 
     comment.associate = (models) => {
         comment.belongsTo(models.blog, {
-            foreignKey: 'blog_id',
+            foreignKey: {
+                name: 'blog_id',
+                allowNull: false
+            }
         });
         comment.belongsTo(models.user, {
-            foreignKey: 'commenter_id',
-            constraints: false
+            foreignKey: {
+                name: 'user_id',
+                allowNull: true
+            }
+            // constraints: false
         });
         comment.belongsTo(models.blogger, {
-            foreignKey: 'commenter_id',
-            constraints: false
+            foreignKey: {
+                name: 'blogger_id',
+                allowNull: true
+            },
+            // constraints: false
         });
         comment.hasOne(models.comment, {as: 'parent'});
-        comment.belongsToMany(models.user, {
-            through: 'comment_like',
-            foreignKey: 'comment_id',
-            constraints: false,
-        });
-        comment.belongsToMany(models.blogger, {
-            through: 'comment_like',
-            foreignKey: 'comment_id',
-            constraints: false,
-        });
     };
 
     return comment;

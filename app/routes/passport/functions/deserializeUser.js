@@ -9,9 +9,7 @@ module.exports = (obj, cb) => {
         modelToQuery = User;
     }
 
-    modelToQuery.findById(obj.id, {
-        logging: false
-    })
+    modelToQuery.findById(obj.id)
         .then((user_blogger) => {
             if (!user_blogger) {
                 return cb("error");

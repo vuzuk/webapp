@@ -5,7 +5,7 @@ const User = models["user"];
 
 module.exports = (req, res) => {
     req["user"]
-        .addBlogger([JSON.parse(req.query["bloggerId"])], {
+        .addBlogger([parseInt(req.query["bloggerId"])], {
             logging: false
         })
         .then(() => {

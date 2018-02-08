@@ -5,7 +5,7 @@ const User = models["user"];
 
 module.exports = (req, res) => {
     req["user"]
-        .removeBlogger([JSON.parse(req.query["bloggerId"])], {
+        .removeBlogger([parseInt(req.query["bloggerId"])], {
             logging: false
         })
         .then(() => {

@@ -16,9 +16,6 @@ route.get('/followBlogger', require("./functions/followBlogger"));
 //user unfollow a blogger      query = {bloggerId}
 route.get('/unFollowBlogger', require("./functions/unFollowBlogger"));
 
-// like a blog      query = {blogId}
-route.get('/likeBlog', require("./functions/likeBlog"));
-// unlike a blog      query = {blogId}
-route.get('/unlikeBlog', require("./functions/unlikeBlog"));
+
 
 module.exports = route;

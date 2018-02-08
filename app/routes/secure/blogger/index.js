@@ -30,10 +30,6 @@ route.get('/undoDeleteBlog', require('./functions/undoDeleteBlog'));
 //upload pics for blog      body = {blogId}
 route.post('/upload/blogPic', upload.single('avatar'), require("./functions/uploadBlogPic"));
 
-// like a blog      query = {blogId}
-route.get('/likeBlog', require("./functions/likeBlog"));
-// unlike a blog      query = {blogId}
-route.get('/unlikeBlog', require("./functions/unlikeBlog"));
 
 
 module.exports = route;

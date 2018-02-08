@@ -19,6 +19,7 @@ module.exports = (req, res) => {
             logging: false
         })
         .spread((blog, created) => {
+            console.log("new unPublished Blog " + blog["id"]);
             if(!req.body["tags"]){
                 return res.status(200).json({status: true, msg: "Blog Added without tags"});
             }
