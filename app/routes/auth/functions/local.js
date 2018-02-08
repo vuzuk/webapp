@@ -35,7 +35,7 @@ module.exports = (passport, mailTransporter) => {
                 return res.redirect("/", 200);
             })
         })(req, res, next);
-    })
+    });
 
     //body = {email, username, password, first_name, last_name, dob, gender, contact, isBlogger}
     route.post('/signUp', function (req, res) {
@@ -83,7 +83,8 @@ module.exports = (passport, mailTransporter) => {
                     // send mail with defined transport object
                     mailTransporter.sendMail(mailOptions, (error, info) => {
                         if (error) {
-                            return console.log(error);
+                            console.log(error);
+                            return res.status(503).json({status: false, msg: "error in sending mail"});
                         }
                         console.log('Message sent: %s', info.messageId);
                         return res.status(200).json({status: true, msg: "verification mail sent"});

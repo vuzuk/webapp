@@ -1,9 +1,5 @@
 const Router = require("express").Router;
 const route = Router();
-const routes = {
-    blogger: require("./blogger"),
-    user: require("./user")
-};
 
 route.use(function (req, res, next) {
     if (!req["user"]) {
@@ -12,7 +8,8 @@ route.use(function (req, res, next) {
     return next();
 });
 
-route.use('/blogger', routes.blogger);
-route.use('/user', routes.user);
+route.use('/blogger', require("./blogger"));
+route.use('/user', require("./user"));
+route.use('/generic', require("./generic"));
 
 module.exports = route;
