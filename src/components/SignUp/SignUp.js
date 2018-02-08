@@ -22,19 +22,34 @@ class SignUp extends Component {
     }
 
     submit = () => {
-        axios({
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            url: '/api/auth/local/signup',
-            data: "data"
-        })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            console.log(error);
-        })
+        const data = this.state;
+        if(data.password === data.cpassword) {
+            delete data.cpassword;
+            data.isBlogger = "true";
+            console.log(data);
+            axios({
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                url: '/api/auth/local/signup',
+                data: JSON.stringify(data)
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        } else if(data.password !== data.cpassword) {
+            alert("Password not matched");
+        } else {
+            alert("Some fields are missing");
+        }
+    }
+
+    handleFormText = (e) => {
+        this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
@@ -46,44 +61,44 @@ class SignUp extends Component {
                             <Card.Header as="h1">SIGN UP</Card.Header>
                         </Card.Content>
                         <Card.Content>
-                        <Form as="form" action="/api/auth/local/signup">
+                        <Form onSubmit={this.submit}>
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label>First name</label>
-                                    <Input name="first_name" fluid placeholder='First name' />
+                                    <Input name="first_name" onChange={this.handleFormText} fluid placeholder='First name' />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Last name</label>
-                                    <Input name="last_name" fluid placeholder='Last name' />
+                                    <Input name="last_name" onChange={this.handleFormText} fluid placeholder='Last name' />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label>Username</label>
-                                    <Input name="username" fluid placeholder='Username' />
+                                    <Input name="username" onChange={this.handleFormText} fluid placeholder='Username' />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Phone No.</label>
-                                    <Input name="contact" fluid placeholder='Phone No.' />
+                                    <Input name="contact" onChange={this.handleFormText} fluid placeholder='Phone No.' />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label>Password</label>
-                                    <Input name="password" type="password" fluid placeholder='Password' />
+                                    <Input name="password" onChange={this.handleFormText} type="password" fluid placeholder='Password' />
                                 </Form.Field>
                                 <Form.Field>
                                     <label>Confirm Password</label>
-                                    <Input name="cpassword" fluid type="password" placeholder='Confirm Password' />
+                                    <Input name="cpassword" onChange={this.handleFormText} fluid type="password" placeholder='Confirm Password' />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Group widths='equal'>
                                 <Form.Field>
                                     <label>Date Of Birth</label>
-                                    <Input name="dob" fluid type="date" />
+                                    <Input name="dob" onChange={this.handleFormText} fluid type="date" />
                                 </Form.Field>
                                 <Form.Field>
-                                    <Form.Select name="gender" fluid label='Gender' options={options} placeholder='Gender' />
+                                    <Form.Select name="gender" onChange={this.handleFormText} fluid label='Gender' options={options} placeholder='Gender' />
                                 </Form.Field>
                             </Form.Group>
                             <Form.Field>

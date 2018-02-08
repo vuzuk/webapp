@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
+import axios from 'axios';
 import { Card, Form, Input, Button } from 'semantic-ui-react'
 const options = [
     { key: 'm', text: 'Male', value: 'M' },
@@ -18,6 +19,28 @@ class LogIn extends Component {
         }
     }
 
+    handleFormText = (e) => {
+        this.setState({[e.target.name]: e.target.value});
+    }
+
+    submit = () => {
+        const data = this.state;
+        console.log(data);
+        axios({
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: '/api/auth/local/login',
+            data: JSON.stringify(data)
+        })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+    }
+
     render() {
         return (
             <div id="register">
@@ -27,14 +50,14 @@ class LogIn extends Component {
                             <Card.Header as="h1">LOG IN</Card.Header>
                         </Card.Content>
                         <Card.Content>
-                        <Form>
+                        <Form onSubmit={this.submit}>
                             <Form.Field>
                                 <label>Email or Username</label>
-                                <Input fluid placeholder='Email or Username' />
+                                <Input name="email_username" fluid onChange={this.handleFormText} placeholder='Email or Username' />
                             </Form.Field>
                             <Form.Field>
                                 <label>Password</label>
-                                <Input fluid placeholder='Password' type="password" />
+                                <Input name="password" fluid onChange={this.handleFormText} placeholder='Password' type="password" />
                             </Form.Field>
                             <Button type='submit'>Submit</Button>
                         </Form>

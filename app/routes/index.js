@@ -13,6 +13,15 @@ const routes = {
     react: require("./react")
 };
 
+route.use(function (req, res, next) {
+    try {
+        req.body = JSON.parse(Object.keys(req.body)[0]);
+    } catch (err) {
+        req.body = req.body;
+    }
+    next();
+});
+
 route.get('/api', function (req, res) {
     return res.json({status: true, msg: 'hey you! go ahead :)'});
 });
