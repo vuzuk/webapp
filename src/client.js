@@ -1,8 +1,19 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import App from './components/App/App';
+import SignUp from './components/SignUp/SignUp';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch
+} from 'react-router-dom'
+hydrate(<Router>
+    <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="/signup" component={SignUp} />
+    </Switch>
+</Router>, document.getElementById('root'));
 
-hydrate(<App />, document.getElementById('root'));
 if(module.hot) {
     module.hot.accept();
 }
