@@ -10,7 +10,7 @@ module.exports = (passport) => {
 
     route.use('/local', routes.local);
     route.use('/facebook', routes.facebook);
-    route.use('/verification', route.verify);
+    route.use('/verification', routes.verify);
 
     return route;
 };
