@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": false,
   "scripts": {
-    "start:dev": "rm ./dist/* && npm run build:dev && NODE_ENV=DEVELOPMENT node ./bin/www",
+    "start:dev": "rm -rf ./dist/* && npm run build:dev && NODE_ENV=DEVELOPMENT node ./bin/www",
     "start": "npm run build:prod && NODE_ENV=PRODUCTION node ./bin/www",
     "start:hard": "DB_RECREATE=true node ./bin/www",
     "build:prod": "webpack --config ./webpack.config.prod.js",
@@ -28,7 +28,6 @@
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "passport-oauth": "^1.0.0",
-    "plivo": "^4.0.0",
     "randomstring": "^1.1.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
