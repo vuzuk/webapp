@@ -50,6 +50,7 @@ const webpackConfig = [{
         warnings: false,
 			}
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
 		// new CopyWebpackPlugin([
 		// 	{
 		// 		from: path.resolve(__dirname, 'src'),
@@ -64,7 +65,8 @@ const webpackConfig = [{
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           use: [{
-              loader: "css-loader"
+              loader: "css-loader",
+              options: { minimize: true }
           }],
           // use style-loader in development 
           fallback: "style-loader"
