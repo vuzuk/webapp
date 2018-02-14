@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
 import { Card, Icon, Image, Label, Grid } from 'semantic-ui-react'
-import './Trending.css';
+import './Announcement.css';
 
 const settings = {
     dots: true,

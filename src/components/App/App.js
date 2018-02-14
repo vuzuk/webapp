@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Loader, Segment, Dimmer } from 'semantic-ui-react';
 import Navbar from '../Navbar/Navbar';
 import SearchBar from '../SearchBar/SearchBar';
-import Trending from '../Trending/Trending';
+import Announcement from '../Announcement/Announcement';
 import Bloggers from '../Bloggers/Bloggers';
 import Food from '../Blogs/Blogs'
 import Photos from '../Photos/Photos';
@@ -40,7 +40,7 @@ export default class App extends Component {
         </Dimmer>
         <Navbar />
         <SearchBar />
-        <Trending />
+        <Announcement />
         <Bloggers />
         <Food />
         <Photos />
