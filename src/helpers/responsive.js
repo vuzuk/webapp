@@ -1,13 +1,14 @@
-import MediaQuery from 'react-responsive'
+import React from 'react';
+import {MediaQuery} from 'react-responsive-hoc'
 
-export function Desktop(children) {
+export const Desktop = (children) => {
     return (
-        <MediaQuery minDeviceWidth={992} values={{ deviceWidth: 1600 }}>{children}</MediaQuery>
+        <MediaQuery query="(min-device-width: 992px)">{children}</MediaQuery>
     )
 }
 
-export function Mobile(children) {
+export const Mobile = (children) => {
     return (
-        <MediaQuery minDeviceWidth={992} values={{ deviceWidth: 1600 }}>{children}</MediaQuery>
+        <MediaQuery query="(max-device-width: 991px)">{children}</MediaQuery>
     )
 }

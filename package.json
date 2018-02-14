@@ -31,7 +31,7 @@
     "randomstring": "^1.1.5",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-responsive": "^4.0.4",
+    "react-responsive-hoc": "^1.0.0",
     "react-router-dom": "^4.2.2",
     "react-slick": "^0.17.1",
     "semantic-ui-react": "^0.77.2",
