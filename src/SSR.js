@@ -4,6 +4,7 @@ import template from './template';
 import App from './components/App/App';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
+import Profile from './components/Profile/Profile';
 
 export default function render(req, res) {
   const appString = renderToString(<App />);
@@ -26,5 +27,13 @@ export function login(req, res) {
   res.send(template({
     body: appString,
     title: 'Login - VUZUK',
+  }));
+}
+
+export function profile(req, res) {
+  const appString = renderToString(<Profile />);
+  res.send(template({
+    body: appString,
+    title: 'Profile - VUZUK',
   }));
 }

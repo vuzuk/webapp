@@ -11,7 +11,7 @@ export default class Navbar extends Component {
     const { activeItem } = this.state
 
     return (
-      <Menu id={classNames('navbar')} inverted borderless>
+      <Menu id={classNames('navbar')} inverted borderless fluid>
         <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}>
           Home
         </Menu.Item>
