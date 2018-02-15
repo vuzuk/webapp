@@ -33,7 +33,9 @@ module.exports = (mailTransporter) => {
                         emailVerifKey: null
                     })
                     .then(() => {
-                        // return res.status(200).json({status: true, msg: "email verified successfully"});
+                        if (!isBlogger) {
+                            return res.status(200).json({status: true, msg: "email verified successfully"});
+                        }
                         return res.redirect('/verify/phone', 200);
                     })
                     .catch((err) => {
@@ -47,7 +49,7 @@ module.exports = (mailTransporter) => {
             });
     });
 
-//query = {isBlogger, email}
+    //query = {isBlogger, email}
     route.get('/resendEmail', function (req, res, next) {
         let isBlogger = JSON.parse(req.query["isBlogger"]);
         let email = req.query["email"];
@@ -88,7 +90,7 @@ module.exports = (mailTransporter) => {
             });
     });
 
-//query = {isBlogger, otp, email}
+    //query = {isBlogger, otp, email}
     route.get('/verifyOTP', function (req, res, next) {
         let isBlogger = JSON.parse(req.query["isBlogger"]);
         let otp = parseInt(req.query["otp"]);
@@ -125,7 +127,7 @@ module.exports = (mailTransporter) => {
             });
     });
 
-//query = {isBlogger, email}
+    //query = {isBlogger, email}
     route.get('/resendOTP', function (req, res, next) {
         let isBlogger = JSON.parse(req.query["isBlogger"]);
         let email = req.query["email"];

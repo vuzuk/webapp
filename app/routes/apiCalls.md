@@ -98,7 +98,5 @@ update blogger profile
 upload user image
 upload blogger image
 getting blogs based on likings
-email verification
-contact verification
 password reset
 

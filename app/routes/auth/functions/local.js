@@ -24,7 +24,7 @@ module.exports = (passport, mailTransporter) => {
             }
             if(user.isBlogger) {
                 if(!user.isContactVerified){
-                    return res.status(404).json({status: false, msg: "please verify contact "+ user.contact});
+                    return res.redirect('/verify/phone', 200);
                 }
             }
             req.login(user, function (err) {
@@ -32,7 +32,7 @@ module.exports = (passport, mailTransporter) => {
                     console.log(err);
                     return res.status(503).json({status: false, msg: "error in processing"});
                 }
-                return res.redirect("/", 200);
+                return res.status(200).json({status: true, msg: "login successful"});
             })
         })(req, res, next);
     });
