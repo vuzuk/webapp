@@ -20,11 +20,11 @@ module.exports = (passport, mailTransporter) => {
                 return res.status(404).json({status: false, msg: info.message});
             }
             if(!user.isEmailVerified){
-                return res.status(404).json({status: false, msg: "please verify email address " + user.email});
+                return res.status(404).json({status: false, msg: "please verify your email address " + user.email, notVerified: "email"});
             }
             if(user.isBlogger) {
                 if(!user.isContactVerified){
-                    return res.redirect('/verify/phone', 200);
+                    return res.status(404).json({status: false, msg: "please verify your contact " + user.contact, notVerified: "contact"});
                 }
             }
             req.login(user, function (err) {
