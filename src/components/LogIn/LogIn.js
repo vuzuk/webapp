@@ -25,8 +25,10 @@ class LogIn extends Component {
 
     submit = () => {
         const data = this.state;
+        data.isBlogger = "true";
         console.log(data);
         axios({
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },

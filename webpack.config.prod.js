@@ -48,8 +48,11 @@ const webpackConfig = [{
 				unused: true,
         dead_code: true,
         warnings: false,
+        drop_debugger: true,
+        drop_console: true
 			}
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
 		// new CopyWebpackPlugin([
 		// 	{
 		// 		from: path.resolve(__dirname, 'src'),
@@ -64,7 +67,8 @@ const webpackConfig = [{
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           use: [{
-              loader: "css-loader"
+              loader: "css-loader",
+              options: { minimize: true }
           }],
           // use style-loader in development 
           fallback: "style-loader"
@@ -77,7 +81,7 @@ const webpackConfig = [{
     ]
 	}
 }];
-if (process.env.ANALYZE !== "FALSE") {
+if (process.env.ANALYZE === "TRUE") {
   webpackConfig[1].plugins.push(new BundleAnalyzerPlugin())
 }
 

@@ -10,6 +10,12 @@ const options = [
     { key: 'f', text: 'Female', value: 'F' },
 ];
 class SignUp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            gender: "male"
+        }
+    }
     componentDidMount() {
         if(document) {
             var tid = setInterval( function () {
@@ -49,6 +55,7 @@ class SignUp extends Component {
     }
 
     handleFormText = (e) => {
+        console.log(e.target.value)
         this.setState({[e.target.name]: e.target.value});
     }
 
@@ -97,13 +104,14 @@ class SignUp extends Component {
                                     <label>Date Of Birth</label>
                                     <Input name="dob" onChange={this.handleFormText} fluid type="date" />
                                 </Form.Field>
-                                <Form.Field>
-                                    <Form.Select name="gender" onChange={this.handleFormText} fluid label='Gender' options={options} placeholder='Gender' />
+                                <Form.Field name="gender" onChange={this.handleFormText} label='Gender' control='select'>
+                                    <option value='male'>Male</option>
+                                    <option value='female'>Female</option>
                                 </Form.Field>
                             </Form.Group>
                             <Form.Field>
                                 <label>Email</label>
-                                <Input name="email" fluid placeholder='Email' />
+                                <Input onChange={this.handleFormText} name="email" fluid placeholder='Email' />
                             </Form.Field>
                             <Form.Checkbox label='I agree to the Terms and Conditions' />
                             <Button type='submit'>Submit</Button>
