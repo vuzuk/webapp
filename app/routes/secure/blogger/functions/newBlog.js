@@ -19,12 +19,13 @@ module.exports = (req, res) => {
             logging: false
         })
         .spread((blog, created) => {
+            let tags = req.body["tags"];
             console.log("new unPublished Blog " + blog["id"]);
-            if(!req.body["tags"]){
+            if(!tags || tags.length === 0){
                 return res.status(200).json({status: true, msg: "Blog Added without tags"});
             }
             // creating tags in db
-            let tagsObjs = JSON.parse(req.body["tags"]).map((item) => {
+            let tagsObjs = tags.split(";").map((item) => {
                 return {name: item};
             });
             Tag

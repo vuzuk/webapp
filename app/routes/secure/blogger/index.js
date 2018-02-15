@@ -19,7 +19,7 @@ route.use(function (req, res, next) {
     next();
 });
 
-//Add Blog      body = {title, blog, category_id, tags(stringified array)}
+//Add Blog      body = {title, blog, categoryId, tags(stringified array)}
 route.post('/newBlog', require("./functions/newBlog"));
 //update Blog      body = {blogId, title, blog, category_id, tags(stringified array)}
 route.post('/updateBlog', require("./functions/updateBlog"));

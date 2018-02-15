@@ -43,7 +43,7 @@ localhost:3000/api/unsecure/checkContact
 
 
 ## Add Blog      
-POST - body = {title, blog, category_id, tags(stringified array)}
+POST - body = {title, blog, categoryId, tags(stringified array)}
 localhost:3000/api/secure/blogger/newBlog
 ## update Blog      
 POST - body = {blogId, title, blog, category_id, tags(stringified array)}
