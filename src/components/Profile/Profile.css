@@ -5,6 +5,15 @@
 }
 
 #profile > .segment {
-    width: 95%;
+    width: 90%;
     margin: auto;
+}
+
+#profile .extra.content {
+    /* padding: 0 !important; */
+    background: #e8e8e8 !important;
+}
+
+#profile .extra.content a {
+    width: 100% !important;
 }

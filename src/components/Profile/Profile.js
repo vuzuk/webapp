@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Image, Header, Segment } from 'semantic-ui-react'
+import { Image, Header, Segment, Grid } from 'semantic-ui-react'
 import axios from 'axios';
+import myCard from '../../helpers/card';
 import './Profile.css'
 class Profile extends Component {
 
@@ -39,6 +40,15 @@ class Profile extends Component {
                     <Header.Subheader>
                         Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
                     </Header.Subheader>
+                </Segment>
+                <Segment basic>
+                    <Grid columns={3}>
+                        {[1,1,1,1,1,1,1,1,1,1].map(i => (
+                            <Grid.Column key={i}>
+                                {myCard(i)}
+                            </Grid.Column>
+                        ))}
+                    </Grid>
                 </Segment>
                 <Footer />
             </div>
