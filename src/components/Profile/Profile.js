@@ -35,7 +35,7 @@ class Profile extends Component {
             <div id="profile">
                 <Navbar />
                 <Segment textAlign="center" basic>
-                    <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/wireframe/square-image.png' size='small' circular />
+                    <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
                     <Header size='large'>Matthew Stewards</Header>
                     <Header.Subheader>
                         Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
@@ -43,7 +43,7 @@ class Profile extends Component {
                 </Segment>
                 <Segment basic>
                     <Grid columns={3}>
-                        {[1,1,1,1,1,1,1,1,1,1].map(i => (
+                        {[1,1,1,1,1,1,1,1,1].map(i => (
                             <Grid.Column key={i}>
                                 {myCard(i)}
                             </Grid.Column>

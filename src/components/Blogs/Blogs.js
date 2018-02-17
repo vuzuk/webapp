@@ -64,6 +64,14 @@ class Blogs extends Component {
                     return myCard(i);
                 })}
             </Slider>
+
+            <Segment vertical padded>
+                 <Header as='h3' className="category-title" icon textAlign="center">
+                <Icon name='video' circular/>
+                    VIDEOS
+                </Header>
+            </Segment>
+            <h1>hvhjvvhj</h1>
             </div>
         )
     }
