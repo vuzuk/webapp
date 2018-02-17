@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import { Icon, Segment, Header, Grid, Image} from 'semantic-ui-react'
+import { Icon, Segment, Header, Grid, Image, Embed} from 'semantic-ui-react'
 import classnames from 'classnames';
 import myCard from '../../helpers/card';
 import './Blogs.css';
+
 class Blogs extends Component {
     render() {
         const settings = {
@@ -72,15 +73,38 @@ class Blogs extends Component {
                 </Header>
             </Segment>
             <Grid>
-                <Grid.Column width={8}>
-                    <Segment>
-                        <Image src='https://react.semantic-ui.com/assets/images/wireframe/paragraph.png' />
-                    </Segment>
-                </Grid.Column>
-                <Grid.Column width={4}>
-                    <Segment>1</Segment>
-                    <Segment>2</Segment>
-                </Grid.Column>
+                <Grid.Row>
+                    <Grid.Column width={8}>
+                        <Embed
+                        id='125292332'
+                        placeholder='https://react.semantic-ui.com/assets/images/vimeo-example.jpg'
+                        source='vimeo'
+                        />
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                        <Embed
+                            id='125292332'
+                            placeholder='https://react.semantic-ui.com/assets/images/vimeo-example.jpg'
+                            source='vimeo'
+                        />
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column width={8}>
+                        <Embed
+                        id='125292332'
+                        placeholder='https://react.semantic-ui.com/assets/images/vimeo-example.jpg'
+                        source='vimeo'
+                        />
+                    </Grid.Column>
+                    <Grid.Column width={8}>
+                        <Embed
+                            id='125292332'
+                            placeholder='https://react.semantic-ui.com/assets/images/vimeo-example.jpg'
+                            source='vimeo'
+                        />
+                    </Grid.Column>
+                </Grid.Row>
             </Grid>
             </div>
         )
