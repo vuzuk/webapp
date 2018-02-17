@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import template from './template';
+import template, {index} from './template';
 import App from './components/App/App';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
@@ -8,7 +8,7 @@ import Profile from './components/Profile/Profile';
 
 export default function render(req, res) {
   const appString = renderToString(<App />);
-  res.send(template({
+  res.send(index({
     body: appString,
     title: 'VUZUK',
   }));
