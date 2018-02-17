@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import { Icon, Segment, Header, Grid, Image, Embed} from 'semantic-ui-react'
+import { Icon, Segment, Header, Grid, Image, Embed, Label} from 'semantic-ui-react'
 import classnames from 'classnames';
 import myCard from '../../helpers/card';
 import './Blogs.css';
 
+const labels = ["New Delhi", "Tandoori Chicken", "Nutrition", "Dessert", "Homemade", "Diet", "Non-veg", "South Indian", "Vegetarian", "Street Food"]
+
 class Blogs extends Component {
+    makeLabels = () => {
+        return labels.map(label => (
+            <Label color="black" as="a" size="large">{label}</Label>
+        ))
+    }
+
     render() {
         const settings = {
             dots: true,
@@ -24,23 +32,32 @@ class Blogs extends Component {
                     FOOD
                 </Header>
             </Segment>
-            <Slider {...settings} className="slides food-slide">
-                {[1,1,1,1,1,1].map(i => {
-                    return myCard(i);
-                })}
-            </Slider>
-
+            <div className="mySlider">
+                <div className="label-box">
+                    {this.makeLabels()}
+                </div>
+                <Slider {...settings} className="slides food-slide">
+                    {[1,1,1,1,1,1].map(i => {
+                        return myCard(i);
+                    })}
+                </Slider>
+            </div>
             <Segment vertical padded>
                  <Header as='h3' className="category-title" icon textAlign="center">
                 <Icon name='desktop' circular/>
                     TECH
                 </Header>
             </Segment>
-            <Slider {...settings} className="slides tech-slide">
-                {[1,1,1,1,1,1].map(i => {
-                    return myCard(i);
-                })}
-            </Slider>
+            <div className="mySlider">
+                <div className="label-box">
+                    {this.makeLabels()}
+                </div>
+                <Slider {...settings} className="slides tech-slide">
+                    {[1,1,1,1,1,1].map(i => {
+                        return myCard(i);
+                    })}
+                </Slider>
+            </div>
 
             <Segment vertical padded>
                  <Header as='h3' className="category-title" icon textAlign="center">
@@ -48,11 +65,16 @@ class Blogs extends Component {
                     TRAVEL
                 </Header>
             </Segment>
-            <Slider {...settings} className="slides travel-slide">
-                {[1,1,1,1,1,1].map(i => {
-                    return myCard(i);
-                })}
-            </Slider>
+            <div className="mySlider">
+                <div className="label-box">
+                    {this.makeLabels()}
+                </div>
+                <Slider {...settings} className="slides travel-slide">
+                    {[1,1,1,1,1,1].map(i => {
+                        return myCard(i);
+                    })}
+                </Slider>
+            </div>
 
             <Segment vertical padded>
                  <Header as='h3' className="category-title" icon textAlign="center">
@@ -60,11 +82,16 @@ class Blogs extends Component {
                     FASHION
                 </Header>
             </Segment>
-            <Slider {...settings} className="slides fashion-slide">
-                {[1,1,1,1,1,1].map(i => {
-                    return myCard(i);
-                })}
-            </Slider>
+            <div className="mySlider">
+                <div className="label-box">
+                    {this.makeLabels()}
+                </div>
+                <Slider {...settings} className="slides fashion-slide">
+                    {[1,1,1,1,1,1].map(i => {
+                        return myCard(i);
+                    })}
+                </Slider>
+            </div>
 
             <Segment vertical padded>
                  <Header as='h3' className="category-title" icon textAlign="center">
