@@ -6,6 +6,7 @@ import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import Profile from './components/Profile/Profile';
 import { Food, Travel, Tech, Fashion } from './components/Categories';
+import BloggerProfile from './components/BloggerProfile/BloggerProfile';
 
 export default function render(req, res) {
   const appString = renderToString(<App />);
@@ -36,6 +37,14 @@ export function profile(req, res) {
   res.send(template({
     body: appString,
     title: 'Profile - VUZUK',
+  }));
+}
+
+export function bloggerProfile(req, res) {
+  const appString = renderToString(<BloggerProfile />);
+  res.send(template({
+    body: appString,
+    title: 'Blogger Profile - VUZUK',
   }));
 }
 
