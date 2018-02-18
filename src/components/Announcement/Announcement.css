@@ -8,15 +8,6 @@
     margin-top: 0 !important;
 }
 
-.slides .extra.content {
-    /* padding: 0 !important; */
-    background: #e8e8e8 !important;
-}
-
-.slides .extra.content a {
-    width: 100% !important;
-}
-
 .slick-prev, .slick-next {
     position: absolute;
     top: 50%;

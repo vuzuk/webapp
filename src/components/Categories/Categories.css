@@ -1,0 +1,8 @@
+.categories-page {
+    padding: 20px 30px;
+}
+
+.categories-page > .segment {
+    width: 90%;
+    margin: auto;
+}

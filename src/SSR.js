@@ -5,6 +5,7 @@ import App from './components/App/App';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import Profile from './components/Profile/Profile';
+import { Food, Travel, Tech, Fashion } from './components/Categories';
 
 export default function render(req, res) {
   const appString = renderToString(<App />);
@@ -36,4 +37,35 @@ export function profile(req, res) {
     body: appString,
     title: 'Profile - VUZUK',
   }));
+}
+
+export const categories = {
+  food: (req,res) => {
+    const appString = renderToString(<Food />);
+    res.send(template({
+      body: appString,
+      title: 'Food - VUZUK',
+    }));
+  },
+  travel: (req,res) => {
+    const appString = renderToString(<Travel />);
+    res.send(template({
+      body: appString,
+      title: 'Travel - VUZUK',
+    }));
+  },
+  fashion: (req,res) => {
+    const appString = renderToString(<Fashion />);
+    res.send(template({
+      body: appString,
+      title: 'Fashion - VUZUK',
+    }));
+  },
+  tech: (req,res) => {
+    const appString = renderToString(<Tech />);
+    res.send(template({
+      body: appString,
+      title: 'Tech - VUZUK',
+    }));
+  }
 }

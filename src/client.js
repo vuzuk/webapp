@@ -4,7 +4,7 @@ import App from './components/App/App';
 import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import Profile from './components/Profile/Profile';
-
+import { Food, Travel, Tech, Fashio } from './components/Categories';
 import {
     BrowserRouter as Router,
     Route,
@@ -16,6 +16,10 @@ hydrate(<Router>
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={LogIn} />
         <Route path="/profile" component={Profile} />
+        <Route path="/food" component={Food} />
+        <Route path="/travel" component={Travel} />
+        <Route path="/tech" component={Tech} />
+        <Route path="/fashion" component={Fashion} />
     </Switch>
 </Router>, document.getElementById('root'));
 

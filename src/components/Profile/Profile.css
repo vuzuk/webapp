@@ -9,11 +9,11 @@
     margin: auto;
 }
 
-#profile .extra.content {
+.ui.card .extra.content {
     /* padding: 0 !important; */
     background: #e8e8e8 !important;
 }
 
-#profile .extra.content a {
+.ui.card .extra.content a {
     width: 100% !important;
 }
