@@ -4,7 +4,12 @@
     margin-right: auto;
 }
 
-#profile > .segment {
+#profile .profile {
+    width: 70%;
+    margin: auto;
+}
+
+#profile .profile-cards {
     width: 90%;
     margin: auto;
 }

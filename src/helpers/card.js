@@ -6,7 +6,7 @@ const myCard = (i) => {
         <div>
             <Card>
                 <Card.Content extra>
-                    <Label size="large" as='a' image>
+                    <Label size="large" as='a' href="/profile" image>
                     <Image avatar spaced='right' src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
                     Matthew Stewards
                     </Label>
