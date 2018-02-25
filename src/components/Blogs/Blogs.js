@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-slick';
-import { Icon, Segment, Header, Grid, Image, Embed, Label} from 'semantic-ui-react'
+import { Icon, Segment, Header, Grid, Image, Embed, Label, Transition} from 'semantic-ui-react'
 import classnames from 'classnames';
 import myCard from '../../helpers/card';
 import './Blogs.css';
@@ -8,9 +8,41 @@ import './Blogs.css';
 const labels = ["New Delhi", "Tandoori Chicken", "Nutrition", "Dessert", "Homemade", "Diet", "Non-veg", "South Indian", "Vegetarian", "Street Food"]
 
 class Blogs extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            labels,
+            visible: []
+        }
+    }
+
+    componentWillMount() {
+        let visible = [];
+        for(let i=0; i<labels.length; i++) {
+            visible.push(i%2 ? true : false)
+        }
+        this.setState({visible})
+    }
+
+    changeLabels = () => {
+        let {visible} = this.state;
+        for(let i=0; i<labels.length; i++) {
+            visible[i] = !visible[i];
+        }
+        this.setState({visible})
+    }
+
+    componentDidMount() {
+        setInterval(this.changeLabels,2000)
+    }
+
     makeLabels = () => {
-        return labels.map(label => (
-            <Label color="black" as="a" size="large">{label}</Label>
+        const {labels} = this.state;
+        const thiss = this;
+        return labels.map((label,i) => (
+            <Transition visible={this.state.visible[i]} key={i} animation='scale' duration={500}>
+                <Label as="a" size="large">{label}</Label>
+            </Transition>
         ))
     }
 
