@@ -6,6 +6,8 @@ const route = Router();
 route.get('/viewBlog', require("./functions/viewBlog"));
 // like a blog      query = {blogId}
 route.get('/toggleBlogLike', require("./functions/toggleBlogLike"));
+// bookmark a blog      query = {blogId}
+route.get('/toggleBlogBookmark', require("./functions/toggleBlogBookmark"));
 
 // comment on a blog    body = {comment, blogId, parentId}
 route.post('/addComment', require("./functions/addComment"));
