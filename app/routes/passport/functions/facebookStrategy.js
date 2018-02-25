@@ -1,13 +1,15 @@
 const passportFacebook = require('passport-facebook');
 const FacebookStrategy = passportFacebook.Strategy;
 var randomString = require("randomstring");
+const models = require(process.env.APP_ROOT + "/app/db/models");
+const User = models.user;
 
 let fs = new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
     callbackURL: "http://" + process.env.DOMAIN + "/api/auth/facebook/login/callback"
 }, function (accessToken, refreshToken, profile, done) {
-    console.log(profile);
+    return console.log("profile: ", profile);
     User.findOrCreate({
         where: {
             email: profile.email,

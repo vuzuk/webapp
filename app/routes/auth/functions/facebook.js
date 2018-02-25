@@ -7,7 +7,8 @@ const Blogger = models.blogger;
 module.exports = (passport) => {
 
     route.get('/login', passport.authenticate('facebook', {
-        scope: ['public_profile', 'email', 'user_birthday',]
+        // scope: ['public_profile', 'email', 'user_birthday',]
+        scope: ['public_profile']
     }));
     route.get('/login/callback', passport.authenticate('facebook', {
         successRedirect: '/',
