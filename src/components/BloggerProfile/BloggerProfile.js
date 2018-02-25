@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image } from 'semantic-ui-react';
+import { Segment, Image, Grid } from 'semantic-ui-react';
+import myCard from '../../helpers/card';
 import './BloggerProfile.css';
 class BloggerProfile extends Component {
     constructor(props) {
@@ -38,6 +39,17 @@ class BloggerProfile extends Component {
                     <div className="tab" onClick={() => {this.handleChange("likes")}} style={isActive === "likes" ? {borderBottom: "4px solid #55ACEE"} : null}>LIKES</div>
                     <div className="tab" onClick={() => {this.handleChange("bookmark")}} style={isActive === "bookmark" ? {borderBottom: "4px solid #55ACEE"} : null}>BOOKMARKS</div>
                 </div>
+                <Segment basic>
+                    <div className="profile-cards">
+                        <Grid columns={3}>
+                            {[1,1,1,1,1,1,1,1,1].map(i => (
+                                <Grid.Column key={i}>
+                                    {myCard(i)}
+                                </Grid.Column>
+                            ))}
+                        </Grid>
+                    </div>
+                </Segment>
                 <Footer />
             </div>
         )
