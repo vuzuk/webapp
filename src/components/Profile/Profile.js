@@ -31,6 +31,20 @@ class Profile extends Component {
         })
     }
     render() {
+        const sortOptions = [
+            {
+                text: "Most Viewed",
+                value: "Most Viewed",
+            },
+            {
+                text: "Most Liked",
+                value: "Most Liked",
+            },
+            {
+                text: "Most Commented",
+                value: "Most Commented",
+            }
+        ]
         return (
             <div id="profile">
                 <Navbar />
@@ -43,13 +57,7 @@ class Profile extends Component {
                         </Header.Subheader>
                     </div>
                 </Segment>
-                <Dropdown item text='Language'>
-            <Dropdown.Menu>
-              <Dropdown.Item>English</Dropdown.Item>
-              <Dropdown.Item>Russian</Dropdown.Item>
-              <Dropdown.Item>Spanish</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+                Sort by: <Dropdown inline options={sortOptions} defaultValue={sortOptions[0].value} />
                 <Divider />
                 <Segment basic>
                     <div className="profile-cards">
