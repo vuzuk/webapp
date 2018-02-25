@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Image, Header, Segment, Grid, Divider } from 'semantic-ui-react'
+import { Image, Header, Segment, Grid, Divider, Dropdown } from 'semantic-ui-react'
 import axios from 'axios';
 import myCard from '../../helpers/card';
 import './Profile.css'
@@ -43,6 +43,13 @@ class Profile extends Component {
                         </Header.Subheader>
                     </div>
                 </Segment>
+                <Dropdown item text='Language'>
+            <Dropdown.Menu>
+              <Dropdown.Item>English</Dropdown.Item>
+              <Dropdown.Item>Russian</Dropdown.Item>
+              <Dropdown.Item>Spanish</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
                 <Divider />
                 <Segment basic>
                     <div className="profile-cards">
