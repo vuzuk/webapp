@@ -5,7 +5,7 @@ var randomString = require("randomstring");
 let fs = new FacebookStrategy({
     clientID: process.env.FACEBOOK_APP_ID,
     clientSecret: process.env.FACEBOOK_APP_SECRET,
-    callbackURL: "http://" + process.env.DOMAIN + "/facebook/login/callback"
+    callbackURL: "http://" + process.env.DOMAIN + "/api/auth/facebook/login/callback"
 }, function (accessToken, refreshToken, profile, done) {
     console.log(profile);
     User.findOrCreate({
