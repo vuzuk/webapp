@@ -43,7 +43,7 @@ class Photos extends Component {
                         </Header>
                     </Dimmer>
                     </a>
-                    <Image src={`${img}_min.jpeg`} bordered={false} ui={false}/>
+                    <Image src={`${img}_min.jpg`} bordered={false} ui={false}/>
                 </Dimmer.Dimmable>
             )
         })
