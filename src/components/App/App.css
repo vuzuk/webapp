@@ -17,3 +17,7 @@ body {
     height: 100vh !important;
     background: black !important;
 }
+
+.myCard .extra.content {
+    display: flex;
+}

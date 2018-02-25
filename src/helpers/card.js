@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Card, Label, Image, Grid, Icon } from 'semantic-ui-react';
+import { Card, Label, Image, Grid, Icon, Button } from 'semantic-ui-react';
 
 const myCard = (i) => {
     return (
-        <div>
+        <div className="myCard">
             <Card>
                 <Card.Content extra>
                     <Label size="large" as='a' href="/profile" image>
                     <Image avatar spaced='right' src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
                     Matthew Stewards
                     </Label>
+                    <Button size="tiny" primary>Follow</Button>
                 </Card.Content>
                 <Image src='https://i1.wp.com/www.eatstory.in/wp-content/uploads/2017/06/Kabul-Restaurant-03.jpg?w=1000' />
                 <Card.Content>
