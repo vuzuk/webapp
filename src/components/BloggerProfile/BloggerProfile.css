@@ -1,3 +1,29 @@
+#profile-page > .ui.segment {
+    margin: 0 !important;
+}
+
+.tabs {
+    display: flex;
+    /* margin-top: 8px; */
+    border-top: 2px solid #f5f5f5;
+    background: white;
+}
+
+.tabs .tab {
+    margin: auto;
+    color: #55ACEE;
+    padding: 15px 20px;
+    font-size: 1.1em;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 50px;
+    transition: 0.1s ease-in-out all;
+}
+
+.tabs .tab:hover {
+    border-bottom: 4px solid;
+}
+
 .blogger-profile {
     width: 70%;
     margin: auto;
