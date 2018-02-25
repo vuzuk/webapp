@@ -9,7 +9,7 @@ module.exports = (passport) => {
     route.get('/login', passport.authenticate('facebook', {
         scope: ['public_profile', 'email', 'user_birthday',]
     }));
-    route.post('/login/callback', passport.authenticate('facebook', {
+    route.get('/login/callback', passport.authenticate('facebook', {
         successRedirect: '/',
         failureRedirect: '/'
     }));
