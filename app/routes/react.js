@@ -11,5 +11,6 @@ route.get('/travel', render.categories.travel);
 route.get('/tech', render.categories.tech);
 route.get('/fashion', render.categories.fashion);
 route.get('/blogger', render.bloggerProfile);
+route.get('/create', render.createPost);
 
 module.exports = route;

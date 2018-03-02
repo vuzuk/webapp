@@ -7,6 +7,7 @@ import LogIn from './components/LogIn/LogIn';
 import Profile from './components/Profile/Profile';
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import BloggerProfile from './components/BloggerProfile/BloggerProfile';
+import CreatePost from './components/CreatePost/CreatePost';
 
 export default function render(req, res) {
   const appString = renderToString(<App />);
@@ -46,6 +47,14 @@ export function bloggerProfile(req, res) {
     body: appString,
     title: 'Blogger Profile - VUZUK',
   }));
+}
+
+export function createPost(req, res) {
+  const appString = renderToString(<CreatePost />);
+  res.send(template({
+    body: appString,
+    title: 'Create Post - VUZUk'
+  }))
 }
 
 export const categories = {
