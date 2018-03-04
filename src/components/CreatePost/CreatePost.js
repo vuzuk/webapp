@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { Grid, Input, Segment, Header, Select } from 'semantic-ui-react'
+import 'froala-editor/js/froala_editor.pkgd.min.js';
+import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 
 const categoryOptions = [
@@ -28,7 +30,9 @@ const categoryOptions = [
 ]
 
 class CreatePost extends Component {
+
     render() {
+        const { editorState } = this.state;
         return (
             <div>
                 <Navbar />
@@ -36,6 +40,9 @@ class CreatePost extends Component {
                         <Grid divided>
                             <Grid.Column width={10}>
                                 <Input focus fluid placeholder="Enter title here"/>
+                                <div>
+                                    {/* jnkj */}
+                                </div>
                             </Grid.Column>
                             <Grid.Column width={6}>
                                 <Select fluid placeholder='Select your category' options={categoryOptions} />
