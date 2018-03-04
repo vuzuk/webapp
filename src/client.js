@@ -19,7 +19,6 @@ hydrate(<Router>
         <Route path="/reader/signup" component={RSignUp} />
         <Route path="/blogger/login" component={BLogIn} />
         <Route path="/reader/login" component={RLogIn} />
-        <Route path="/login" component={LogIn} />
         <Route path="/profile" component={Profile} />
         <Route path="/food" component={Food} />
         <Route path="/travel" component={Travel} />

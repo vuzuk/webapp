@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Button } from 'semantic-ui-react'
+import { Menu, Button, Modal, Header, Icon } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
 export default class Navbar extends Component {
@@ -28,8 +28,21 @@ export default class Navbar extends Component {
         </Menu.Item>
 
         <Menu.Menu position='right'>
-          <Menu.Item name='signup' href="/signup">
-            <Button primary>Sign Up</Button>
+          <Menu.Item name='signup'>
+            <Modal trigger={<Button primary>Sign Up</Button>} closeIcon>
+              <Header icon='archive' content='Archive Old Messages' />
+              <Modal.Content>
+                <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+              </Modal.Content>
+              <Modal.Actions>
+                <Button color='red'>
+                  <Icon name='remove' /> No
+                </Button>
+                <Button color='green'>
+                  <Icon name='checkmark' /> Yes
+                </Button>
+              </Modal.Actions>
+            </Modal>
           </Menu.Item>
 
           <Menu.Item name='login' href="/login">
