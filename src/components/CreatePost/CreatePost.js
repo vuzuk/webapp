@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Grid, Input, Segment, Header, Select } from 'semantic-ui-react'
+import { Grid, Input, Segment, Header, Select, Button } from 'semantic-ui-react'
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
-// import '../../externals/froala_style.min.css'
-// import '../../externals/froala_editor.pkgd.min.css'
 
 const categoryOptions = [
     {
@@ -40,14 +38,15 @@ class CreatePost extends Component {
                     <Segment basic padded="very">
                         <Grid divided>
                             <Grid.Column width={10}>
-                                <Input focus fluid placeholder="Enter title here"/>
+                                <Input size="big" focus fluid placeholder="Enter title here"/>
                                 <div style={{marginTop: "10px"}}>
                                     <FroalaEditor config={{
                                         height: 300,
                                         placeholderText: 'Edit Your Content Here!',
                                         imageUploadURL: '/api/upload',
                                         charCounterCount: false,
-                                        toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
+                                        quickInsertButtons: [],
+                                        toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', '-', 'insertLink', 'insertImage', 'insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
                                     }} />
                                 </div>
                             </Grid.Column>
@@ -62,6 +61,12 @@ class CreatePost extends Component {
                                     fluid
                                     className="tags"
                                 />
+                                <div style={{marginTop: "20px"}}>
+                                    <Button.Group fluid>
+                                        <Button size="huge">Cancel</Button>
+                                        <Button size="huge" primary>Publish</Button>
+                                    </Button.Group>
+                                </div>
                             </Grid.Column>
                         </Grid>
                     </Segment>
