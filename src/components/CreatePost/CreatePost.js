@@ -1,8 +1,31 @@
 import React, { Component } from 'react'
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Grid, Input, Segment, Header } from 'semantic-ui-react'
+import { Grid, Input, Segment, Header, Select } from 'semantic-ui-react'
 import './CreatePost.css';
+
+const categoryOptions = [
+    {
+        value: 'food',
+        key: 'food',
+        text: 'Food'
+    },
+    {
+        value: 'travel',
+        key: 'travel',
+        text: 'Travel'
+    },
+    {
+        value: 'tech',
+        key: 'tech',
+        text: 'Tech'
+    },
+    {
+        value: 'fashion',
+        key: 'fashion',
+        text: 'Fashion'
+    }
+]
 
 class CreatePost extends Component {
     render() {
@@ -10,11 +33,13 @@ class CreatePost extends Component {
             <div>
                 <Navbar />
                     <Segment basic padded="very">
-                        <Grid>
+                        <Grid divided>
                             <Grid.Column width={10}>
-                                <div><span className="subhead">Title</span><Input focus placeholder="Enter title here"/></div>
+                                <Input focus fluid placeholder="Enter title here"/>
                             </Grid.Column>
-                            <Grid.Column width={6}></Grid.Column>
+                            <Grid.Column width={6}>
+                                <Select fluid placeholder='Select your category' options={categoryOptions} />
+                            </Grid.Column>
                         </Grid>
                     </Segment>
                 <Footer />
