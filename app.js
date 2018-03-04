@@ -37,6 +37,7 @@ if (process.env.NODE_ENV !== 'PRODUCTION') {
     app.use(express.static('dist'));
 }
 app.use(express.static('uploads'));
+app.use(express.static('src/externals'));
 app.use('/', routes);
 
 // catch 404 and forward to error handler
