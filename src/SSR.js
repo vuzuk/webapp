@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import template, {index} from './template';
 import App from './components/App/App';
 import { BSignUp, RSignUp } from './components/SignUp';
-import LogIn from './components/LogIn/LogIn';
+import { BLogIn, RLogIn } from './components/LogIn';
 import Profile from './components/Profile/Profile';
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import BloggerProfile from './components/BloggerProfile/BloggerProfile';
@@ -33,11 +33,19 @@ export function rSignUp(req, res) {
   }));
 }
 
-export function login(req, res) {
-  const appString = renderToString(<LogIn />);
+export function bLogIn(req, res) {
+  const appString = renderToString(<BLogIn />);
   res.send(template({
     body: appString,
-    title: 'Login - VUZUK',
+    title: 'Blogger Login - VUZUK',
+  }));
+}
+
+export function rLogIn(req, res) {
+  const appString = renderToString(<RLogIn />);
+  res.send(template({
+    body: appString,
+    title: 'Reader Login - VUZUK',
   }));
 }
 

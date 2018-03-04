@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
+import Navbar from '../../Navbar/Navbar';
+import Footer from '../../Footer/Footer';
 import axios from 'axios';
 import { Card, Form, Input, Button } from 'semantic-ui-react'
 const options = [
@@ -8,16 +8,6 @@ const options = [
     { key: 'f', text: 'Female', value: 'F' },
 ];
 class LogIn extends Component {
-    componentDidMount() {
-        if(document) {
-            var tid = setInterval( function () {
-              if ( document.readyState !== 'complete' ) return;
-              clearInterval( tid );       
-              const body = document.querySelector("body");
-              if(body) {body.style.overflowY = "scroll"};
-            }, 100 );
-        }
-    }
 
     handleFormText = (e) => {
         this.setState({[e.target.name]: e.target.value});
