@@ -1,7 +1,7 @@
 import React from 'react';
 import { hydrate } from 'react-dom';
 import App from './components/App/App';
-import SignUp from './components/SignUp/SignUp';
+import { BSignUp, RSignUp } from './components/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import Profile from './components/Profile/Profile';
 import BloggerProfile from './components/BloggerProfile/BloggerProfile'
@@ -15,7 +15,8 @@ import {
 hydrate(<Router>
     <Switch>
         <Route exact path="/" component={App} />
-        <Route path="/signup" component={SignUp} />
+        <Route path="/blogger/signup" component={BSignUp} />
+        <Route path="/reader/signup" component={RSignUp} />
         <Route path="/login" component={LogIn} />
         <Route path="/profile" component={Profile} />
         <Route path="/food" component={Food} />

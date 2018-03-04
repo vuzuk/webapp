@@ -2,7 +2,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import template, {index} from './template';
 import App from './components/App/App';
-import SignUp from './components/SignUp/SignUp';
+import { BSignUp, RSignUp } from './components/SignUp';
 import LogIn from './components/LogIn/LogIn';
 import Profile from './components/Profile/Profile';
 import { Food, Travel, Tech, Fashion } from './components/Categories';
@@ -17,11 +17,19 @@ export default function render(req, res) {
   }));
 }
 
-export function signup(req, res) {
-  const appString = renderToString(<SignUp />);
+export function bSignUp(req, res) {
+  const appString = renderToString(<BSignUp />);
   res.send(template({
     body: appString,
-    title: 'Sign Up - VUZUK',
+    title: 'Blogger Sign Up - VUZUK',
+  }));
+}
+
+export function rSignUp(req, res) {
+  const appString = renderToString(<RSignUp />);
+  res.send(template({
+    body: appString,
+    title: 'Reader Sign Up - VUZUK',
   }));
 }
 

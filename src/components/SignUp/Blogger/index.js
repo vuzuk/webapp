@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Navbar from '../Navbar/Navbar';
-import Footer from '../Footer/Footer';
+import Navbar from '../../Navbar/Navbar';
+import Footer from '../../Footer/Footer';
 import { Card, Form, Input, Button } from 'semantic-ui-react'
 import axios from 'axios';
-import './SignUp.css';
+import '../SignUp.css';
 
 const options = [
     { key: 'm', text: 'Male', value: 'M' },
@@ -14,16 +14,6 @@ class SignUp extends Component {
         super(props);
         this.state = {
             gender: "male"
-        }
-    }
-    componentDidMount() {
-        if(document) {
-            var tid = setInterval( function () {
-              if ( document.readyState !== 'complete' ) return;
-              clearInterval( tid );       
-              const body = document.querySelector("body");
-              if(body) {body.style.overflowY = "scroll"};
-            }, 100 );
         }
     }
 
