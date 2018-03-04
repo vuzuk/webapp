@@ -39,6 +39,16 @@ class CreatePost extends Component {
                             </Grid.Column>
                             <Grid.Column width={6}>
                                 <Select fluid placeholder='Select your category' options={categoryOptions} />
+                                <Input
+                                    icon='tags'
+                                    iconPosition='left'
+                                    label={{ tag: true, content: 'Add Tag'}}
+                                    labelPosition='right'
+                                    placeholder='Enter tags'
+                                    fluid
+                                    className="tags"
+                                    inverted
+                                />
                             </Grid.Column>
                         </Grid>
                     </Segment>
