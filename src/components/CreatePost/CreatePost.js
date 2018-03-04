@@ -47,7 +47,6 @@ class CreatePost extends Component {
                                     placeholder='Enter tags'
                                     fluid
                                     className="tags"
-                                    inverted
                                 />
                             </Grid.Column>
                         </Grid>
