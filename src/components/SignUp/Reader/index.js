@@ -59,7 +59,7 @@ class SignUp extends Component {
                         </Card.Content>
                         <Card.Content>
                             <Segment basic>
-                                <Button color='facebook' fluid>
+                                <Button size="big" color='facebook' fluid>
                                     <Icon name='facebook' /> Join With Facebook
                                 </Button>
                                 <Divider horizontal>OR</Divider>
