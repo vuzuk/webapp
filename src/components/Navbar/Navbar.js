@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Button, Modal, Header, Icon } from 'semantic-ui-react'
+import { Divider, Menu, Button, Modal, Header, Icon } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
 export default class Navbar extends Component {
@@ -30,23 +30,22 @@ export default class Navbar extends Component {
         <Menu.Menu position='right'>
           <Menu.Item name='signup'>
             <Modal trigger={<Button primary>Sign Up</Button>} closeIcon>
-              <Header icon='archive' content='Archive Old Messages' />
               <Modal.Content>
-                <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+                <Button as="a" href="/blogger/signup" primary size="huge" fluid>Blogger</Button>
+                <Divider horizontal>OR</Divider>
+                <Button as="a" href="/reader/signup" secondary size="huge" fluid>Reader</Button>
               </Modal.Content>
-              <Modal.Actions>
-                <Button color='red'>
-                  <Icon name='remove' /> No
-                </Button>
-                <Button color='green'>
-                  <Icon name='checkmark' /> Yes
-                </Button>
-              </Modal.Actions>
             </Modal>
           </Menu.Item>
 
-          <Menu.Item name='login' href="/login">
-            <Button>Log In</Button>
+          <Menu.Item name='login'>
+            <Modal trigger={<Button>Log In</Button>} closeIcon>
+                <Modal.Content>
+                  <Button as="a" href="/blogger/login" primary size="huge" fluid>Blogger</Button>
+                  <Divider horizontal>OR</Divider>
+                  <Button as="a" href="/reader/login" secondary size="huge" fluid>Reader</Button>
+                </Modal.Content>
+              </Modal>
           </Menu.Item>
         </Menu.Menu>
       </Menu>
