@@ -6,6 +6,14 @@ import 'froala-editor/js/froala_editor.pkgd.min.js';
 import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 
+const isEmpty = (obj) => {
+    for(var key in obj) {
+        if(obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
 const categoryOptions = [
     {
         value: 'food',
@@ -30,6 +38,27 @@ const categoryOptions = [
 ]
 
 class CreatePost extends Component {
+    removeWrapper = () => {
+        let elements = document.querySelectorAll(".fr-wrapper a[target='_blank'");
+        console.log("run..")
+        if(!isEmpty(elements)) {
+            for (let key in elements) {
+                try {
+                    elements[key].parentNode.removeChild(elements[key]);
+                } catch(err) {
+                    // do nothing
+                }
+            }
+        }
+    }
+
+    componentDidMount() {
+        this.removeWrapper()
+    }
+
+    componentDidUpdate() {
+        this.removeWrapper()
+    }
 
     render() {
         return (
