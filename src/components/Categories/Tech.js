@@ -13,6 +13,31 @@ class Tech extends Component {
                     <Header as='h1' dividing>
                         Tech
                     </Header>
+                    <Grid columns={2}>
+                        <Grid.Row stretched>
+                            <Grid.Column width={10}>
+                                <Segment basic>
+                                    <Slider {...settings}>
+                                        {[1,0,2,1,3,0].map((i,x) => {
+                                            return (
+                                                <div key={x}>
+                                                    <img height="350px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
+                                                </div>
+                                            )
+                                        })}
+                                    </Slider>
+                                </Segment>
+                            </Grid.Column>
+                            <Grid.Column width={6}>
+                                <Segment basic className="right-item">
+                                    <img height="170px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
+                                </Segment>
+                                <Segment basic>
+                                    <img height="170px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
+                                </Segment>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                     <Segment basic>
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
