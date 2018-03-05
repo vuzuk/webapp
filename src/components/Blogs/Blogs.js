@@ -41,7 +41,7 @@ class Blogs extends Component {
         const thiss = this;
         return labels.map((label,i) => (
             <Transition visible={this.state.visible[i]} key={i} animation='scale' duration={500}>
-                <Label as="a" size="large">{label}</Label>
+                <Label circular as="a" size="large">{label}</Label>
             </Transition>
         ))
     }
@@ -131,40 +131,23 @@ class Blogs extends Component {
                     VIDEOS
                 </Header>
             </Segment>
-            <Grid>
-                <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Embed
-                        id='125292332'
-                        placeholder='https://react.semantic-ui.com/assets/images/vimeo-example.jpg'
-                        source='vimeo'
-                        />
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        <Embed
-                            id='125292332'
-                            placeholder='https://react.semantic-ui.com/assets/images/vimeo-example.jpg'
-                            source='vimeo'
-                        />
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Embed
-                        id='125292332'
-                        placeholder='https://react.semantic-ui.com/assets/images/vimeo-example.jpg'
-                        source='vimeo'
-                        />
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        <Embed
-                            id='125292332'
-                            placeholder='https://react.semantic-ui.com/assets/images/vimeo-example.jpg'
-                            source='vimeo'
-                        />
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
+            <div class="video-grid">
+                <div class="video-item">
+                <div class="video-wrap">
+                    <iframe src="https://player.vimeo.com/video/12112529?portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                </div>
+                <div class="video-item">
+                <div class="video-wrap">
+                    <iframe src="https://player.vimeo.com/video/61487989?portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                </div>
+                <div class="video-item">
+                <div class="video-wrap">
+                    <iframe src="https://player.vimeo.com/video/21081887?portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                </div>
+                </div>
+            </div>
             </div>
         )
     }
