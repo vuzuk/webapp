@@ -14,16 +14,15 @@ const settings = {
 class Trending extends Component {
     makeTrendingList = () => {
         return(
-                <Slider {...settings}>
-                    {[1,0,2,1,3,0].map((i,x) => {
-                        return(
-                            <div key={x}>
-                                <img height="350px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
-                            </div>
+            <Slider {...settings}>
+                {[1,0,2,1,3,0].map((i,x) => {
+                    return (
+                        <div key={x}>
+                            <img height="350px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
+                        </div>
                     )
                 })}
             </Slider>
-
         )
     }
     render() {
