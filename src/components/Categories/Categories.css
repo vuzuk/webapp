@@ -6,3 +6,8 @@
     width: 90%;
     margin: auto;
 }
+
+.right-item {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+}
