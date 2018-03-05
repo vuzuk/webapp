@@ -8,11 +8,39 @@
 }
 
 .bloggers h3 {
-    background: #213D56;
-    color: white !important;
+    /* background: #1B1C1D; */
+    /* color: white !important; */
     padding: 10px !important;
     border-radius: 5px;
     letter-spacing: 1px;
+    font-family: 'Source Sans Pro'
+}
+
+.bloggers h3:after {
+    font-family: 'Icons';
+    font-size: 0.9em;
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    /* border-top: 1px solid rgba(0, 0, 0, 0.5); */
+}
+
+.bloggers h3:before {
+    position: absolute;
+    top: 17.8%;
+    left: 39.5%;
+    border-top: 1px solid rgba(0,0,0,.87);
+    width: 20%;
+    transform: translateY(-50%);
+    content: "";
+}
+
+.top:after {
+    content: "\f091";
+}
+
+.new:after {
+    content: "\f005";
 }
 
 .list .header {
