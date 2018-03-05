@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import {Segment, Grid, Header} from 'semantic-ui-react';
+import Slider from 'react-slick';
 import myCard from '../../helpers/card';
 
 class Travel extends Component {
