@@ -5,6 +5,15 @@ import {Segment, Grid, Header} from 'semantic-ui-react';
 import Slider from 'react-slick';
 import myCard from '../../helpers/card';
 
+const settings = {
+    dots: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    className: 'slides',
+    autoplay: true
+};
+
 class Travel extends Component {
     render() {
         return (
