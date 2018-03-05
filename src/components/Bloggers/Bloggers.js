@@ -8,7 +8,7 @@ class Bloggers extends Component {
             <Segment.Group horizontal className={classnames('bloggers')}>
                 <Segment>
                     <Header as='h3' textAlign="center" className="top">Top Bloggers</Header>
-                    <List selection divided verticalAlign='middle' size="massive" classnames="list">
+                    <List selection celled verticalAlign='middle' size="massive" classnames="list">
                         <List.Item>
                             <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matthew.png' />
                             <List.Content>
@@ -34,7 +34,7 @@ class Bloggers extends Component {
                 </Segment> 
             <Segment>
                 <Header as='h3' textAlign="center" className="new">New Bloggers</Header>
-                <List selection divided verticalAlign='middle' size="massive" classnames="list">
+                <List selection celled verticalAlign='middle' size="massive" classnames="list">
                     <List.Item>
                         <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matthew.png' />
                         <List.Content>

@@ -27,10 +27,10 @@
 
 .bloggers h3:before {
     position: absolute;
-    top: 17.8%;
-    left: 39.5%;
+    top: 19%;
+    left: 42%;
     border-top: 1px solid rgba(0,0,0,.87);
-    width: 20%;
+    width: 16%;
     transform: translateY(-50%);
     content: "";
 }
