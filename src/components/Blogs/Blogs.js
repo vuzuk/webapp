@@ -98,14 +98,14 @@ class Blogs extends Component {
                 </Header>
             </Segment>
             <div className="mySlider">
-                <div className="label-box">
+                {/* <div className="label-box">
                     {this.makeLabels()}
                 </div>
                 <Slider {...settings} className="slides travel-slide">
                     {[1,1,1,1,1,1].map(i => {
                         return myCard(i);
                     })}
-                </Slider>
+                </Slider> */}
             </div>
 
             <Segment vertical padded>
