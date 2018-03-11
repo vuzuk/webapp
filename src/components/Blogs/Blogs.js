@@ -72,7 +72,7 @@ class Blogs extends Component {
     }
 
     makeList = () => {
-        let arr = [1,1,1,1];
+        let arr = [1,1,1];
         return arr.map(item => {
             return (
                 <div className="travel-item">
