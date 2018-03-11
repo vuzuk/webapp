@@ -10,7 +10,8 @@
 }
 
 .travel-item .title {
-    color: rgb(0, 153, 229);    
+    color: rgb(0, 153, 229);
+    cursor: pointer;   
 }
 
 .travel-item button {
@@ -35,6 +36,7 @@
 
 .travel-item .author {
     margin-top: 4px;
+    cursor: pointer;
 }
 
 .travel-item .content {
