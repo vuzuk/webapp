@@ -6,7 +6,6 @@
     z-index: 2;
     box-sizing: border-box;
 }
-
 .author span{
     color: #bbb !important;
 }
@@ -41,6 +40,7 @@
     margin: 0;
     padding: 30px 10px;
     float: left;
+    color: #fff;
     background: rgba(0, 153, 229, 0.88);
     box-sizing: border-box;
 }
@@ -51,6 +51,7 @@
     margin-bottom: 10px;
     box-sizing: border-box;
     overflow: hidden;
+    height: 195px;
 }
 
 #tech2-1 {

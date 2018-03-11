@@ -130,9 +130,9 @@ class Blogs extends Component {
                     </div>
                     <div>
                         <div className="tech2-2">
-                            <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "400px"}}></a>
+                            <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "195px"}}></a>
                             <div className="tech-title">
-                                <h3>jknksfh iufh fdkgh dfkghdfk jh</h3>
+                                    <h3>jknksfh iufh fdkgh dfkghdfk jh</h3>
                                     <div className="author">
                                         <span><i class="fa fa-user"></i> Varun</span>
                                         <span><i class="far fa-calendar"></i> May 10, 2018</span>
@@ -140,9 +140,9 @@ class Blogs extends Component {
                             </div>
                         </div>
                         <div className="tech2-2">
-                            <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "400px"}}></a>
+                            <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "195px"}}></a>
                             <div className="tech-title">
-                                <h3>jknksfh iufh fdkgh dfkghdfk jh</h3>
+                                    <h3>jknksfh iufh fdkgh dfkghdfk jh</h3>
                                     <div className="author">
                                         <span><i class="fa fa-user"></i> Varun</span>
                                         <span><i class="far fa-calendar"></i> May 10, 2018</span>
