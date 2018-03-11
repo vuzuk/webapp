@@ -7,6 +7,15 @@
     display: inline-block;
 }
 
+.travel-item .author {
+    margin-top: 4px;
+}
+
+.travel-item .content {
+    margin-top: 2%;
+    font-size: 1.2em;
+}
+
 .travel-item .post {
     display: inline-block;
     width: 70%;

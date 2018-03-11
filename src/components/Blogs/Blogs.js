@@ -80,7 +80,7 @@ class Blogs extends Component {
                         <img style={{width: "100%"}} src="https://i2.wp.com/the-shooting-star.com/wp-content/uploads/2018/03/IMG_5501.jpg?resize=840%2C560&ssl=1" alt=""/>
                     </div>
                     <div className="post">
-                        <div className="title">Japan Tourist Visa for Indians: Requirements and Tips</div>
+                        <h2 className="title">Japan Tourist Visa for Indians: Requirements and Tips</h2>
                         <div className="author">
                             <span><i class="fa fa-user"></i> Varun</span>
                             <span><i class="far fa-calendar"></i> May 10, 2018</span>
