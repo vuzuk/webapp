@@ -10,15 +10,15 @@ const labels = ["New Delhi", "Tandoori Chicken", "Nutrition", "Dessert", "Homema
 const places = [
     {
         name: "Delhi",
-        image: "https://c1.hiqcdn.com/customcdn/1024x768/uploadimages/travel/New_Delhi_irctc_cover.jpg"
+        image: "new-delhi.jpg"
     },
     {
         name: "Mumbai",
-        image: "https://www.letsintern.com/blog/wp-content/uploads/2017/12/Think-India-Mumbai.jpg"
+        image: "mumbai.jpg"
     },
     {
         name: "Kolkata",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVjPUTRmNgtivAF0EMou-apnl0SEWHbULGPKBAH7YMxddidjf3A"
+        image: "kolkata.jpg"
     }
 ]
 
@@ -65,7 +65,7 @@ class Blogs extends Component {
         return places.map(place => {
             return (
                 <div style={{background: `url("${place.image}")`}} className="iCard">
-                    Popular Food In {place.name}
+                    Popular Food<br/>In<br />{place.name}
                 </div>
             )
         })
