@@ -76,15 +76,19 @@ class Blogs extends Component {
         return arr.map(item => {
             return (
                 <div className="travel-item">
-                    <img src="https://i2.wp.com/the-shooting-star.com/wp-content/uploads/2018/03/IMG_5501.jpg?resize=840%2C560&ssl=1" alt=""/>
-                    <div className="title">Japan Tourist Visa for Indians: Requirements and Tips</div>
-                    <div className="author">
-                        <span><i class="fa fa-user"></i> Varun</span>
-                        <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                    <div className="img">
+                        <img style={{width: "100%"}} src="https://i2.wp.com/the-shooting-star.com/wp-content/uploads/2018/03/IMG_5501.jpg?resize=840%2C560&ssl=1" alt=""/>
                     </div>
-                    <div className="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id recusandae consequatur cumque unde. Ipsam omnis ea eum, fuga vero officia iusto qui similique at culpa vel cumque doloremque in ist...</div>
-                    <div className="read-more">
-                        <button>Read more</button>
+                    <div className="post">
+                        <div className="title">Japan Tourist Visa for Indians: Requirements and Tips</div>
+                        <div className="author">
+                            <span><i class="fa fa-user"></i> Varun</span>
+                            <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                        </div>
+                        <div className="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id recusandae consequatur cumque unde. Ipsam omnis ea eum, fuga vero officia iusto qui similique at culpa vel cumque doloremque in ist...</div>
+                        <div className="read-more">
+                            <button>Read more</button>
+                        </div>
                     </div>
                 </div>
             )
