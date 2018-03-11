@@ -108,7 +108,7 @@ class Blogs extends Component {
                 </Slider> */}
             </div>
 
-            <Segment vertical padded>
+            {/* <Segment vertical padded>
                  <Header as='h3' className="category-title" icon textAlign="center">
                 <Icon name='tags' circular/>
                     FASHION
@@ -123,7 +123,7 @@ class Blogs extends Component {
                         return myCard(i);
                     })}
                 </Slider>
-            </div>
+            </div> */}
 
             <Segment vertical padded>
                  <Header as='h3' className="category-title" icon textAlign="center">
