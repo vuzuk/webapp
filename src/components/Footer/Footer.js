@@ -21,18 +21,18 @@ const Footer = (props) => {
                 </Grid.Column>
                 <Grid.Column>
                     <div className="social">
-                        <a href="#" className="fa fa-facebook"></a>
-                        <a href="#" className="fa fa-twitter"></a>
-                        <a href="#" className="fa fa-google"></a>
-                        <a href="#" className="fa fa-linkedin"></a>
-                        <a href="#" className="fa fa-youtube"></a>
-                        <a href="#" className="fa fa-instagram"></a>
-                        <a href="#" className="fa fa-pinterest"></a>
-                        <a href="#" className="fa fa-snapchat-ghost"></a>
-                        <a href="#" className="fa fa-skype"></a>
-                        <a href="#" className="fa fa-dribbble"></a>
-                        <a href="#" className="fa fa-vimeo"></a>
-                        <a href="#" className="fa fa-tumblr"></a>
+                        <a href="#" className="fab fa-facebook"></a>
+                        <a href="#" className="fab fa-twitter"></a>
+                        <a href="#" className="fab fa-google"></a>
+                        <a href="#" className="fab fa-linkedin"></a>
+                        <a href="#" className="fab fa-youtube"></a>
+                        <a href="#" className="fab fa-instagram"></a>
+                        <a href="#" className="fab fa-pinterest"></a>
+                        <a href="#" className="fab fa-snapchat-ghost"></a>
+                        <a href="#" className="fab fa-skype"></a>
+                        <a href="#" className="fab fa-dribbble"></a>
+                        <a href="#" className="fab fa-vimeo"></a>
+                        <a href="#" className="fab fa-tumblr"></a>
                     </div>
                 </Grid.Column>
             </Grid.Row>
