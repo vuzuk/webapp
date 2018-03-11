@@ -7,6 +7,21 @@ import './Blogs.css';
 
 const labels = ["New Delhi", "Tandoori Chicken", "Nutrition", "Dessert", "Homemade", "Diet", "Non-veg", "South Indian", "Vegetarian", "Street Food"]
 
+const places = [
+    {
+        name: "Delhi",
+        image: "https://c1.hiqcdn.com/customcdn/1024x768/uploadimages/travel/New_Delhi_irctc_cover.jpg"
+    },
+    {
+        name: "Mumbai",
+        image: "https://www.letsintern.com/blog/wp-content/uploads/2017/12/Think-India-Mumbai.jpg"
+    },
+    {
+        name: "Kolkata",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlVjPUTRmNgtivAF0EMou-apnl0SEWHbULGPKBAH7YMxddidjf3A"
+    }
+]
+
 class Blogs extends Component {
     constructor(props) {
         super(props);
@@ -46,6 +61,16 @@ class Blogs extends Component {
         ))
     }
 
+    makeCards = () => {
+        return places.map(place => {
+            return (
+                <div style={{background: `url("${place.image}")`}} className="iCard">
+                    Popular Food In {place.name}
+                </div>
+            )
+        })
+    }
+
     render() {
         const settings = {
             dots: true,
@@ -65,6 +90,7 @@ class Blogs extends Component {
                 </Header>
             </Segment>
             <div className="mySlider">
+                {this.makeCards()}
                 {/* <div className="label-box">
                     {this.makeLabels()}
                 </div>
@@ -131,19 +157,19 @@ class Blogs extends Component {
                     VIDEOS
                 </Header>
             </Segment>
-            <div class="video-grid">
-                <div class="video-item">
-                <div class="video-wrap">
+            <div className="video-grid">
+                <div className="video-item">
+                <div className="video-wrap">
                     <iframe src="https://player.vimeo.com/video/12112529?portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 </div>
-                <div class="video-item">
-                <div class="video-wrap">
+                <div className="video-item">
+                <div className="video-wrap">
                     <iframe src="https://player.vimeo.com/video/61487989?portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 </div>
-                <div class="video-item">
-                <div class="video-wrap">
+                <div className="video-item">
+                <div className="video-wrap">
                     <iframe src="https://player.vimeo.com/video/21081887?portrait=0" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
                 </div>
                 </div>
