@@ -32,7 +32,7 @@ class Post extends Component {
                                     </Grid>
                                 </List.Content>
                                 <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
-                                <List.Content>
+                                <List.Content as="a">
                                     Matthew Stewards
                                 </List.Content>
                             </List.Item>
