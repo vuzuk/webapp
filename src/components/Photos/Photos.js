@@ -2,17 +2,6 @@ import React, { Component } from 'react';
 import { Segment, Icon, Header, Dimmer, Image } from 'semantic-ui-react';
 import './Photos.css';
 
-function imagesLoaded(parentNode) {
-    const imgElements = [...parentNode.querySelectorAll("img")];
-    for (let i = 0; i < imgElements.length; i += 1) {
-      const img = imgElements[i];
-      if (!img.complete) {
-        return false;
-      }
-    }
-    return true;
-  }
-
 class Photos extends Component {
     constructor(props) {
         super(props);

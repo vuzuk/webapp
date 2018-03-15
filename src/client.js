@@ -7,6 +7,8 @@ import Profile from './components/Profile/Profile';
 import BloggerProfile from './components/BloggerProfile/BloggerProfile'
 import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
+import Post from './components/Post/Post';
+
 import {
     BrowserRouter as Router,
     Route,
@@ -26,6 +28,7 @@ hydrate(<Router>
         <Route path="/fashion" component={Fashion} />
         <Route path="/blogger" component={BloggerProfile} />
         <Route path="/create" component={CreatePost} />
+        <Route path="/post" component={Post} />
     </Switch>
 </Router>, document.getElementById('root'));
 
