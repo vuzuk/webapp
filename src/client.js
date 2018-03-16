@@ -26,7 +26,7 @@ hydrate(<Router>
         <Route path="/travel" component={Travel} />
         <Route path="/tech" component={Tech} />
         <Route path="/fashion" component={Fashion} />
-        <Route path="/blogger" component={BloggerProfile} />
+        <Route path="/in/blogger" component={BloggerProfile} />
         <Route path="/create" component={CreatePost} />
         <Route path="/post" component={Post} />
     </Switch>
