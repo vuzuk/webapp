@@ -4,7 +4,7 @@ import template, {index} from './template';
 import App from './components/App/App';
 import { BSignUp, RSignUp } from './components/SignUp';
 import { BLogIn, RLogIn } from './components/LogIn';
-import {InBloggerProfile, BloggerProfile} from './components/Profile';
+import {InBloggerProfile, BloggerProfile, InReaderProfile} from './components/Profile';
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import CreatePost from './components/CreatePost/CreatePost';
 import Post from './components/Post/Post';
@@ -63,6 +63,14 @@ export function inBloggerProfile(req, res) {
     body: appString,
     title: 'Blogger Profile - VUZUK',
   }));
+}
+
+export function inReaderProfile(req, res) {
+  const appString = renderToString(<InReaderProfile />);
+  res.send(template({
+    body: appString,
+    title: 'Reader Profile - VUZUK'
+  }))
 }
 
 export function createPost(req, res) {

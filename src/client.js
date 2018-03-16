@@ -3,7 +3,7 @@ import { hydrate } from 'react-dom';
 import App from './components/App/App';
 import { BSignUp, RSignUp } from './components/SignUp';
 import { BLogIn, RLogIn } from './components/LogIn';
-import {BloggerProfile, InBloggerProfile} from './components/Profile';
+import {BloggerProfile, InBloggerProfile, InReaderProfile} from './components/Profile';
 import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import Post from './components/Post/Post';
@@ -26,6 +26,7 @@ hydrate(<Router>
         <Route path="/tech" component={Tech} />
         <Route path="/fashion" component={Fashion} />
         <Route path="/in/blogger" component={InBloggerProfile} />
+        <Route path="/in/reader" component={InReaderProfile} />
         <Route path="/create" component={CreatePost} />
         <Route path="/post" component={Post} />
     </Switch>

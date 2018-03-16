@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import { Segment, Image, Grid } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import './InBloggerProfile.css';
-class BloggerProfile extends Component {
+class InReaderProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +30,7 @@ class BloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">Matthew Stewards</div>
-                            <div className="follow-count">0 FOLLOWERS &nbsp;&nbsp; 0 FOLLOWING</div>
+                            {/* <div className="follow-count">0 FOLLOWERS &nbsp;&nbsp; 0 FOLLOWING</div> */}
                         </div>
                     </div>
                 </Segment>
@@ -56,4 +56,4 @@ class BloggerProfile extends Component {
     }
 }
 
-export default BloggerProfile;
+export default InReaderProfile;
