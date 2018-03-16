@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid } from 'semantic-ui-react';
+import { Segment, Image, Grid, Message } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import './InBloggerProfile.css';
 class InReaderProfile extends Component {
@@ -35,12 +35,48 @@ class InReaderProfile extends Component {
                     </div>
                 </Segment>
                 <div className="tabs">
-                    <div className="tab" onClick={() => {this.handleChange("post")}} style={isActive === "post" ? {borderBottom: "4px solid #55ACEE"} : null}>POST</div>
+                    <div className="tab" onClick={() => {this.handleChange("points")}} style={isActive === "points" ? {borderBottom: "4px solid #55ACEE"} : null}>POINTS</div>
                     <div className="tab" onClick={() => {this.handleChange("likes")}} style={isActive === "likes" ? {borderBottom: "4px solid #55ACEE"} : null}>LIKES</div>
                     <div className="tab" onClick={() => {this.handleChange("bookmark")}} style={isActive === "bookmark" ? {borderBottom: "4px solid #55ACEE"} : null}>BOOKMARKS</div>
                 </div>
                 <Segment basic>
-                    <div className="profile-cards">
+                    <div className="points">
+                        <Grid columns="3" divided>
+                            <Grid.Row>
+                                <Grid.Column>
+                                    <Message>
+                                        <Message.Header>
+                                        Changes in Service
+                                        </Message.Header>
+                                        <p>
+                                        We updated our privacy policy here to better service our customers. We recommend reviewing the changes.
+                                        </p>
+                                    </Message>
+                                </Grid.Column>
+                                <Grid.Column>
+                                    <Message>
+                                        <Message.Header>
+                                        Changes in Service
+                                        </Message.Header>
+                                        <p>
+                                        We updated our privacy policy here to better service our customers. We recommend reviewing the changes.
+                                        </p>
+                                    </Message>
+                                </Grid.Column>
+                                <Grid.Column>
+                                    <Message>
+                                        <Message.Header>
+                                        Changes in Service
+                                        </Message.Header>
+                                        <p>
+                                        We updated our privacy policy here to better service our customers. We recommend reviewing the changes.
+                                        </p>
+                                    </Message>
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </div>
+                    {/* <div className="profile-cards">
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
                                 <Grid.Column key={i}>
@@ -48,7 +84,7 @@ class InReaderProfile extends Component {
                                 </Grid.Column>
                             ))}
                         </Grid>
-                    </div>
+                    </div> */}
                 </Segment>
                 <Footer />
             </div>
