@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import { Image, Header, Segment, Grid, Divider, Dropdown } from 'semantic-ui-react'
 import axios from 'axios';
 import myCard from '../../helpers/card';
-import './Profile.css'
+import './BloggerProfile.css'
 class Profile extends Component {
 
     sendBlog = () => {

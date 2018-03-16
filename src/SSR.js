@@ -4,9 +4,8 @@ import template, {index} from './template';
 import App from './components/App/App';
 import { BSignUp, RSignUp } from './components/SignUp';
 import { BLogIn, RLogIn } from './components/LogIn';
-import Profile from './components/Profile/Profile';
+import {InBloggerProfile, BloggerProfile} from './components/Profile';
 import { Food, Travel, Tech, Fashion } from './components/Categories';
-import BloggerProfile from './components/BloggerProfile/BloggerProfile';
 import CreatePost from './components/CreatePost/CreatePost';
 import Post from './components/Post/Post';
 
@@ -50,16 +49,16 @@ export function rLogIn(req, res) {
   }));
 }
 
-export function profile(req, res) {
-  const appString = renderToString(<Profile />);
+export function bloggerProfile(req, res) {
+  const appString = renderToString(<BloggerProfile />);
   res.send(template({
     body: appString,
-    title: 'Profile - VUZUK',
+    title: 'Blogger Profile - VUZUK',
   }));
 }
 
-export function bloggerProfile(req, res) {
-  const appString = renderToString(<BloggerProfile />);
+export function inBloggerProfile(req, res) {
+  const appString = renderToString(<InBloggerProfile />);
   res.send(template({
     body: appString,
     title: 'Blogger Profile - VUZUK',

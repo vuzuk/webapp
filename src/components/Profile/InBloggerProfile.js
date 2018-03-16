@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { Segment, Image, Grid } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
-import './BloggerProfile.css';
+import './InBloggerProfile.css';
 class BloggerProfile extends Component {
     constructor(props) {
         super(props);
