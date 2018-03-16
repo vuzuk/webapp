@@ -5,7 +5,7 @@ import { Image, Header, Segment, Grid, Divider, Dropdown } from 'semantic-ui-rea
 import axios from 'axios';
 import myCard from '../../helpers/card';
 import './BloggerProfile.css'
-class Profile extends Component {
+class BloggerProfile extends Component {
 
     sendBlog = () => {
         const data = {
@@ -76,4 +76,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+export default BloggerProfile;
