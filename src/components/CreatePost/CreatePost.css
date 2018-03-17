@@ -2,6 +2,14 @@
   padding: 0;
 }
 
+.fa-video-camera:before {
+  content: "\f03d";
+}
+
+.fa-smile-o:before {
+  content: "\f118";
+}
+
 .tags {
     margin-top: 20px;
 }
