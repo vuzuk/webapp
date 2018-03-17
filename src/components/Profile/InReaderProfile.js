@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Message, Statistic, Icon, Grid } from 'semantic-ui-react';
+import { Segment, Image, Statistic, Icon, Grid } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import './InBloggerProfile.css';
 class InReaderProfile extends Component {
@@ -44,20 +44,20 @@ class InReaderProfile extends Component {
                         <Segment basic>
                         <Statistic.Group widths='four' color="blue">
                             <Statistic>
-                            <Statistic.Value>22</Statistic.Value>
-                            <Statistic.Label>Saves</Statistic.Label>
+                            <Statistic.Value>60</Statistic.Value>
+                            <Statistic.Label>Share Points</Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>22</Statistic.Value>
-                            <Statistic.Label>Saves</Statistic.Label>
+                            <Statistic.Value>42</Statistic.Value>
+                            <Statistic.Label>Comment Points</Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>22</Statistic.Value>
-                            <Statistic.Label>Saves</Statistic.Label>
+                            <Statistic.Value>38</Statistic.Value>
+                            <Statistic.Label>Share Points</Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>22</Statistic.Value>
-                            <Statistic.Label>Saves</Statistic.Label>
+                            <Statistic.Value>20</Statistic.Value>
+                            <Statistic.Label>Referral Points</Statistic.Label>
                             </Statistic>
                         </Statistic.Group>
                         </Segment>
