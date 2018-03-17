@@ -64,7 +64,7 @@ class BloggerProfile extends Component {
                         </Header.Subheader>
                     </div>
                 </Segment>
-                Sort by: <Dropdown inline options={sortOptions} defaultValue={sortOptions[0].value} />
+                &nbsp;&nbsp;Sort by: <Dropdown inline options={sortOptions} defaultValue={sortOptions[0].value} />
                 <Divider />
                 <Segment basic>
                     <div className="profile-cards">
