@@ -10,6 +10,10 @@
   content: "\f118";
 }
 
+.fa-exchange:before {
+  content: "\f362";
+}
+
 .tags {
     margin-top: 20px;
 }
