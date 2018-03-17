@@ -33,6 +33,13 @@ const Footer = (props) => {
                         <a href="#" className="fab fa-dribbble"></a>
                         <a href="#" className="fab fa-vimeo"></a>
                         <a href="#" className="fab fa-tumblr"></a>
+                        <div style={{   
+                            background: "#1678C2",
+                            margin: "auto",
+                            width: "83%"
+                        }}>
+                            <a href="#" className="fas fa-heart"></a>
+                        </div>
                     </div>
                 </Grid.Column>
             </Grid.Row>
