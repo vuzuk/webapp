@@ -30,6 +30,8 @@ export default ({ body, title }) => {
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
       <link rel='stylesheet' href='/bundle.css'>
       <link rel="stylesheet" href="/froala_style.min.css">
+      <link rel="stylesheet" href="/video.min.css">
+      <link rel="stylesheet" href="/emoticons.min.css">
       <link rel="stylesheet" href="/froala_editor.pkgd.min.css">
     </head>
     <body>
