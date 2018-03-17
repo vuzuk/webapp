@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Image, Header, Segment, Grid, Divider, Dropdown } from 'semantic-ui-react'
+import { Image, Header, Segment, Grid, Divider, Dropdown, Icon } from 'semantic-ui-react'
 import axios from 'axios';
 import myCard from '../../helpers/card';
 import './BloggerProfile.css'
@@ -52,6 +52,12 @@ class BloggerProfile extends Component {
                     <div className="profile">
                         <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
                         <Header size='large'>Matthew Stewards</Header>
+                        <div>
+                            <Icon circular name='facebook' />
+                            <Icon circular name='twitter' />
+                            <Icon circular name='instagram' />
+                            <Icon circular name='linkedin' />
+                        </div>
                         <Header.Subheader>
                             Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
                         </Header.Subheader>
