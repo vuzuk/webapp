@@ -2,6 +2,17 @@
     margin: 0 !important;
 }
 
+.create {
+    flex: 3;
+    position: relative;
+}
+
+.create button {
+    position: absolute !important;
+    right: 0;
+    bottom: 90px;
+}
+
 .tabs {
     display: flex;
     /* margin-top: 8px; */

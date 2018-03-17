@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid } from 'semantic-ui-react';
+import { Segment, Image, Grid, Button, Icon } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import './InBloggerProfile.css';
 class InBloggerProfile extends Component {
@@ -31,6 +31,9 @@ class InBloggerProfile extends Component {
                         <div>
                             <div className="username">Matthew Stewards</div>
                             <div className="follow-count"><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
+                        </div>
+                        <div className="create">
+                            <Button icon labelPosition='left' size="large" primary><Icon name='send' /> Create Post</Button>
                         </div>
                     </div>
                 </Segment>
