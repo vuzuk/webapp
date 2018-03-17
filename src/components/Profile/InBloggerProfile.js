@@ -33,7 +33,7 @@ class InBloggerProfile extends Component {
                             <div className="follow-count"><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
                         </div>
                         <div className="create">
-                            <Button icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
+                            <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
                         </div>
                     </div>
                 </Segment>
