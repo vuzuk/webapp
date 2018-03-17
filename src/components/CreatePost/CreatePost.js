@@ -44,7 +44,8 @@ class CreatePost extends Component {
         super(props);
 
         this.state = {
-            isDimmed: true
+            isDimmed: true,
+            method: "create"
         }
     }
     removeWrapper = () => {
@@ -69,6 +70,13 @@ class CreatePost extends Component {
         this.removeWrapper()
     }
 
+    handleClick = (e) => {
+        this.setState({
+            isDimmed: false,
+            method: e
+        })
+    }
+
     render() {
         return (
             <div>
@@ -83,18 +91,20 @@ class CreatePost extends Component {
                                 <div style={{marginTop: "10px"}}>
                                     <Dimmer.Dimmable dimmed={this.state.isDimmed}>
                                         <Dimmer active={this.state.isDimmed}>
-                                            <Button primary size="large" icon labelPosition='left'><Icon name='write' /> Create Blog Post</Button>
+                                            <Button primary size="large" icon labelPosition='left' onClick={() => this.handleClick("create")}><Icon name='write' /> Create Blog Post</Button>
                                             <Divider horizontal>OR</Divider>
-                                            <Button size="large" icon labelPosition='left'><Icon name='linkify' /> Submit Post Link</Button>
+                                            <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit")}><Icon name='linkify' /> Submit Post Link</Button>
                                         </Dimmer>
-                                        <FroalaEditor config={{
+                                        {this.state.method === "create" && <FroalaEditor config={{
                                             height: 300,
                                             placeholderText: 'Edit Your Content Here!',
                                             imageUploadURL: '/api/upload',
                                             charCounterCount: false,
                                             quickInsertButtons: [],
                                             toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
-                                        }} />
+                                        }} />}
+                                        {this.state.method !== "create" &&
+                                        <Input icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Blog Post Link Here...' />}
                                     </Dimmer.Dimmable>
                                 </div>
                             </Grid.Column>
