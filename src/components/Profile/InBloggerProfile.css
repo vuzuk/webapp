@@ -9,7 +9,7 @@
 
 .create button {
     position: absolute !important;
-    right: 0;
+    right: -25px;
     bottom: 90px;
 }
 
