@@ -92,7 +92,7 @@ class CreatePost extends Component {
                                     <Dimmer.Dimmable dimmed={this.state.isDimmed}>
                                         <Dimmer active={this.state.isDimmed}>
                                             <Button primary size="large" icon labelPosition='left' onClick={() => this.handleClick("create")}><Icon name='write' /> Create Blog Post</Button>
-                                            <Divider horizontal>OR</Divider>
+                                            <Divider horizontal inverted>OR</Divider>
                                             <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit")}><Icon name='linkify' /> Submit Post Link</Button>
                                         </Dimmer>
                                         {this.state.method === "create" && <FroalaEditor config={{
