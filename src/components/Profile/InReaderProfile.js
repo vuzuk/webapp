@@ -8,7 +8,7 @@ class InReaderProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isActive: "post"
+            isActive: "points"
         }
     }
 
@@ -40,7 +40,7 @@ class InReaderProfile extends Component {
                     <div className="tab" onClick={() => {this.handleChange("bookmark")}} style={isActive === "bookmark" ? {borderBottom: "4px solid #55ACEE"} : null}>BOOKMARKS</div>
                 </div>
                 <Segment basic>
-                    <div className="points">
+                    {isActive === "points" && <div className="points">
                         <Segment basic>
                         <Statistic.Group widths='four' color="blue">
                             <Statistic>
@@ -89,8 +89,8 @@ class InReaderProfile extends Component {
                             </Statistic>
                         </Statistic.Group>
                         </Segment>
-                    </div>
-                    {/* <div className="profile-cards">
+                    </div>}
+                    {isActive !== "points" && <div className="profile-cards">
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
                                 <Grid.Column key={i}>
@@ -98,7 +98,7 @@ class InReaderProfile extends Component {
                                 </Grid.Column>
                             ))}
                         </Grid>
-                    </div> */}
+                    </div>}
                 </Segment>
                 <Footer />
             </div>
