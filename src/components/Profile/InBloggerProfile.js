@@ -30,7 +30,7 @@ class InBloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">Matthew Stewards</div>
-                            <div className="follow-count">0 FOLLOWERS &nbsp;&nbsp; 0 FOLLOWING</div>
+                            <div className="follow-count">2.2K FOLLOWERS &nbsp;&nbsp; 959 FOLLOWING</div>
                         </div>
                     </div>
                 </Segment>
