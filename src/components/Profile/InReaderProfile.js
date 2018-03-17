@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid, Message } from 'semantic-ui-react';
+import { Segment, Image, Message, Statistic, Icon, Grid } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import './InBloggerProfile.css';
 class InReaderProfile extends Component {
@@ -41,40 +41,26 @@ class InReaderProfile extends Component {
                 </div>
                 <Segment basic>
                     <div className="points">
-                        <Grid columns="3" divided>
-                            <Grid.Row>
-                                <Grid.Column>
-                                    <Message>
-                                        <Message.Header>
-                                        Changes in Service
-                                        </Message.Header>
-                                        <p>
-                                        We updated our privacy policy here to better service our customers. We recommend reviewing the changes.
-                                        </p>
-                                    </Message>
-                                </Grid.Column>
-                                <Grid.Column>
-                                    <Message>
-                                        <Message.Header>
-                                        Changes in Service
-                                        </Message.Header>
-                                        <p>
-                                        We updated our privacy policy here to better service our customers. We recommend reviewing the changes.
-                                        </p>
-                                    </Message>
-                                </Grid.Column>
-                                <Grid.Column>
-                                    <Message>
-                                        <Message.Header>
-                                        Changes in Service
-                                        </Message.Header>
-                                        <p>
-                                        We updated our privacy policy here to better service our customers. We recommend reviewing the changes.
-                                        </p>
-                                    </Message>
-                                </Grid.Column>
-                            </Grid.Row>
-                        </Grid>
+                        <Segment basic>
+                        <Statistic.Group widths='four' color="blue">
+                            <Statistic>
+                            <Statistic.Value>22</Statistic.Value>
+                            <Statistic.Label>Saves</Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                            <Statistic.Value>22</Statistic.Value>
+                            <Statistic.Label>Saves</Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                            <Statistic.Value>22</Statistic.Value>
+                            <Statistic.Label>Saves</Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                            <Statistic.Value>22</Statistic.Value>
+                            <Statistic.Label>Saves</Statistic.Label>
+                            </Statistic>
+                        </Statistic.Group>
+                        </Segment>
                     </div>
                     {/* <div className="profile-cards">
                         <Grid columns={3}>
