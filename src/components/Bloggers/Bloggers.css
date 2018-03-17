@@ -35,7 +35,7 @@
     content: "";
 }
 
-.top:after {
+.bloggers .top:after {
     content: "\f091";
 }
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Statistic, Icon, Grid } from 'semantic-ui-react';
+import { Segment, Image, Statistic, Icon, Grid, Popup, Button } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import './InBloggerProfile.css';
 class InReaderProfile extends Component {
@@ -45,19 +45,47 @@ class InReaderProfile extends Component {
                         <Statistic.Group widths='four' color="blue">
                             <Statistic>
                             <Statistic.Value>60</Statistic.Value>
-                            <Statistic.Label>Share Points</Statistic.Label>
+                            <Statistic.Label className="info">
+                                View Points
+                                <Popup
+                                    trigger={<Button icon='info' size="mini" circular/>}
+                                    content="1 share = 1 point"
+                                    size="mini"
+                                />
+                            </Statistic.Label>
                             </Statistic>
                             <Statistic>
                             <Statistic.Value>42</Statistic.Value>
-                            <Statistic.Label>Comment Points</Statistic.Label>
+                            <Statistic.Label className="info">
+                                Comment Points
+                                <Popup
+                                    trigger={<Button icon='info' size="mini" circular/>}
+                                    content="1 comment = 2 points"
+                                    size="mini"
+                                />
+                            </Statistic.Label>
                             </Statistic>
                             <Statistic>
                             <Statistic.Value>38</Statistic.Value>
-                            <Statistic.Label>Share Points</Statistic.Label>
+                            <Statistic.Label className="info">
+                                Share Points
+                                <Popup
+                                    trigger={<Button icon='info' size="mini" circular/>}
+                                    content="1 share = 5 points"
+                                    size="mini"
+                                />
+                            </Statistic.Label>
                             </Statistic>
                             <Statistic>
                             <Statistic.Value>20</Statistic.Value>
-                            <Statistic.Label>Referral Points</Statistic.Label>
+                            <Statistic.Label  className="info">
+                                Referral Points
+                                <Popup
+                                    trigger={<Button icon='info' size="mini" circular/>}
+                                    content="1 refer = 20 points"
+                                    size="mini"
+                                />
+                            </Statistic.Label>
                             </Statistic>
                         </Statistic.Group>
                         </Segment>

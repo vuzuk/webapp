@@ -51,3 +51,8 @@
     text-align: center;
     margin-top: 10px;
 }
+
+.info button{
+    padding: 3px !important;
+    margin-left: 5px !important;
+}
