@@ -61,8 +61,8 @@ class Post extends Component {
                         </List>
                     </div>
                     <Divider />
-                        <Comment.Group>
-                            <Header as='h3'>Comments</Header>
+                        <Comment.Group size="large">
+                            <Header as='h2'>Comments</Header>
 
                             <Comment>
                             <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matt.jpg' />
@@ -92,7 +92,7 @@ class Post extends Component {
                                 <Comment.Action>Reply</Comment.Action>
                                 </Comment.Actions>
                             </Comment.Content>
-                            <Comment.Group>
+                            <Comment.Group size="large">
                                 <Comment>
                                 <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/jenny.jpg' />
                                 <Comment.Content>
