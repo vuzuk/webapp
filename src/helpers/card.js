@@ -6,7 +6,7 @@ const myCard = (i) => {
         <div className="myCard">
             <Card>
                 <Card.Content extra>
-                    <Label size="large" as='a' href="/blogger" image>
+                    <Label size="large" as='a' className="header" href="/blogger" image>
                     <Image avatar spaced='right' src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
                     Matthew Stewards
                     </Label>
@@ -26,13 +26,13 @@ const myCard = (i) => {
                 <Card.Content extra>
                     <Grid className="post-footer" columns='equal' divided padded>
                         <Grid.Row textAlign='center'>
-                            <Grid.Column>
+                            <Grid.Column as="a">
                                 <Icon name="unhide" /> 2.2K
                             </Grid.Column>
-                            <Grid.Column>
+                            <Grid.Column as="a">
                                 <Icon name="heart" /> 663
                             </Grid.Column>
-                            <Grid.Column>
+                            <Grid.Column as="a">
                                 <Icon name="comments" /> 245
                             </Grid.Column>
                         </Grid.Row>

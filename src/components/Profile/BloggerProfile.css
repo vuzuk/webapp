@@ -19,6 +19,6 @@
     background: #e8e8e8 !important;
 }
 
-.ui.card .extra.content a {
+.ui.card .extra.content a.header {
     width: 100% !important;
 }
