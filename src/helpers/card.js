@@ -33,7 +33,7 @@ const myCard = (i) => {
                                 <Icon name="heart" /> 663
                             </Grid.Column>
                             <Grid.Column>
-                            <Icon name="comments" /> 245
+                                <Icon name="comments" /> 245
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
