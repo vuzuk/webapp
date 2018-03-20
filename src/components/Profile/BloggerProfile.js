@@ -58,7 +58,7 @@ class BloggerProfile extends Component {
                             <Icon circular name='instagram' link/>
                             <Icon circular name='linkedin' link/>
                         </div>
-                        <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}>2.2K FOLLOWERS &nbsp;&nbsp; 959 FOLLOWING</div>
+                        <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
                         <Header.Subheader>
                             Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
                         </Header.Subheader>
