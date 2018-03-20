@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import { Card, Label, Image, Grid, Icon, Button } from 'semantic-ui-react';
 
+const handleActions = (e) => {
+    if(e === "like") {
+        console.log("Liked");
+    } else {
+        console.log("Comments");
+    }
+}
+
 const myCard = (i) => {
     return (
         <div className="myCard">
@@ -29,10 +37,10 @@ const myCard = (i) => {
                             <Grid.Column as="a">
                                 <Icon name="unhide" /> 2.2K
                             </Grid.Column>
-                            <Grid.Column as="a">
+                            <Grid.Column as="a" onClick={() => {handleActions("like")}}>
                                 <Icon name="heart" /> 663
                             </Grid.Column>
-                            <Grid.Column as="a">
+                            <Grid.Column as="a" onClick={() => {handleActions("comment")}}>
                                 <Icon name="comments" /> 245
                             </Grid.Column>
                         </Grid.Row>
