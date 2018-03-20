@@ -53,10 +53,10 @@ class BloggerProfile extends Component {
                         <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
                         <Header size='large'>Matthew Stewards</Header>
                         <div>
-                            <Icon circular name='facebook' />
-                            <Icon circular name='twitter' />
-                            <Icon circular name='instagram' />
-                            <Icon circular name='linkedin' />
+                            <Icon circular name='facebook' link/>
+                            <Icon circular name='twitter' link/>
+                            <Icon circular name='instagram' link/>
+                            <Icon circular name='linkedin' link/>
                         </div>
                         <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}>2.2K FOLLOWERS &nbsp;&nbsp; 959 FOLLOWING</div>
                         <Header.Subheader>
