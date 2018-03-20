@@ -14,7 +14,7 @@ const myCard = (i) => {
                 </Card.Content>
                 <Image src='https://i1.wp.com/www.eatstory.in/wp-content/uploads/2017/06/Kabul-Restaurant-03.jpg?w=1000' />
                 <Card.Content>
-                    <Card.Header>
+                    <Card.Header as="a">
                         Kabul Restaurant | Afghani Food in Delhi
                     </Card.Header>
                     <Card.Meta>
