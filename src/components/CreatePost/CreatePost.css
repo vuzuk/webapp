@@ -2,6 +2,10 @@
   padding: 0;
 }
 
+.fa-commenting:before {
+  content: "\f075";
+}
+
 .fa-video-camera:before {
   content: "\f03d";
 }
