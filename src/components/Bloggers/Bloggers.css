@@ -43,10 +43,10 @@
     content: "\f005";
 }
 
-.list .header {
+.bloggers .list .header {
     font-size: 0.7em !important;
 }
 
-.list .description {
+.bloggers .list .description {
     font-size: 0.5em !important;
 }
