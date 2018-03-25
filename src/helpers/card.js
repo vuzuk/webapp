@@ -43,6 +43,9 @@ const myCard = (i) => {
                             <Grid.Column as="a" onClick={() => {handleActions("comment")}}>
                                 <Icon name="comments" /> 245
                             </Grid.Column>
+                            <Grid.Column as="a" onClick={() => {handleActions("save")}}>
+                                <Icon name="bookmark" /> Save
+                            </Grid.Column>
                         </Grid.Row>
                     </Grid>
                 </Card.Content>
