@@ -44,8 +44,8 @@ export default class App extends Component {
         <Announcement />
         <Bloggers />
         <Blogs />
-        <Photos />
         <Trending />
+        <Photos />
         <Footer/>
       </Segment>
     );

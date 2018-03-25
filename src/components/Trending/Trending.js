@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Header, Icon, Label } from 'semantic-ui-react';
+import { Divider, Segment, Header, Icon, Label } from 'semantic-ui-react';
 import './Trending.css';
 class Trending extends Component {
     makeTags = (e) => {
@@ -23,6 +23,13 @@ class Trending extends Component {
                 <div style={{padding: "10px", display: "flex"}}>
                     {this.makeTags(["delhi","vintage","instafood","malware","foodgasm"])}
                 </div>
+                <div style={{padding: "10px", display: "flex"}}>
+                    {this.makeTags(["instafood","malware","foodgasm","mens"])}
+                </div>
+                <div style={{padding: "10px", display: "flex"}}>
+                    {this.makeTags(["malware","foodgasm","mens"])}
+                </div>
+                <Divider />
             </div>
         )
     }
