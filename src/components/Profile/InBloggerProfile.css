@@ -67,3 +67,11 @@
     padding: 3px !important;
     margin-left: 5px !important;
 }
+
+.bloggerStats .item {
+    padding: 15px !important;
+}
+
+.bloggerStats a.header {
+    font-size: 1.3em !important;
+}

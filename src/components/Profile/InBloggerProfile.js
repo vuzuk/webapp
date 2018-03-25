@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid, Button, Icon } from 'semantic-ui-react';
+import { Segment, Image, Grid, Button, Icon, List } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
@@ -11,7 +11,7 @@ const chartData = {
     datasets:[
       {
         label:'Total Views',
-        data:[223,342,190,450,228],
+        data:[223,342,270,450,258],
         backgroundColor:[
           'rgba(54, 162, 235, 0.6)'
         ]
@@ -68,12 +68,55 @@ class InBloggerProfile extends Component {
                         </Grid>
                     </div>
                 </Segment> }
-                {this.state.isActive === "stats" && <div style={{width: "95%",margin: "auto", paddingTop: "20px"}}>
+                {this.state.isActive === "stats" && <div className="bloggerStats" style={{width: "95%",margin: "auto", paddingTop: "20px"}}>
                     <Line
                         data={this.state.chartData}
-                        height={280}
-                        options={{maintainAspectRatio: false}}
+                        height={100}
                     />
+                    <Segment padded>
+                        <List divided verticalAlign='middle'>
+                            <List.Item>
+                                <List.Content floated='right'>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                </List.Content>
+                                <List.Header as="a">
+                                    Kabul Restaurant Afghani Food in Delhi
+                                </List.Header>
+                            </List.Item>
+                            <List.Item>
+                                <List.Content floated='right'>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                </List.Content>
+                                <List.Header as="a">
+                                    Kabul Restaurant Afghani Food in Delhi
+                                </List.Header>
+                            </List.Item>
+                            <List.Item>
+                                <List.Content floated='right'>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                </List.Content>
+                                <List.Header as="a">
+                                    Kabul Restaurant Afghani Food in Delhi
+                                </List.Header>
+                            </List.Item>
+                            <List.Item>
+                                <List.Content floated='right'>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
+                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                </List.Content>
+                                <List.Header as="a">
+                                    Kabul Restaurant Afghani Food in Delhi
+                                </List.Header>
+                            </List.Item>
+                    </List>
+                    </Segment>
                 </div>}
                 <Footer />
             </div>
