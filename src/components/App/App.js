@@ -6,6 +6,7 @@ import Announcement from '../Announcement/Announcement';
 import Bloggers from '../Bloggers/Bloggers';
 import Blogs from '../Blogs/Blogs'
 import Photos from '../Photos/Photos';
+import Trending from '../Trending/Trending';
 import Footer from '../Footer/Footer';
 import './App.css'
 export default class App extends Component {
@@ -44,6 +45,7 @@ export default class App extends Component {
         <Bloggers />
         <Blogs />
         <Photos />
+        <Trending />
         <Footer/>
       </Segment>
     );
