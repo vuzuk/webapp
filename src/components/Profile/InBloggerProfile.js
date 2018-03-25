@@ -3,12 +3,27 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { Segment, Image, Grid, Button, Icon } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
+import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
+
+const chartData = {
+    labels: ['Mar 25', 'Mar 26', 'Mar 27', 'Mar 28', 'Mar 29'],
+    datasets:[
+      {
+        label:'Total Views',
+        data:[223,342,190,450,228],
+        backgroundColor:[
+          'rgba(54, 162, 235, 0.6)'
+        ]
+      }
+    ]
+  };
 class InBloggerProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isActive: "post"
+            isActive: "post",
+            chartData,
         }
     }
 
@@ -39,10 +54,10 @@ class InBloggerProfile extends Component {
                 </Segment>
                 <div className="tabs">
                     <div className="tab" onClick={() => {this.handleChange("post")}} style={isActive === "post" ? {borderBottom: "4px solid #55ACEE"} : null}>POST</div>
+                    <div className="tab" onClick={() => {this.handleChange("stats")}} style={isActive === "stats" ? {borderBottom: "4px solid #55ACEE"} : null}>STATS</div>
                     <div className="tab" onClick={() => {this.handleChange("likes")}} style={isActive === "likes" ? {borderBottom: "4px solid #55ACEE"} : null}>LIKES</div>
-                    <div className="tab" onClick={() => {this.handleChange("bookmark")}} style={isActive === "bookmark" ? {borderBottom: "4px solid #55ACEE"} : null}>BOOKMARKS</div>
                 </div>
-                <Segment basic>
+                {this.state.isActive !== "stats" && <Segment basic>
                     <div className="profile-cards">
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
@@ -52,7 +67,14 @@ class InBloggerProfile extends Component {
                             ))}
                         </Grid>
                     </div>
-                </Segment>
+                </Segment> }
+                {this.state.isActive === "stats" && <div style={{width: "95%",margin: "auto", paddingTop: "20px"}}>
+                    <Line
+                        data={this.state.chartData}
+                        height={280}
+                        options={{maintainAspectRatio: false}}
+                    />
+                </div>}
                 <Footer />
             </div>
         )
