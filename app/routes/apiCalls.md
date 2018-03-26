@@ -12,10 +12,10 @@ localhost:3000/api/auth/verification/verifyEmail
 GET - query = {isBlogger, email}
 localhost:3000/api/auth/verification/resendEmail
 ## verification of otp
-GET - query = {isBlogger, otp, email}
+POST - body = {isBlogger, otp, contact}
 localhost:3000/api/auth/verification/verifyOTP
 ## sending/resending of otp
-GET - query = {isBlogger, email}
+GET - query = {isBlogger, contact}
 localhost:3000/api/auth/verification/resendOTP
 
 ## get trending blogs of a month (could be via category, blogger)
