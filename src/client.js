@@ -6,6 +6,7 @@ import { BLogIn, RLogIn } from './components/LogIn';
 import {BloggerProfile, InBloggerProfile, InReaderProfile} from './components/Profile';
 import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
+import Verification from './components/Verification/Verification';
 import Post from './components/Post/Post';
 
 import {
@@ -29,6 +30,7 @@ hydrate(<Router>
         <Route path="/in/reader" component={InReaderProfile} />
         <Route path="/create" component={CreatePost} />
         <Route path="/post" component={Post} />
+        <Route path="/verify/phone" component={Verification}/>
     </Switch>
 </Router>, document.getElementById('root'));
 
