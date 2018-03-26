@@ -92,6 +92,7 @@ module.exports = (mailTransporter) => {
 
     //body = {isBlogger, otp, contact}
     route.post('/verifyOTP', function (req, res, next) {
+        console.log(req.body);
         let isBlogger = JSON.parse(req.body["isBlogger"]);
         let otp = parseInt(req.body["otp"]);
         let contact = parseInt(req.body["contact"]);
@@ -161,7 +162,6 @@ module.exports = (mailTransporter) => {
                             from: "+" + process.env.TWILIO_ADMIN_CONTACT,
                         })
                             .then((message) => {
-                                console.log(message);
                                 return res.status(200).json({status: true, msg: "otp sent"});
                             })
                             .catch(err => {
