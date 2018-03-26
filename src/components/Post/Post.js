@@ -66,14 +66,17 @@ class Post extends Component {
                                 <List.Content floated="right">
                                     <Grid columns='equal' padded>
                                         <Grid.Row textAlign='center'>
-                                            <Grid.Column>
+                                            <Grid.Column as="a">
                                                 <Icon name="unhide" /> 234
                                             </Grid.Column>
-                                            <Grid.Column>
+                                            <Grid.Column as="a">
                                                 <Icon name="heart" /> 663
                                             </Grid.Column>
-                                            <Grid.Column>
-                                            <Icon name="comments" /> 245
+                                            <Grid.Column as="a">
+                                                <Icon name="comments" /> 245
+                                            </Grid.Column>
+                                            <Grid.Column as="a">
+                                                <Icon name="bookmark" /> Save
                                             </Grid.Column>
                                         </Grid.Row>
                                     </Grid>
