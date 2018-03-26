@@ -8,8 +8,8 @@ route.use(function (req, res, next) {
     next();
 });
 
-//update lickings      query = {lickings(stringified array)}
-route.post('/updateLickings', require("./functions/updateLickings"));
+//update likings      query = {likings(stringified array)}
+route.post('/updateLikings', require("./functions/updateLikings"));
 
 //user following a blogger      query = {bloggerId}
 route.get('/followBlogger', require("./functions/followBlogger"));

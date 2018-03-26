@@ -6,12 +6,12 @@ const User = models["user"];
 module.exports = (req, res) => {
     req["user"]
         .update({
-            lickings: JSON.parse(req.body["lickings"])
+            likings: JSON.parse(req.body["likings"])
         }, {
             logging: false
         })
         .then((updatedUser) => {
-            return res.status(200).json({status: true, msg: "lickings updated"});
+            return res.status(200).json({status: true, msg: "likings updated"});
         })
         .catch((err) => {
             console.log(err);

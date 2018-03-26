@@ -58,9 +58,9 @@ localhost:3000/api/secure/blogger/undoDeleteBlog
 POST - body = {blogId}
 localhost:3000/api/secure/blogger/upload/blogPic
 
-## update lickings      
-GET - query = {lickings(stringified array)}
-localhost:3000/api/secure/user/updateLickings
+## update likings      
+GET - query = {likings(stringified array)}
+localhost:3000/api/secure/user/updateLikings
 ## user following a blogger      
 GET - query = {bloggerId}
 localhost:3000/api/secure/user/followBlogger

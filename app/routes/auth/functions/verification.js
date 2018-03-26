@@ -92,7 +92,6 @@ module.exports = (mailTransporter) => {
 
     //body = {isBlogger, otp, contact}
     route.post('/verifyOTP', function (req, res, next) {
-        console.log(req.body);
         let isBlogger = JSON.parse(req.body["isBlogger"]);
         let otp = parseInt(req.body["otp"]);
         let contact = parseInt(req.body["contact"]);

@@ -32,7 +32,7 @@ module.exports = (passport, mailTransporter) => {
                     console.log(err);
                     return res.status(503).json({status: false, msg: "error in processing"});
                 }
-                return res.status(200).json({status: true, msg: "login successful"});
+                return res.status(200).json({status: true, msg: {username: user["username"], image: user["image"]}});
             })
         })(req, res, next);
     });
