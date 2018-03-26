@@ -7,6 +7,7 @@ import { BLogIn, RLogIn } from './components/LogIn';
 import {InBloggerProfile, BloggerProfile, InReaderProfile} from './components/Profile';
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import CreatePost from './components/CreatePost/CreatePost';
+import Verification from './components/Verification/Verification';
 import Post from './components/Post/Post';
 
 export default function render(req, res) {
@@ -86,6 +87,14 @@ export function post(req, res) {
   res.send(template({
     body: appString,
     title: 'Post - VUZUk'
+  }))
+}
+
+export function verification(req, res) {
+  const appString = renderToString(<Verification />);
+  res.send(template({
+    body: appString,
+    title: 'Verify Phone - VUZUk'
   }))
 }
 

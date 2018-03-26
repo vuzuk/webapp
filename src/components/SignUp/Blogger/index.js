@@ -13,14 +13,14 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gender: "male",
+            gender: "M",
             first_name: "",
             last_name: "",
             username: "",
             email: "",
             dob: "",
             contact: "",
-            isBlogger: true
+            isBlogger: "true"
         }
     }
 
@@ -34,7 +34,7 @@ class SignUp extends Component {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                url: '/api/auth/local/signup',
+                url: 'http://ec2-107-21-86-54.compute-1.amazonaws.com:3000/api/auth/local/signup',
                 data: JSON.stringify(data)
             })
             .then(response => {

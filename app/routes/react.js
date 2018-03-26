@@ -16,5 +16,6 @@ route.get('/in/blogger', render.inBloggerProfile);
 route.get('/in/reader',render.inReaderProfile);
 route.get('/create', render.createPost);
 route.get('/post',render.post);
+route.get('/verify/phone',render.verification);
 
 module.exports = route;
