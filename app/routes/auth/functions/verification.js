@@ -127,7 +127,7 @@ module.exports = (mailTransporter) => {
             });
     });
 
-    //query = {isBlogger, phone}
+    //query = {isBlogger, contact}
     route.get('/resendOTP', function (req, res, next) {
         let isBlogger = JSON.parse(req.query["isBlogger"]);
         let contact = parseInt(req.query["contact"]);
