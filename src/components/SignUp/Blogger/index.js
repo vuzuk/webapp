@@ -13,7 +13,14 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gender: "male"
+            gender: "male",
+            first_name: "",
+            last_name: "",
+            username: "",
+            email: "",
+            dob: "",
+            contact: "",
+            isBlogger: true
         }
     }
 
@@ -21,7 +28,6 @@ class SignUp extends Component {
         const data = this.state;
         if(data.password === data.cpassword) {
             delete data.cpassword;
-            data.isBlogger = "true";
             console.log(data);
             axios({
                 method: 'POST',
@@ -61,6 +67,7 @@ class SignUp extends Component {
                         <Form onSubmit={this.submit}>
                             <Form.Group widths='equal'>
                                 <Form.Field>
+
                                     <label>First name</label>
                                     <Input name="first_name" onChange={this.handleFormText} fluid placeholder='First name' />
                                 </Form.Field>
