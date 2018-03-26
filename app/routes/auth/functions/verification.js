@@ -161,9 +161,11 @@ module.exports = (mailTransporter) => {
                             from: "+" + process.env.TWILIO_ADMIN_CONTACT,
                         })
                             .then((message) => {
+                                console.log(message);
                                 return res.status(200).json({status: true, msg: "otp sent"});
                             })
                             .catch(err => {
+                                console.log(err);
                                 return res.status(503).json({status: false, msg: "error in sending otp"})
                             });
                     })
