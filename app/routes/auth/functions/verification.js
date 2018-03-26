@@ -90,16 +90,16 @@ module.exports = (mailTransporter) => {
             });
     });
 
-    //query = {isBlogger, otp, email}
-    route.get('/verifyOTP', function (req, res, next) {
-        let isBlogger = JSON.parse(req.query["isBlogger"]);
-        let otp = parseInt(req.query["otp"]);
-        let email = req.query["email"];
+    //body = {isBlogger, otp, contact}
+    route.post('/verifyOTP', function (req, res, next) {
+        let isBlogger = JSON.parse(req.body["isBlogger"]);
+        let otp = parseInt(req.body["otp"]);
+        let contact = parseInt(req.body["contact"]);
         let model_to_use = isBlogger ? Blogger : User;
         model_to_use
             .findAll({
                 where: {
-                    email: email,
+                    contact: contact,
                     otp: otp
                 },
                 limit: 1
@@ -127,15 +127,15 @@ module.exports = (mailTransporter) => {
             });
     });
 
-    //query = {isBlogger, email}
+    //query = {isBlogger, phone}
     route.get('/resendOTP', function (req, res, next) {
         let isBlogger = JSON.parse(req.query["isBlogger"]);
-        let email = req.query["email"];
+        let contact = parseInt(req.query["contact"]);
         let model_to_use = isBlogger ? Blogger : User;
         model_to_use
             .findAll({
                 where: {
-                    email: email,
+                    contact: contact,
                 },
                 limit: 1
             })
