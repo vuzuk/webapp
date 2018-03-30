@@ -5,10 +5,8 @@ import myCard from '../../helpers/card';
 import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form } from 'semantic-ui-react';
 import './Post.css';
 
-const post = `<h1>Who will steal Android from Google?</h1>
-
+const post = `<div><img style="display: block; margin: auto; width: 80%" src="https://assets.pcmag.com/media/images/566167-best-android-apps.jpg?thumb=y&amp;width=810&amp;height=456"></div>
 <p><i>Disclaimers: These are my own personal opinions. A lot of them are probably wrong. I do not speak for my employer (Grab!). Take all this with a healthy grain of salt. In fact, don’t even read it.</i></p>
-<div><img style="display: block; margin: auto; width: 80%" src="https://assets.pcmag.com/media/images/566167-best-android-apps.jpg?thumb=y&amp;width=810&amp;height=456"></div>
 <p>Here I am, writing a Medium post while on a plane to Jakarta again. This is getting to be a habit.</p>
 
 <p>I’m still not 100% sure why my “Why I Left Google” post got so much attention. I basically said, “I’m some random dude changing jobs, blah blah blah”, more or less verbatim. Somehow it was translated into like 80 languages and was surpassed that day only by Natalie Portman’s sex column — which to be fair was a lot more interesting.
@@ -46,6 +44,7 @@ class Post extends Component {
                 <div className="post">
                     <Grid divided>
                         <Grid.Column width={10}>
+                            <Header as="h1">Who will steal Android from Google?</Header>
                             <div className="blog-content" dangerouslySetInnerHTML={{__html: post}}></div>
                         </Grid.Column>
                         <Grid.Column width={6}>
