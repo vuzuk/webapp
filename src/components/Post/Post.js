@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import myCard from '../../helpers/card';
-import GridColumn, { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form } from 'semantic-ui-react';
+import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form } from 'semantic-ui-react';
 import './Post.css';
 
 const post = `<h1>Who will steal Android from Google?</h1>
