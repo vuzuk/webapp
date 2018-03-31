@@ -94,8 +94,8 @@ class Post extends Component {
                         </Grid.Column>
                         <Grid.Column width={5}>
                         <div className="tabs" style={{background: "#1B1C1D"}}>
-                            <div className="tab" onClick={() => {this.handleChange("popular")}} style={isActive === "popular" ? {borderBottom: "4px solid #55ACEE"} : null}>POPULAR</div>
-                            <div className="tab" onClick={() => {this.handleChange("related")}} style={isActive === "related" ? {borderBottom: "4px solid #55ACEE"} : null}>RELATED</div>
+                            <div className="tab" onClick={() => {this.handleChange("popular")}} style={isActive === "popular" ? {borderBottom: "4px solid #55ACEE"} : null}><Icon name="fire" /> POPULAR</div>
+                            <div className="tab" onClick={() => {this.handleChange("related")}} style={isActive === "related" ? {borderBottom: "4px solid #55ACEE"} : null}><Icon name="window restore" /> RELATED</div>
                         </div>
                             <div style={{paddingLeft: "10%", paddingTop: "4%", paddingBottom: "4%", border: "1px solid rgba(27, 28, 29,0.1)"}}>
                                 <List relaxed>
