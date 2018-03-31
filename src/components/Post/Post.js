@@ -43,7 +43,7 @@ class Post extends Component {
                 <Navbar />
                 <div className="post">
                     <Grid divided>
-                        <Grid.Column width={10}>
+                        <Grid.Column width={11}>
                             <Header as="h1">Who will steal Android from Google?</Header>
                             <List verticalAlign='middle' size="big">
                                 <List.Item>
@@ -71,7 +71,7 @@ class Post extends Component {
                             <Divider />
                             <div className="blog-content" dangerouslySetInnerHTML={{__html: post}}></div>
                         </Grid.Column>
-                        <Grid.Column width={6}>
+                        <Grid.Column width={5}>
                             <Header as='h3' block inverted>Related post</Header>
                             <div style={{paddingLeft: "10%"}}>
                                 <List relaxed>
