@@ -118,14 +118,6 @@ class BloggerProfile extends Component {
                                 </div>
                             </div>
                         </div>
-                        {/* <div className="label-box">
-                            {this.makeLabels()}
-                        </div>
-                        <Slider {...settings} className="slides tech-slide">
-                            {[1,1,1,1,1,1].map(i => {
-                                return myCard(i);
-                            })}
-                        </Slider> */}
                     </div>
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
