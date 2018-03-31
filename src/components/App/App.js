@@ -42,9 +42,9 @@ export default class App extends Component {
         <Navbar />
         <SearchBar />
         <Announcement />
+        <Trending />
         <Bloggers />
         <Blogs />
-        <Trending />
         <Photos />
         <Footer/>
       </Segment>
