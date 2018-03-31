@@ -82,13 +82,14 @@ class Post extends Component {
                             <Divider />
                             <div className="blog-content" dangerouslySetInnerHTML={{__html: post}}></div>
                             <div className="post-tags">
-                                {/* <span style={{opacity: 0.5, paddingLeft: "20px", fontSize: "1.6em"}}>Tags: </span> */}
-                                <Label.Group tag as="a" size="large" color="blue">
+                                <span style={{opacity: 0.5, fontSize: "1.1em"}}>Tags: </span>
+                                <Label.Group tag as="a">
                                     <Label as='a'>Android</Label>
                                     <Label as='a'>Linux</Label>
                                     <Label as='a'>Tech</Label>
                                     <Label as='a'>Google</Label>
                                 </Label.Group>
+                                <div style={{marginTop: "30px"}} class="sharethis-inline-share-buttons"></div>
                             </div>
                         </Grid.Column>
                         <Grid.Column width={5}>
@@ -107,6 +108,26 @@ class Post extends Component {
                 <div style={{paddingRight: "20px", paddingLeft: "20px", paddingBottom: "20px"}}>
                 <div className="post-footer">
                     <Divider />
+                    <Grid>
+                        <Grid.Row>
+                            <Grid.Column width={2}>
+                                <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
+                            </Grid.Column>
+                            <Grid.Column width={14}>
+                                <Header size='large'>Matthew Stewards</Header>
+                                <div>
+                                    <Icon circular name='facebook' link/>
+                                    <Icon circular name='twitter' link/>
+                                    <Icon circular name='instagram' link/>
+                                    <Icon circular name='linkedin' link/>
+                                </div>
+                                <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
+                                <Header.Subheader>
+                                    Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
+                                </Header.Subheader>
+                            </Grid.Column>
+                        </Grid.Row>
+                    </Grid>
                 </div>
                 <Divider />
                     <Comment.Group size="large">
