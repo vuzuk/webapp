@@ -7,6 +7,7 @@ import Bloggers from '../Bloggers/Bloggers';
 import Blogs from '../Blogs/Blogs'
 import Photos from '../Photos/Photos';
 import Trending from '../Trending/Trending';
+import Temporary from '../Temporary/Temporary';
 import Footer from '../Footer/Footer';
 import './App.css'
 export default class App extends Component {
@@ -44,7 +45,8 @@ export default class App extends Component {
         <Announcement />
         <Trending />
         <Bloggers />
-        <Blogs />
+        <Temporary />
+        {/* <Blogs /> */}
         <Photos />
         <Footer/>
       </Segment>
