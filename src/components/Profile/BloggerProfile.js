@@ -73,7 +73,7 @@ class BloggerProfile extends Component {
                 <Divider />
                 <Segment basic>
                     <div className="profile-cards">
-                    <div className="mySlider">
+                    {isActive === "viewed" && <div className="mySlider">
                         <div id="tech1">
                             <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "400px"}}></a>
                             <div className="tech-title">
@@ -118,7 +118,7 @@ class BloggerProfile extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>}
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
                                 <Grid.Column key={i}>
