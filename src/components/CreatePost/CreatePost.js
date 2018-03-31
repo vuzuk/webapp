@@ -93,7 +93,9 @@ class CreatePost extends Component {
                                         <Dimmer active={this.state.isDimmed}>
                                             <Button primary size="large" icon labelPosition='left' onClick={() => this.handleClick("create")}><Icon name='write' /> Create Blog Post</Button>
                                             <Divider horizontal inverted>OR</Divider>
-                                            <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit")}><Icon name='linkify' /> Submit Post Link</Button>
+                                            <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit link")}><Icon name='linkify' /> Submit Post Link</Button>
+                                            <Divider horizontal inverted>OR</Divider>
+                                            <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit video")}><Icon name='video' /> Submit Video Link</Button>
                                         </Dimmer>
                                         {this.state.method === "create" && <FroalaEditor config={{
                                             height: 300,
@@ -103,8 +105,10 @@ class CreatePost extends Component {
                                             quickInsertButtons: [],
                                             toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
                                         }} />}
-                                        {this.state.method !== "create" &&
+                                        {this.state.method === "submit link" &&
                                         <Input icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Blog Post Link Here...' />}
+                                        {this.state.method === "submit video" &&
+                                        <Input icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Video Link Here...' />}
                                     </Dimmer.Dimmable>
                                 </div>
                             </Grid.Column>
