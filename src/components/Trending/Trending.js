@@ -29,7 +29,6 @@ class Trending extends Component {
                 <div style={{padding: "10px", display: "flex"}}>
                     {this.makeTags(["malware","foodgasm","mens"])}
                 </div>
-                <Divider />
             </div>
         )
     }
