@@ -22,3 +22,8 @@
 .ui.card .extra.content a.myHeader {
     width: 100% !important;
 }
+
+.sortby {
+    width: 85%;
+    margin: auto;
+}
