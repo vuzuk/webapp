@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Image, Header, Segment, Grid, Divider, Dropdown, Icon } from 'semantic-ui-react'
+import { Image, Header, Segment, Grid, Divider, Icon } from 'semantic-ui-react'
 import axios from 'axios';
 import myCard from '../../helpers/card';
 import './BloggerProfile.css'
 class BloggerProfile extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isActive: "viewed"
+        }
+    }
 
     sendBlog = () => {
         const data = {
@@ -30,21 +36,13 @@ class BloggerProfile extends Component {
             console.log(error);
         })
     }
+
+    handleChange = (isActive) => {
+        this.setState({isActive});
+    }
+
     render() {
-        const sortOptions = [
-            {
-                text: "Most Viewed",
-                value: "Most Viewed",
-            },
-            {
-                text: "Most Liked",
-                value: "Most Liked",
-            },
-            {
-                text: "Most Commented",
-                value: "Most Commented",
-            }
-        ]
+        const { isActive } = this.state;
         return (
             <div id="profile">
                 <Navbar />
@@ -64,7 +62,14 @@ class BloggerProfile extends Component {
                         </Header.Subheader>
                     </div>
                 </Segment>
-                &nbsp;&nbsp;Sort by: <Dropdown inline options={sortOptions} defaultValue={sortOptions[0].value} />
+                <div className="sortby">
+                    <div className="tabs profilet">
+                        <span style={{fontWeight: "bold"}}>Sort By: </span>
+                        <div className="tab profilet" onClick={() => {this.handleChange("viewed")}} style={isActive === "viewed" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Viewed</div>
+                        <div className="tab profilet" onClick={() => {this.handleChange("commented")}} style={isActive === "commented" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Commented</div>
+                        <div className="tab profilet" onClick={() => {this.handleChange("liked")}} style={isActive === "liked" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Liked</div>
+                    </div>
+                </div>
                 <Divider />
                 <Segment basic>
                     <div className="profile-cards">
