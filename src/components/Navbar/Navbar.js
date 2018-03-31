@@ -29,7 +29,7 @@ export default class Navbar extends Component {
 
         <Menu.Menu position='right'>
           <Menu.Item name='signup'>
-            <Modal trigger={<Button primary>Sign Up</Button>} closeIcon>
+            <Modal trigger={<Button primary>Sign Up</Button>} size="mini">
               <Modal.Content>
                 <Button as="a" href="/blogger/signup" primary size="huge" fluid>Blogger</Button>
                 <Divider horizontal>OR</Divider>
@@ -39,7 +39,7 @@ export default class Navbar extends Component {
           </Menu.Item>
 
           <Menu.Item name='login'>
-            <Modal trigger={<Button>Log In</Button>} closeIcon>
+            <Modal trigger={<Button>Log In</Button>} size="mini">
                 <Modal.Content>
                   <Button as="a" href="/blogger/login" primary size="huge" fluid>Blogger</Button>
                   <Divider horizontal>OR</Divider>
