@@ -89,7 +89,7 @@ class Post extends Component {
                                     <Label as='a'>Tech</Label>
                                     <Label as='a'>Google</Label>
                                 </Label.Group>
-                                <div style={{marginTop: "30px"}} class="sharethis-inline-share-buttons"></div>
+                                <div style={{marginTop: "30px"}} className="sharethis-inline-share-buttons"></div>
                             </div>
                         </Grid.Column>
                         <Grid.Column width={5}>
