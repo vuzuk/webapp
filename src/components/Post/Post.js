@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import myCard from '../../helpers/card';
-import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form } from 'semantic-ui-react';
+import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form, Label } from 'semantic-ui-react';
 import './Post.css';
 
 const post = `<div><img style="display: block; margin: auto; width: 80%" src="https://assets.pcmag.com/media/images/566167-best-android-apps.jpg?thumb=y&amp;width=810&amp;height=456"></div>
@@ -81,6 +81,15 @@ class Post extends Component {
                             </List>
                             <Divider />
                             <div className="blog-content" dangerouslySetInnerHTML={{__html: post}}></div>
+                            <div className="post-tags">
+                                {/* <span style={{opacity: 0.5, paddingLeft: "20px", fontSize: "1.6em"}}>Tags: </span> */}
+                                <Label.Group tag as="a" size="large" color="blue">
+                                    <Label as='a'>Android</Label>
+                                    <Label as='a'>Linux</Label>
+                                    <Label as='a'>Tech</Label>
+                                    <Label as='a'>Google</Label>
+                                </Label.Group>
+                            </div>
                         </Grid.Column>
                         <Grid.Column width={5}>
                         <div className="tabs" style={{background: "#1B1C1D"}}>
