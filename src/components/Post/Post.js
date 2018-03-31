@@ -26,6 +26,16 @@ Why does everyone need mobile devs? Because the web is slowly dying. I have frie
 They managed, but it sure as hell wasn’t easy, because Android’s dev stack is the world’s biggest poo sandwich.</p>`
 
 class Post extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isActive: 'popular'
+        }
+    }
+
+    handleChange = (isActive) => {
+        this.setState({ isActive })
+    }
 
     makeList = (e) => {
         return e.map(i => {
@@ -38,11 +48,12 @@ class Post extends Component {
     }
 
     render() {
+        const { isActive } = this.state;
         return(
             <div>
                 <Navbar />
                 <div className="post">
-                    <Grid divided>
+                    <Grid>
                         <Grid.Column width={11}>
                             <Header as="h1">Who will steal Android from Google?</Header>
                             <List verticalAlign='middle' size="big">
@@ -72,8 +83,11 @@ class Post extends Component {
                             <div className="blog-content" dangerouslySetInnerHTML={{__html: post}}></div>
                         </Grid.Column>
                         <Grid.Column width={5}>
-                            <Header as='h3' block inverted>Related post</Header>
-                            <div style={{paddingLeft: "10%"}}>
+                        <div className="tabs" style={{background: "#1B1C1D"}}>
+                            <div className="tab" onClick={() => {this.handleChange("popular")}} style={isActive === "popular" ? {borderBottom: "4px solid #55ACEE"} : null}>POPULAR</div>
+                            <div className="tab" onClick={() => {this.handleChange("related")}} style={isActive === "related" ? {borderBottom: "4px solid #55ACEE"} : null}>RELATED</div>
+                        </div>
+                            <div style={{paddingLeft: "10%", paddingTop: "4%", paddingBottom: "4%", border: "1px solid rgba(27, 28, 29,0.1)"}}>
                                 <List relaxed>
                                     {this.makeList([1,2,3])}
                                 </List>
