@@ -13,9 +13,25 @@
     bottom: 85px;
 }
 
+.tabs.profilet {
+    display: block;
+    background: none;
+}
+
+.tabs.profilet .tab {
+    display: inline-block;
+    font-size: 1em;
+    padding: 10px 15px;
+    height: 40px;
+}
+
+.tabs.profilet .tab:hover {
+    border-bottom: none;
+}
+
 .tabs {
     display: flex;
-    /* margin-top: 8px; */
+    /* margin-top": 8px; */
     border-top: 2px solid #f5f5f5;
     background: white;
 }

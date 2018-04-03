@@ -1,3 +1,7 @@
 .trend-tags .ui.label {
     margin: auto !important;
 }
+
+.trend-tags div.ui.vertical.padded.segment {
+    margin-top: 25px !important;
+}

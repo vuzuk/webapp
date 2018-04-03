@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Image, Header, Segment, Grid, Divider, Dropdown, Icon } from 'semantic-ui-react'
+import { Image, Header, Segment, Grid, Divider, Icon } from 'semantic-ui-react'
 import axios from 'axios';
 import myCard from '../../helpers/card';
 import './BloggerProfile.css'
 class BloggerProfile extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isActive: "viewed"
+        }
+    }
 
     sendBlog = () => {
         const data = {
@@ -30,21 +36,13 @@ class BloggerProfile extends Component {
             console.log(error);
         })
     }
+
+    handleChange = (isActive) => {
+        this.setState({isActive});
+    }
+
     render() {
-        const sortOptions = [
-            {
-                text: "Most Viewed",
-                value: "Most Viewed",
-            },
-            {
-                text: "Most Liked",
-                value: "Most Liked",
-            },
-            {
-                text: "Most Commented",
-                value: "Most Commented",
-            }
-        ]
+        const { isActive } = this.state;
         return (
             <div id="profile">
                 <Navbar />
@@ -64,10 +62,63 @@ class BloggerProfile extends Component {
                         </Header.Subheader>
                     </div>
                 </Segment>
-                &nbsp;&nbsp;Sort by: <Dropdown inline options={sortOptions} defaultValue={sortOptions[0].value} />
+                <div className="sortby">
+                    <div className="tabs profilet">
+                        <span style={{fontWeight: "bold"}}>Sort By: </span>
+                        <div className="tab profilet" onClick={() => {this.handleChange("viewed")}} style={isActive === "viewed" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Viewed</div>
+                        <div className="tab profilet" onClick={() => {this.handleChange("commented")}} style={isActive === "commented" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Commented</div>
+                        <div className="tab profilet" onClick={() => {this.handleChange("liked")}} style={isActive === "liked" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Liked</div>
+                    </div>
+                </div>
                 <Divider />
                 <Segment basic>
                     <div className="profile-cards">
+                    {isActive === "viewed" && <div className="mySlider">
+                        <div id="tech1">
+                            <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "400px"}}></a>
+                            <div className="tech-title">
+                                <h3>Run 'Kali Linux' Natively</h3>
+                                    <div className="author">
+                                        <span><i class="fa fa-user"></i> Varun</span>
+                                        <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                    </div>
+                            </div>
+                        </div>
+                        <div id="tech2">
+                            <div id="tech2-1">
+                                <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "400px"}}></a>
+                                <div className="tech-title">
+                                    <h3>Run 'Kali Linux' Natively</h3>
+                                        <div className="author">
+                                            <span><i class="fa fa-user"></i> Varun</span>
+                                            <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                        </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className="tech2-2">
+                                    <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "195px"}}></a>
+                                    <div className="tech-title">
+                                            <h3>Run 'Kali Linux' Natively</h3>
+                                            <div className="author">
+                                                <span><i class="fa fa-user"></i> Varun</span>
+                                                <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div className="tech2-2">
+                                    <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "195px"}}></a>
+                                    <div className="tech-title">
+                                            <h3>Run 'Kali Linux' Natively</h3>
+                                            <div className="author">
+                                                <span><i class="fa fa-user"></i> Varun</span>
+                                                <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>}
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
                                 <Grid.Column key={i}>
