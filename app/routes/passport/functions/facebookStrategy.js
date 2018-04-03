@@ -1,6 +1,6 @@
 const passportFacebook = require('passport-facebook');
 const FacebookStrategy = passportFacebook.Strategy;
-var randomString = require("randomstring");
+const randomString = require("randomstring");
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const User = models.user;
 
