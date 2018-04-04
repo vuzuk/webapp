@@ -23,7 +23,6 @@ app.use(bodyParser.urlencoded({extended: false}));
 //disable x-powered-by
 app.disable('x-powered-by');
 
-
 if (process.env.NODE_ENV !== 'PRODUCTION') {
     console.log("In Development Environment");
     const webpack = require('webpack');

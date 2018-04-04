@@ -28,7 +28,7 @@ route.get('/api', function (req, res) {
 route.use('/api/auth', routes.api.auth);
 route.use('/api/secure', routes.api.secure);
 route.use('/api/unsecure', routes.api.unSecure);
-route.use('/', routes.react);
 route.use('/images', express.static(process.env.APP_ROOT + "/app/db/uploads/images"));
+route.use('/', routes.react);
 
 module.exports = route;
