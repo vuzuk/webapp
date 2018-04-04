@@ -15,59 +15,73 @@ const routes = [
     },
     {
         path: '/blogger/signup',
-        component: BSignUp
+        component: BSignUp,
+        title: 'Blogger Sign Up - VUZUK'
     },
     {
         path: '/reader/signup',
-        component: RSignUp
+        component: RSignUp,
+        title: 'Reader Sign Up - VUZUK'
     },
     {
         path: '/blogger/login',
-        component: BLogIn
+        component: BLogIn,
+        title: 'Blogger Login - VUZUK'
     },
     {
         path: '/reader/login',
-        component: RLogIn
+        component: RLogIn,
+        title: 'Reader Login - VUZUK'
     },
     {
         path: '/in/blogger',
-        component: InBloggerProfile
+        component: InBloggerProfile,
+        title: 'Dashboard - VUZUK'
     },
     {
         path: '/in/reader',
-        component: InReaderProfile
+        component: InReaderProfile,
+        title: 'Dashboard - VUZUK'
     },
     {
         path: '/create',
-        component: CreatePost
+        component: CreatePost,
+        title: 'Create Post - VUZUK'
     },
     {
         path: '/post',
-        component: Post
+        component: Post,
+        title: 'Post - VUZUK'
     },
     {
         path: '/blogger',
-        component: BloggerProfile
+        component: BloggerProfile,
+        title: 'Blogger Profile - VUZUK'
     },
     {
         path: '/food',
-        component: Food
+        component: Food,
+        title: 'Food - VUZUK'
     },
     {
         path: '/travel',
-        component: Travel
+        component: Travel,
+        title: 'Travel - VUZUK'
     },
     {
         path: '/tech',
-        component: Tech
+        component: Tech,
+        title: 'Tech - VUZUK'
     },
     {
         path: '/fashion',
-        component: Fashion
+        component: Fashion,
+        title: 'Fashion - VUZUK'
     },
     {
         path: '/verify/phone',
-        component: Verification
+        component: Verification,
+        title: 'Verify Phone - VUZUK'
     }
 ];
 
