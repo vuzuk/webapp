@@ -20,6 +20,9 @@ app.use(cookieParser(process.env.SECRET));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+//disable x-powered-by
+app.disable('x-powered-by');
+
 
 if (process.env.NODE_ENV !== 'PRODUCTION') {
     console.log("In Development Environment");
