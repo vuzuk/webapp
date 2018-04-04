@@ -16,7 +16,6 @@ import Post from './components/Post/Post';
 export default function render(req,res) {
   const activeRoute = routes.find(route => matchPath(req.url, route));
   const context = {};
-  console.log(activeRoute,req.url);
   const appString = renderToString(
     <StaticRouter location={req.url} context={context}>
       <activeRoute.component />
