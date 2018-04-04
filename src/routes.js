@@ -6,10 +6,7 @@ import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import Verification from './components/Verification/Verification';
 import Post from './components/Post/Post';
-        {/* <Route exact path="/" component={App} />
-        <Route path="/create" component={CreatePost} />
-        <Route path="/post" component={Post} />
-        <Route path="/verify/phone" component={Verification}/> */}
+
 const routes = [
     {
         path: '/',
