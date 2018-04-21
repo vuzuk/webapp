@@ -1,7 +1,7 @@
 const { publicPath, assetsPath, commonLoaders } = require('./common.config');
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
   devtool: 'eval',
   name: 'client',
@@ -18,7 +18,6 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new ExtractTextPlugin('bundle.css'),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
@@ -28,15 +27,13 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          use: [{
-              loader: "css-loader"
-          }],
-          // use style-loader in development 
-          fallback: "style-loader"
-      }),
-        include: path.join(__dirname, '.', 'src'),
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        loader: 'style-loader!css-loader?localIdentName=[name]__[local]__[hash:base64:5]',
+      },
+      {
+        test: /\.css$/,
+        include: /node_modules/,
+        loaders: ['style-loader', 'css-loader'],
       },
       {test: /\.js$/ , loader:'babel-loader', exclude: /node_modules/},
       {test: /\.jsx$/ , loader:'babel-loader', exclude: /node_modules/}
