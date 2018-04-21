@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Icon, Header, Divider, Button } from 'semantic-ui-react';
+import './Temporary.css';
 class Temporary extends Component {
     makeList = (arr) => {
         return arr.map(i => {
