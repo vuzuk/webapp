@@ -44,7 +44,7 @@ class Photos extends Component {
                 <Segment vertical padded>
                     <Header as='h3' className="category-title" icon textAlign="center">
                     <Icon name='tags' circular/>
-                        FASHION
+                        PHOTOS
                     </Header>
                 </Segment>
                 <section id="photos">
