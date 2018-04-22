@@ -13,6 +13,7 @@
 .travel-item .title {
   color: rgb(0, 153, 229);
   cursor: pointer;   
+  margin-bottom: 0;
 }
 
 .travel-item button {
