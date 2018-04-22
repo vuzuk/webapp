@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Loader, Segment, Dimmer } from 'semantic-ui-react';
 import Navbar from '../Navbar/Navbar';
-import SearchBar from '../SearchBar/SearchBar';
+// import SearchBar from '../SearchBar/SearchBar';
 import Announcement from '../Announcement/Announcement';
 import Bloggers from '../Bloggers/Bloggers';
 // import Blogs from '../Blogs/Blogs'
@@ -41,7 +41,7 @@ export default class App extends Component {
           <Loader size='massive'>Getting Things Ready For You</Loader>
         </Dimmer>
         <Navbar />
-        <SearchBar />
+        {/* <SearchBar /> */}
         <Announcement />
         <Trending />
         <Bloggers />

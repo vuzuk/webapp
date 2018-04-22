@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Divider, Menu, Button, Modal, Header, Icon } from 'semantic-ui-react'
+import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
 export default class Navbar extends Component {
@@ -28,6 +28,9 @@ export default class Navbar extends Component {
         </Menu.Item>
 
         <Menu.Menu position='right'>
+          <Menu.Item>
+            <Input icon='search' size="small" placeholder='Search...' />
+          </Menu.Item>
           <Menu.Item name='signup'>
             <Modal trigger={<Button primary>Sign Up</Button>} size="mini">
               <Modal.Content>
