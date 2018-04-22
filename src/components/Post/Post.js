@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import myCard from '../../helpers/card';
-import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form, Label } from 'semantic-ui-react';
+import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form, Label, Segment } from 'semantic-ui-react';
 import './Post.css';
 
 const post = `<div><img style="display: block; margin: auto; width: 80%" src="https://assets.pcmag.com/media/images/566167-best-android-apps.jpg?thumb=y&amp;width=810&amp;height=456"></div>
@@ -53,7 +53,7 @@ class Post extends Component {
             <div>
                 <Navbar />
                 <div className="post">
-                    <Grid>
+                    <Grid divided>
                         <Grid.Column width={11}>
                             <Header as="h1">Who will steal Android from Google?</Header>
                             <List verticalAlign='middle' size="big">
@@ -91,13 +91,68 @@ class Post extends Component {
                                 </Label.Group>
                                 <div style={{marginTop: "30px"}} className="sharethis-inline-share-buttons"></div>
                             </div>
+                            <Grid>
+                                <Grid.Row>
+                                    <Grid.Column width={2}>
+                                        <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
+                                    </Grid.Column>
+                                    <Grid.Column width={14}>
+                                        <Header size='large'>Matthew Stewards</Header>
+                                        <div>
+                                            <Icon circular name='facebook' link/>
+                                            <Icon circular name='twitter' link/>
+                                            <Icon circular name='instagram' link/>
+                                            <Icon circular name='linkedin' link/>
+                                        </div>
+                                        <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
+                                        <Header.Subheader>
+                                            Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
+                                        </Header.Subheader>
+                                    </Grid.Column>
+                                </Grid.Row>
+                            </Grid>
                         </Grid.Column>
                         <Grid.Column width={5}>
-                        <div className="tabs" style={{background: "#1B1C1D"}}>
-                            <div className="tab" onClick={() => {this.handleChange("popular")}} style={isActive === "popular" ? {borderBottom: "4px solid #55ACEE"} : null}><Icon name="fire" /> POPULAR</div>
-                            <div className="tab" onClick={() => {this.handleChange("related")}} style={isActive === "related" ? {borderBottom: "4px solid #55ACEE"} : null}><Icon name="window restore" /> RELATED</div>
-                        </div>
-                            <div style={{paddingLeft: "10%", paddingTop: "4%", paddingBottom: "4%", border: "1px solid rgba(27, 28, 29,0.1)"}}>
+                            <Segment className="topics">
+                                <Header>
+                                    Topics
+                                </Header>
+                                <List verticalAlign='middle'>
+                                    <List.Item>
+                                        <List.Content floated='right'>
+                                            <Label circular color="red">12</Label>
+                                        </List.Content>
+                                        <List.Content>
+                                            Travel
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Content floated='right'>
+                                            <Label circular color="orange">19</Label>
+                                        </List.Content>
+                                        <List.Content>
+                                            Technology
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Content floated='right'>
+                                            <Label circular color="green">15</Label>
+                                        </List.Content>
+                                        <List.Content>
+                                            Food
+                                        </List.Content>
+                                    </List.Item>
+                                    <List.Item>
+                                        <List.Content floated='right'>
+                                            <Label circular color="violet">11</Label>
+                                        </List.Content>
+                                        <List.Content>
+                                            Tech
+                                        </List.Content>
+                                    </List.Item>
+                                </List>
+                            </Segment>
+                            <div style={{paddingLeft: "10%", paddingTop: "4%", paddingBottom: "4%"}}>
                                 <List relaxed>
                                     {this.makeList([1,2,3])}
                                 </List>
@@ -106,29 +161,6 @@ class Post extends Component {
                     </Grid>
                 </div>
                 <div style={{paddingRight: "20px", paddingLeft: "20px", paddingBottom: "20px"}}>
-                <div className="post-footer">
-                    <Divider />
-                    <Grid>
-                        <Grid.Row>
-                            <Grid.Column width={2}>
-                                <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
-                            </Grid.Column>
-                            <Grid.Column width={14}>
-                                <Header size='large'>Matthew Stewards</Header>
-                                <div>
-                                    <Icon circular name='facebook' link/>
-                                    <Icon circular name='twitter' link/>
-                                    <Icon circular name='instagram' link/>
-                                    <Icon circular name='linkedin' link/>
-                                </div>
-                                <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
-                                <Header.Subheader>
-                                    Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
-                                </Header.Subheader>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid>
-                </div>
                 <Divider />
                     <Comment.Group size="large">
                         <Header as='h2'>Comments</Header>
