@@ -18,9 +18,21 @@
 }
 
 .slick-list {
-    width: 89%;
+    width: 78%;
     margin: auto;
 }
+
+.slick-track {
+    width: 1800%;
+}
+
+/* .slick-slide {
+    opacity: 0;
+}
+
+.slick-active {
+    opacity: 1;
+} */
 
 .slick-prev {
     left: 2%;

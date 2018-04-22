@@ -8,7 +8,8 @@ const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     className: 'slides',
-    autoplay: true
+    centerMode: true,
+    centerPadding: "0px"
 };
 
 class Trending extends Component {
@@ -18,7 +19,7 @@ class Trending extends Component {
                 {[1,0,2,1,3,0].map((i,x) => {
                     return (
                         <div key={x}>
-                            <img height="350px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
+                            <img width="1000px" height="400px" src="https://image.shutterstock.com/z/stock-vector-page-under-construction-design-funny-cartoon-workers-repairing-website-using-huge-spanner-517296859.jpg" alt=""/>
                         </div>
                     )
                 })}

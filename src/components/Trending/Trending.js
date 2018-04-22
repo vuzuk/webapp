@@ -3,9 +3,14 @@ import { Divider, Segment, Header, Icon, Label } from 'semantic-ui-react';
 import './Trending.css';
 class Trending extends Component {
     makeTags = (e) => {
+        const colors = [
+            'red', 'orange', 'yellow', 'olive', 'green', 'teal',
+            'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black',
+        ]
         return e.map(label => {
+            const getColor = colors[Math.round(Math.random() * colors.length)]
             return (
-                <Label as="a" size="big">
+                <Label as="a" color={getColor} size="big">
                     <Icon name='hashtag' /> {label}
                 </Label>
             )
@@ -21,13 +26,13 @@ class Trending extends Component {
                     </Header>
                 </Segment>
                 <div style={{padding: "10px", display: "flex"}}>
-                    {this.makeTags(["delhi","vintage","instafood","malware","foodgasm"])}
+                    {this.makeTags(["delhi","vintage","instafood","malware","foodgasm","mumbai"])}
                 </div>
                 <div style={{padding: "10px", display: "flex"}}>
-                    {this.makeTags(["instafood","malware","foodgasm","mens"])}
+                    {this.makeTags(["instafood","ethnic","foodgasm","mens","italian"])}
                 </div>
                 <div style={{padding: "10px", display: "flex"}}>
-                    {this.makeTags(["malware","foodgasm","mens"])}
+                    {this.makeTags(["malware","foodgasm","mens","delhi","wannacry","vintage"])}
                 </div>
             </div>
         )
