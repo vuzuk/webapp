@@ -38,6 +38,9 @@ class InBloggerProfile extends Component {
             <div id="profile-page">
                 <Navbar />
                 <Segment className="main" basic>
+                    <Button size="large" circular icon>
+                        <Icon name="camera" />
+                    </Button>
                     <div className="blogger-profile">
                         <div>
                             <Image spaced="right" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular/>
