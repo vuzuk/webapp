@@ -19,7 +19,7 @@ class Trending extends Component {
                 {[1,0,2,1,3,0].map((i,x) => {
                     return (
                         <div key={x}>
-                            <img width="1000px" height="400px" src="https://image.shutterstock.com/z/stock-vector-page-under-construction-design-funny-cartoon-workers-repairing-website-using-huge-spanner-517296859.jpg" alt=""/>
+                            <img width="1000px" height="400px" src="coming-soon.jpg" alt=""/>
                         </div>
                     )
                 })}
