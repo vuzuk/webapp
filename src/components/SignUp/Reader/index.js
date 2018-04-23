@@ -105,7 +105,7 @@ class SignUp extends Component {
                                         </Form.Field>
                                     </Form.Group>
                                     <Form.Field>
-                                        <label>Email</label>
+                                        <label>Email (for Newsletter)</label>
                                         <Input onChange={this.handleFormText} name="email" fluid placeholder='Email' />
                                     </Form.Field>
                                     <Form.Checkbox label='I agree to the Terms and Conditions' />

@@ -1,10 +1,36 @@
 import React, { Component } from 'react'
-import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment } from 'semantic-ui-react'
+import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
+
+const options = [
+  { key: 'user', text: 'Account', icon: 'user', href: "/in/blogger" },
+  { key: 'settings', text: 'Settings', icon: 'settings' },
+  { key: 'sign-out', text: 'Sign Out', icon: 'sign out' },
+];
+
+const trigger = (
+  <span>
+    <Image avatar src="https://react.semantic-ui.com/assets/images/avatar/small/matthew.png" />
+  </span>
+)
+
 export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLogin: true
+    }
+  }
+  componentWillMount() {
+    if(this.props.forceLogin) {
+      this.setState({ isLogin: true })
+    }
+  }
 
   render() {
+    const { isLogin } = this.state;
     return (
       <Menu id={classNames('navbar')} inverted borderless fluid>
         <Menu.Item name='home' as="a" href="/">
@@ -27,7 +53,7 @@ export default class Navbar extends Component {
           Tech
         </Menu.Item>
 
-        <Menu.Menu position='right'>
+        {!isLogin && <Menu.Menu position='right'>
           <Menu.Item>
             <Input icon='search' size="small" placeholder='Search...' />
           </Menu.Item>
@@ -50,7 +76,15 @@ export default class Navbar extends Component {
                 </Modal.Content>
               </Modal>
           </Menu.Item>
-        </Menu.Menu>
+        </Menu.Menu>}
+        {isLogin && <Menu.Menu position="right">
+          <Menu.Item href="#">
+              <Icon name='bell' size="medium"/>
+          </Menu.Item>
+          <Menu.Item>
+            <Dropdown trigger={trigger} options={options} pointing='top right' icon={null} />
+          </Menu.Item>
+        </Menu.Menu>}
       </Menu>
     )
   }
