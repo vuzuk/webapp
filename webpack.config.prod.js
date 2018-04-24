@@ -28,8 +28,20 @@ const webpackConfig = [{
     ]),
   },
 },{
-	context: path.resolve(__dirname, 'src'),
-	entry: './client.js',
+	entry: {
+    app: [
+      './src/client.js'
+    ],
+    vendor: [
+      'react',
+      'react-dom',
+      'jquery',
+      'semantic-ui-react',
+      'react-froala-wysiwyg',
+      'froala-editor',
+      'react-chartjs-2'
+    ]
+  },
 	output: {
 		path: path.resolve(__dirname, 'dist'),
 		filename: 'bundle.js',
@@ -50,6 +62,11 @@ const webpackConfig = [{
         drop_debugger: true,
         drop_console: true
 			}
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity,
+      filename: 'vendor.js'
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
 		// new CopyWebpackPlugin([
