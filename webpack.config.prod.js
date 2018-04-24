@@ -58,7 +58,6 @@ const webpackConfig = [{
 		// 		to: path.resolve(__dirname, 'dist')
 		// 	}
 		// ]),
-    new ExtractTextPlugin('bundle.css'),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
