@@ -98,3 +98,8 @@
     padding-top: 10% !important;
     background-size: 100% 50% !important;
 }
+
+#profile-page #nocover {
+    background: none !important;
+    padding: 1em 1em  !important;
+}

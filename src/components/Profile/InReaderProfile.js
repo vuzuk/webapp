@@ -3,6 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { Segment, Image, Statistic, Icon, Grid, Popup, Button, List } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
+import cx from 'classnames';
 import './InBloggerProfile.css';
 class InReaderProfile extends Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class InReaderProfile extends Component {
         return (
             <div id="profile-page">
                 <Navbar />
-                <Segment className="main" basic>
+                <Segment className="main" id={cx("nocover")} basic>
                     <div className="blogger-profile">
                         <div>
                             <Image spaced="right" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular/>
