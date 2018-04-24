@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image, Dimmer, Loader } from 'semantic-ui-react'
+import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
 
@@ -20,25 +20,24 @@ export default class Navbar extends Component {
     super(props);
 
     this.state = {
-      isLogin: false,
-      loading: true
+      isLogin: false
     }
   }
 
-  componentDidMount = () => {
-    const update = () => {
-      this.setState({loading: false})
-    }
-    if(document) {
-      var tid = setInterval( function () {
-        if ( document.readyState !== 'complete' ) return;
-        clearInterval( tid );       
-        update();
-        const body = document.querySelector("body");
-        if(body) {body.style.overflowY = "scroll"};
-      }, 100 );
-    }
-  }
+  // componentDidMount = () => {
+  //   const update = () => {
+  //     this.setState({loading: false})
+  //   }
+  //   if(document) {
+  //     var tid = setInterval( function () {
+  //       if ( document.readyState !== 'complete' ) return;
+  //       clearInterval( tid );       
+  //       update();
+  //       const body = document.querySelector("body");
+  //       if(body) {body.style.overflowY = "scroll"};
+  //     }, 100 );
+  //   }
+  // }
 
   componentWillMount() {
     if(this.props.forceLogin) {
@@ -50,9 +49,6 @@ export default class Navbar extends Component {
     const { isLogin } = this.state;
     return (
       <div className="myNav">
-        <Dimmer active={this.state.loading}>
-          <Loader size='massive'>Getting Things Ready For You</Loader>
-        </Dimmer>
         <Menu id={classNames('navbar')} inverted borderless fluid>
           <Menu.Item name='home' as="a" href="/">
             Home

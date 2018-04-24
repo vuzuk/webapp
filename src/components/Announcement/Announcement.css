@@ -9,8 +9,8 @@
 }
 
 .slick-prev, .slick-next {
-    position: absolute;
-    top: 50%;
+    position: absolute !important;
+    top: 50% !important;
 }
 
 .slick-prev::before, .slick-next::before {
@@ -18,12 +18,12 @@
 }
 
 .slick-list {
-    width: 78%;
-    margin: auto;
+    width: 78% !important;
+    margin: auto !important;
 }
 
 .slick-track {
-    width: 1800%;
+    width: 1820% !important;
 }
 
 /* .slick-slide {
@@ -35,10 +35,10 @@
 } */
 
 .slick-prev {
-    left: 2%;
+    left: 2% !important;
 }
 .slick-next {
-    right: 2%;
+    right: 2% !important;
 }
 
 .slides ul {

@@ -2,6 +2,7 @@ const { publicPath, assetsPath, commonLoaders } = require('./common.config');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 // const CopyWebpackPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv');
@@ -68,6 +69,7 @@ const webpackConfig = [{
       filename: 'vendor.js',
       childrem: true
     }),
+    new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.ModuleConcatenationPlugin(),
 		// new CopyWebpackPlugin([
 		// 	{
@@ -84,13 +86,15 @@ const webpackConfig = [{
 		rules: [
       {
         test: /\.css$/,
-        exclude: /node_modules/,
-        loader: 'style-loader!css-loader?localIdentName=[name]__[local]__[hash:base64:5]',
-      },
-      {
-        test: /\.css$/,
-        include: /node_modules/,
-        loaders: ['style-loader', 'css-loader'],
+        use: ExtractTextPlugin.extract({
+          use: [{
+              loader: "css-loader"
+          }],
+          // use style-loader in development 
+          fallback: "style-loader"
+        }),
+        include: path.join(__dirname, '.', 'src'),
+        exclude: /node_modules/
       },
       {test: /\.js$/ , loader:'babel-loader', exclude: /node_modules/},
       {test: /\.jsx$/ , loader:'babel-loader', exclude: /node_modules/}
