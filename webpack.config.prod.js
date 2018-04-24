@@ -35,7 +35,6 @@ const webpackConfig = [{
     vendor: [
       'react',
       'react-dom',
-      'jquery',
       'semantic-ui-react',
       'react-froala-wysiwyg',
       'froala-editor',
@@ -66,7 +65,8 @@ const webpackConfig = [{
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: 'vendor.js'
+      filename: 'vendor.js',
+      childrem: true
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
 		// new CopyWebpackPlugin([
