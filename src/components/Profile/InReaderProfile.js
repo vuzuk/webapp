@@ -95,33 +95,29 @@ class InReaderProfile extends Component {
                             </Statistic>
                         </Statistic.Group>
                         <Segment>
-                        <List>
+                        <List size="large" relaxed verticalAlign="middle" selection>
                             <List.Item>
                             <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
                             <List.Content>
-                                <List.Header> <a href="#">Rachel</a> </List.Header>
-                                <List.Description>started following <a><b>Varun</b></a> just now.</List.Description>
+                                <List.Description><b><a href="#">Rachel</a></b> started following <a><b>Varun</b></a> just now.</List.Description>
                             </List.Content>
                             </List.Item>
                             <List.Item>
                             <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matthew.png' />
                             <List.Content>
-                                <List.Header> <a href="#">Jake Archibald</a> </List.Header>
-                                <List.Description>shared a new post <a><b>How Bitcoin mining works</b></a></List.Description>
+                                <List.Description><b><a href="#">Jake Archibald</a></b> shared a new post <a><b>How Bitcoin mining works</b></a></List.Description>
                             </List.Content>
                             </List.Item>
                             <List.Item>
                                 <Icon name="hashtag" inverted circular/>
                             <List.Content>
-                                <List.Header> <a href="#">ethnic</a> </List.Header>
-                                <List.Description>10 new posts labeled <a><b>ethnic</b></a></List.Description>
+                                <List.Description>10 new posts labeled <a><b>ethnic</b></a> published since you last visited.</List.Description>
                             </List.Content>
                             </List.Item>
                             <List.Item>
                             <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
                             <List.Content>
-                                <List.Header> <a href="#">Rachel</a> </List.Header>
-                                <List.Description>started following <a><b>Varun</b></a> just now.</List.Description>
+                                <List.Description><b><a href="#">Rachel</a></b> started following <a><b>Varun</b></a> just now.</List.Description>
                             </List.Content>
                             </List.Item>
                         </List>

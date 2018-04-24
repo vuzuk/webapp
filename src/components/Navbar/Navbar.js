@@ -20,7 +20,7 @@ export default class Navbar extends Component {
     super(props);
 
     this.state = {
-      isLogin: true
+      isLogin: false
     }
   }
   componentWillMount() {
@@ -78,7 +78,7 @@ export default class Navbar extends Component {
           </Menu.Item>
         </Menu.Menu>}
         {isLogin && <Menu.Menu position="right">
-          <Menu.Item href="#">
+          <Menu.Item href="#" onClick={this.props.handleModal}>
               <Icon name='bell' size="medium"/>
           </Menu.Item>
           <Menu.Item>

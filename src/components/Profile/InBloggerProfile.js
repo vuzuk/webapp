@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid, Button, Icon, List } from 'semantic-ui-react';
+import { Segment, Image, Grid, Button, Icon, List, Modal } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
@@ -18,13 +18,19 @@ const chartData = {
       }
     ]
   };
+
 class InBloggerProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            open: false,
             isActive: "post",
             chartData,
         }
+    }
+
+    handleModal = () => {
+        this.setState({open: !this.state.open})
     }
 
     handleChange = (isActive) => {
@@ -33,10 +39,10 @@ class InBloggerProfile extends Component {
     }
 
     render() {
-        const {isActive} = this.state;
+        const {isActive, open} = this.state;
         return (
             <div id="profile-page">
-                <Navbar />
+                <Navbar forceLogin={true} handleModal={this.handleModal}/>
                 <Segment className="main" basic>
                     <Button size="large" floated="right" circular icon>
                         <Icon name="camera" />
@@ -122,6 +128,39 @@ class InBloggerProfile extends Component {
                     </Segment>
                 </div>}
                 <Footer />
+                <Modal size="fullscreen" open={open} onClose={this.handleModal}>
+                    <Modal.Header>
+                        Notifications
+                    </Modal.Header>
+                    <Modal.Content>
+                    <List size="large" relaxed verticalAlign="middle" selection>
+                        <List.Item>
+                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
+                        <List.Content>
+                            <List.Description><b><a href="#">Rachel</a></b> started following <a><b>Varun</b></a> just now.</List.Description>
+                        </List.Content>
+                        </List.Item>
+                        <List.Item>
+                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matthew.png' />
+                        <List.Content>
+                            <List.Description><b><a href="#">Jake Archibald</a></b> shared a new post <a><b>How Bitcoin mining works</b></a></List.Description>
+                        </List.Content>
+                        </List.Item>
+                        <List.Item>
+                            <Icon name="hashtag" inverted circular/>
+                        <List.Content>
+                            <List.Description>10 new posts labeled <a><b>ethnic</b></a> published since you last visited.</List.Description>
+                        </List.Content>
+                        </List.Item>
+                        <List.Item>
+                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
+                        <List.Content>
+                            <List.Description><b><a href="#">Rachel</a></b> started following <a><b>Varun</b></a> just now.</List.Description>
+                        </List.Content>
+                        </List.Item>
+                    </List>
+                    </Modal.Content>
+                </Modal>
             </div>
         )
     }
