@@ -102,7 +102,7 @@ class CreatePost extends Component {
                                             placeholderText: 'Edit Your Content Here!',
                                             imageUploadURL: '/api/upload',
                                             charCounterCount: false,
-                                            quickInsertButtons: [],
+                                            quickInsertButtons: ['image', 'video', 'table'],
                                             toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
                                         }} />}
                                         {this.state.method === "submit link" &&

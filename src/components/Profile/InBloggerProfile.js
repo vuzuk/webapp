@@ -38,7 +38,7 @@ class InBloggerProfile extends Component {
             <div id="profile-page">
                 <Navbar />
                 <Segment className="main" basic>
-                    <Button size="large" circular icon>
+                    <Button size="large" floated="right" circular icon>
                         <Icon name="camera" />
                     </Button>
                     <div className="blogger-profile">
