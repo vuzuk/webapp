@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Statistic, Icon, Grid, Popup, Button } from 'semantic-ui-react';
+import { Segment, Image, Statistic, Icon, Grid, Popup, Button, List } from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import './InBloggerProfile.css';
 class InReaderProfile extends Component {
@@ -42,7 +42,7 @@ class InReaderProfile extends Component {
                 <Segment basic>
                     {isActive === "points" && <div className="points">
                         <Segment basic>
-                        <Statistic.Group widths='four' color="blue">
+                        <Statistic.Group widths='five' color="blue">
                             <Statistic>
                             <Statistic.Value>60</Statistic.Value>
                             <Statistic.Label className="info">
@@ -87,7 +87,45 @@ class InReaderProfile extends Component {
                                 />
                             </Statistic.Label>
                             </Statistic>
+                            <Statistic>
+                            <Statistic.Value>160</Statistic.Value>
+                            <Statistic.Label  className="info">
+                                Total Points
+                            </Statistic.Label>
+                            </Statistic>
                         </Statistic.Group>
+                        <Segment>
+                        <List>
+                            <List.Item>
+                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
+                            <List.Content>
+                                <List.Header> <a href="#">Rachel</a> </List.Header>
+                                <List.Description>started following <a><b>Varun</b></a> just now.</List.Description>
+                            </List.Content>
+                            </List.Item>
+                            <List.Item>
+                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matthew.png' />
+                            <List.Content>
+                                <List.Header> <a href="#">Jake Archibald</a> </List.Header>
+                                <List.Description>shared a new post <a><b>How Bitcoin mining works</b></a></List.Description>
+                            </List.Content>
+                            </List.Item>
+                            <List.Item>
+                                <Icon name="hashtag" inverted circular/>
+                            <List.Content>
+                                <List.Header> <a href="#">ethnic</a> </List.Header>
+                                <List.Description>10 new posts labeled <a><b>ethnic</b></a></List.Description>
+                            </List.Content>
+                            </List.Item>
+                            <List.Item>
+                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
+                            <List.Content>
+                                <List.Header> <a href="#">Rachel</a> </List.Header>
+                                <List.Description>started following <a><b>Varun</b></a> just now.</List.Description>
+                            </List.Content>
+                            </List.Item>
+                        </List>
+                        </Segment>
                         </Segment>
                     </div>}
                     {isActive !== "points" && <div className="profile-cards">
