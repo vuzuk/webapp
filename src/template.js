@@ -34,7 +34,7 @@ export default ({ body, title }) => {
       <link rel="stylesheet" href="/emoticons.min.css">
       <link rel="stylesheet" href="/froala_editor.pkgd.min.css">
     </head>
-    <body>
+    <body style="overflow-y: hidden">
       <div id="root">${body}</div>
       <script type='text/javascript' src='http://platform-api.sharethis.com/js/sharethis.js#property=5abf669cce89f00013641dd1&product=inline-share-buttons' async='async'></script>
       <script src='/bundle.js'></script>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image } from 'semantic-ui-react'
+import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image, Dimmer, Loader } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
 
@@ -20,9 +20,26 @@ export default class Navbar extends Component {
     super(props);
 
     this.state = {
-      isLogin: false
+      isLogin: false,
+      loading: true
     }
   }
+
+  componentDidMount = () => {
+    const update = () => {
+      this.setState({loading: false})
+    }
+    if(document) {
+      var tid = setInterval( function () {
+        if ( document.readyState !== 'complete' ) return;
+        clearInterval( tid );       
+        update();
+        const body = document.querySelector("body");
+        if(body) {body.style.overflowY = "scroll"};
+      }, 100 );
+    }
+  }
+
   componentWillMount() {
     if(this.props.forceLogin) {
       this.setState({ isLogin: true })
@@ -32,60 +49,65 @@ export default class Navbar extends Component {
   render() {
     const { isLogin } = this.state;
     return (
-      <Menu id={classNames('navbar')} inverted borderless fluid>
-        <Menu.Item name='home' as="a" href="/">
-          Home
-        </Menu.Item>
-
-        <Menu.Item name='food' as="a" href="/food">
-          Food
-        </Menu.Item>
-
-        <Menu.Item name='fashion' as="a" href="/fashion">
-          Fashion
-        </Menu.Item>
-
-        <Menu.Item name='travel' as="a" href="/travel">
-          Travel
-        </Menu.Item>
-
-        <Menu.Item name='tech' as="a" href="/tech">
-          Tech
-        </Menu.Item>
-
-        {!isLogin && <Menu.Menu position='right'>
-          <Menu.Item>
-            <Input icon='search' size="small" placeholder='Search...' />
-          </Menu.Item>
-          <Menu.Item name='signup'>
-            <Modal trigger={<Button primary>Sign Up</Button>} size="mini">
-              <Modal.Content>
-                <Button as="a" href="/blogger/signup" primary size="huge" fluid>Blogger</Button>
-                <Divider horizontal>OR</Divider>
-                <Button as="a" href="/reader/signup" secondary size="huge" fluid>Reader</Button>
-              </Modal.Content>
-            </Modal>
+      <div className="myNav">
+        <Dimmer active={this.state.loading}>
+          <Loader size='massive'>Getting Things Ready For You</Loader>
+        </Dimmer>
+        <Menu id={classNames('navbar')} inverted borderless fluid>
+          <Menu.Item name='home' as="a" href="/">
+            Home
           </Menu.Item>
 
-          <Menu.Item name='login'>
-            <Modal trigger={<Button>Log In</Button>} size="mini">
+          <Menu.Item name='food' as="a" href="/food">
+            Food
+          </Menu.Item>
+
+          <Menu.Item name='fashion' as="a" href="/fashion">
+            Fashion
+          </Menu.Item>
+
+          <Menu.Item name='travel' as="a" href="/travel">
+            Travel
+          </Menu.Item>
+
+          <Menu.Item name='tech' as="a" href="/tech">
+            Tech
+          </Menu.Item>
+
+          {!isLogin && <Menu.Menu position='right'>
+            <Menu.Item>
+              <Input icon='search' size="small" placeholder='Search...' />
+            </Menu.Item>
+            <Menu.Item name='signup'>
+              <Modal trigger={<Button primary>Sign Up</Button>} size="mini">
                 <Modal.Content>
-                  <Button as="a" href="/blogger/login" primary size="huge" fluid>Blogger</Button>
+                  <Button as="a" href="/blogger/signup" primary size="huge" fluid>Blogger</Button>
                   <Divider horizontal>OR</Divider>
-                  <Button as="a" href="/reader/login" secondary size="huge" fluid>Reader</Button>
+                  <Button as="a" href="/reader/signup" secondary size="huge" fluid>Reader</Button>
                 </Modal.Content>
               </Modal>
-          </Menu.Item>
-        </Menu.Menu>}
-        {isLogin && <Menu.Menu position="right">
-          <Menu.Item href="#" onClick={this.props.handleModal}>
-              <Icon name='bell' size="medium"/>
-          </Menu.Item>
-          <Menu.Item>
-            <Dropdown trigger={trigger} options={options} pointing='top right' icon={null} />
-          </Menu.Item>
-        </Menu.Menu>}
-      </Menu>
+            </Menu.Item>
+
+            <Menu.Item name='login'>
+              <Modal trigger={<Button>Log In</Button>} size="mini">
+                  <Modal.Content>
+                    <Button as="a" href="/blogger/login" primary size="huge" fluid>Blogger</Button>
+                    <Divider horizontal>OR</Divider>
+                    <Button as="a" href="/reader/login" secondary size="huge" fluid>Reader</Button>
+                  </Modal.Content>
+                </Modal>
+            </Menu.Item>
+          </Menu.Menu>}
+          {isLogin && <Menu.Menu position="right">
+            <Menu.Item href="#" onClick={this.props.handleModal}>
+                <Icon name='bell' size="medium"/>
+            </Menu.Item>
+            <Menu.Item>
+              <Dropdown trigger={trigger} options={options} pointing='top right' icon={null} />
+            </Menu.Item>
+          </Menu.Menu>}
+        </Menu>
+      </div>
     )
   }
 }
