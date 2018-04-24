@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Image, Header, Segment, Grid, Divider, Icon } from 'semantic-ui-react'
+import { Image, Header, Segment, Grid, Divider, Icon, Popup } from 'semantic-ui-react'
 import axios from 'axios';
 import myCard from '../../helpers/card';
 import './BloggerProfile.css'
@@ -65,9 +65,9 @@ class BloggerProfile extends Component {
                 <div className="sortby">
                     <div className="tabs profilet">
                         <span style={{fontWeight: "bold"}}>Sort By: </span>
-                        <div className="tab profilet" onClick={() => {this.handleChange("viewed")}} style={isActive === "viewed" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Viewed</div>
-                        <div className="tab profilet" onClick={() => {this.handleChange("commented")}} style={isActive === "commented" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Commented</div>
-                        <div className="tab profilet" onClick={() => {this.handleChange("liked")}} style={isActive === "liked" ? {borderBottom: "2px solid #55ACEE"} : null}>Most Liked</div>
+                        <div className="tab profilet" onClick={() => {this.handleChange("viewed")}} style={isActive === "viewed" ? {borderBottom: "2px solid #55ACEE"} : null}><Popup trigger={<Icon name="eye" />} position="top center" inverted content="Most Viewed"/></div>
+                        <div className="tab profilet" onClick={() => {this.handleChange("commented")}} style={isActive === "commented" ? {borderBottom: "2px solid #55ACEE"} : null}><Popup trigger={<Icon name="comments" />} position="top center" inverted content="Most Commented"/></div>
+                        <div className="tab profilet" onClick={() => {this.handleChange("liked")}} style={isActive === "liked" ? {borderBottom: "2px solid #55ACEE"} : null}><Popup trigger={<Icon name="thumbs up" />} position="top center" inverted content="Most Liked"/></div>
                     </div>
                 </div>
                 <Divider />
