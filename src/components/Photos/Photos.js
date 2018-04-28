@@ -47,7 +47,7 @@ class Photos extends Component {
                         PHOTOS
                     </Header>
                 </Segment>
-                <section id="photos">
+                <section id="photos" style={{backgroundColor: "#e0e0e0"}}>
                     {this.makeList()}
                 </section>
             </div>
