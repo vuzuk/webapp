@@ -3,14 +3,9 @@ import { Divider, Segment, Header, Icon, Label } from 'semantic-ui-react';
 import './Trending.css';
 class Trending extends Component {
     makeTags = (e) => {
-        const colors = [
-            'red', 'orange', 'yellow', 'olive', 'green', 'teal',
-            'blue', 'violet', 'purple', 'pink', 'brown', 'grey', 'black',
-        ]
         return e.map(label => {
-            const getColor = colors[Math.round(Math.random() * colors.length)]
             return (
-                <Label as="a" color={getColor} size="big">
+                <Label as="a" size="big">
                     <Icon name='hashtag' /> {label}
                 </Label>
             )
