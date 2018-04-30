@@ -22,7 +22,7 @@ class Photos extends Component {
         return imgs.map((img,i) => {
             return (
                 <Dimmer.Dimmable as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
-                    <a href="#">
+                    <a href="/post">
                     <Dimmer active={this.state.active === i} onClickOutside={this.handleHide}>
                         <Header as='h2' inverted>
                             Blog Post Title
