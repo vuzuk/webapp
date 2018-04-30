@@ -38,7 +38,7 @@ class Fashion extends Component {
                                     </Slider>
                                 </Segment>
                             </Grid.Column>
-                            <Grid.Column width={6}>
+                            <Grid.Column width={6} className="right-banners">
                                 <Segment basic className="right-item">
                                     <img height="170px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
                                 </Segment>

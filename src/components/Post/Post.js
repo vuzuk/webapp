@@ -55,7 +55,12 @@ class Post extends Component {
                 <div className="post">
                     <Grid divided>
                         <Grid.Column width={11}>
-                            <Header as="h1">Who will steal Android from Google?</Header>
+                            <Header as="h1">
+                                Who will steal Android from Google?
+                                <Header.Subheader>
+                                    January 10, 2018
+                                </Header.Subheader>
+                            </Header>
                             <List verticalAlign='middle' size="big">
                                 <List.Item>
                                     <List.Content floated="right">
