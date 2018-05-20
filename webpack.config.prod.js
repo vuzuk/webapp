@@ -50,7 +50,7 @@ const webpackConfig = [{
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: JSON.stringify('PRODUCTION'),
+				NODE_ENV: JSON.stringify('production'),
 				WEBPACK: true
 			}
     }),
