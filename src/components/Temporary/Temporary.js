@@ -7,7 +7,7 @@ class Temporary extends Component {
             return (
                 <div key="i" className="travel-item">
                     <div className="img">
-                        <img style={{width: "100%"}} src="https://i2.wp.com/the-shooting-star.com/wp-content/uploads/2018/03/IMG_5501.jpg?resize=840%2C560&ssl=1" alt=""/>
+                        <img style={{width: "100%"}} src="b_min.jpg" alt=""/>
                     </div>
                     <div className="post">
                         <p className="title">Japan Tourist Visa for Indians: Requirements and Tips</p>

@@ -31,7 +31,7 @@ class Travel extends Component {
                                         {[1,0,2,1,3,0].map((i,x) => {
                                             return (
                                                 <div key={x}>
-                                                    <img height="350px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
+                                                    <img height="350px" width="90%" src="announcements.jpg" alt=""/>
                                                 </div>
                                             )
                                         })}
@@ -40,10 +40,10 @@ class Travel extends Component {
                             </Grid.Column>
                             <Grid.Column width={6} className="right-banners">
                                 <Segment basic className="right-item">
-                                    <img height="170px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
+                                    <img height="170px" width="90%" src="announcements.jpg" alt=""/>
                                 </Segment>
                                 <Segment basic>
-                                    <img height="170px" width="90%" src="http://oxfordfrc.com/wp-content/uploads/2017/01/Announcements.jpg" alt=""/>
+                                    <img height="170px" width="90%" src="announcements.jpg" alt=""/>
                                 </Segment>
                             </Grid.Column>
                         </Grid.Row>

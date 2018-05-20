@@ -20,7 +20,7 @@ const myCard = (i) => {
                     </Label>
                     <Button size="tiny" primary>Follow</Button>
                 </Card.Content>
-                <Image src='https://i1.wp.com/www.eatstory.in/wp-content/uploads/2017/06/Kabul-Restaurant-03.jpg?w=1000' />
+                <Image src='kabul.jpg' />
                 <Card.Content>
                     <Card.Header as="a" href="/post">
                         Kabul Restaurant | Afghani Food in Delhi
