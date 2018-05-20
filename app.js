@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const path = require('path');
 // const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -19,6 +20,9 @@ app.use(logger('dev'));
 app.use(cookieParser(process.env.SECRET));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
+
+// compress all responses
+app.use(compression());
 
 //disable x-powered-by
 app.disable('x-powered-by');
