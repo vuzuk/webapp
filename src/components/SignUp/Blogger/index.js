@@ -20,13 +20,16 @@ class SignUp extends Component {
             email: "",
             dob: "",
             contact: "",
-            isBlogger: "true"
+            isBlogger: "true",
+            isSent: false
         }
     }
 
     submit = () => {
+        const thiss = this;
         const data = {...this.state};
         if(data.password === data.cpassword) {
+            this.setState({isSent: true})
             delete data.cpassword;
             console.log(data);
             axios({
@@ -38,10 +41,13 @@ class SignUp extends Component {
                 data: JSON.stringify(data)
             })
             .then(response => {
-                console.log(response);
+                alert("We've sent you an email containing a link to complete the registration process.")
             })
             .catch(error => {
                 console.log(error);
+            })
+            .finally(() => {
+                thiss.setState({isSent: false})
             })
         } else if(data.password !== data.cpassword) {
             alert("Password not matched");
@@ -51,11 +57,11 @@ class SignUp extends Component {
     }
 
     handleFormText = (e) => {
-        console.log(e.target.value)
         this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
+        const { isSent } = this.state;
         return (
             <div className="register">
                 <Navbar />
@@ -111,7 +117,7 @@ class SignUp extends Component {
                                 <Input onChange={this.handleFormText} name="email" fluid placeholder='Email' />
                             </Form.Field>
                             <Form.Checkbox label='I agree to the Terms and Conditions' />
-                            <Button type='submit'>Submit</Button>
+                            <Button type='submit' loading={isSent} fluid primary>Submit</Button>
                         </Form>
                         </Card.Content>
                     </Card>
