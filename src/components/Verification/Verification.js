@@ -27,6 +27,10 @@ class Verification extends Component {
         }
     }
 
+    componentDidMount() {
+        console.log(findParam("isBlogger"));
+    }
+
     submit = () => {
         console.log(findParam("isBlogger"));
         const data = {
