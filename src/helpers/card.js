@@ -20,7 +20,7 @@ const myCard = (i) => {
                     </Label>
                     <Button size="tiny" primary>Follow</Button>
                 </Card.Content>
-                <Image src='kabul.jpg' />
+                <Image src='/kabul.jpg' />
                 <Card.Content>
                     <Card.Header as="a" href="/post">
                         Kabul Restaurant | Afghani Food in Delhi
