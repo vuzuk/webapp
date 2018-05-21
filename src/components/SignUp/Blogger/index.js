@@ -25,7 +25,7 @@ class SignUp extends Component {
     }
 
     submit = () => {
-        const data = this.state;
+        const data = {...this.state};
         if(data.password === data.cpassword) {
             delete data.cpassword;
             console.log(data);
@@ -34,7 +34,7 @@ class SignUp extends Component {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                url: 'http://ec2-107-21-86-54.compute-1.amazonaws.com:3000/api/auth/local/signup',
+                url: '/api/auth/local/signup',
                 data: JSON.stringify(data)
             })
             .then(response => {
