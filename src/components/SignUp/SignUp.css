@@ -1,9 +1,9 @@
-#register div.card.fluid{
+.register div.card.fluid, .register div.message{
     margin-left: auto;
     margin-right: auto;
     width: 80%;
 }
 
-#register h1.header {
+.register h1.header {
     text-align: center;
 }

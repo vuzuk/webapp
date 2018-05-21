@@ -35,7 +35,7 @@ class LogIn extends Component {
 
     render() {
         return (
-            <div id="register">
+            <div className="register">
                 <Navbar />
                     <Card stye={{width: "80%"}} fluid>
                         <Card.Content>

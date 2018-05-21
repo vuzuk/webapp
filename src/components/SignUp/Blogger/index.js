@@ -57,9 +57,9 @@ class SignUp extends Component {
 
     render() {
         return (
-            <div id="register">
+            <div className="register">
                 <Navbar />
-                    <Card stye={{width: "80%"}} fluid>
+                    <Card fluid>
                         <Card.Content>
                             <Card.Header as="h1">SIGN UP</Card.Header>
                         </Card.Content>
