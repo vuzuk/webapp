@@ -20,6 +20,7 @@ class SignUp extends Component {
             email: "",
             dob: "",
             contact: "",
+            area: "food",
             isBlogger: "true",
             isSent: false
         }
@@ -70,55 +71,62 @@ class SignUp extends Component {
                             <Card.Header as="h1">SIGN UP</Card.Header>
                         </Card.Content>
                         <Card.Content>
-                        <Form onSubmit={this.submit}>
-                            <Form.Group widths='equal'>
-                                <Form.Field>
-
-                                    <label>First name</label>
-                                    <Input name="first_name" onChange={this.handleFormText} fluid placeholder='First name' />
-                                </Form.Field>
-                                <Form.Field>
-                                    <label>Last name</label>
-                                    <Input name="last_name" onChange={this.handleFormText} fluid placeholder='Last name' />
-                                </Form.Field>
-                            </Form.Group>
-                            <Form.Group widths='equal'>
-                                <Form.Field>
-                                    <label>Username</label>
-                                    <Input name="username" onChange={this.handleFormText} fluid placeholder='Username' />
-                                </Form.Field>
-                                <Form.Field>
-                                    <label>Phone No.</label>
-                                    <Input name="contact" onChange={this.handleFormText} fluid placeholder='Phone No.' />
-                                </Form.Field>
-                            </Form.Group>
-                            <Form.Group widths='equal'>
-                                <Form.Field>
-                                    <label>Password</label>
-                                    <Input name="password" onChange={this.handleFormText} type="password" fluid placeholder='Password' />
-                                </Form.Field>
-                                <Form.Field>
-                                    <label>Confirm Password</label>
-                                    <Input name="cpassword" onChange={this.handleFormText} fluid type="password" placeholder='Confirm Password' />
-                                </Form.Field>
-                            </Form.Group>
-                            <Form.Group widths='equal'>
-                                <Form.Field>
-                                    <label>Date Of Birth</label>
-                                    <Input name="dob" onChange={this.handleFormText} fluid type="date" />
-                                </Form.Field>
-                                <Form.Field name="gender" onChange={this.handleFormText} label='Gender' control='select'>
-                                    <option value='male'>Male</option>
-                                    <option value='female'>Female</option>
-                                </Form.Field>
-                            </Form.Group>
-                            <Form.Field>
-                                <label>Email</label>
-                                <Input onChange={this.handleFormText} name="email" fluid placeholder='Email' />
-                            </Form.Field>
-                            <Form.Checkbox label='I agree to the Terms and Conditions' />
-                            <Button type='submit' loading={isSent} fluid primary>Submit</Button>
-                        </Form>
+                            <Form onSubmit={this.submit}>
+                                <Form.Group widths='equal'>
+                                    <Form.Field>
+                                        <label>First name</label>
+                                        <Input name="first_name" onChange={this.handleFormText} fluid placeholder='First name' />
+                                    </Form.Field>
+                                    <Form.Field>
+                                        <label>Last name</label>
+                                        <Input name="last_name" onChange={this.handleFormText} fluid placeholder='Last name' />
+                                    </Form.Field>
+                                </Form.Group>
+                                <Form.Group widths='equal'>
+                                    <Form.Field>
+                                        <label>Username</label>
+                                        <Input name="username" onChange={this.handleFormText} fluid placeholder='Username' />
+                                    </Form.Field>
+                                    <Form.Field>
+                                        <label>Phone No.</label>
+                                        <Input name="contact" onChange={this.handleFormText} fluid placeholder='Phone No.' />
+                                    </Form.Field>
+                                </Form.Group>
+                                <Form.Group widths='equal'>
+                                    <Form.Field>
+                                        <label>Password</label>
+                                        <Input name="password" onChange={this.handleFormText} type="password" fluid placeholder='Password' />
+                                    </Form.Field>
+                                    <Form.Field>
+                                        <label>Confirm Password</label>
+                                        <Input name="cpassword" onChange={this.handleFormText} fluid type="password" placeholder='Confirm Password' />
+                                    </Form.Field>
+                                </Form.Group>
+                                <Form.Group widths='equal'>
+                                    <Form.Field>
+                                        <label>Date Of Birth</label>
+                                        <Input name="dob" onChange={this.handleFormText} fluid type="date" />
+                                    </Form.Field>
+                                    <Form.Field name="gender" onChange={this.handleFormText} label='Gender' control='select'>
+                                        <option value='male'>Male</option>
+                                        <option value='female'>Female</option>
+                                    </Form.Field>
+                                </Form.Group>
+                                <Form.Group widths="equal">
+                                    <Form.Field>
+                                        <label>Email</label>
+                                        <Input onChange={this.handleFormText} name="email" placeholder='Email' />
+                                    </Form.Field>
+                                    <Form.Field name="area" onChange={this.handleFormText} label='Area' control='select'>
+                                        <option value='food'>Food</option>
+                                        <option value='travel'>Travel</option>
+                                        <option value='tech'>Tech</option>
+                                        <option value='fashion'>Fashion</option>
+                                    </Form.Field>
+                                </Form.Group>
+                                <Form.Checkbox label='I agree to the Terms and Conditions' />
+                                <Button type='submit' loading={isSent} fluid primary>Submit</Button>
+                            </Form>
                         </Card.Content>
                     </Card>
                 <Footer />
