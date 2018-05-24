@@ -27,6 +27,7 @@ class LogIn extends Component {
         })
         .then(response => {
             console.log(response);
+            location.href = '/in/blogger';
         })
         .catch(error => {
             console.log(error);
