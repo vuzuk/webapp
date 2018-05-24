@@ -22,16 +22,18 @@ class SignUp extends Component {
             contact: "",
             area: "food",
             isBlogger: "true",
-            isSent: false
+            isSent: false,
+            isAgreed: true
         }
     }
 
     submit = () => {
         const thiss = this;
         const data = {...this.state};
-        if(data.password === data.cpassword) {
+        if(data.password === data.cpassword && data.isAgreed) {
             this.setState({isSent: true})
             delete data.cpassword;
+            delete data.isAgreed;
             console.log(data);
             axios({
                 method: 'POST',
@@ -62,7 +64,7 @@ class SignUp extends Component {
     }
 
     render() {
-        const { isSent } = this.state;
+        const { isSent, isAgreed } = this.state;
         return (
             <div className="register">
                 <Navbar />
@@ -124,7 +126,11 @@ class SignUp extends Component {
                                         <option value='fashion'>Fashion</option>
                                     </Form.Field>
                                 </Form.Group>
-                                <Form.Checkbox label='I agree to the Terms and Conditions' />
+                                <Form.Checkbox checked={isAgreed} onClick={() => {
+                                        this.setState({
+                                            isAgreed: !this.state.isAgreed
+                                        })
+                                    }} label={<label>I agree to the <a href="#" target="_blank">Terms and Conditions</a></label>} />
                                 <Button type='submit' loading={isSent} fluid primary>Submit</Button>
                             </Form>
                         </Card.Content>
