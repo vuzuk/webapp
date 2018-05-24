@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Grid, Input, Segment, Header, Select, Button, Dimmer, Divider, Icon } from 'semantic-ui-react'
+import { Grid, Input, Segment, Header, Select, Button, Dimmer, Divider, Icon, Label, Popup } from 'semantic-ui-react'
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 import 'froala-editor/js/plugins/video.min.js';
 import 'froala-editor/js/plugins/emoticons.min.js';
@@ -46,14 +46,36 @@ class CreatePost extends Component {
         this.state = {
             isDimmed: true,
             method: "create",
-            post: ""
+            post: "",
+            images: [],
+            tag: "",
+            tags: []
         }
+    }
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     onModelChange = (post) => {
         this.setState({
             post
         })
+    }
+    
+    addTags = () => {
+        let { tag, tags } = this.state;
+        if(tags.length < 6) {
+            tags.push(tag);
+            tag = "";
+            console.log(tags);
+            this.setState({
+                tags,
+                tag
+            })
+        }
     }
 
     removeWrapper = () => {
@@ -72,7 +94,46 @@ class CreatePost extends Component {
 
     submit = () => {
         console.log(this.state.post);
-        
+        this.filterImages();
+    }
+
+    filterImages = () => {
+        let post = this.state.post;
+        let images = [], imgN = 0;
+        while(post.indexOf("<img") !== -1) {
+            let start = post.indexOf("<img");
+            let end = post.indexOf("\">", start);
+            console.log(start)
+            console.log(end)
+            console.log(post.substring(start,end+2))
+
+            let src = "",ch = post.substring(post.indexOf("src=\"")+5, post.indexOf("src=\"")+6);
+            console.log(`ch= ${ch}`)
+            let i = 5;
+            while(ch !== "\"") {
+                src = src + ch;
+                i++;
+                ch = post.substring(post.indexOf("src=\"")+i, post.indexOf("src=\"")+i+1);
+            }
+            console.log(src)
+
+            images[imgN] = src;
+            post = post.replace(post.substring(start,end+2),`@@${imgN}@@`)
+            imgN++;
+            console.log(post)
+        }
+        this.setState({
+            post,
+            images
+        })
+    }
+
+    removeTag = (i) => {
+        let tags = [...this.state.tags];
+        tags.splice(i, 1);
+        this.setState({
+            tags
+        })
     }
 
     componentDidMount() {
@@ -91,7 +152,7 @@ class CreatePost extends Component {
     }
 
     render() {
-        const { post } = this.state;
+        const { post, tag, tags } = this.state;
         return (
             <div>
                 <Navbar />
@@ -132,16 +193,39 @@ class CreatePost extends Component {
                             <Grid.Column width={6}>
                                 <Header as="h3">Choose Your Category</Header>
                                 <Select fluid placeholder='Select your category' options={categoryOptions} />
-                                <Header as="h3">Enter Tags</Header>
-                                <Input
-                                    icon='tags'
-                                    iconPosition='left'
-                                    label={{ tag: true, content: 'Add Tag'}}
-                                    labelPosition='right'
-                                    placeholder='Enter tags'
-                                    fluid
-                                    className="tags"
+                                <Header as="h3">
+                                    Enter Tags
+                                </Header>
+                                <Popup
+                                    trigger={<Input
+                                        icon='tags'
+                                        iconPosition='left'
+                                        label={{ tag: true, content: 'Add Tag'}}
+                                        labelPosition='right'
+                                        placeholder='Enter tags'
+                                        fluid
+                                        className="tags"
+                                        value={tag}
+                                        name="tag"
+                                        onChange={this.handleChange}
+                                        onKeyPress={e => {
+                                            if(e.which === 13 || e.keyCode === 13) this.addTags();
+                                        }}
+                                    />}
+                                    content="Press Enter to add tags"
+                                    size="mini"
+                                    on="focus"
                                 />
+                                <div style={{marginTop: "10px"}}>
+                                    {
+                                        tags.map((tag, i) => (
+                                            <Label color="violet">
+                                                {tag}
+                                                <Icon name='delete' value="fd" onClick={() => {this.removeTag(i)}} />
+                                            </Label>
+                                        ))
+                                    }
+                                </div>
                                 <Header as="h3">Place</Header>
                                 <Input
                                     icon='marker'
