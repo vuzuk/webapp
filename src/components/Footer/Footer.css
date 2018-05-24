@@ -23,7 +23,7 @@ li {
   margin-right: 15px;
   display: inline;
 }
-li a {
+.footer li a {
   color: white !important;
 }
 .social {
