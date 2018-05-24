@@ -45,9 +45,17 @@ class CreatePost extends Component {
 
         this.state = {
             isDimmed: true,
-            method: "create"
+            method: "create",
+            post: ""
         }
     }
+
+    onModelChange = (post) => {
+        this.setState({
+            post
+        })
+    }
+
     removeWrapper = () => {
         let elements = document.querySelectorAll(".fr-wrapper a[target='_blank'");
         console.log("run..")
@@ -60,6 +68,11 @@ class CreatePost extends Component {
                 }
             }
         }
+    }
+
+    submit = () => {
+        console.log(this.state.post);
+        
     }
 
     componentDidMount() {
@@ -78,6 +91,7 @@ class CreatePost extends Component {
     }
 
     render() {
+        const { post } = this.state;
         return (
             <div>
                 <Navbar />
@@ -97,14 +111,17 @@ class CreatePost extends Component {
                                             <Divider horizontal inverted>OR</Divider>
                                             <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit video")}><Icon name='video' /> Submit Video Link</Button>
                                         </Dimmer>
-                                        {this.state.method === "create" && <FroalaEditor config={{
-                                            height: 300,
-                                            placeholderText: 'Edit Your Content Here!',
-                                            imageUploadURL: '/api/upload',
-                                            charCounterCount: false,
-                                            quickInsertButtons: ['image', 'video', 'table'],
-                                            toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
-                                        }} />}
+                                        {this.state.method === "create" && <FroalaEditor
+                                            model={post}
+                                            onModelChange={this.onModelChange} 
+                                            config={{
+                                                height: 300,
+                                                placeholderText: 'Edit Your Content Here!',
+                                                imageUploadURL: '/api/upload',
+                                                charCounterCount: false,
+                                                quickInsertButtons: ['image', 'video', 'table'],
+                                                toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
+                                            }} />}
                                         {this.state.method === "submit link" &&
                                         <Input icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Blog Post Link Here...' />}
                                         {this.state.method === "submit video" &&
@@ -138,7 +155,7 @@ class CreatePost extends Component {
                                 <div style={{marginTop: "20px"}}>
                                     <Button.Group fluid>
                                         <Button size="huge">Cancel</Button>
-                                        <Button size="huge" primary>Publish</Button>
+                                        <Button size="huge" primary onClick={this.submit}>Publish</Button>
                                     </Button.Group>
                                 </div>
                             </Grid.Column>
