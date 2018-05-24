@@ -10,7 +10,6 @@ import { BLogIn, RLogIn } from './components/LogIn';
 import {InBloggerProfile, BloggerProfile, InReaderProfile} from './components/Profile';
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import CreatePost from './components/CreatePost/CreatePost';
-import Verification from './components/Verification/Verification';
 import Post from './components/Post/Post';
 
 export default function render(req,res) {

@@ -4,7 +4,6 @@ import { BLogIn, RLogIn } from './components/LogIn';
 import {BloggerProfile, InBloggerProfile, InReaderProfile} from './components/Profile';
 import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
-import Verification from './components/Verification/Verification';
 import Post from './components/Post/Post';
 
 const routes = [
@@ -77,11 +76,6 @@ const routes = [
         path: '/fashion',
         component: Fashion,
         title: 'Fashion - VUZUK'
-    },
-    {
-        path: '/verify/phone',
-        component: Verification,
-        title: 'Verify Phone - VUZUK'
     }
 ];
 
