@@ -130,7 +130,7 @@ class SignUp extends Component {
                                         this.setState({
                                             isAgreed: !this.state.isAgreed
                                         })
-                                    }} label={<label>I agree to the <a href="#" target="_blank">Terms and Conditions</a></label>} />
+                                    }} label={<label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>} />
                                 <Button type='submit' loading={isSent} fluid primary>Submit</Button>
                             </Form>
                         </Card.Content>
