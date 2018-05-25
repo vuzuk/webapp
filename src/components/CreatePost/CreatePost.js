@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Grid, Input, Segment, Header, Select, Button, Dimmer, Divider, Icon, Label, Popup } from 'semantic-ui-react'
+import { Grid, Input, Segment, Header, Dropdown, Button, Dimmer, Divider, Icon, Label, Popup } from 'semantic-ui-react'
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 import 'froala-editor/js/plugins/video.min.js';
 import 'froala-editor/js/plugins/emoticons.min.js';
@@ -49,11 +49,15 @@ class CreatePost extends Component {
             post: "",
             images: [],
             tag: "",
-            tags: []
+            tags: [],
+            place: "",
+            category: ""
         }
     }
 
     handleChange = (e) => {
+        console.log(e.target.name, e.target.value);
+        
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -93,8 +97,10 @@ class CreatePost extends Component {
     }
 
     submit = () => {
-        console.log(this.state.post);
         this.filterImages();
+        const { data } = this.state;
+        console.log(data);
+        
     }
 
     filterImages = () => {
@@ -171,7 +177,7 @@ class CreatePost extends Component {
                         </Header>
                         <Grid divided>
                             <Grid.Column width={10}>
-                                <Input size="big" focus fluid placeholder="Enter title here"/>
+                                <Input name="title" onChange={this.handleChange} size="big" focus fluid placeholder="Enter title here"/>
                                 <div style={{marginTop: "10px"}}>
                                     <Dimmer.Dimmable dimmed={this.state.isDimmed}>
                                         <Dimmer active={this.state.isDimmed}>
@@ -202,7 +208,7 @@ class CreatePost extends Component {
                             </Grid.Column>
                             <Grid.Column width={6}>
                                 <Header as="h3">Choose Your Category</Header>
-                                <Select fluid placeholder='Select your category' options={categoryOptions} />
+                                <Dropdown name="category" onChange={(e, {value}) => {this.setState({category: value})}} selection fluid placeholder='Select your category' options={categoryOptions} />
                                 <Header as="h3">
                                     Enter Tags
                                 </Header>
@@ -245,6 +251,8 @@ class CreatePost extends Component {
                                     placeholder='Enter place'
                                     fluid
                                     className="tags"
+                                    name="place"
+                                    onChange={this.handleChange}
                                 />
                                 <div style={{marginTop: "20px"}}>
                                     <Button.Group fluid>
