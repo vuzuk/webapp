@@ -5,7 +5,7 @@ import {BloggerProfile, InBloggerProfile, InReaderProfile} from './components/Pr
 import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import Post from './components/Post/Post';
-import { Terms } from './components/Documents';
+import { Terms, Disclaimer } from './components/Documents';
 
 const routes = [
     {
@@ -82,6 +82,11 @@ const routes = [
         path: '/terms',
         component: Terms,
         title: 'Terms and Conditions - VUZUK'
+    },
+    {
+        path: '/disclaimer',
+        component: Disclaimer,
+        title: 'Disclaimer - VUZUK'
     }
 ];
 
