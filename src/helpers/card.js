@@ -9,25 +9,25 @@ const handleActions = (e) => {
     }
 }
 
-const myCard = (i) => {
+const myCard = ({title, image, author}) => {
     return (
         <div className="myCard">
             <Card>
                 <Card.Content extra>
                     <Label size="large" as='a' className="myHeader" href="/blogger" image>
                     <Image avatar spaced='right' src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
-                    Matthew Stewards
+                        {author}
                     </Label>
                     <Button size="tiny" primary>Follow</Button>
                 </Card.Content>
                 <Image src='/kabul.jpg' />
                 <Card.Content>
                     <Card.Header as="a" href="/post">
-                        Kabul Restaurant | Afghani Food in Delhi
+                        {title}
                     </Card.Header>
                     <Card.Meta>
                         <span className='date'>
-                        January 26, 2018
+                        {date_published}
                         </span>
                     </Card.Meta>
                 </Card.Content>

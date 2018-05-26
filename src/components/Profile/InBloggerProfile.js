@@ -43,8 +43,20 @@ class InBloggerProfile extends Component {
             .catch(err => {
             console.log(err);
             })
+    }
 
-        axios.get('/api/unsecure/')
+    componentDidUpdate() {
+        console.log(this.state.data);
+        
+        axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
+            .then(data => {
+                console.log(data);
+                
+            })
+            .catch(err => {
+                console.log(err);
+                
+            })
     }
 
     handleModal = () => {

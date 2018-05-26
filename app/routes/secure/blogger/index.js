@@ -26,7 +26,7 @@ route.use(function (req, res, next) {
 route.get('/getDetails', function (req, res) {
     Blogger
         .findAll({
-            attributes: ["username","email","contact","isEmailVerified","isContactVerified","first_name",
+            attributes: ["id","username","email","contact","isEmailVerified","isContactVerified","first_name",
                 "last_name","image","category","dob","gender","points"],
             where: {
                 id: req.user.id
