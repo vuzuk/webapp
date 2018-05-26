@@ -8,12 +8,22 @@ const options = [
     { key: 'f', text: 'Female', value: 'F' },
 ];
 class LogIn extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSent: false
+        }
+    }
 
     handleFormText = (e) => {
         this.setState({[e.target.name]: e.target.value});
     }
 
     submit = () => {
+        this.setState({
+            isSent: true
+        });
+        const thiss = this;
         const data = this.state;
         data.isBlogger = "true";
         console.log(data);
@@ -30,11 +40,15 @@ class LogIn extends Component {
             location.href = '/in/blogger';
         })
         .catch(error => {
-            console.log(error);
+            alert("Wrong credentials");
+            this.setState({
+                isSent: false
+            })
         })
     }
 
     render() {
+        const { isSent } = this.state;
         return (
             <div className="register">
                 <Navbar />
@@ -52,7 +66,7 @@ class LogIn extends Component {
                                 <label>Password</label>
                                 <Input name="password" fluid onChange={this.handleFormText} placeholder='Password' type="password" />
                             </Form.Field>
-                            <Button type='submit'>Submit</Button>
+                            <Button type='submit' loading={isSent}>Submit</Button>
                         </Form>
                         </Card.Content>
                     </Card>
