@@ -5,15 +5,15 @@ class Temporary extends Component {
     makeList = (arr) => {
         return arr.map(i => {
             return (
-                <div key="i" className="travel-item">
+                <div key={i + "t"} className="travel-item">
                     <div className="img">
                         <img style={{width: "100%"}} src="b_min.jpg" alt=""/>
                     </div>
                     <div className="post">
                         <p className="title">Japan Tourist Visa for Indians: Requirements and Tips</p>
                         <div className="author">
-                            <span><i class="fa fa-user"></i> Varun</span>
-                            <span><i class="far fa-calendar"></i> May 10</span>
+                            <span><i className="fa fa-user"></i> Varun</span>
+                            <span><i className="far fa-calendar"></i> May 10</span>
                         </div>
                         {/* <div className="content">Lorem ipsum dipiumque unde. Ipsam omnis ea eum, fuga vero officia iusto qui similique at culpa vel cumque doloremque in ist...</div> */}
                     </div>

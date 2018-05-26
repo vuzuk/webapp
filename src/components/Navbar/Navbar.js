@@ -16,13 +16,6 @@ const trigger = (
 )
 
 export default class Navbar extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isLogin: false
-    }
-  }
 
   // componentDidMount = () => {
   //   const update = () => {
@@ -46,7 +39,7 @@ export default class Navbar extends Component {
   }
 
   render() {
-    const { isLogin } = this.state;
+    const { isLogin } = this.props;
     return (
       <div className="myNav">
         <Menu id={classNames('navbar')} inverted borderless fluid>
