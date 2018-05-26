@@ -25,7 +25,7 @@ module.exports = (mailTransporter) => {
             })
             .then(obj => {
                 if (obj.length === 0) {
-                    return res.status(400).json({status: false, msg: "not found"});
+                    return res.redirect('/blogger/login');
                 }
                 obj[0]
                     .update({
@@ -34,11 +34,10 @@ module.exports = (mailTransporter) => {
                     })
                     .then(() => {
                         if (!isBlogger) {
-                            return res.status(200).json({status: true, msg: "email verified successfully"});
-                        }
+                            return res.redirect('/blogger/login')                        }
                         // return res.redirect('/verify/phone/?isBlogger=true');
                         // *************** BYPASSING PHONE VERIFICATION OF BLOGGER ***************
-                        return res.status(200).json({status: true, msg: "email verified successfully"});
+                        return res.redirect('/blogger/login')
                     })
                     .catch((err) => {
                         console.log(err);

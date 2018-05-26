@@ -35,13 +35,13 @@ const myCard = ({title, image, author}) => {
                     <Grid className="post-footer" columns='equal' divided padded>
                         <Grid.Row textAlign='center'>
                             <Grid.Column as="a">
-                                <Icon name="unhide" /> 2.2K
+                                <Icon name="unhide" /> {views}
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("like")}}>
-                                <Icon name="heart" /> 663
+                                <Icon name="heart" /> 0
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("comment")}}>
-                                <Icon name="comments" /> 245
+                                <Icon name="comments" /> {comments.count}
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("save")}}>
                                 <Icon name="bookmark" /> Save

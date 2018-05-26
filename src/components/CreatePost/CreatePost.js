@@ -108,8 +108,9 @@ class CreatePost extends Component {
     }
 
     submit = () => {
-        this.filterImages();
-        const { title, category_id, tags, place, blog, images, post_link, video_link } = this.state;
+        // this.filterImages();
+        const { title, category_id, tags, place, filteredBlog , images, post_link, video_link } = this.state;
+        const blog = filteredBlog;
         const data = { title, category_id, tags, place, blog, images, post_link, video_link };
         console.log(data);
         axios({
@@ -154,9 +155,9 @@ class CreatePost extends Component {
             console.log(blog)
         }
         this.setState({
-            blog,
+            filteredBlog: blog,
             images
-        })
+        }, this.submit)
     }
 
     removeTag = (i) => {
@@ -227,7 +228,7 @@ class CreatePost extends Component {
                                                 editorClass: 'selector',
                                                 height: 300,
                                                 placeholderText: "Write your post here!!",
-                                                imageUploadURL: '/froala_upload',
+                                                imageUploadURL: '/api/secure/blogger/froala_upload',
                                                 charCounterCount: false,
                                                 quickInsertButtons: ['image', 'video', 'table'],
                                                 toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
@@ -286,7 +287,7 @@ class CreatePost extends Component {
                                 <div style={{marginTop: "20px"}}>
                                     <Button.Group fluid>
                                         <Button size="huge">Cancel</Button>
-                                        <Button size="huge" primary onClick={this.submit}>Publish</Button>
+                                        <Button size="huge" primary onClick={this.filterImages}>Publish</Button>
                                     </Button.Group>
                                 </div>
                             </Grid.Column>

@@ -28,7 +28,9 @@ class InBloggerProfile extends Component {
             open: false,
             isActive: "post",
             chartData,
-            data: {}
+            data: {},
+            posts: [],
+            isPostFetched: false
         }
     }
 
@@ -38,24 +40,23 @@ class InBloggerProfile extends Component {
             .then(({data}) => {
             thiss.setState({
                 data: data.msg[0]
+            },() => {
+                axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
+                    .then(({data}) => {
+                        
+                        thiss.setState({
+                            posts: data.msg,
+                            isPostFetched: true
+                        })
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        
+                    })
             });
             })
             .catch(err => {
             console.log(err);
-            })
-    }
-
-    componentDidUpdate() {
-        console.log(this.state.data);
-        
-        axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
-            .then(data => {
-                console.log(data);
-                
-            })
-            .catch(err => {
-                console.log(err);
-                
             })
     }
 
@@ -64,16 +65,16 @@ class InBloggerProfile extends Component {
     }
 
     handleChange = (isActive) => {
-        console.log(isActive);
         this.setState({isActive});
     }
 
     render() {
-        const {isActive, open} = this.state;
+        const {isActive, open, posts, isPostFetched} = this.state;
         let {data} = this.state;
         if(!isEmpty(this.props.data)) {
         data = this.props.data
         }
+        
         return (
             <div id="profile-page">
                 <Navbar data={data} isLogin={!isEmpty(data)} handleModal={this.handleModal}/>
@@ -88,7 +89,7 @@ class InBloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">Matthew Stewards</div>
-                            <div className="follow-count"><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
+                            <div className="follow-count"><a href="#">0</a> FOLLOWERS &nbsp;&nbsp; <a href="#">0</a> FOLLOWING</div>
                         </div>
                         <div className="create">
                             <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
@@ -102,13 +103,15 @@ class InBloggerProfile extends Component {
                 </div>
                 {this.state.isActive !== "stats" && <Segment basic>
                     <div className="profile-cards">
-                        <Grid columns={3}>
-                            {[1,2,3,4,5,6,7,8,9].map(i => (
+                        {isPostFetched && posts[0].id && <Grid columns={3}>
+                            {posts.map(i => (
                                 <Grid.Column key={i}>
                                     {myCard(i)}
                                 </Grid.Column>
                             ))}
-                        </Grid>
+                        </Grid>}
+                        {!isPostFetched && <h3 style={{textAlign: "center"}}>Loading...</h3>}
+                        {isPostFetched && !posts[0].id && <h3 style={{textAlign: "center"}}>No Posts</h3>}
                     </div>
                 </Segment> }
                 {this.state.isActive === "stats" && <div className="bloggerStats" style={{width: "95%",margin: "auto", paddingTop: "20px"}}>
