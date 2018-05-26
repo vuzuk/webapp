@@ -43,6 +43,7 @@ class InBloggerProfile extends Component {
             },() => {
                 axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
                     .then(({data}) => {
+                        console.log(data.msg);
                         
                         thiss.setState({
                             posts: data.msg,
@@ -70,6 +71,8 @@ class InBloggerProfile extends Component {
 
     render() {
         const {isActive, open, posts, isPostFetched} = this.state;
+        const {first_name, last_name} = this.state.data;
+        const author = `${first_name} ${last_name}`
         let {data} = this.state;
         if(!isEmpty(this.props.data)) {
         data = this.props.data
@@ -106,7 +109,7 @@ class InBloggerProfile extends Component {
                         {isPostFetched && posts[0].id && <Grid columns={3}>
                             {posts.map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i)}
+                                    {myCard(i, author)}
                                 </Grid.Column>
                             ))}
                         </Grid>}

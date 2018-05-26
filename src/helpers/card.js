@@ -9,7 +9,9 @@ const handleActions = (e) => {
     }
 }
 
-const myCard = ({title, image, author}) => {
+const myCard = ({title, images, date_published, views}, author) => {
+    images = images.substring(2,images.indexOf('.jpg') + 4) || null;
+    
     return (
         <div className="myCard">
             <Card>
@@ -20,7 +22,7 @@ const myCard = ({title, image, author}) => {
                     </Label>
                     <Button size="tiny" primary>Follow</Button>
                 </Card.Content>
-                <Image src='/kabul.jpg' />
+                <Image src={images ? images : '/kabul.jpg'} />
                 <Card.Content>
                     <Card.Header as="a" href="/post">
                         {title}
@@ -41,7 +43,7 @@ const myCard = ({title, image, author}) => {
                                 <Icon name="heart" /> 0
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("comment")}}>
-                                <Icon name="comments" /> {comments.count}
+                                <Icon name="comments" /> 0
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("save")}}>
                                 <Icon name="bookmark" /> Save
