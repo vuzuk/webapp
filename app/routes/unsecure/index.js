@@ -10,7 +10,7 @@ route.get('/getLatestBlogs', require("./functions/getLatestBlogs"));
 route.get('/getBlog', require("./functions/getBlog"));
 // get blogger details      query = {bloggerId}
 route.get('/getBlogger', require("./functions/getBlogger"));
-// get blogs of blogger req.query={bloggerId}
+// get blogs of blogger     req.query={bloggerId}
 route.get('/getBlogsOfBlogger', require("./functions/getBlogsOfBlogger"));
 
 // check username   query = {username, isBlogger}
