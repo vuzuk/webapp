@@ -27,8 +27,8 @@ module.exports = (req, res) => {
             if (blog.length === 0) {
                 return res.status(400).json({status: true, msg: "blog not found"});
             }
-            return render.default(req, res, {status: true, msg: blog})
-            // return res.status(200).json({status: true, msg: blog});
+            // return render.default(req, res, {status: true, msg: blog})
+            return res.status(200).json({status: true, msg: blog});
         })
         .catch((err) => {
             console.log(err);

@@ -17,29 +17,9 @@ const trigger = (
 
 export default class Navbar extends Component {
 
-  // componentDidMount = () => {
-  //   const update = () => {
-  //     this.setState({loading: false})
-  //   }
-  //   if(document) {
-  //     var tid = setInterval( function () {
-  //       if ( document.readyState !== 'complete' ) return;
-  //       clearInterval( tid );       
-  //       update();
-  //       const body = document.querySelector("body");
-  //       if(body) {body.style.overflowY = "scroll"};
-  //     }, 100 );
-  //   }
-  // }
-
-  componentWillMount() {
-    if(this.props.forceLogin) {
-      this.setState({ isLogin: true })
-    }
-  }
-
   render() {
     const { isLogin } = this.props;
+    
     return (
       <div className="myNav">
         <Menu id={classNames('navbar')} inverted borderless fluid>

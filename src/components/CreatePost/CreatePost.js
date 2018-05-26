@@ -47,9 +47,24 @@ class CreatePost extends Component {
             place: "",
             category_id: 0,
             video_link: "",
-            post_link: ""
+            post_link: "",
+            data: {}
         }
     }
+
+    componentWillMount = () => {
+        const thiss = this;
+        axios.get('/api/secure/blogger/getDetails')
+            .then(({data}) => {
+            thiss.setState({
+                data: data.msg[0]
+            });
+            })
+            .catch(err => {
+            console.log(err);
+            })
+    }
+    
 
     handleChange = (e) => {
         console.log(e.target.name, e.target.value);
@@ -178,9 +193,13 @@ class CreatePost extends Component {
 
     render() {
         const { blog, tag, tags, method } = this.state;
+        let {data} = this.state;
+        if(!isEmpty(this.props.data)) {
+        data = this.props.data
+        }
         return (
             <div>
-                <Navbar />
+                <Navbar data={data} isLogin={!isEmpty(data)}/>
                     <Segment basic padded="very">
                         <Header as='h1' dividing>
                             Create Post

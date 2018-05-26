@@ -5,13 +5,15 @@ import { Segment, Image, Grid, Button, Icon, List, Modal } from 'semantic-ui-rea
 import myCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
+import axios from 'axios';
+import isEmpty from '../../helpers/isEmpty';
 
 const chartData = {
     labels: ['Mar 25', 'Mar 26', 'Mar 27', 'Mar 28', 'Mar 29'],
     datasets:[
       {
         label:'Total Views',
-        data:[223,342,270,450,258],
+        data:[0,0,0,0,0],
         backgroundColor:[
           'rgba(54, 162, 235, 0.6)'
         ]
@@ -26,7 +28,23 @@ class InBloggerProfile extends Component {
             open: false,
             isActive: "post",
             chartData,
+            data: {}
         }
+    }
+
+    componentWillMount = () => {
+        const thiss = this;
+        axios.get('/api/secure/blogger/getDetails')
+            .then(({data}) => {
+            thiss.setState({
+                data: data.msg[0]
+            });
+            })
+            .catch(err => {
+            console.log(err);
+            })
+
+        axios.get('/api/unsecure/')
     }
 
     handleModal = () => {
@@ -40,9 +58,13 @@ class InBloggerProfile extends Component {
 
     render() {
         const {isActive, open} = this.state;
+        let {data} = this.state;
+        if(!isEmpty(this.props.data)) {
+        data = this.props.data
+        }
         return (
             <div id="profile-page">
-                <Navbar forceLogin={true} handleModal={this.handleModal}/>
+                <Navbar data={data} isLogin={!isEmpty(data)} handleModal={this.handleModal}/>
                 <Segment className="main" basic>
                     <Button size="large" floated="right" circular icon>
                         <Icon name="camera" />
@@ -69,7 +91,7 @@ class InBloggerProfile extends Component {
                 {this.state.isActive !== "stats" && <Segment basic>
                     <div className="profile-cards">
                         <Grid columns={3}>
-                            {[1,1,1,1,1,1,1,1,1].map(i => (
+                            {[1,2,3,4,5,6,7,8,9].map(i => (
                                 <Grid.Column key={i}>
                                     {myCard(i)}
                                 </Grid.Column>

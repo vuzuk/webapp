@@ -9,10 +9,11 @@ export default function render(req,res) {
   const activeRoute = routes.find(route => matchPath(req.url, route));
   const {component: Component, title} = activeRoute;
   const context = {};
-  const isLogin = !isEmpty(req.user);
+  const data = req.user || {};
+  // console.log(data);
   const appString = renderToString(
     <StaticRouter location={req.url} context={context}>
-      <Component isLogin={isLogin}/>
+      <Component data={data}/>
     </StaticRouter>
   );
   res.send(template({
