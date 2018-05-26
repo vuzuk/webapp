@@ -11,7 +11,7 @@ const handleActions = (e) => {
 
 const myCard = ({title, images, date_published, views}, author) => {
     images = images.substring(2,images.indexOf('.jpg') + 4) || null;
-    
+    date_published = new Date(date_published).toString().substring(4, 15);
     return (
         <div className="myCard">
             <Card>
@@ -29,7 +29,7 @@ const myCard = ({title, images, date_published, views}, author) => {
                     </Card.Header>
                     <Card.Meta>
                         <span className='date'>
-                        {date_published}
+                        Published on {date_published}
                         </span>
                     </Card.Meta>
                 </Card.Content>
