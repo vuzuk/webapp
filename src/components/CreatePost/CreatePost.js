@@ -7,6 +7,7 @@ import 'froala-editor/js/plugins/video.min.js';
 import 'froala-editor/js/plugins/emoticons.min.js';
 import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
+import axios from 'axios';
 
 const isEmpty = (obj) => {
     for(var key in obj) {
@@ -18,22 +19,22 @@ const isEmpty = (obj) => {
 
 const categoryOptions = [
     {
-        value: 'food',
+        value: 1,
         key: 'food',
         text: 'Food'
     },
     {
-        value: 'travel',
+        value: 3,
         key: 'travel',
         text: 'Travel'
     },
     {
-        value: 'tech',
+        value: 4,
         key: 'tech',
         text: 'Tech'
     },
     {
-        value: 'fashion',
+        value: 2,
         key: 'fashion',
         text: 'Fashion'
     }
@@ -51,7 +52,9 @@ class CreatePost extends Component {
             tag: "",
             tags: [],
             place: "",
-            category: ""
+            category_id: 0,
+            video_link: "",
+            post_link: ""
         }
     }
 
@@ -63,9 +66,9 @@ class CreatePost extends Component {
         })
     }
 
-    onModelChange = (post) => {
+    onModelChange = (blog) => {
         this.setState({
-            post
+            blog
         })
     }
     
@@ -98,38 +101,54 @@ class CreatePost extends Component {
 
     submit = () => {
         this.filterImages();
-        const { data } = this.state;
+        const { title, category_id, tags, place, blog, images, post_link, video_link } = this.state;
+        const data = { title, category_id, tags, place, blog, images, post_link, video_link };
         console.log(data);
-        
+        axios({
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: '/api/secure/newBlog',
+            data: JSON.stringify(data)
+        })
+        .then(response => {
+            console.log(response);
+            
+        })
+        .catch(error => {
+            console.log(error);
+            
+        })
     }
 
     filterImages = () => {
-        let post = this.state.post;
+        let blog = this.state.blog;
         let images = [], imgN = 0;
-        while(post.indexOf("<img") !== -1) {
-            let start = post.indexOf("<img");
-            let end = post.indexOf("\">", start);
+        while(blog.indexOf("<img") !== -1) {
+            let start = blog.indexOf("<img");
+            let end = blog.indexOf("\">", start);
             console.log(start)
             console.log(end)
-            console.log(post.substring(start,end+2))
+            console.log(blog.substring(start,end+2))
 
-            let src = "",ch = post.substring(post.indexOf("src=\"")+5, post.indexOf("src=\"")+6);
+            let src = "",ch = blog.substring(blog.indexOf("src=\"")+5, blog.indexOf("src=\"")+6);
             console.log(`ch= ${ch}`)
             let i = 5;
             while(ch !== "\"") {
                 src = src + ch;
                 i++;
-                ch = post.substring(post.indexOf("src=\"")+i, post.indexOf("src=\"")+i+1);
+                ch = blog.substring(blog.indexOf("src=\"")+i, blog.indexOf("src=\"")+i+1);
             }
             console.log(src)
 
             images[imgN] = src;
-            post = post.replace(post.substring(start,end+2),`@@${imgN}@@`)
+            blog = blog.replace(blog.substring(start,end+2),`@@${imgN}@@`)
             imgN++;
-            console.log(post)
+            console.log(blog)
         }
         this.setState({
-            post,
+            blog,
             images
         })
     }
@@ -167,7 +186,7 @@ class CreatePost extends Component {
     }
 
     render() {
-        const { post, tag, tags, method } = this.state;
+        const { blog, tag, tags, method } = this.state;
         return (
             <div>
                 <Navbar />
@@ -188,11 +207,11 @@ class CreatePost extends Component {
                                             <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit video")}><Icon name='video' /> Submit Video Link</Button>
                                         </Dimmer>
                                         {method === "submit link" &&
-                                        <Input icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Blog Post Link Here...' />}
+                                        <Input name="post_link" onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Blog Post Link Here...' />}
                                         {method === "submit video" &&
-                                        <Input icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Video Link Here...' />}
+                                        <Input name="video_link" onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Video Link Here...' />}
                                         <FroalaEditor
-                                            model={post}
+                                            model={blog}
                                             onModelChange={this.onModelChange} 
                                             config={{
                                                 editorClass: 'selector',
@@ -208,7 +227,7 @@ class CreatePost extends Component {
                             </Grid.Column>
                             <Grid.Column width={6}>
                                 <Header as="h3">Choose Your Category</Header>
-                                <Dropdown name="category" onChange={(e, {value}) => {this.setState({category: value})}} selection fluid placeholder='Select your category' options={categoryOptions} />
+                                <Dropdown name="category_id" onChange={(e, {value}) => {this.setState({category_id: value})}} selection fluid placeholder='Select your category' options={categoryOptions} />
                                 <Header as="h3">
                                     Enter Tags
                                 </Header>
