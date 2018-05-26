@@ -109,7 +109,7 @@ class CreatePost extends Component {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: '/api/secure/newBlog',
+            url: '/api/secure/blogger/newBlog',
             data: JSON.stringify(data)
         })
         .then(response => {
