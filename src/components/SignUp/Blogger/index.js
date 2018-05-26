@@ -20,7 +20,7 @@ class SignUp extends Component {
             email: "",
             dob: "",
             contact: "",
-            area: "food",
+            category: "food",
             isBlogger: "true",
             isSent: false,
             isAgreed: true
@@ -47,7 +47,7 @@ class SignUp extends Component {
                 alert("We've sent you an email containing a link to complete the registration process.")
             })
             .catch(error => {
-                console.log(error);
+                alert("Something went wrong");
             })
             .finally(() => {
                 thiss.setState({isSent: false})
@@ -60,6 +60,8 @@ class SignUp extends Component {
     }
 
     handleFormText = (e) => {
+        console.log([e.target.name],e.target.value);
+        
         this.setState({[e.target.name]: e.target.value});
     }
 
@@ -119,7 +121,7 @@ class SignUp extends Component {
                                         <label>Email</label>
                                         <Input onChange={this.handleFormText} name="email" placeholder='Email' />
                                     </Form.Field>
-                                    <Form.Field name="area" onChange={this.handleFormText} label='Area' control='select'>
+                                    <Form.Field name="category" onChange={this.handleFormText} label='Category' control='select'>
                                         <option value='food'>Food</option>
                                         <option value='travel'>Travel</option>
                                         <option value='tech'>Tech</option>
