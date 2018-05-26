@@ -8,14 +8,7 @@ import 'froala-editor/js/plugins/emoticons.min.js';
 import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 import axios from 'axios';
-
-const isEmpty = (obj) => {
-    for(var key in obj) {
-        if(obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
+import isEmpty from '../../helpers/isEmpty';
 
 const categoryOptions = [
     {
