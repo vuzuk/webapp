@@ -29,7 +29,7 @@ module.exports = (req, res) => {
                 return res.status(200).json({status: true, msg: "Blog Added without tags"});
             }
             // creating tags in db
-            let tagsObjs = tags.split(";").map((item) => {
+            let tagsObjs = tags.map((item) => {
                 return {name: item};
             });
             Tag
@@ -40,7 +40,7 @@ module.exports = (req, res) => {
                         .findAll({
                             where: {
                                 name: {
-                                    [Op.in]: JSON.parse(req.body.tags)
+                                    [Op.in]: req.body.tags
                                 }
                             }
                         })
