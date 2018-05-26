@@ -10,7 +10,7 @@ export default function render(req,res) {
   const context = {};
   const appString = renderToString(
     <StaticRouter location={req.url} context={context}>
-      <Component />
+      <Component isLogin={true}/>
     </StaticRouter>
   );
   res.send(template({

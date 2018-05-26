@@ -82,8 +82,8 @@ class Blogs extends Component {
                     <div className="post">
                         <h2 className="title">Japan Tourist Visa for Indians: Requirements and Tips</h2>
                         <div className="author">
-                            <span><i class="fa fa-user"></i> Varun</span>
-                            <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                            <span><i className="fa fa-user"></i> Varun</span>
+                            <span><i className="far fa-calendar"></i> May 10, 2018</span>
                         </div>
                         <div className="content">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id recusandae consequatur cumque unde. Ipsam omnis ea eum, fuga vero officia iusto qui similique at culpa vel cumque doloremque in ist...</div>
                         <div className="read-more">
@@ -136,8 +136,8 @@ class Blogs extends Component {
                     <div className="tech-title">
                         <h3>Run 'Kali Linux' Natively</h3>
                             <div className="author">
-                                <span><i class="fa fa-user"></i> Varun</span>
-                                <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                <span><i className="fa fa-user"></i> Varun</span>
+                                <span><i className="far fa-calendar"></i> May 10, 2018</span>
                             </div>
                     </div>
                 </div>
@@ -147,8 +147,8 @@ class Blogs extends Component {
                         <div className="tech-title">
                             <h3>Run 'Kali Linux' Natively</h3>
                                 <div className="author">
-                                    <span><i class="fa fa-user"></i> Varun</span>
-                                    <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                    <span><i className="fa fa-user"></i> Varun</span>
+                                    <span><i className="far fa-calendar"></i> May 10, 2018</span>
                                 </div>
                         </div>
                     </div>
@@ -158,8 +158,8 @@ class Blogs extends Component {
                             <div className="tech-title">
                                     <h3>Run 'Kali Linux' Natively</h3>
                                     <div className="author">
-                                        <span><i class="fa fa-user"></i> Varun</span>
-                                        <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                        <span><i className="fa fa-user"></i> Varun</span>
+                                        <span><i className="far fa-calendar"></i> May 10, 2018</span>
                                     </div>
                             </div>
                         </div>
@@ -168,8 +168,8 @@ class Blogs extends Component {
                             <div className="tech-title">
                                     <h3>Run 'Kali Linux' Natively</h3>
                                     <div className="author">
-                                        <span><i class="fa fa-user"></i> Varun</span>
-                                        <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                        <span><i className="fa fa-user"></i> Varun</span>
+                                        <span><i className="far fa-calendar"></i> May 10, 2018</span>
                                     </div>
                             </div>
                         </div>

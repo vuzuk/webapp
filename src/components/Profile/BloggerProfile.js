@@ -79,8 +79,8 @@ class BloggerProfile extends Component {
                             <div className="tech-title">
                                 <h3>Run 'Kali Linux' Natively</h3>
                                     <div className="author">
-                                        <span><i class="fa fa-user"></i> Varun</span>
-                                        <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                        <span><i className="fa fa-user"></i> Varun</span>
+                                        <span><i className="far fa-calendar"></i> May 10, 2018</span>
                                     </div>
                             </div>
                         </div>
@@ -90,8 +90,8 @@ class BloggerProfile extends Component {
                                 <div className="tech-title">
                                     <h3>Run 'Kali Linux' Natively</h3>
                                         <div className="author">
-                                            <span><i class="fa fa-user"></i> Varun</span>
-                                            <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                            <span><i className="fa fa-user"></i> Varun</span>
+                                            <span><i className="far fa-calendar"></i> May 10, 2018</span>
                                         </div>
                                 </div>
                             </div>
@@ -101,8 +101,8 @@ class BloggerProfile extends Component {
                                     <div className="tech-title">
                                             <h3>Run 'Kali Linux' Natively</h3>
                                             <div className="author">
-                                                <span><i class="fa fa-user"></i> Varun</span>
-                                                <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                                <span><i className="fa fa-user"></i> Varun</span>
+                                                <span><i className="far fa-calendar"></i> May 10, 2018</span>
                                             </div>
                                     </div>
                                 </div>
@@ -111,8 +111,8 @@ class BloggerProfile extends Component {
                                     <div className="tech-title">
                                             <h3>Run 'Kali Linux' Natively</h3>
                                             <div className="author">
-                                                <span><i class="fa fa-user"></i> Varun</span>
-                                                <span><i class="far fa-calendar"></i> May 10, 2018</span>
+                                                <span><i className="fa fa-user"></i> Varun</span>
+                                                <span><i className="far fa-calendar"></i> May 10, 2018</span>
                                             </div>
                                     </div>
                                 </div>

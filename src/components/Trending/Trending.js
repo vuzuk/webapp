@@ -3,9 +3,9 @@ import { Divider, Segment, Header, Icon, Label } from 'semantic-ui-react';
 import './Trending.css';
 class Trending extends Component {
     makeTags = (e) => {
-        return e.map(label => {
+        return e.map((label, i) => {
             return (
-                <Label as="a" size="big">
+                <Label as="a" key={label+ i} size="big">
                     <Icon name='hashtag' /> {label}
                 </Label>
             )

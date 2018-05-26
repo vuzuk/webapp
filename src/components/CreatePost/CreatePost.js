@@ -109,16 +109,14 @@ class CreatePost extends Component {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            url: '/api/secure/newBlog',
+            url: '/api/secure/blogger/newBlog',
             data: JSON.stringify(data)
         })
         .then(response => {
-            console.log(response);
-            
+            location.href = "/in/blogger"
         })
         .catch(error => {
-            console.log(error);
-            
+            alert("Something went wrong");
         })
     }
 

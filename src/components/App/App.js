@@ -13,7 +13,7 @@ import './App.css'
 export default class App extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       loading: true
     }
@@ -22,7 +22,7 @@ export default class App extends Component {
   render() {
     return (
       <Segment>
-        <Navbar />
+        <Navbar isLogin={this.props.isLogin}/>
         {/* <SearchBar /> */}
         <Announcement />
         <Trending />
