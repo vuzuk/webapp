@@ -8,6 +8,8 @@ const render = require(process.env.APP_ROOT+'/dist/SSR');
 
 module.exports = (req, res) => {
     let bloggerId = parseInt(req.query["bloggerId"]);
+    console.log(req.query["bloggerId"]);
+    console.log(bloggerId);
     Blog
         .findAll({
             attributes: ["id", "title", "images", "date_published", "views"],
@@ -16,7 +18,7 @@ module.exports = (req, res) => {
             },
             include: [{
                 model: Comment,
-                // attributes: [sequelize.fn('count', sequelize.col('blog_id'))],
+                attributes: [[sequelize.fn('count', sequelize.col('blog_id')), 'count']],
                 group: ["blog_id"],
             }],
             raw: true
