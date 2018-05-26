@@ -73,7 +73,7 @@ module.exports = (passport, mailTransporter) => {
                 })
                 .spread((user, created) => {
                     if(!created) {
-                        res.status(400).json({status: false, msg: "already signedUp"});
+                        return res.status(400).json({status: false, msg: "already signedUp"});
                     }
                     user.isBlogger = JSON.parse(req.body.isBlogger);
                     //send verification email and otp
