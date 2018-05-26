@@ -1,23 +1,24 @@
 const Op = require("sequelize").Op;
+const sequelize = require('sequelize');
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blog = models["blog"];
 const Blogger = models["blogger"];
+const Comment = models["comment"]
 const render = require(process.env.APP_ROOT+'/dist/SSR');
 
 module.exports = (req, res) => {
-    let blogId = parseInt(req.query["blogId"]);
+    let bloggerId = parseInt(req.query["bloggerId"]);
     Blog
         .findAll({
-            attributes: ["id", "title", "blog", "images", "date_published", "created_at",
-                "views", "post_link", "video_link", "place"],
+            attributes: ["id", "title", "images", "date_published", "views"],
             where: {
-                id: blogId
+                blogger_id: bloggerId
             },
             include: [{
-                model: Blogger,
-                attributes: ["id", "username", "first_name", "last_name", "image"]
+                model: Comment,
+                // attributes: [sequelize.fn('count', sequelize.col('blog_id'))],
+                group: ["blog_id"],
             }],
-            limit:1,
             raw: true
         })
         .then((blog) => {

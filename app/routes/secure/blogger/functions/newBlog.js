@@ -5,6 +5,7 @@ const Tag = models["tag"];
 
 module.exports = (req, res) => {
     // creating the blog
+    // req.body = {title, blog, category_id, tags, post_link, video_link, place, images}
     Blog
         .findOrCreate({
             where: {
@@ -12,9 +13,12 @@ module.exports = (req, res) => {
             },
             defaults: {
                 blog: req.body.blog,
-                images: JSON.stringify([]),
+                images : JSON.stringify(req.body.images),
                 category_id: req.body.category_id,
-                blogger_id: req.user.id
+                blogger_id: req.user.id,
+                post_link: req.body.post_link ? req.body.post_link : null,
+                video_link: req.body.video_link ? req.body.video_link : null,
+                place: req.body.place ? req.body.place : null,
             },
             logging: false
         })

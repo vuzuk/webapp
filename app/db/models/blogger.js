@@ -80,6 +80,13 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: true,
             }
         },
+        category: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: true,
+            }
+        },
         dob: {
             type: DataTypes.DATEONLY,
             allowNull: false,

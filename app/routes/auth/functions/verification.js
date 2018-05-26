@@ -36,7 +36,9 @@ module.exports = (mailTransporter) => {
                         if (!isBlogger) {
                             return res.status(200).json({status: true, msg: "email verified successfully"});
                         }
-                        return res.redirect('/verify/phone/?isBlogger=true');
+                        // return res.redirect('/verify/phone/?isBlogger=true');
+                        // *************** BYPASSING PHONE VERIFICATION OF BLOGGER ***************
+                        return res.status(200).json({status: true, msg: "email verified successfully"});
                     })
                     .catch((err) => {
                         console.log(err);

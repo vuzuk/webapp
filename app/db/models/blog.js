@@ -16,6 +16,18 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: true,
             }
         },
+        post_link: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        video_link: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        place: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         images: {   // stringified array
             type: DataTypes.STRING,
             allowNull: false,

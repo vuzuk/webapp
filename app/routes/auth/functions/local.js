@@ -24,7 +24,8 @@ module.exports = (passport, mailTransporter) => {
             }
             if(user.isBlogger) {
                 if(!user.isContactVerified){
-                    return res.status(404).json({status: false, msg: "please verify your contact " + user.contact, notVerified: "contact"});
+                    // *************** BYPASSING PHONE VERIFICATION OF BLOGGER ***************
+                    // return res.status(404).json({status: false, msg: "please verify your contact " + user.contact, notVerified: "contact"});
                 }
             }
             req.login(user, function (err) {
@@ -37,7 +38,7 @@ module.exports = (passport, mailTransporter) => {
         })(req, res, next);
     });
 
-    //body = {email, username, password, first_name, last_name, dob, gender, contact, isBlogger}
+    //body = {email, username, password, first_name, last_name, dob, gender, contact, isBlogger, category}
     route.post('/signUp', function (req, res) {
         let isBlogger = JSON.parse(req.body.isBlogger);
         let model_to_use = isBlogger ? Blogger : User;
@@ -47,22 +48,27 @@ module.exports = (passport, mailTransporter) => {
                 return res.status(503).json({status: false, msg: "error in processing"});
             }
             req.body.password = hash;
+            let defaults = {
+                username: req.body.username,
+                password: req.body.password,
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                dob: req.body.dob,
+                gender: req.body.gender.toUpperCase(),
+                contact: req.body.contact,
+                signed_up_via: 'local',
+                emailVerifKey: randomString.generate(15),
+            };
+            if(isBlogger){
+                defaults['category'] = req.body.category
+            }
+
             model_to_use
                 .findOrCreate({
                     where: {
                         email: req.body.email,
                     },
-                    defaults: {
-                        username: req.body.username,
-                        password: req.body.password,
-                        first_name: req.body.first_name,
-                        last_name: req.body.last_name,
-                        dob: req.body.dob,
-                        gender: req.body.gender.toUpperCase(),
-                        contact: req.body.contact,
-                        signed_up_via: 'local',
-                        emailVerifKey: randomString.generate(15),
-                    },
+                    defaults: defaults,
                     logging: false
                 })
                 .spread((user, created) => {
