@@ -1,15 +1,12 @@
 'use strict';
 const nodemailer = require('nodemailer');
-let aws = require('aws-sdk');
+var sesTransport = require('nodemailer-ses-transport');
 
-// configure AWS SDK
-aws.config.loadFromPath('config.json');
-
-// create Nodemailer SES transporter
-let transporter = nodemailer.createTransport({
-    SES: new aws.SES({
-        apiVersion: '2010-12-01'
-    })
-});
+// create reusable transporter object using the default SMTP transport
+let transporter = nodemailer.createTransport(sesTransport({
+    accessKeyId: process.env.ADMIN_EMAIL_USER,
+    secretAccessKey: process.env.ADMIN_EMAIL_PASS,
+    rateLimit: 5
+}));
 
 module.exports = transporter;
