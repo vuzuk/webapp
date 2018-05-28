@@ -28,15 +28,9 @@ They managed, but it sure as hell wasn’t easy, because Android’s dev stack i
 class Post extends Component {
     constructor(props) {
         super(props);
-        let data;
-        if (__isBrowser__) {
-          data = window.__INITIAL_DATA__;
-        } else {
-          data = props.data
-        }
-
         this.state = {
-            isActive: 'popular'
+            isActive: 'popular',
+            data: props.data
         }
     }
 

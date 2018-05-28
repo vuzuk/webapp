@@ -2,13 +2,8 @@ import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 
-const Terms = () => {
-  let data;
-  if (__isBrowser__) {
-    data = window.__INITIAL_DATA__;
-  } else {
-    data = props.data
-  }
+const Terms = (props) => {
+  let data = props.data;
 
   return (
   <div>

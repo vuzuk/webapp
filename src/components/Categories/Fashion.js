@@ -17,15 +17,9 @@ const settings = {
 class Fashion extends Component {
     constructor(props) {
         super(props);
-        let data;
-        if (__isBrowser__) {
-          data = window.__INITIAL_DATA__;
-        } else {
-          data = props.data
-        }
 
         this.state = {
-            data
+            data: props.data
         }
     }
     render() {

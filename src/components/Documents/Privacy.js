@@ -3,12 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Footer from "../Footer/Footer";
 
 const Privacy = (props) => {
-  let data;
-  if (__isBrowser__) {
-    data = window.__INITIAL_DATA__;
-  } else {
-    data = props.data
-  }
+  let data = props.data;
 
   return (
   <div>

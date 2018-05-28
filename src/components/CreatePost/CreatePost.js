@@ -35,12 +35,6 @@ const categoryOptions = [
 class CreatePost extends Component {
     constructor(props) {
         super(props);
-        let data;
-        if (__isBrowser__) {
-          data = window.__INITIAL_DATA__;
-        } else {
-          data = props.data
-        }
 
         this.state = {
             isDimmed: true,
@@ -53,7 +47,7 @@ class CreatePost extends Component {
             category_id: 0,
             video_link: "",
             post_link: "",
-            data
+            data: props.data
         }
     }    
 

@@ -8,15 +8,10 @@ import './InBloggerProfile.css';
 class InReaderProfile extends Component {
     constructor(props) {
         super(props);
-        let data;
-        if (__isBrowser__) {
-          data = window.__INITIAL_DATA__;
-        } else {
-          data = props.data
-        }
+
         this.state = {
             isActive: "points",
-            data
+            data: props.data
         }
     }
 

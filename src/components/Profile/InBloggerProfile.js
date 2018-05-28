@@ -23,19 +23,12 @@ const chartData = {
 class InBloggerProfile extends Component {
     constructor(props) {
         super(props);
-
-        let data;
-        if (__isBrowser__) {
-          data = window.__INITIAL_DATA__;
-        } else {
-          data = props.data
-        }
     
         this.state = {
             open: false,
             isActive: "post",
             chartData,
-            data,
+            data: props.data,
             posts: [],
             isPostFetched: false
         }
