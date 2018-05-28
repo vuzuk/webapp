@@ -2,6 +2,7 @@ import React from 'react';
 import { hydrate } from 'react-dom';
 import routes from './routes';
 import {
+    BrowserRouter as Router,
     Route,
     Switch
 } from 'react-router-dom'
@@ -38,7 +39,10 @@ class Main extends Component {
     }
 }
 
-hydrate(<Main />, document.getElementById('root'));
+hydrate(<Router>
+            <Main />
+        </Router>,
+    document.getElementById('root'));
 
 if(module.hot) {
     module.hot.accept();
