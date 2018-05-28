@@ -79,7 +79,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     SequelizeSlugify.slugifyModel(blog, {
-        source: ['title', '_id']
+        source: ['title']
     });
 
     blog.associate = (models) => {
