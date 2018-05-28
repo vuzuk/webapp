@@ -8,7 +8,7 @@ import 'froala-editor/js/plugins/emoticons.min.js';
 import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 import axios from 'axios';
-
+import isEmpty from '../../helpers/isEmpty';
 const categoryOptions = [
     {
         value: 1,
@@ -47,7 +47,8 @@ class CreatePost extends Component {
             category_id: 0,
             video_link: "",
             post_link: "",
-            data: props.data
+            data: props.data,
+            isSubmit: false
         }
     }    
 
@@ -97,7 +98,7 @@ class CreatePost extends Component {
         const { title, category_id, tags, place, filteredBlog , images, post_link, video_link } = this.state;
         const blog = filteredBlog;
         const data = { title, category_id, tags, place, blog, images, post_link, video_link };
-        console.log(data);
+        const thiss = this;
         axios({
             method: 'POST',
             headers: {
@@ -112,11 +113,19 @@ class CreatePost extends Component {
         .catch(error => {
             alert("Something went wrong");
         })
+        .finally(() => {
+            thiss.setState({
+                isSent: false
+            })
+        })
     }
 
     filterImages = () => {
         let blog = this.state.blog;
         let images = [], imgN = 0;
+        this.setState({
+            isSubmit: true
+        })
         while(blog.indexOf("<img") !== -1) {
             let start = blog.indexOf("<img");
             let end = blog.indexOf("\">", start);
@@ -178,7 +187,7 @@ class CreatePost extends Component {
     }
 
     render() {
-        const { blog, tag, tags, method, data } = this.state;
+        const { blog, tag, tags, method, data, isSubmit } = this.state;
         return (
             <div>
                 <Navbar data={data}/>
@@ -267,8 +276,8 @@ class CreatePost extends Component {
                                 />
                                 <div style={{marginTop: "20px"}}>
                                     <Button.Group fluid>
-                                        <Button size="huge">Cancel</Button>
-                                        <Button size="huge" primary onClick={this.filterImages}>Publish</Button>
+                                        <Button size="huge" onClick={() => {location.href = "/in/blogger"}}>Cancel</Button>
+                                        <Button size="huge" loading={isSubmit} primary onClick={this.filterImages}>Publish</Button>
                                     </Button.Group>
                                 </div>
                             </Grid.Column>

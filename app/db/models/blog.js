@@ -1,4 +1,5 @@
 'use strict';
+const SequelizeSlugify = require('sequelize-slugify');
 module.exports = (sequelize, DataTypes) => {
     const blog = sequelize.define('blog', {
         title: {
@@ -8,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 notEmpty: true,
             }
+        },
+        slug: {
+            type: DataTypes.STRING,
+            unique: true
         },
         blog: {
             type: DataTypes.TEXT,
@@ -71,6 +76,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         underscored: true,
+    });
+
+    SequelizeSlugify.slugifyModel(blog, {
+        source: ['title', '_id']
     });
 
     blog.associate = (models) => {

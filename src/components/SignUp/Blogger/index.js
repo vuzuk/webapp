@@ -27,7 +27,8 @@ class SignUp extends Component {
         }
     }
 
-    submit = () => {
+    submit = (e) => {
+        e.preventDefault();
         const thiss = this;
         const data = {...this.state};
         if(data.password === data.cpassword && data.isAgreed) {
