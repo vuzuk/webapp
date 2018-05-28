@@ -82,8 +82,8 @@ module.exports = (passport, mailTransporter) => {
                     let mailOptions = {
                         from: process.env.ADMIN_EMAIL_ID, // sender address
                         to: user.email, // list of receivers
-                        subject: 'verify vuzuk email', // Subject line
-                        text: `click the link or copy paste in browser to verify vuzuk email id: ${emailLink}`, // plain text body
+                        subject: 'Verify Your Email', // Subject line
+                        text: `Click this link or copy paste in browser to verify your Email id: ${emailLink}`, // plain text body
                     };
 
                     // send mail with defined transport object
