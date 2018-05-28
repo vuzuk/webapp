@@ -28,6 +28,13 @@ They managed, but it sure as hell wasn’t easy, because Android’s dev stack i
 class Post extends Component {
     constructor(props) {
         super(props);
+        let data;
+        if (__isBrowser__) {
+          data = window.__INITIAL_DATA__;
+        } else {
+          data = props.data
+        }
+
         this.state = {
             isActive: 'popular'
         }
@@ -48,10 +55,10 @@ class Post extends Component {
     }
 
     render() {
-        const { isActive } = this.state;
+        const { isActive, data } = this.state;
         return(
             <div>
-                <Navbar />
+                <Navbar data={data} />
                 <div className="post">
                     <Grid divided>
                         <Grid.Column width={11}>

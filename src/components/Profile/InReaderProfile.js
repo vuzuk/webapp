@@ -8,8 +8,15 @@ import './InBloggerProfile.css';
 class InReaderProfile extends Component {
     constructor(props) {
         super(props);
+        let data;
+        if (__isBrowser__) {
+          data = window.__INITIAL_DATA__;
+        } else {
+          data = props.data
+        }
         this.state = {
-            isActive: "points"
+            isActive: "points",
+            data
         }
     }
 
@@ -19,10 +26,10 @@ class InReaderProfile extends Component {
     }
 
     render() {
-        const {isActive} = this.state;
+        const {isActive, data} = this.state;
         return (
             <div id="profile-page">
-                <Navbar />
+                <Navbar data={data}/>
                 <Segment className="main" id={cx("nocover")} basic>
                     <div className="blogger-profile">
                         <div>

@@ -8,33 +8,16 @@ import './BloggerProfile.css'
 class BloggerProfile extends Component {
     constructor(props) {
         super(props);
+        let data;
+        if (__isBrowser__) {
+          data = window.__INITIAL_DATA__;
+        } else {
+          data = props.data
+        }
+    
         this.state = {
             isActive: "viewed"
         }
-    }
-
-    sendBlog = () => {
-        const data = {
-            title: "Random bloggggg",
-            blog: "<h1>Random...</h1>",
-            categoryId: "0",
-            tags: "hello"
-        }
-
-        axios({
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            url: '/api/secure/blogger/newBlog',
-            data: JSON.stringify(data)
-        })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(error => {
-            console.log(error);
-        })
     }
 
     handleChange = (isActive) => {
@@ -42,10 +25,10 @@ class BloggerProfile extends Component {
     }
 
     render() {
-        const { isActive } = this.state;
+        const { isActive, data } = this.state;
         return (
             <div id="profile">
-                <Navbar />
+                <Navbar data={data}/>
                 <Segment textAlign="center" basic className="main">
                     <div className="profile">
                         <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />

@@ -1,9 +1,11 @@
-export default ({ body, title }) => {
+import serialize from 'serialize-javascript';
+export default ({ body, title, data }) => {
   return `
   <!DOCTYPE html>
   <html>
     <head>
       <title>${title}</title>
+      <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
       <link rel='stylesheet' href='/bundle.css'>
       <link rel="stylesheet" href="/froala_editor.pkgd.min.css">

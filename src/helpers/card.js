@@ -9,9 +9,16 @@ const handleActions = (e) => {
     }
 }
 
-const myCard = ({title, images, date_published, views}, author) => {
-    images = images.substring(2,images.indexOf('.jpg') + 4) || null;
+const myCard = ({
+        title = "Kabul Restaurant | Afghani Food in Delhi",
+        images = "///kabul.jpg",
+        date_published = "January 26, 2018",
+        views = "2.2K"
+    }, author = "Matthew Stewards") => {
+
+    images = images.substring(2,images.indexOf('.jpg') + 4);
     date_published = new Date(date_published).toString().substring(4, 15);
+    
     return (
         <div className="myCard">
             <Card>
@@ -22,7 +29,7 @@ const myCard = ({title, images, date_published, views}, author) => {
                     </Label>
                     <Button size="tiny" primary>Follow</Button>
                 </Card.Content>
-                <Image src={images ? images : '/kabul.jpg'} />
+                <Image src={images} />
                 <Card.Content>
                     <Card.Header as="a" href="/post">
                         {title}

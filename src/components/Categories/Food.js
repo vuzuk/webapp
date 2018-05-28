@@ -15,10 +15,24 @@ const settings = {
 };
 
 class Food extends Component {
+    constructor(props) {
+        super(props);
+        let data;
+        if (__isBrowser__) {
+          data = window.__INITIAL_DATA__;
+        } else {
+          data = props.data
+        }
+
+        this.state = {
+            data
+        }
+    }
     render() {
+        const { data } = this.state;
         return (
             <div>
-                <Navbar />
+                <Navbar data={data}/>
                 <div className="categories-page">
                     <Header as='h1' dividing>
                         Food

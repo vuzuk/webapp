@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
+import isEmpty from '../../helpers/isEmpty';
 
 const options = [
   { key: 'user', text: 'Account', icon: 'user', href: "/in/blogger" },
@@ -16,9 +17,16 @@ const trigger = (
 )
 
 export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLogin: !isEmpty(props.data)
+    }
+  }
 
   render() {
-    const { isLogin } = this.props;
+    const { isLogin } = this.state;
     
     return (
       <div className="myNav">

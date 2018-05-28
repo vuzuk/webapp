@@ -8,16 +8,16 @@ import isEmpty from './helpers/isEmpty';
 export default function render(req,res) {
   const activeRoute = routes.find(route => matchPath(req.url, route));
   const {component: Component, title} = activeRoute;
-  const context = {};
   const data = req.user || {};
   // console.log(data);
   const appString = renderToString(
-    <StaticRouter location={req.url} context={context}>
+    <StaticRouter location={req.url} context={{}}>
       <Component data={data}/>
     </StaticRouter>
   );
   res.send(template({
     body: appString,
     title: title || 'VUZUK',
+    data
   }));
 };

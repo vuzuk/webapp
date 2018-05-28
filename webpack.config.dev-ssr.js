@@ -1,7 +1,7 @@
 const { publicPath, assetsPath, commonLoaders } = require('./common.config');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-
+const webpack = require('webpack');
 module.exports = {
   name: 'SSR',
   context: path.join(__dirname, '.', 'src'),
@@ -12,6 +12,11 @@ module.exports = {
     libraryTarget: 'commonjs2',
     publicPath,
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __isBrowser__: false
+    })
+  ],
   target: 'node',
   externals: nodeExternals(),  
   module: {

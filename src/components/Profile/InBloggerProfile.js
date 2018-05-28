@@ -6,7 +6,6 @@ import myCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
 import axios from 'axios';
-import isEmpty from '../../helpers/isEmpty';
 
 const chartData = {
     labels: ['Mar 25', 'Mar 26', 'Mar 27', 'Mar 28', 'Mar 29'],
@@ -24,11 +23,19 @@ const chartData = {
 class InBloggerProfile extends Component {
     constructor(props) {
         super(props);
+
+        let data;
+        if (__isBrowser__) {
+          data = window.__INITIAL_DATA__;
+        } else {
+          data = props.data
+        }
+    
         this.state = {
             open: false,
             isActive: "post",
             chartData,
-            data: {},
+            data,
             posts: [],
             isPostFetched: false
         }
@@ -36,28 +43,18 @@ class InBloggerProfile extends Component {
 
     componentWillMount = () => {
         const thiss = this;
-        axios.get('/api/secure/blogger/getDetails')
+        axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
             .then(({data}) => {
-            thiss.setState({
-                data: data.msg[0]
-            },() => {
-                axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
-                    .then(({data}) => {
-                        console.log(data.msg);
-                        
-                        thiss.setState({
-                            posts: data.msg,
-                            isPostFetched: true
-                        })
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        
-                    })
-            });
+                console.log(data.msg);
+                
+                thiss.setState({
+                    posts: data.msg,
+                    isPostFetched: true
+                })
             })
             .catch(err => {
-            console.log(err);
+                console.log(err);
+                
             })
     }
 
@@ -70,17 +67,13 @@ class InBloggerProfile extends Component {
     }
 
     render() {
-        const {isActive, open, posts, isPostFetched} = this.state;
-        const {first_name, last_name} = this.state.data;
-        const author = `${first_name} ${last_name}`
-        let {data} = this.state;
-        if(!isEmpty(this.props.data)) {
-        data = this.props.data
-        }
+        const {data, isActive, open, posts, isPostFetched} = this.state;
+        const {first_name, last_name} = data;
+        const author = `${first_name} ${last_name}`;
         
         return (
             <div id="profile-page">
-                <Navbar data={data} isLogin={!isEmpty(data)} handleModal={this.handleModal}/>
+                <Navbar data={data} handleModal={this.handleModal}/>
                 <Segment className="main" basic>
                     <Button size="large" floated="right" circular icon>
                         <Icon name="camera" />

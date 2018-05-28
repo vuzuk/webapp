@@ -12,7 +12,7 @@ hydrate(<Router>
         {
             routes.map(({path, exact, component: Component}) => {
                 return (
-                    <Route key={path} exact={exact} path={path} component={Component} />
+                    <Route key={path} user="fd" exact={exact} path={path} component={Component} />
                 )
             })
         }

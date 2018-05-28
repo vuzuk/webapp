@@ -18,6 +18,9 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      __isBrowser__: true
+    }),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"

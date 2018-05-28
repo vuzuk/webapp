@@ -8,7 +8,6 @@ import 'froala-editor/js/plugins/emoticons.min.js';
 import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 import axios from 'axios';
-import isEmpty from '../../helpers/isEmpty';
 
 const categoryOptions = [
     {
@@ -36,6 +35,12 @@ const categoryOptions = [
 class CreatePost extends Component {
     constructor(props) {
         super(props);
+        let data;
+        if (__isBrowser__) {
+          data = window.__INITIAL_DATA__;
+        } else {
+          data = props.data
+        }
 
         this.state = {
             isDimmed: true,
@@ -48,23 +53,9 @@ class CreatePost extends Component {
             category_id: 0,
             video_link: "",
             post_link: "",
-            data: {}
+            data
         }
-    }
-
-    componentWillMount = () => {
-        const thiss = this;
-        axios.get('/api/secure/blogger/getDetails')
-            .then(({data}) => {
-            thiss.setState({
-                data: data.msg[0]
-            });
-            })
-            .catch(err => {
-            console.log(err);
-            })
-    }
-    
+    }    
 
     handleChange = (e) => {
         console.log(e.target.name, e.target.value);
@@ -193,14 +184,10 @@ class CreatePost extends Component {
     }
 
     render() {
-        const { blog, tag, tags, method } = this.state;
-        let {data} = this.state;
-        if(!isEmpty(this.props.data)) {
-        data = this.props.data
-        }
+        const { blog, tag, tags, method, data } = this.state;
         return (
             <div>
-                <Navbar data={data} isLogin={!isEmpty(data)}/>
+                <Navbar data={data}/>
                     <Segment basic padded="very">
                         <Header as='h1' dividing>
                             Create Post
