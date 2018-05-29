@@ -69,7 +69,7 @@ class SignUp extends Component {
                 alert("We've sent you an email containing a link to complete the registration process.")
             })
             .catch(error => {
-                alert("Something went wrong");
+                alert("Some fields are missing");
             })
             .finally(() => {
                 thiss.setState({isSent: false})
@@ -114,7 +114,7 @@ class SignUp extends Component {
                                         <Input name="username" onChange={this.handleFormText} fluid placeholder='Username' />
                                     </Form.Field>
                                     <Form.Field>
-                                        <label>Phone No.</label>
+                                        <label>Phone No</label>
                                         <Input name="contact" onChange={this.handleFormText} fluid placeholder='Phone No.' />
                                     </Form.Field>
                                 </Form.Group>
