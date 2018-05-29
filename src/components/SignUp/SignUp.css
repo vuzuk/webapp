@@ -7,3 +7,8 @@
 .register h1.header {
     text-align: center;
 }
+
+.register .field.category .field {
+    display: inline-block !important;
+    margin-right: 40px;
+}

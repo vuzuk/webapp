@@ -23,8 +23,29 @@ class SignUp extends Component {
             category: "food",
             isBlogger: "true",
             isSent: false,
-            isAgreed: true
+            isAgreed: true,
+            categories: {
+                food: false,
+                travel: false,
+                tech: false,
+                fashion: false
+            }
         }
+    }
+
+    handleCheckbox = (e, value) => {
+        let categories = {...this.state.categories};
+        categories[value.name] = value.checked;
+        let category = "";
+        for(let key in categories) {
+            if(categories[key]) {
+                category += key + ";"
+            }
+        }
+        this.setState({
+            categories,
+            category
+        });
     }
 
     submit = (e) => {
@@ -122,12 +143,13 @@ class SignUp extends Component {
                                         <label>Email</label>
                                         <Input onChange={this.handleFormText} name="email" placeholder='Email' />
                                     </Form.Field>
-                                    <Form.Field name="category" onChange={this.handleFormText} label='Category' control='select'>
-                                        <option value='food'>Food</option>
-                                        <option value='travel'>Travel</option>
-                                        <option value='tech'>Tech</option>
-                                        <option value='fashion'>Fashion</option>
-                                    </Form.Field>
+                                    <div className="field category">
+                                        <label>Category</label>
+                                        <Form.Checkbox name="food" onClick={this.handleCheckbox} label='Food' />
+                                        <Form.Checkbox name="travel" onClick={this.handleCheckbox} label='Travel' />
+                                        <Form.Checkbox name="tech" onClick={this.handleCheckbox} label='Tech' />
+                                        <Form.Checkbox name="fashion" onClick={this.handleCheckbox} label='Fashion' />
+                                    </div>
                                 </Form.Group>
                                 <Form.Checkbox checked={isAgreed} onClick={() => {
                                         this.setState({
