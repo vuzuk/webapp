@@ -3,6 +3,7 @@ import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, I
 import classNames from 'classnames';
 import './Navbar.css';
 import isEmpty from '../../helpers/isEmpty';
+import {Fragment} from 'react';
 
 const options = [
   { key: 'user', text: 'Account', icon: 'user', href: "/in/blogger" },
@@ -51,10 +52,12 @@ export default class Navbar extends Component {
             Tech
           </Menu.Item>
 
-          {!isLogin && <Menu.Menu position='right'>
+          <Menu.Menu position='right'>
             <Menu.Item>
-              <Input icon='search' size="small" placeholder='Search...' />
+              <Input onClick={() => {location.href = "/search"}} icon='search' size="small" placeholder='Search...' />
             </Menu.Item>
+          {!isLogin &&
+          <Fragment>
             <Menu.Item name='signup'>
               <Modal trigger={<Button primary>Sign Up</Button>} size="mini">
                 <Modal.Content>
@@ -74,15 +77,19 @@ export default class Navbar extends Component {
                   </Modal.Content>
                 </Modal>
             </Menu.Item>
-          </Menu.Menu>}
-          {isLogin && <Menu.Menu position="right">
+          </Fragment>
+          }
+          {isLogin &&
+          <Fragment>
             <Menu.Item href="#" onClick={this.props.handleModal}>
                 <Icon name='bell' size="medium"/>
             </Menu.Item>
             <Menu.Item>
               <Dropdown trigger={trigger} options={options} pointing='top right' icon={null} />
             </Menu.Item>
-          </Menu.Menu>}
+          </Fragment>
+          }
+          </Menu.Menu>
         </Menu>
       </div>
     )
