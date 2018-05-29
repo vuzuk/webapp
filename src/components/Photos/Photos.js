@@ -16,7 +16,7 @@ class Photos extends Component {
 
     makeList = () => {
         const imgs = [
-            "a","b","c","d","e","f","g","h","i","j","k"
+            "a","b","c","d","e","f","g","h","i","e","k"
         ];
 
         return imgs.map((img,i) => {

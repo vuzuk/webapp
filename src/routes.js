@@ -6,12 +6,17 @@ import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import Post from './components/Post/Post';
 import { Terms, Disclaimer, Privacy} from './components/Documents';
+import SearchBar from './components/SearchBar/SearchBar';
 
 const routes = [
     {
         path: '/',
         exact: true,
         component: App
+    },
+    {
+        path: '/search',
+        component: SearchBar
     },
     {
         path: '/blogger/signup',

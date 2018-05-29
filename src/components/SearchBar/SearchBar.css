@@ -1,49 +1,21 @@
-#searchbar {
-    width: 100%;
-    padding: 10%;
-    background: #1b1c1d;
+#search {
+    padding: 40px 20px;
 }
 
-#searchbar > div:first-child {
-    display: flex;
-    margin: auto;
-    width: 65%;
+.search-card a{
+    display: block;
+    padding: 202px 0 202px 84px;
+    font-size: 26px;
+    background: #1B1C1D;
+    border-radius: 5px;
+    color: white;
 }
 
-#searchbar input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: #1b1c1d !important;
-    opacity: 0.8 !important;
-}
-#searchbar input::-moz-placeholder { /* Firefox 19+ */
-    color: #1b1c1d !important;
-    opacity: 0.8 !important;
-}
-#searchbar input:-ms-input-placeholder { /* IE 10+ */
-    color: #1b1c1d !important;
-    opacity: 0.8 !important;
-}
-#searchbar input:-moz-placeholder { /* Firefox 18- */
-    color: #1b1c1d !important;
-    opacity: 0.8 !important;
+#search .label.big {
+    margin-top: 15px !important;
 }
 
-.typed-cursor{
-    opacity: 1;
-    animation: typedjsBlink 0.7s infinite;
-    -webkit-animation: typedjsBlink 0.7s infinite;
-    animation: typedjsBlink 0.7s infinite;
-  }
-  @keyframes typedjsBlink{
-    50% { opacity: 0.0; }
-  }
-  @-webkit-keyframes typedjsBlink{
-    0% { opacity: 1; }
-    50% { opacity: 0.0; }
-    100% { opacity: 1; }
-  }
-  .typed-fade-out{
-    opacity: 0;
-    transition: opacity .25s;
-    -webkit-animation: 0;
-    animation: 0;
-  }
+#search .twelve > .segment:nth-of-type(1) {
+    padding-top: 0 !important;
+    padding-left: 0 !important;
+}
