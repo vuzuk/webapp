@@ -41,17 +41,23 @@ const routes = [
     {
         path: '/in/blogger',
         component: InBloggerProfile,
-        title: 'Dashboard - VUZUK'
+        title: 'Dashboard - VUZUK',
+        required: true,
+        redirectURL: "/blogger/login"
     },
     {
         path: '/in/reader',
         component: InReaderProfile,
-        title: 'Dashboard - VUZUK'
+        title: 'Dashboard - VUZUK',
+        required: true,
+        redirectURL: '/reader/login'
     },
     {
         path: '/create',
         component: CreatePost,
-        title: 'Create Post - VUZUK'
+        title: 'Create Post - VUZUK',
+        required: true,
+        redirectURL: "/blogger/login"
     },
     {
         path: '/post',
