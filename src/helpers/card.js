@@ -11,12 +11,13 @@ const handleActions = (e) => {
 
 const myCard = ({
         title = "Kabul Restaurant | Afghani Food in Delhi",
-        images = "///kabul.jpg",
+        images = ["/kabul.jpg"],
         date_published = "January 26, 2018",
-        views = "2.2K"
+        views = "2.2K",
+        comments = []
     }, author = "Matthew Stewards") => {
 
-    images = images.substring(2,images.indexOf('.jpg') + 4);
+    images = images[0];
     date_published = new Date(date_published).toString().substring(4, 15);
     
     return (
@@ -50,7 +51,7 @@ const myCard = ({
                                 <Icon name="heart" /> 0
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("comment")}}>
-                                <Icon name="comments" /> 0
+                                <Icon name="comments" /> {comments.length}
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("save")}}>
                                 <Icon name="bookmark" /> Save

@@ -13,7 +13,7 @@ module.exports = (req, res) => {
             },
             defaults: {
                 blog: req.body.blog,
-                images : JSON.stringify(req.body.images),
+                images : req.body.images,
                 category_id: req.body.category_id,
                 blogger_id: req.user.id,
                 post_link: req.body.post_link ? req.body.post_link : null,

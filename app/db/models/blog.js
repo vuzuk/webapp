@@ -38,6 +38,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             validate: {
                 notEmpty: true,
+            },
+            get: function() {
+                return this.getDataValue('images').split(';;');
+            },
+            set: function (val) {
+                if(val) {
+                    const data = val.join(';;')
+                    this.setDataValue('images',data);
+                }
             }
         },
         date_updated: {

@@ -111,11 +111,11 @@ class CreatePost extends Component {
             location.href = "/in/blogger"
         })
         .catch(error => {
-            alert("Something went wrong");
+            alert("Some fields are missing. Make sure you upload atleast one image.");
         })
         .finally(() => {
             thiss.setState({
-                isSent: false
+                isSubmit: false
             })
         })
     }
