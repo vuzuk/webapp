@@ -161,27 +161,9 @@ class InBloggerProfile extends Component {
                     <Modal.Content>
                     <List size="large" relaxed verticalAlign="middle" selection>
                         <List.Item>
-                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
-                        <List.Content>
-                            <List.Description><b><a href="#">Rachel</a></b> started following <a><b>Varun</b></a> just now.</List.Description>
-                        </List.Content>
-                        </List.Item>
-                        <List.Item>
-                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matthew.png' />
-                        <List.Content>
-                            <List.Description><b><a href="#">Jake Archibald</a></b> shared a new post <a><b>How Bitcoin mining works</b></a></List.Description>
-                        </List.Content>
-                        </List.Item>
-                        <List.Item>
                             <Icon name="hashtag" inverted circular/>
                         <List.Content>
-                            <List.Description>10 new posts labeled <a><b>ethnic</b></a> published since you last visited.</List.Description>
-                        </List.Content>
-                        </List.Item>
-                        <List.Item>
-                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
-                        <List.Content>
-                            <List.Description><b><a href="#">Rachel</a></b> started following <a><b>Varun</b></a> just now.</List.Description>
+                            <List.Description>Welcome to <a><b>VUZUK.</b></a></List.Description>
                         </List.Content>
                         </List.Item>
                     </List>

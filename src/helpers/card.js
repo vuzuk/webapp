@@ -30,7 +30,7 @@ const myCard = ({
                     </Label>
                     <Button size="tiny" primary>Follow</Button>
                 </Card.Content>
-                <Image src={images} />
+                <Image src={images} className="card-img"/>
                 <Card.Content>
                     <Card.Header as="a" href="/post">
                         {title}
