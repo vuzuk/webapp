@@ -24,9 +24,13 @@ module.exports = (req, res) => {
                 return res.status(400).json({status: true, msg: "blog not found"});
             }
 
+            const myblogs = blogs.map((blog) => blog.get({ plain: true }));
+            for(let i=0; i<myblogs.length; i++){
+                myblogs[i]['comments'] = myblogs[i]['comments'].length;
+            }
 
             // return render.default(req, res, {status: true, msg: blog})
-            return res.status(200).json({status: true, msg: blogs});
+            return res.status(200).json({status: true, msg: myblogs});
         })
         .catch((err) => {
             console.log(err);
