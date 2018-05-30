@@ -7,7 +7,7 @@ route.get('/getTrendingBlogs', require("./functions/getTrendingBlogs"));
 route.get('/getLatestBlogs', require("./functions/getLatestBlogs"));
 
 // get blog     query = {blogId}
-route.get('/getBlog', require("./functions/getBlog"));
+route.get('/getBlog/:bloggerName/:slug', require("./functions/getBlog"));
 // get blogger details      query = {bloggerId}
 route.get('/getBlogger', require("./functions/getBlogger"));
 // get blogs of blogger     req.query={bloggerId}

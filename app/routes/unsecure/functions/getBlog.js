@@ -2,30 +2,54 @@ const Op = require("sequelize").Op;
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blog = models["blog"];
 const Blogger = models["blogger"];
-const render = require(process.env.APP_ROOT+'/dist/SSR');
+const render = require(process.env.APP_ROOT + '/dist/SSR');
 
 module.exports = (req, res) => {
-    let blogId = parseInt(req.query["blogId"]);
-    Blog
+    let bloggerName = req.params["bloggerName"];
+    let slug = req.params["slug"];
+    Blogger
         .findAll({
-            attributes: ["id", "title", "blog", "images", "date_published", "created_at",
-                "views", "post_link", "video_link", "place"],
+            attributes: ["id", "username", "first_name", "last_name", "image"],
             where: {
-                id: blogId
+                username: bloggerName,
             },
             include: [{
-                model: Blogger,
-                attributes: ["id", "username", "first_name", "last_name", "image"]
+                model: Blog,
+                where: {
+                    slug: slug
+                },
+                attributes: ["id", "title", "blog", "images", "date_published", "created_at",
+                    "views", "post_link", "video_link", "place"]
             }],
-            limit:1,
-            raw: true
+            // raw: true
         })
         .then((blog) => {
             if (blog.length === 0) {
                 return res.status(400).json({status: true, msg: "blog not found"});
             }
-            return render.default(req, res, {status: true, msg: blog})
-            // return res.status(200).json({status: true, msg: blog});
+
+
+            blog = blog.map((node) => node.get({ plain: true }));
+            let blogOnly = blog[0]['blogs'][0];
+            let value = blogOnly['blog'];
+
+            while(value.indexOf("@@") !== -1) {
+                let key = value[value.indexOf("@@")+2];
+                let i=3;
+                while(value[value.indexOf("@@")+i] !== '@') {
+                    key = key + value[value.indexOf("@@")+i];
+                    i++;
+                }
+                // console.log(key)
+
+                let img = value.replace(`@@${key}@@`,`<img src="${blogOnly['images'][key]}" alt="Image">`)
+                value = img;
+            }
+
+            blogOnly['blog'] = value;
+
+            // return render.default(req, res, {status: true, msg: blog})
+            return res.status(200).json({status: true, msg: blog});
         })
         .catch((err) => {
             console.log(err);
