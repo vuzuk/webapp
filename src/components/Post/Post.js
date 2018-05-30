@@ -89,7 +89,7 @@ class Post extends Component {
                                                     <Icon name="heart" /> 0
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
-                                                    <Icon name="comments" /> 0
+                                                    <Icon name="comments" /> {customData.blogs[0].comments.length}
                                                 </Grid.Column>
                                             </Grid.Row>
                                         </Grid>

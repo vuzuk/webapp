@@ -3,7 +3,7 @@ const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blog = models["blog"];
 const Blogger = models["blogger"];
 const Tag = models["tag"];
-const render = require(process.env.APP_ROOT + '/dist/SSR');
+const Comment = models["comment"]
 
 module.exports = (req, res) => {
     let bloggerName = req.params["bloggerName"];
@@ -22,6 +22,8 @@ module.exports = (req, res) => {
                 include: [{
                     model: Tag,
                     attributes: ["name"]
+                },{
+                    model: Comment
                 }],
                 attributes: ["id", "title", "blog", "images", "date_published", "created_at",
                     "views", "post_link", "video_link", "place"]
@@ -53,7 +55,6 @@ module.exports = (req, res) => {
 
             blogOnly['blog'] = value;
 
-            // return render.default(req, res, {status: true, msg: blog})
             return res.status(200).json({status: true, msg: blog});
         })
         .catch((err) => {
