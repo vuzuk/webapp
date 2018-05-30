@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Label, Image, Grid, Icon, Button } from 'semantic-ui-react';
+import { stringifyDate } from "./stringifyDate";
 
 const handleActions = (e) => {
     if(e === "like") {
@@ -14,11 +15,12 @@ const myCard = ({
         images = ["/kabul.jpg"],
         date_published = "January 26, 2018",
         views = "2.2K",
-        comments = 0
-    }, author = "Matthew Stewards") => {
+        comments = 0,
+        slug = "#"
+    }, {author = "Matthew Stewards", username = "#"}) => {
 
     images = images[0];
-    date_published = new Date(date_published).toString().substring(4, 15);
+    date_published = stringifyDate(date_published);
     
     return (
         <div className="myCard">
@@ -32,7 +34,7 @@ const myCard = ({
                 </Card.Content>
                 <Image src={images} className="card-img"/>
                 <Card.Content>
-                    <Card.Header as="a" href="/post">
+                    <Card.Header as="a" href={`/post/${username}/${slug}`}>
                         {title}
                     </Card.Header>
                     <Card.Meta>

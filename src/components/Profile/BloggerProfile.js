@@ -100,7 +100,7 @@ class BloggerProfile extends Component {
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i)}
+                                    {myCard(i,{})}
                                 </Grid.Column>
                             ))}
                         </Grid>

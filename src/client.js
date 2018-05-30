@@ -7,9 +7,10 @@ import {
     Switch
 } from 'react-router-dom';
 
-let data;
+let data, customData;
 if (__isBrowser__) {
     data = window.__INITIAL_DATA__;
+    customData = window.__CUSTOM_DATA__;    
 }
 
 hydrate(<Router>
@@ -18,7 +19,7 @@ hydrate(<Router>
             routes.map(({path, exact, component: Component}) => {
                 return (
                     <Route key={path} exact={exact} path={path} render={props => (
-                        <Component {...props} data={data} />
+                        <Component {...props} data={data} customData={customData}/>
                     )} />
                 )
             })

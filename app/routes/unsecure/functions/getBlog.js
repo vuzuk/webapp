@@ -42,7 +42,7 @@ module.exports = (req, res) => {
                 }
                 // console.log(key)
 
-                let img = value.replace(`@@${key}@@`,`<img src="${blogOnly['images'][key]}" alt="Image">`)
+                let img = value.replace(`@@${key}@@`,`<img class="post-img" src="${blogOnly['images'][key]}" alt="Image">`)
                 value = img;
             }
 

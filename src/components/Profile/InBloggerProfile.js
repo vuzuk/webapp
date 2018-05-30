@@ -56,7 +56,7 @@ class InBloggerProfile extends Component {
 
     render() {
         const {data, isActive, posts, isPostFetched} = this.state;
-        const {first_name, last_name} = data;
+        const {first_name, last_name, username} = data;
         const author = `${first_name} ${last_name}`;
         
         return (
@@ -90,7 +90,7 @@ class InBloggerProfile extends Component {
                         {isPostFetched && posts[0].id && <Grid columns={3}>
                             {posts.map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i, author)}
+                                    {myCard(i, {author, username})}
                                 </Grid.Column>
                             ))}
                         </Grid>}
