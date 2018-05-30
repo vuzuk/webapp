@@ -59,6 +59,8 @@ class InBloggerProfile extends Component {
 
     render() {
         const {data, isActive, posts, isPostFetched, noPost} = this.state;
+        console.log(data);
+        
         const {first_name, last_name, username} = data;
         const author = `${first_name} ${last_name}`;
         
