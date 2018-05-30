@@ -1,5 +1,5 @@
 import serialize from 'serialize-javascript';
-export default ({ body, title, data, customData }) => {
+export function staticHTML ({ title, data, customData }) {
   return `
   <!DOCTYPE html>
   <html>
@@ -18,11 +18,16 @@ export default ({ body, title, data, customData }) => {
       <link rel="stylesheet" href="/emoticons.min.css">
     </head>
     <body>
-      <div id="root">${body}</div>
+`;
+};
+
+export function dynamicHTML ({body}) {
+  return `
+  <div id="root">${body}</div>
       <script src='/vendor.js'></script>
       <script src='/bundle.js'></script>
       <script type='text/javascript' src='http://platform-api.sharethis.com/js/sharethis.js#property=5abf669cce89f00013641dd1&product=inline-share-buttons' async='async'></script>
     </body>
   </html>
-`;
-};
+  `;
+}
