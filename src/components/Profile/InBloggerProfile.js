@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid, Button, Icon, List, Modal } from 'semantic-ui-react';
+import { Segment, Image, Grid, Button, Icon, List} from 'semantic-ui-react';
 import myCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
@@ -25,7 +25,6 @@ class InBloggerProfile extends Component {
         super(props);
     
         this.state = {
-            open: false,
             isActive: "post",
             chartData,
             data: props.data,
@@ -51,22 +50,18 @@ class InBloggerProfile extends Component {
             })
     }
 
-    handleModal = () => {
-        this.setState({open: !this.state.open})
-    }
-
     handleChange = (isActive) => {
         this.setState({isActive});
     }
 
     render() {
-        const {data, isActive, open, posts, isPostFetched} = this.state;
+        const {data, isActive, posts, isPostFetched} = this.state;
         const {first_name, last_name} = data;
         const author = `${first_name} ${last_name}`;
         
         return (
             <div id="profile-page">
-                <Navbar data={data} handleModal={this.handleModal}/>
+                <Navbar data={data}/>
                 <Segment className="main" basic>
                     <Button size="large" floated="right" circular icon>
                         <Icon name="camera" />
@@ -154,21 +149,6 @@ class InBloggerProfile extends Component {
                     </Segment>
                 </div>}
                 <Footer />
-                <Modal size="fullscreen" open={open} onClose={this.handleModal}>
-                    <Modal.Header>
-                        Notifications
-                    </Modal.Header>
-                    <Modal.Content>
-                    <List size="large" relaxed verticalAlign="middle" selection>
-                        <List.Item>
-                            <Icon name="hashtag" inverted circular/>
-                        <List.Content>
-                            <List.Description>Welcome to <a><b>VUZUK.</b></a></List.Description>
-                        </List.Content>
-                        </List.Item>
-                    </List>
-                    </Modal.Content>
-                </Modal>
             </div>
         )
     }
