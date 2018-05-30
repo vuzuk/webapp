@@ -58,13 +58,13 @@ const webpackConfig = [{
 			}
     }),
 		new webpack.optimize.UglifyJsPlugin({
-			compressor: {
-				unused: true,
-        dead_code: true,
-        warnings: false,
-        drop_debugger: true,
-        drop_console: true
-			}
+			// compressor: {
+			// 	unused: true,
+      //   dead_code: true,
+      //   warnings: false,
+      //   drop_debugger: true,
+      //   drop_console: true
+			// }
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
