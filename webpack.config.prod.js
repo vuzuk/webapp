@@ -42,8 +42,6 @@ const webpackConfig = [{
       'react',
       'react-dom',
       'semantic-ui-react',
-      'react-froala-wysiwyg',
-      'froala-editor',
       'react-chartjs-2'
     ]
   },
