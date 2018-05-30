@@ -42,6 +42,8 @@ const webpackConfig = [{
       'react',
       'react-dom',
       'semantic-ui-react',
+      'react-froala-wysiwyg',
+      'froala-editor',
       'react-chartjs-2'
     ]
   },
@@ -57,15 +59,15 @@ const webpackConfig = [{
 				WEBPACK: true
 			}
     }),
-		new webpack.optimize.UglifyJsPlugin({
-			// compressor: {
-			// 	unused: true,
-      //   dead_code: true,
-      //   warnings: false,
-      //   drop_debugger: true,
-      //   drop_console: true
-			// }
-    }),
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	compressor: {
+		// 		unused: true,
+    //     dead_code: true,
+    //     warnings: false,
+    //     drop_debugger: true,
+    //     drop_console: true
+		// 	}
+    // }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
