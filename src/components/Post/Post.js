@@ -110,10 +110,9 @@ class Post extends Component {
                             <div className="post-tags">
                                 <span style={{opacity: 0.5, fontSize: "1.1em"}}>Tags: </span>
                                 <Label.Group tag as="a">
-                                    <Label as='a'>Android</Label>
-                                    <Label as='a'>Linux</Label>
-                                    <Label as='a'>Tech</Label>
-                                    <Label as='a'>Google</Label>
+                                    {customData.blogs[0].tags.map(tag => (
+                                        <Label as='a'>{tag.name}</Label>
+                                    ))}
                                 </Label.Group>
                                 <div style={{marginTop: "30px", marginBottom: "30px"}} className="sharethis-inline-share-buttons"></div>
                             </div>

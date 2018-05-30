@@ -2,6 +2,7 @@ const Op = require("sequelize").Op;
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blog = models["blog"];
 const Blogger = models["blogger"];
+const Tag = models["tag"];
 const render = require(process.env.APP_ROOT + '/dist/SSR');
 
 module.exports = (req, res) => {
@@ -18,6 +19,10 @@ module.exports = (req, res) => {
                 where: {
                     slug: slug
                 },
+                include: [{
+                    model: Tag,
+                    attributes: ["name"]
+                }],
                 attributes: ["id", "title", "blog", "images", "date_published", "created_at",
                     "views", "post_link", "video_link", "place"]
             }],
