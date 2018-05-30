@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image } from 'semantic-ui-react'
+import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image, List } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
 import isEmpty from '../../helpers/isEmpty';
@@ -22,12 +22,17 @@ export default class Navbar extends Component {
     super(props);
 
     this.state = {
-      isLogin: !isEmpty(props.data)
+      isLogin: !isEmpty(props.data),
+      open: false
     }
   }
 
+  handleModal = () => {
+    this.setState({open: !this.state.open})
+  }
+
   render() {
-    const { isLogin } = this.state;
+    const { isLogin, open } = this.state;
     
     return (
       <div className="myNav">
@@ -81,7 +86,7 @@ export default class Navbar extends Component {
           }
           {isLogin &&
           <Fragment>
-            <Menu.Item href="#" onClick={this.props.handleModal}>
+            <Menu.Item href="#" onClick={this.handleModal}>
                 <Icon name='bell' size="medium"/>
             </Menu.Item>
             <Menu.Item>
@@ -91,6 +96,21 @@ export default class Navbar extends Component {
           }
           </Menu.Menu>
         </Menu>
+        <Modal size="fullscreen" open={open} onClose={this.handleModal}>
+            <Modal.Header>
+                Notifications
+            </Modal.Header>
+            <Modal.Content>
+            <List size="large" relaxed verticalAlign="middle" selection>
+                <List.Item>
+                    <Icon name="hashtag" inverted circular/>
+                <List.Content>
+                    <List.Description>Welcome to <a><b>VUZUK.</b></a></List.Description>
+                </List.Content>
+                </List.Item>
+            </List>
+            </Modal.Content>
+        </Modal>
       </div>
     )
   }

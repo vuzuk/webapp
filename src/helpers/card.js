@@ -14,7 +14,7 @@ const myCard = ({
         images = ["/kabul.jpg"],
         date_published = "January 26, 2018",
         views = "2.2K",
-        comments = []
+        comments = 0
     }, author = "Matthew Stewards") => {
 
     images = images[0];
@@ -51,7 +51,7 @@ const myCard = ({
                                 <Icon name="heart" /> 0
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("comment")}}>
-                                <Icon name="comments" /> {comments.length}
+                                <Icon name="comments" /> {comments}
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("save")}}>
                                 <Icon name="bookmark" /> Save
