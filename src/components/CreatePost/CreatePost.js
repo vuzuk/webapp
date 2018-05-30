@@ -4,7 +4,6 @@ import Footer from '../Footer/Footer';
 import { Grid, Input, Segment, Header, Dropdown, Button, Dimmer, Divider, Icon, Label, Popup } from 'semantic-ui-react'
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 import 'froala-editor/js/plugins/video.min.js';
-import 'froala-editor/js/plugins/emoticons.min.js';
 import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 import axios from 'axios';
@@ -221,7 +220,7 @@ class CreatePost extends Component {
                                                 imageUploadURL: '/api/secure/blogger/froala_upload',
                                                 charCounterCount: false,
                                                 quickInsertButtons: ['image', 'video', 'table'],
-                                                toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
+                                                toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
                                             }} />
                                     </Dimmer.Dimmable>
                                 </div>

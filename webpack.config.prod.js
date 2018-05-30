@@ -59,15 +59,13 @@ const webpackConfig = [{
 				WEBPACK: true
 			}
     }),
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	compressor: {
-		// 		unused: true,
-    //     dead_code: true,
-    //     warnings: false,
-    //     drop_debugger: true,
-    //     drop_console: true
-		// 	}
-    // }),
+		new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        drop_console: true
+      },
+      minimize: true,
+      exclude: /bundle\.js$/,
+    }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,

@@ -15,7 +15,6 @@ export function staticHTML ({ title, data, customData }) {
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css" />
       <link rel="stylesheet" href="/froala_style.min.css">
       <link rel="stylesheet" href="/video.min.css">
-      <link rel="stylesheet" href="/emoticons.min.css">
     </head>
     <body>
 `;
