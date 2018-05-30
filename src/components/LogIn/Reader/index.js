@@ -13,7 +13,8 @@ class LogIn extends Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
-    submit = () => {
+    submit = (e) => {
+        e.preventDefault();
         const data = this.state;
         data.isBlogger = "true";
         console.log(data);

@@ -25,11 +25,45 @@ Why does everyone need mobile devs? Because the web is slowly dying. I have frie
 
 They managed, but it sure as hell wasn’t easy, because Android’s dev stack is the world’s biggest poo sandwich.</p>`
 
+const users = [
+    {
+        name: "Deep Kaur",
+        follower: "9548",
+        img: "https://react.semantic-ui.com/assets/images/avatar/large/helen.jpg"
+    },
+    {
+        name: "Vipul Gupta",
+        follower: "2795",
+        img: "https://react.semantic-ui.com/assets/images/avatar/large/christian.jpg"
+    },
+    {
+        name: "Daniel",
+        follower: "5523",
+        img: "https://react.semantic-ui.com/assets/images/avatar/large/daniel.jpg"
+    },
+    {
+        name: "Deep Kaur",
+        follower: "9548",
+        img: "https://react.semantic-ui.com/assets/images/avatar/large/helen.jpg"
+    },
+    {
+        name: "Vipul Gupta",
+        follower: "2795",
+        img: "https://react.semantic-ui.com/assets/images/avatar/large/christian.jpg"
+    },
+    {
+        name: "Daniel",
+        follower: "5523",
+        img: "https://react.semantic-ui.com/assets/images/avatar/large/daniel.jpg"
+    }
+]
+
 class Post extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isActive: 'popular'
+            isActive: 'popular',
+            data: props.data
         }
     }
 
@@ -40,18 +74,18 @@ class Post extends Component {
     makeList = (e) => {
         return e.map(i => {
             return(
-                <List.Item>
-                    {myCard(i)}
-                </List.Item>
+                <Grid.Column key={i}>
+                    {myCard(i,"Matthew")}
+                </Grid.Column>
             )
         })
     }
 
     render() {
-        const { isActive } = this.state;
+        const { isActive, data } = this.state;
         return(
             <div>
-                <Navbar />
+                <Navbar data={data} />
                 <div className="post">
                     <Grid divided>
                         <Grid.Column width={11}>
@@ -116,6 +150,9 @@ class Post extends Component {
                                     </Grid.Column>
                                 </Grid.Row>
                             </Grid>
+                            <Grid columns={3}>
+                                {this.makeList([1,2,3])}
+                            </Grid>
                         </Grid.Column>
                         <Grid.Column width={5}>
                             <Segment className="topics">
@@ -157,11 +194,21 @@ class Post extends Component {
                                     </List.Item>
                                 </List>
                             </Segment>
-                            <div style={{paddingLeft: "10%", paddingTop: "4%", paddingBottom: "4%"}}>
-                                <List relaxed>
-                                    {this.makeList([1,2,3])}
+                            <Segment>
+                                <Header>Related Users</Header>
+                                <List size="big" divided relaxed>
+                                    {users.map(user => (<List.Item>
+                                    <Image avatar src={user.img} size="tiny"/>
+                                    <List.Content>
+                                        <List.Header>{user.name}</List.Header>
+                                        <div style={{fontSize: "0.8em", marginTop: "10px"}}><a style={{display: "block"}} href="#">@{user.name.split(" ")[0].toLowerCase()}</a>{user.follower} Followers</div>
+                                    </List.Content>
+                                    <List.Content floated='right'>
+                                        <Button>Follow</Button>
+                                    </List.Content>
+                                    </List.Item>))}
                                 </List>
-                            </div>
+                            </Segment>
                         </Grid.Column>
                     </Grid>
                 </div>

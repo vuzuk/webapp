@@ -1,4 +1,5 @@
 'use strict';
+const SequelizeSlugify = require('sequelize-slugify');
 module.exports = (sequelize, DataTypes) => {
     const blog = sequelize.define('blog', {
         title: {
@@ -8,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 notEmpty: true,
             }
+        },
+        slug: {
+            type: DataTypes.STRING,
+            unique: true
         },
         blog: {
             type: DataTypes.TEXT,
@@ -33,6 +38,15 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             validate: {
                 notEmpty: true,
+            },
+            get: function() {
+                return this.getDataValue('images').split(';;');
+            },
+            set: function (val) {
+                if(val) {
+                    const data = val.join(';;')
+                    this.setDataValue('images',data);
+                }
             }
         },
         date_updated: {
@@ -71,6 +85,10 @@ module.exports = (sequelize, DataTypes) => {
         }
     }, {
         underscored: true,
+    });
+
+    SequelizeSlugify.slugifyModel(blog, {
+        source: ['title']
     });
 
     blog.associate = (models) => {

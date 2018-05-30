@@ -5,14 +5,21 @@ import {
     BrowserRouter as Router,
     Route,
     Switch
-} from 'react-router-dom'
+} from 'react-router-dom';
+
+let data;
+if (__isBrowser__) {
+    data = window.__INITIAL_DATA__;
+}
 
 hydrate(<Router>
     <Switch>
         {
             routes.map(({path, exact, component: Component}) => {
                 return (
-                    <Route key={path} exact={exact} path={path} component={Component} />
+                    <Route key={path} exact={exact} path={path} render={props => (
+                        <Component {...props} data={data} />
+                    )} />
                 )
             })
         }

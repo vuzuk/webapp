@@ -18,6 +18,11 @@ const webpackConfig = [{
     libraryTarget: 'commonjs2',
     publicPath,
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      __isBrowser__: false
+    })
+  ],
   target: 'node',
   externals: nodeExternals(),  
   module: {
@@ -79,6 +84,9 @@ const webpackConfig = [{
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
+    }),
+    new webpack.DefinePlugin({
+      __isBrowser__: false
     })
 	],
 	module: {

@@ -9,7 +9,6 @@ import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 import axios from 'axios';
 import isEmpty from '../../helpers/isEmpty';
-
 const categoryOptions = [
     {
         value: 1,
@@ -48,23 +47,10 @@ class CreatePost extends Component {
             category_id: 0,
             video_link: "",
             post_link: "",
-            data: {}
+            data: props.data,
+            isSubmit: false
         }
-    }
-
-    componentWillMount = () => {
-        const thiss = this;
-        axios.get('/api/secure/blogger/getDetails')
-            .then(({data}) => {
-            thiss.setState({
-                data: data.msg[0]
-            });
-            })
-            .catch(err => {
-            console.log(err);
-            })
-    }
-    
+    }    
 
     handleChange = (e) => {
         console.log(e.target.name, e.target.value);
@@ -108,10 +94,11 @@ class CreatePost extends Component {
     }
 
     submit = () => {
-        this.filterImages();
-        const { title, category_id, tags, place, blog, images, post_link, video_link } = this.state;
+        // this.filterImages();
+        const { title, category_id, tags, place, filteredBlog , images, post_link, video_link } = this.state;
+        const blog = filteredBlog;
         const data = { title, category_id, tags, place, blog, images, post_link, video_link };
-        console.log(data);
+        const thiss = this;
         axios({
             method: 'POST',
             headers: {
@@ -124,13 +111,21 @@ class CreatePost extends Component {
             location.href = "/in/blogger"
         })
         .catch(error => {
-            alert("Something went wrong");
+            alert("Some fields are missing. Make sure you upload atleast one image.");
+        })
+        .finally(() => {
+            thiss.setState({
+                isSubmit: false
+            })
         })
     }
 
     filterImages = () => {
         let blog = this.state.blog;
         let images = [], imgN = 0;
+        this.setState({
+            isSubmit: true
+        })
         while(blog.indexOf("<img") !== -1) {
             let start = blog.indexOf("<img");
             let end = blog.indexOf("\">", start);
@@ -154,9 +149,9 @@ class CreatePost extends Component {
             console.log(blog)
         }
         this.setState({
-            blog,
+            filteredBlog: blog,
             images
-        })
+        }, this.submit)
     }
 
     removeTag = (i) => {
@@ -192,14 +187,10 @@ class CreatePost extends Component {
     }
 
     render() {
-        const { blog, tag, tags, method } = this.state;
-        let {data} = this.state;
-        if(!isEmpty(this.props.data)) {
-        data = this.props.data
-        }
+        const { blog, tag, tags, method, data, isSubmit } = this.state;
         return (
             <div>
-                <Navbar data={data} isLogin={!isEmpty(data)}/>
+                <Navbar data={data}/>
                     <Segment basic padded="very">
                         <Header as='h1' dividing>
                             Create Post
@@ -227,7 +218,7 @@ class CreatePost extends Component {
                                                 editorClass: 'selector',
                                                 height: 300,
                                                 placeholderText: "Write your post here!!",
-                                                imageUploadURL: '/froala_upload',
+                                                imageUploadURL: '/api/secure/blogger/froala_upload',
                                                 charCounterCount: false,
                                                 quickInsertButtons: ['image', 'video', 'table'],
                                                 toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'emoticons', 'specialCharacters', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
@@ -285,8 +276,8 @@ class CreatePost extends Component {
                                 />
                                 <div style={{marginTop: "20px"}}>
                                     <Button.Group fluid>
-                                        <Button size="huge">Cancel</Button>
-                                        <Button size="huge" primary onClick={this.submit}>Publish</Button>
+                                        <Button size="huge" onClick={() => {location.href = "/in/blogger"}}>Cancel</Button>
+                                        <Button size="huge" loading={isSubmit} primary onClick={this.filterImages}>Publish</Button>
                                     </Button.Group>
                                 </div>
                             </Grid.Column>

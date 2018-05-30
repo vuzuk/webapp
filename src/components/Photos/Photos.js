@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Icon, Header, Dimmer, Image } from 'semantic-ui-react';
+import { Segment, Icon, Header, Dimmer, Image, Modal, Button } from 'semantic-ui-react';
 import './Photos.css';
 
 class Photos extends Component {
@@ -16,13 +16,13 @@ class Photos extends Component {
 
     makeList = () => {
         const imgs = [
-            "a","b","c","d","e","f","g","h","i","j","k"
+            "a","b","c","d","e","f","g","h","i","e","k"
         ];
 
         return imgs.map((img,i) => {
             return (
-                <Dimmer.Dimmable as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
-                    <a href="/post">
+                <Modal className="photo-modal" trigger={
+                    <Dimmer.Dimmable as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
                     <Dimmer active={this.state.active === i} onClickOutside={this.handleHide}>
                         <Header as='h2' inverted>
                             Blog Post Title
@@ -31,9 +31,14 @@ class Photos extends Component {
                             -by Varun
                         </Header>
                     </Dimmer>
-                    </a>
                     <Image src={`${img}_min.jpg`} bordered={false} ui={false}/>
-                </Dimmer.Dimmable>
+                    </Dimmer.Dimmable>
+                } size="mini">
+                    <Modal.Content>
+                    <Image wrapped size='medium' src={`${img}_min.jpg`} />
+                        <Button href="#" secondary>View Post</Button>
+                    </Modal.Content>
+                </Modal>
             )
         })
     }  

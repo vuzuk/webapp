@@ -16,3 +16,8 @@ body {
 .myCard .extra.content {
     display: flex;
 }
+
+.myCard .card-img {
+    width: 290px !important;
+    height: 218px !important;
+}

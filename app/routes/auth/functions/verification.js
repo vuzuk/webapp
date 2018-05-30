@@ -25,7 +25,7 @@ module.exports = (mailTransporter) => {
             })
             .then(obj => {
                 if (obj.length === 0) {
-                    return res.status(400).json({status: false, msg: "not found"});
+                    return res.redirect('/blogger/login');
                 }
                 obj[0]
                     .update({
@@ -34,11 +34,10 @@ module.exports = (mailTransporter) => {
                     })
                     .then(() => {
                         if (!isBlogger) {
-                            return res.status(200).json({status: true, msg: "email verified successfully"});
-                        }
+                            return res.redirect('/blogger/login')                        }
                         // return res.redirect('/verify/phone/?isBlogger=true');
                         // *************** BYPASSING PHONE VERIFICATION OF BLOGGER ***************
-                        return res.status(200).json({status: true, msg: "email verified successfully"});
+                        return res.redirect('/blogger/login')
                     })
                     .catch((err) => {
                         console.log(err);
@@ -72,8 +71,8 @@ module.exports = (mailTransporter) => {
                 let mailOptions = {
                     from: process.env.ADMIN_EMAIL_ID, // sender address
                     to: user.email, // list of receivers
-                    subject: 'verify vuzuk email', // Subject line
-                    text: `click the link or copy paste in browser to verify vuzuk email id: ${emailLink}`, // plain text body
+                    subject: 'Verify Your Email', // Subject line
+                    text: `Click this link or copy paste in browser to verify your Email id: ${emailLink}`, // plain text body
                 };
 
                 // send mail with defined transport object

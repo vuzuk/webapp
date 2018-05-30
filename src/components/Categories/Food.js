@@ -15,10 +15,18 @@ const settings = {
 };
 
 class Food extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: props.data
+        }
+    }
     render() {
+        const { data } = this.state;
         return (
             <div>
-                <Navbar />
+                <Navbar data={data}/>
                 <div className="categories-page">
                     <Header as='h1' dividing>
                         Food

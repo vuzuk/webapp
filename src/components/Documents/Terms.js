@@ -2,9 +2,12 @@ import React from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 
-const Terms = () => (
+const Terms = (props) => {
+  let data = props.data;
+
+  return (
   <div>
-    <Navbar/>
+    <Navbar data={data}/>
     <div style={{width: "80%", margin: "auto", padding: "30px 15px", background: "white"}} className="content">
       <h1>Terms Of Use</h1>
       <pre>Last updated May 23, 2018</pre>
@@ -160,6 +163,6 @@ We shall not be liable to you or to any third-party for any modification, price 
     </div>
     <Footer/>
   </div>
-)
+)}
 
 export default Terms;

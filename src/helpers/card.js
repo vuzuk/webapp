@@ -9,7 +9,17 @@ const handleActions = (e) => {
     }
 }
 
-const myCard = ({title, image, author}) => {
+const myCard = ({
+        title = "Kabul Restaurant | Afghani Food in Delhi",
+        images = ["/kabul.jpg"],
+        date_published = "January 26, 2018",
+        views = "2.2K",
+        comments = []
+    }, author = "Matthew Stewards") => {
+
+    images = images[0];
+    date_published = new Date(date_published).toString().substring(4, 15);
+    
     return (
         <div className="myCard">
             <Card>
@@ -20,14 +30,14 @@ const myCard = ({title, image, author}) => {
                     </Label>
                     <Button size="tiny" primary>Follow</Button>
                 </Card.Content>
-                <Image src='/kabul.jpg' />
+                <Image src={images} className="card-img"/>
                 <Card.Content>
                     <Card.Header as="a" href="/post">
                         {title}
                     </Card.Header>
                     <Card.Meta>
                         <span className='date'>
-                        {date_published}
+                        Published on {date_published}
                         </span>
                     </Card.Meta>
                 </Card.Content>
@@ -35,13 +45,13 @@ const myCard = ({title, image, author}) => {
                     <Grid className="post-footer" columns='equal' divided padded>
                         <Grid.Row textAlign='center'>
                             <Grid.Column as="a">
-                                <Icon name="unhide" /> 2.2K
+                                <Icon name="unhide" /> {views}
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("like")}}>
-                                <Icon name="heart" /> 663
+                                <Icon name="heart" /> 0
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("comment")}}>
-                                <Icon name="comments" /> 245
+                                <Icon name="comments" /> {comments.length}
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("save")}}>
                                 <Icon name="bookmark" /> Save

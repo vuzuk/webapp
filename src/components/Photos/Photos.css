@@ -49,3 +49,10 @@
    column-count:         1;
    }
  }
+
+ .photo-modal .secondary {
+  margin: auto;
+  margin-top: 10px;
+  width: 110px;
+  display: block;
+ }

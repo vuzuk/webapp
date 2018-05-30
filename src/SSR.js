@@ -7,17 +7,21 @@ import isEmpty from './helpers/isEmpty';
 
 export default function render(req,res) {
   const activeRoute = routes.find(route => matchPath(req.url, route));
-  const {component: Component, title} = activeRoute;
-  const context = {};
+  const {component: Component, title, required, redirectURL} = activeRoute;
   const data = req.user || {};
+  
+  if(required && isEmpty(data)) {
+    return res.redirect(redirectURL)
+  }
   // console.log(data);
   const appString = renderToString(
-    <StaticRouter location={req.url} context={context}>
+    <StaticRouter location={req.url} context={{}}>
       <Component data={data}/>
     </StaticRouter>
   );
   res.send(template({
     body: appString,
     title: title || 'VUZUK',
+    data
   }));
 };

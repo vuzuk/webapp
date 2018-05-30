@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import { Divider, Segment, Header, Icon, Label } from 'semantic-ui-react';
+import { Divider, Segment, Header, Icon } from 'semantic-ui-react';
 import './Trending.css';
+import makeTags from '../../helpers/makeTags';
 class Trending extends Component {
-    makeTags = (e) => {
-        return e.map((label, i) => {
-            return (
-                <Label as="a" key={label+ i} size="big">
-                    <Icon name='hashtag' /> {label}
-                </Label>
-            )
-        })
-    }
+    
     render() {
         return(
             <div className="trend-tags">
@@ -21,13 +14,13 @@ class Trending extends Component {
                     </Header>
                 </Segment>
                 <div style={{padding: "10px", display: "flex"}}>
-                    {this.makeTags(["delhi","vintage","instafood","malware","foodgasm","mumbai"])}
+                    {makeTags(["delhi","vintage","instafood","malware","foodgasm","mumbai"])}
                 </div>
                 <div style={{padding: "10px", display: "flex"}}>
-                    {this.makeTags(["instafood","ethnic","foodgasm","mens","italian"])}
+                    {makeTags(["instafood","ethnic","foodgasm","mens","italian"])}
                 </div>
                 <div style={{padding: "10px", display: "flex"}}>
-                    {this.makeTags(["malware","foodgasm","mens","delhi","wannacry","vintage"])}
+                    {makeTags(["malware","foodgasm","mens","delhi","wannacry","vintage"])}
                 </div>
             </div>
         )

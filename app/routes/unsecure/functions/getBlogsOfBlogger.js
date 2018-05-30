@@ -17,16 +17,16 @@ module.exports = (req, res) => {
             include: [{
                 model: Comment,
                 // attributes: [[sequelize.fn('count', sequelize.col('blog_id')), 'count']],
-                // group: ["blog_id"],
+                group: ["blog_id"],
             }],
-            raw: true
+            // raw: true
         })
-        .then((blog) => {
-            if (blog.length === 0) {
+        .then((blogs) => {
+            if (blogs.length === 0) {
                 return res.status(400).json({status: true, msg: "blog not found"});
             }
             // return render.default(req, res, {status: true, msg: blog})
-            return res.status(200).json({status: true, msg: blog});
+            return res.status(200).json({status: true, msg: blogs});
         })
         .catch((err) => {
             console.log(err);

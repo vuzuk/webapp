@@ -19,7 +19,8 @@ class LogIn extends Component {
         this.setState({[e.target.name]: e.target.value});
     }
 
-    submit = () => {
+    submit = (e) => {
+        e.preventDefault();
         this.setState({
             isSent: true
         });

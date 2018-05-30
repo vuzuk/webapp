@@ -5,13 +5,18 @@ import {BloggerProfile, InBloggerProfile, InReaderProfile} from './components/Pr
 import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import Post from './components/Post/Post';
-import { Terms, Disclaimer, Privacy } from './components/Documents';
+import { Terms, Disclaimer, Privacy} from './components/Documents';
+import SearchBar from './components/SearchBar/SearchBar';
 
 const routes = [
     {
         path: '/',
         exact: true,
         component: App
+    },
+    {
+        path: '/search',
+        component: SearchBar
     },
     {
         path: '/blogger/signup',
@@ -36,17 +41,23 @@ const routes = [
     {
         path: '/in/blogger',
         component: InBloggerProfile,
-        title: 'Dashboard - VUZUK'
+        title: 'Dashboard - VUZUK',
+        required: true,
+        redirectURL: "/blogger/login"
     },
     {
         path: '/in/reader',
         component: InReaderProfile,
-        title: 'Dashboard - VUZUK'
+        title: 'Dashboard - VUZUK',
+        required: true,
+        redirectURL: '/reader/login'
     },
     {
         path: '/create',
         component: CreatePost,
-        title: 'Create Post - VUZUK'
+        title: 'Create Post - VUZUK',
+        required: true,
+        redirectURL: "/blogger/login"
     },
     {
         path: '/post',
