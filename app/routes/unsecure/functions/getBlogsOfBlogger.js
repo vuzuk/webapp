@@ -19,9 +19,7 @@ module.exports = (req, res) => {
             include: [{
                 model: Comment,
                 // attributes: [[sequelize.fn('count', sequelize.col('blog_id')), 'count']],
-                group: ["blog_id"],
-            }],
-            // raw: true
+            }]
         })
         .then((blogs) => {
             if (blogs.length === 0) {
