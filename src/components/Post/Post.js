@@ -103,6 +103,9 @@ class Post extends Component {
                             <Divider />
                             <div className="blog-content" dangerouslySetInnerHTML={{__html: customData.blogs[0].blog}}></div>
                             {customData.blogs[0].post_link ? <Button className="read-more" primary target="_blank" href={customData.blogs[0].post_link}>Read More</Button> : null}
+                            {customData.blogs[0].video_link ? <video width="400" src={customData.blogs[0].video_link} height="240" controls>
+                            Your browser does not support the video tag.
+                            </video> : null}
                             <hr />
                             <div className="post-tags">
                                 <span style={{opacity: 0.5, fontSize: "1.1em"}}>Tags: </span>
