@@ -8,8 +8,6 @@ const render = require(process.env.APP_ROOT+'/dist/SSR');
 
 module.exports = (req, res) => {
     let bloggerId = parseInt(req.query["bloggerId"]);
-    console.log(req.query["bloggerId"]);
-    console.log(bloggerId);
     Blog
         .findAll({
             attributes: ["id", "title", "images", "date_published", "views"],
@@ -25,8 +23,14 @@ module.exports = (req, res) => {
             if (blogs.length === 0) {
                 return res.status(400).json({status: true, msg: "blog not found"});
             }
+
+            const myblogs = blogs.map((blog) => blog.get({ plain: true }));
+            for(let i=0; i<myblogs.length; i++){
+                myblogs[i]['comments'] = myblogs[i]['comments'].length;
+            }
+
             // return render.default(req, res, {status: true, msg: blog})
-            return res.status(200).json({status: true, msg: blogs});
+            return res.status(200).json({status: true, msg: myblogs});
         })
         .catch((err) => {
             console.log(err);
