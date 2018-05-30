@@ -63,7 +63,9 @@ const webpackConfig = [{
 			compressor: {
 				unused: true,
         dead_code: true,
-        warnings: false
+        warnings: false,
+        drop_debugger: true,
+        drop_console: true
 			}
     }),
     new webpack.optimize.CommonsChunkPlugin({
@@ -84,7 +86,7 @@ const webpackConfig = [{
       jQuery: "jquery"
     }),
     new webpack.DefinePlugin({
-      __isBrowser__: false
+      __isBrowser__: true
     })
 	],
 	module: {

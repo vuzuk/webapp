@@ -59,8 +59,6 @@ class InBloggerProfile extends Component {
 
     render() {
         const {data, isActive, posts, isPostFetched, noPost} = this.state;
-        console.log(data);
-        
         const {first_name, last_name, username} = data;
         const author = `${first_name} ${last_name}`;
         
@@ -78,7 +76,7 @@ class InBloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">Matthew Stewards</div>
-                            <div className="follow-count"><a href="#">0</a> FOLLOWERS &nbsp;&nbsp; <a href="#">0</a> FOLLOWING</div>
+                            <div className="follow-count"><a href="#">0</a> FOLLOWERS  <a href="#">0</a> FOLLOWING</div>
                         </div>
                         <div className="create">
                             <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
