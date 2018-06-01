@@ -12,6 +12,9 @@ route.get('/getBlog/:bloggerName/:slug', require("./functions/getBlog"));
 route.get('/getBlogger', require("./functions/getBlogger"));
 // get blogs of blogger     req.query={bloggerId}
 route.get('/getBlogsOfBlogger', require("./functions/getBlogsOfBlogger"));
+// get blogs by category    req.param={categoryId}
+route.get('/getBlogsByCategory/:categoryId', require("./functions/getBlogsByCategory"));
+
 
 // check username   query = {username, isBlogger}
 route.get('/checkUsername', require("./functions/checkUsername"));

@@ -92,6 +92,31 @@ GET - query = {}
 localhost:3000/api/secure/generic/getProfile
 
 
+## update Blogger profile
+POST - body = {first_name, last_name, gender, twitter, instagram, facebook}
+api/secure/blogger/updateProfile
+## upload profile picture for blogger
+POST - {key: avatar}
+api/secure/blogger/upload/profilePic
+## upload cover pic for blogger
+POST - {key: avatar}
+api/secure/blogger/upload/coverPic
+
+
+## get blogs by category
+GET - params = {categoryId}
+/api/unsecure/getBlogsByCategory/:categoryId'
+## get blog
+GET - query = {blogId}
+api/unsecure/getBlog/:bloggerName/:slug
+## get blogger details 
+GET - query = {bloggerId}
+api/unsecure/getBlogger
+## get blogs of blogger     
+GET - query = {bloggerId}
+api/unsecure/getBlogsOfBlogger
+
+
 ## Remaining tasks
 update user profile
 update blogger profile
