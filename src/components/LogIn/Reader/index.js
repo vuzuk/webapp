@@ -52,7 +52,7 @@ class LogIn extends Component {
         return (
             <div className="register">
                 <Navbar />
-                    <Card stye={{width: "80%"}} fluid>
+                    <Card fluid>
                         <Card.Content>
                             <Card.Header as="h1">LOG IN</Card.Header>
                         </Card.Content>
@@ -71,7 +71,7 @@ class LogIn extends Component {
                                         <label>Password</label>
                                         <Input name="password" fluid onChange={this.handleFormText} placeholder='Password' type="password" />
                                     </Form.Field>
-                                    <Button fluid size="big" secondary type='submit' loading={isSent}>Login</Button>
+                                    <Button fluid size="big" secondary type='submit' loading={isSent}>Submit</Button>
                                 </Form>
                             </Segment>
                         </Card.Content>
