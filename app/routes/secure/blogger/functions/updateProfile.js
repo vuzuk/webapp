@@ -24,6 +24,12 @@ module.exports = (req, res) => {
     if (req.body['facebook']) {
         update['facebook'] = req.body['facebook'];
     }
+    if (req.body['dob']) {
+        update['dob'] = req.body['dob'];
+    }
+    if (req.body['contact']) {
+        update['contact'] = req.body['contact'];
+    }
 
     Blogger
         .findById(req['user']['id'])
