@@ -75,7 +75,7 @@ class InBloggerProfile extends Component {
                             <div className="edit"><a href="#">Edit Profile</a></div>
                         </div>
                         <div>
-                            <div className="username">Matthew Stewards</div>
+                            <div className="username">{author}</div>
                             <div className="follow-count"><a href="#">0</a> FOLLOWERS &nbsp;&nbsp; <a href="#">0</a> FOLLOWING</div>
                         </div>
                         <div className="create">
