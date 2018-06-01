@@ -12,7 +12,7 @@ function signout() {
 }
 
 const options = [
-  { key: 'user', text: 'Account', icon: 'user', href: "/in/blogger" },
+  { key: 'user', text: 'Account', icon: 'user', value: "account" },
   { key: 'settings', text: 'Settings', icon: 'settings', value: 'settings' },
   { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value: 'sign-out'},
 ];
@@ -34,6 +34,9 @@ export default class Navbar extends Component {
   }
 
   handleChange = (e, { name, value }) => {
+    if(value === "account") {
+      this.props.data.liking ? location.href = "/in/reader" : location.href = "/in/blogger";
+    }
     value === 'sign-out' ? signout() : null;
   }
 
