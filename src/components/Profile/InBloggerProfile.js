@@ -23,14 +23,14 @@ const chartData = {
 class InBloggerProfile extends Component {
     constructor(props) {
         super(props);
-    
         this.state = {
             isActive: "post",
-            chartData,
-            data: props.data,
             posts: [],
             isPostFetched: false,
-            noPost: false
+            noPost: false,
+            isSettings: false,
+            chartData,
+            data: props.data
         }
     }
 
@@ -58,7 +58,7 @@ class InBloggerProfile extends Component {
     }
 
     render() {
-        const {data, isActive, posts, isPostFetched, noPost} = this.state;
+        const {data, isActive, posts, isPostFetched, noPost, isSettings} = this.state;
         const {first_name, last_name, username} = data;
         const author = `${first_name} ${last_name}`;
         
