@@ -68,11 +68,17 @@ export default class Navbar extends Component {
     })
   }
 
+  signOut = () => {
+    axios.get('/api/secure/generic/logout')
+      .then(res => location.reload())
+      .catch(res => location.reload())
+  }
+
   handleChange = (e, { name, value }) => {
     if(value === "account") {
       this.state.data.liking ? location.href = "/in/reader" : location.href = "/in/blogger";
     }
-    value === 'sign-out' ? null : this.setState({isSettings: true});
+    value === 'sign-out' ? this.signOut() : this.setState({isSettings: true});
   }
 
   handleNotification = () => {

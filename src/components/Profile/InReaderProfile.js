@@ -45,8 +45,8 @@ class InReaderProfile extends Component {
                     <div className="tab" onClick={() => {this.handleChange("likes")}} style={isActive === "likes" ? {borderBottom: "4px solid #55ACEE"} : null}>LIKES</div>
                     <div className="tab" onClick={() => {this.handleChange("bookmark")}} style={isActive === "bookmark" ? {borderBottom: "4px solid #55ACEE"} : null}>BOOKMARKS</div>
                 </div>
-                <Segment basic>
-                    {isActive === "points" && <div className="points">
+                <Segment basic padded>
+                    {isActive === "points" && <div style={{marginBottom: "50px"}} className="points">
                         <Segment basic>
                         <Statistic.Group widths='five' color="blue">
                             <Statistic>
@@ -100,7 +100,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                         </Statistic.Group>
-                        <Segment>
+                        <Segment padded>
                         <List size="large" relaxed verticalAlign="middle" selection>
                             <List.Item>
                                 <Icon name="hashtag" inverted circular/>
