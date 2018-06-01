@@ -77,8 +77,9 @@ export default class Navbar extends Component {
   handleChange = (e, { name, value }) => {
     if(value === "account") {
       this.state.data.liking ? location.href = "/in/reader" : location.href = "/in/blogger";
+    } else {
+      value === 'sign-out' ? this.signOut() : this.setState({isSettings: true});
     }
-    value === 'sign-out' ? this.signOut() : this.setState({isSettings: true});
   }
 
   handleNotification = () => {
