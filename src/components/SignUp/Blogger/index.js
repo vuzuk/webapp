@@ -5,10 +5,6 @@ import { Card, Form, Input, Button } from 'semantic-ui-react'
 import axios from 'axios';
 import '../SignUp.css';
 
-const options = [
-    { key: 'm', text: 'Male', value: 'M' },
-    { key: 'f', text: 'Female', value: 'F' },
-];
 class SignUp extends Component {
     constructor(props) {
         super(props);

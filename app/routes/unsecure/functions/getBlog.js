@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     let slug = req.params["slug"];
     Blogger
         .findAll({
-            attributes: ["id", "username", "first_name", "last_name", "image"],
+            attributes: ["id", "username", "first_name", "last_name", "image", "facebook", "twitter", "instagram"],
             where: {
                 username: bloggerName,
             },

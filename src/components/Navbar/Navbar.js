@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import './Navbar.css';
 import isEmpty from '../../helpers/isEmpty';
 import {Fragment} from 'react';
+import axios from 'axios';
 
 const options = [
   { key: 'user', text: 'Account', icon: 'user', value: "account" },
@@ -11,9 +12,9 @@ const options = [
   { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value: 'sign-out'},
 ];
 
-const trigger = (
+const trigger = (profile_pic) => (
   <span>
-    <Image avatar src="https://react.semantic-ui.com/assets/images/avatar/small/matthew.png" />
+    <Image avatar src={image} />
   </span>
 )
 
@@ -21,8 +22,8 @@ export default class Navbar extends Component {
   constructor(props) {
     super(props);
 
-    const data = props.data;
-    const {first_name, last_name, username, email, contact, dob, gender, facebook, twitter, instagram} = data;
+    const data = props.data || {};
+    const {image, first_name, last_name, username, email, contact, dob, gender, facebook, twitter, instagram} = data;
 
     this.state = {
       isLogin: !isEmpty(props.data),
@@ -35,6 +36,10 @@ export default class Navbar extends Component {
       contact,
       dob, 
       gender,
+      facebook,
+      twitter,
+      instagram,
+      image,
       isSetting: false,
       isSent: false
     }
@@ -42,14 +47,39 @@ export default class Navbar extends Component {
 
   submit = (e) => {
     e.preventDefault();
-    //submit data
+    const thiss = this;
+    this.setState({isSent: true})
+    const {first_name, last_name, contact, gender, facebook, instagram, twitter, dob} = this.state;
+    const data = {first_name, last_name, contact, gender, facebook, instagram, twitter, dob};
+    axios({
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      url: '/api/secure/blogger/updateProfile',
+      data: JSON.stringify(data)
+    })
+    .then(response => {
+        location.reload();
+    })
+    .catch(error => {
+        alert("Something went wrong!!");
+        thiss.setState({isSent: false})
+    })
+  }
+
+  signOut = () => {
+    axios.get('/api/secure/generic/logout')
+      .then(res => location.reload())
+      .catch(res => location.reload())
   }
 
   handleChange = (e, { name, value }) => {
     if(value === "account") {
       this.state.data.liking ? location.href = "/in/reader" : location.href = "/in/blogger";
+    } else {
+      value === 'sign-out' ? this.signOut() : this.setState({isSettings: true});
     }
-    value === 'sign-out' ? null : this.setState({isSettings: true});
   }
 
   handleNotification = () => {
@@ -65,7 +95,7 @@ export default class Navbar extends Component {
 }
 
   render() {
-    const { facebook, twitter, instagram,isSent, isLogin, open, data, isSettings, first_name, last_name, username, email, contact, dob, gender } = this.state;
+    const { facebook, twitter, instagram,isSent, isLogin, open, data, isSettings, first_name, last_name, username, email, contact, dob, gender, image } = this.state;
 
     return (
       <div className="myNav">
@@ -123,7 +153,11 @@ export default class Navbar extends Component {
                 <Icon name='bell' size="medium"/>
             </Menu.Item>
             <Menu.Item>
-              <Dropdown onChange={this.handleChange} trigger={trigger} options={options} pointing='top right' icon={null} />
+              <Dropdown onChange={this.handleChange} trigger={
+                <span>
+                  <Image avatar src={image} />
+                </span>
+              } options={options} pointing='top right' icon={null} />
             </Menu.Item>
           </Fragment>
           }
@@ -175,15 +209,15 @@ export default class Navbar extends Component {
                     <label>Date Of Birth</label>
                     <Input value={dob} name="dob" onChange={this.handleFormText} fluid type="date" />
                 </Form.Field>
-                <Form.Field value={gender === 'M' ? "male" : "female"} name="gender" onChange={this.handleFormText} label='Gender' control='select'>
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
+                <Form.Field value={gender} name="gender" onChange={this.handleFormText} label='Gender' control='select'>
+                    <option value='M'>Male</option>
+                    <option value='F'>Female</option>
                 </Form.Field>
             </Form.Group>
             <Form.Group widths="equal">
                 <Form.Field>
                     <label>Email</label>
-                    <Input value={email} onChange={this.handleFormText} name="email" placeholder='Email' />
+                    <Input value={email} disabled onChange={this.handleFormText} name="email" placeholder='Email' />
                 </Form.Field>
                 <Form.Field>
                     <label>Facebook</label>

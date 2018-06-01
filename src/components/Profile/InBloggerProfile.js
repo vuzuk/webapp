@@ -28,10 +28,67 @@ class InBloggerProfile extends Component {
             posts: [],
             isPostFetched: false,
             noPost: false,
-            isSettings: false,
             chartData,
-            data: props.data
+            data: props.data,
+            isSent: false,
+            isCoverSent: false
         }
+    }
+
+    uploadProfile = (e) => {
+        this.setState({
+            isSent: true
+        });
+        const file = e.target.files[0];
+        console.log(file);
+        const data = new FormData();
+        data.append('avatar', file);
+        const thiss = this;
+        axios({
+            method: 'POST',
+            url: '/api/secure/blogger/upload/profilePic',
+            data: data,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+        })
+        .then(function (response) {
+            //handle success
+            location.reload();
+        })
+        .catch(function (response) {
+            //handle error
+            alert("File not supported. Only JPG/JPEG is supported")
+            thiss.setState({
+                isSent: false
+            })
+        });
+    }
+
+    uploadCover = (e) => {
+        this.setState({
+            isCoverSent: true
+        });
+        const file = e.target.files[0];
+        console.log(file);
+        const data = new FormData();
+        data.append('avatar', file);
+        const thiss = this;
+        axios({
+            method: 'POST',
+            url: '/api/secure/blogger/upload/coverPic',
+            data: data,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+        })
+        .then(function (response) {
+            //handle success
+            location.reload();
+        })
+        .catch(function (response) {
+            //handle error
+            alert("File not supported. Only JPG/JPEG is supported")
+            thiss.setState({
+                isCoverSent: false
+            })
+        });
     }
 
     componentDidMount() {
@@ -58,21 +115,24 @@ class InBloggerProfile extends Component {
     }
 
     render() {
-        const {data, isActive, posts, isPostFetched, noPost, isSettings} = this.state;
-        const {first_name, last_name, username} = data;
+        const {data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent} = this.state;
+        const {first_name, last_name, username, image: profilePic, cover_image} = data;
         const author = `${first_name} ${last_name}`;
         
         return (
             <div id="profile-page">
                 <Navbar data={data}/>
-                <Segment className="main" basic>
-                    <Button size="large" floated="right" circular icon>
-                        <Icon name="camera" />
-                    </Button>
+                <Segment style={{backgroundImage: `url(${cover_image})`}} className="main" basic>
+                    <label for="cover-upload">{isCoverSent ? "Uploading..." : "Change Cover"}</label>
+                    <input type="file" onChange={this.uploadCover} id="cover-upload"></input>
+
                     <div className="blogger-profile">
                         <div>
-                            <Image spaced="right" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular/>
-                            <div className="edit"><a href="#">Edit Profile</a></div>
+                            <Image spaced="right" src={profilePic} size='small' circular/>
+                            <div className="edit">
+                                <label for="profile-upload">{isSent ? "Uploading..." : "Change Photo"}</label>
+                                <input type="file" onChange={this.uploadProfile} id="profile-upload"></input>
+                            </div>
                         </div>
                         <div>
                             <div className="username">{author}</div>
@@ -93,7 +153,7 @@ class InBloggerProfile extends Component {
                         {isPostFetched && posts[0].id && <Grid columns={3}>
                             {posts.map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i, {author, username})}
+                                    {myCard(i, {author, username, profilePic})}
                                 </Grid.Column>
                             ))}
                         </Grid>}

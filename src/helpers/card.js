@@ -17,7 +17,7 @@ const myCard = ({
         views = "2.2K",
         comments = 0,
         slug = "#"
-    }, {author = "Matthew Stewards", username = "#"}) => {
+    }, {author = "Matthew Stewards", username = "#", profilePic = "https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg"}) => {
 
     images = images[0];
     date_published = stringifyDate(date_published);
@@ -27,7 +27,7 @@ const myCard = ({
             <Card>
                 <Card.Content extra>
                     <Label size="large" as='a' className="myHeader" href="/blogger" image>
-                    <Image avatar spaced='right' src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
+                    <Image avatar spaced='right' src={profilePic} />
                         {author}
                     </Label>
                     <Button size="tiny" primary>Follow</Button>

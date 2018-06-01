@@ -65,6 +65,8 @@ class Post extends Component {
 
     render() {
         const { isActive, data, customData } = this.state;
+        const { image, facebook, twitter, instagram } = customData;
+        
         return(
             <div>
                 <Navbar data={data} />
@@ -94,7 +96,7 @@ class Post extends Component {
                                             </Grid.Row>
                                         </Grid>
                                     </List.Content>
-                                    <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
+                                    <Image avatar src={image} />
                                     <List.Content as="a">
                                         {customData.first_name + " " + customData.last_name}
                                     </List.Content>
@@ -110,8 +112,8 @@ class Post extends Component {
                             <div className="post-tags">
                                 <span style={{opacity: 0.5, fontSize: "1.1em"}}>Tags: </span>
                                 <Label.Group tag as="a">
-                                    {customData.blogs[0].tags.map(tag => (
-                                        <Label as='a'>{tag.name}</Label>
+                                    {customData.blogs[0].tags.map((tag, i) => (
+                                        <Label key={tag + i} as='a'>{tag.name}</Label>
                                     ))}
                                 </Label.Group>
                                 <div style={{marginTop: "30px", marginBottom: "30px"}} className="sharethis-inline-share-buttons"></div>
@@ -119,15 +121,14 @@ class Post extends Component {
                             <Grid>
                                 <Grid.Row>
                                     <Grid.Column width={2}>
-                                        <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
+                                        <Image className="profile-pic" src={image} size='small' circular />
                                     </Grid.Column>
                                     <Grid.Column width={14}>
                                         <Header size='large'>{customData.first_name + " " + customData.last_name}</Header>
                                         <div>
-                                            <Icon circular name='facebook' link/>
-                                            <Icon circular name='twitter' link/>
-                                            <Icon circular name='instagram' link/>
-                                            <Icon circular name='linkedin' link/>
+                                            {facebook && <a href={facebook} target="_blank"><Icon circular name='facebook' link/></a>}
+                                            {twitter && <a href={twitter} target="_blank"><Icon circular name='twitter' link/></a>}
+                                            {instagram && <a href={instagram} target="_blank"><Icon circular name='instagram' link/></a>}
                                         </div>
                                         <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
                                         <Header.Subheader>
