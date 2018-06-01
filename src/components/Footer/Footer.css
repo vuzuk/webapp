@@ -10,8 +10,13 @@
 }
 .footer {
   background: #1b1c1d;
-  float: left;
+  /* float: left; */
   width: 100%;
+  clear: both;
+  position: relative;
+  z-index: 10;
+  height: 4em;
+  /* margin-top: -3em; */
 }
 .footer ul {
   list-style-type: none;

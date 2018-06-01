@@ -23,14 +23,14 @@ const chartData = {
 class InBloggerProfile extends Component {
     constructor(props) {
         super(props);
-    
         this.state = {
             isActive: "post",
-            chartData,
-            data: props.data,
             posts: [],
             isPostFetched: false,
-            noPost: false
+            noPost: false,
+            isSettings: false,
+            chartData,
+            data: props.data
         }
     }
 
@@ -58,7 +58,7 @@ class InBloggerProfile extends Component {
     }
 
     render() {
-        const {data, isActive, posts, isPostFetched, noPost} = this.state;
+        const {data, isActive, posts, isPostFetched, noPost, isSettings} = this.state;
         const {first_name, last_name, username} = data;
         const author = `${first_name} ${last_name}`;
         
@@ -97,8 +97,8 @@ class InBloggerProfile extends Component {
                                 </Grid.Column>
                             ))}
                         </Grid>}
-                        {!isPostFetched && !noPost && <h3 style={{textAlign: "center"}}>Loading...</h3>}
-                        {noPost && <h3 style={{textAlign: "center"}}>No Posts</h3>}
+                        {!isPostFetched && !noPost && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3>}
+                        {noPost && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>No Posts</h3>}
                     </div>
                 </Segment> }
                 {this.state.isActive === "stats" && <div className="bloggerStats" style={{width: "95%",margin: "auto", paddingTop: "20px"}}>

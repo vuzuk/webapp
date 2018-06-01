@@ -12,3 +12,8 @@
     display: inline-block !important;
     margin-right: 40px;
 }
+
+.register > .ui.card {
+    margin-top: 6%;
+    margin-bottom: 8%;
+}

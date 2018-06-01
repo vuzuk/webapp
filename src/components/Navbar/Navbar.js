@@ -1,15 +1,9 @@
 import React, { Component } from 'react'
-import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image, List } from 'semantic-ui-react'
+import { Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image, List, Form } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
 import isEmpty from '../../helpers/isEmpty';
 import {Fragment} from 'react';
-import deleteCookie from '../../helpers/deleteCookie';
-
-function signout() {
-  deleteCookie('connect.sid');
-  location.reload();
-}
 
 const options = [
   { key: 'user', text: 'Account', icon: 'user', value: "account" },
@@ -27,26 +21,52 @@ export default class Navbar extends Component {
   constructor(props) {
     super(props);
 
+    const data = props.data;
+    const {first_name, last_name, username, email, contact, dob, gender, facebook, twitter, instagram} = data;
+
     this.state = {
       isLogin: !isEmpty(props.data),
-      open: false
+      open: false,
+      data,
+      first_name,
+      last_name,
+      username,
+      email,
+      contact,
+      dob, 
+      gender,
+      isSetting: false,
+      isSent: false
     }
+  }
+
+  submit = (e) => {
+    e.preventDefault();
+    //submit data
   }
 
   handleChange = (e, { name, value }) => {
     if(value === "account") {
-      this.props.data.liking ? location.href = "/in/reader" : location.href = "/in/blogger";
+      this.state.data.liking ? location.href = "/in/reader" : location.href = "/in/blogger";
     }
-    value === 'sign-out' ? signout() : null;
+    value === 'sign-out' ? null : this.setState({isSettings: true});
   }
 
-  handleModal = () => {
+  handleNotification = () => {
     this.setState({open: !this.state.open})
   }
 
+  handleSettings = () => {
+    this.setState({isSettings: !this.state.isSettings})
+  }
+
+  handleFormText = (e) => {
+    this.setState({[e.target.name]: e.target.value});
+}
+
   render() {
-    const { isLogin, open } = this.state;
-    
+    const { facebook, twitter, instagram,isSent, isLogin, open, data, isSettings, first_name, last_name, username, email, contact, dob, gender } = this.state;
+
     return (
       <div className="myNav">
         <Menu id={classNames('navbar')} inverted borderless fluid>
@@ -99,7 +119,7 @@ export default class Navbar extends Component {
           }
           {isLogin &&
           <Fragment>
-            <Menu.Item href="#" onClick={this.handleModal}>
+            <Menu.Item href="#" onClick={this.handleNotification}>
                 <Icon name='bell' size="medium"/>
             </Menu.Item>
             <Menu.Item>
@@ -109,7 +129,7 @@ export default class Navbar extends Component {
           }
           </Menu.Menu>
         </Menu>
-        <Modal size="fullscreen" open={open} onClose={this.handleModal}>
+        <Modal size="fullscreen" open={open} onClose={this.handleNotification}>
             <Modal.Header>
                 Notifications
             </Modal.Header>
@@ -123,6 +143,66 @@ export default class Navbar extends Component {
                 </List.Item>
             </List>
             </Modal.Content>
+        </Modal>
+        <Modal size="fullscreen" open={isSettings} onClose={this.handleSettings}>
+          <Modal.Header>
+            Edit Profile
+          </Modal.Header>
+          <Modal.Content>
+            <Form onSubmit={this.submit}>
+            <Form.Group widths='equal'>
+                <Form.Field>
+                    <label>First name</label>
+                    <Input value={first_name} name="first_name" onChange={this.handleFormText} fluid placeholder='First name' />
+                </Form.Field>
+                <Form.Field>
+                    <label>Last name</label>
+                    <Input value={last_name} name="last_name" onChange={this.handleFormText} fluid placeholder='Last name' />
+                </Form.Field>
+            </Form.Group>
+            <Form.Group widths='equal'>
+                <Form.Field>
+                    <label>Username</label>
+                    <Input value={username} name="username" disabled onChange={this.handleFormText} fluid placeholder='Username' />
+                </Form.Field>
+                <Form.Field>
+                    <label>Phone No</label>
+                    <Input value={contact} name="contact" onChange={this.handleFormText} fluid placeholder='Phone No.' />
+                </Form.Field>
+            </Form.Group>
+            <Form.Group widths='equal'>
+                <Form.Field>
+                    <label>Date Of Birth</label>
+                    <Input value={dob} name="dob" onChange={this.handleFormText} fluid type="date" />
+                </Form.Field>
+                <Form.Field value={gender === 'M' ? "male" : "female"} name="gender" onChange={this.handleFormText} label='Gender' control='select'>
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                </Form.Field>
+            </Form.Group>
+            <Form.Group widths="equal">
+                <Form.Field>
+                    <label>Email</label>
+                    <Input value={email} onChange={this.handleFormText} name="email" placeholder='Email' />
+                </Form.Field>
+                <Form.Field>
+                    <label>Facebook</label>
+                    <Input value={facebook} onChange={this.handleFormText} name="facebook" placeholder='Facebook' />
+                </Form.Field>
+            </Form.Group>
+            <Form.Group widths="equal">
+                <Form.Field>
+                    <label>Twitter</label>
+                    <Input value={twitter} onChange={this.handleFormText} name="twitter" placeholder='Twitter' />
+                </Form.Field>
+                <Form.Field>
+                    <label>Instagram</label>
+                    <Input value={instagram} onChange={this.handleFormText} name="instagram" placeholder='Instagram' />
+                </Form.Field>
+            </Form.Group>
+            <Button type='submit' loading={isSent} fluid primary>Submit</Button>
+            </Form>
+          </Modal.Content>
         </Modal>
       </div>
     )
