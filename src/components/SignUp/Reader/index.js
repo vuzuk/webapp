@@ -125,7 +125,7 @@ class SignUp extends Component {
                                         <label>Email (for Newsletter)</label>
                                         <Input onChange={this.handleFormText} name="email" fluid placeholder='Email' />
                                     </Form.Field>
-                                    <Form.Checkbox label='I agree to the Terms and Conditions' />
+                                    <Form.Checkbox label={<label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>} />
                                     <Button loading={isSent} disabled={disabled} fluid size="big" secondary type='submit'>Submit</Button>
                                 </Form>
                             </Segment>

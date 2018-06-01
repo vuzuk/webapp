@@ -97,8 +97,8 @@ class InBloggerProfile extends Component {
                                 </Grid.Column>
                             ))}
                         </Grid>}
-                        {!isPostFetched && !noPost && <h3 style={{textAlign: "center"}}>Loading...</h3>}
-                        {noPost && <h3 style={{textAlign: "center"}}>No Posts</h3>}
+                        {!isPostFetched && !noPost && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3>}
+                        {noPost && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>No Posts</h3>}
                     </div>
                 </Segment> }
                 {this.state.isActive === "stats" && <div className="bloggerStats" style={{width: "95%",margin: "auto", paddingTop: "20px"}}>
