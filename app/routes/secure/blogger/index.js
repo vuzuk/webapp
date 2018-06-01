@@ -3,11 +3,11 @@ const route = Router();
 const multer = require("multer");
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, process.env.APP_ROOT + "/app/db/uploads/images/blogs")
+        cb(null, process.env.APP_ROOT + "/app/db/uploads/images/bloggers")
     },
     filename: function (req, file, cb) {
         let exten = file.originalname.split(".").pop();
-        cb(null, req.body["blogId"] + exten);
+        cb(null, "" + req.user.id + exten);
     }
 });
 const upload = multer({storage: storage});
@@ -55,9 +55,11 @@ route.get('/tempDeleteBlog', require('./functions/tempDeleteBlog'));
 //undo delete a blog   query = {blogId}
 route.get('/undoDeleteBlog', require('./functions/undoDeleteBlog'));
 
-// **** DISABLED ****
-//upload pics for blog      body = {blogId}
-// route.post('/upload/blogPic', upload.single('avatar'), require("./functions/uploadBlogPic"));
+//update Blogger profile
+route.post('/updateProfile', require("./functions/updateProfile"));
+
+// upload pics for blogger
+route.post('/upload/profilePic', upload.single('avatar'), require("./functions/uploadProfilePic"));
 
 const FroalaEditor = require(process.env.APP_ROOT + '/externals/wysiwyg-editor/lib/froalaEditor.js');
 route.post('/froala_upload', (req, res) => {

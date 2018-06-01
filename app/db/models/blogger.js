@@ -119,6 +119,18 @@ module.exports = (sequelize, DataTypes) => {
                 isInt: true
             }
         },
+        linkedIn: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        instagram: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        facebook: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
     }, {
         underscored: true,
         indexes: [{

@@ -1,18 +1,18 @@
 const models = process.env.APP_ROOT;
-const Blog = models.blog;
+const Blogger = models['blogger'];
 
 module.exports = (req, res) => {
     // req.file is the `avatar` file
     // req.body will hold the text fields, if there were any
-    Blog
-        .findById(req.body.blogId)
-        .then(blog => {
-            if (!blog) {
-                return res.status(404).json({status: false, msg: "blog not found"});
+    Blogger
+        .findById(req.user.id)
+        .then(blogger => {
+            if (!blogger) {
+                return res.status(404).json({status: false, msg: "blogger not found"});
             }
-            blog
+            blogger
                 .update({
-                    images: JSON.stringify(["/images/blogs/"+req.file.fileName])
+                    images: "/images/bloggers/"+req.file.fileName
                 },{
                     logging: false
                 })
