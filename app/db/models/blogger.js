@@ -80,6 +80,14 @@ module.exports = (sequelize, DataTypes) => {
                 notEmpty: true,
             }
         },
+        cover_image: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: '/images/bloggers/defaultCover.jpg',
+            validate: {
+                notEmpty: true,
+            }
+        },
         category: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -119,7 +127,7 @@ module.exports = (sequelize, DataTypes) => {
                 isInt: true
             }
         },
-        linkedIn: {
+        twitter: {
             type: DataTypes.STRING,
             allowNull: true
         },

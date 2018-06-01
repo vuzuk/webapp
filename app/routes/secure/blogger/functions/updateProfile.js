@@ -3,7 +3,7 @@ const Op = Sequelize.Op;
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blogger = models["blogger"];
 
-// body = {first_name, last_name, category, gender, linkedIn, instagram, facebook}
+// body = {first_name, last_name, gender, twitter, instagram, facebook}
 module.exports = (req, res) => {
     let update = {};
     if (req.body['first_name']) {
@@ -12,14 +12,11 @@ module.exports = (req, res) => {
     if (req.body['last_name']) {
         update['last_name'] = req.body['last_name'];
     }
-    if (req.body['category']) {
-        update['category'] = req.body['category'];
-    }
     if (req.body['gender']) {
         update['gender'] = req.body['gender'];
     }
-    if (req.body['linkedIn']) {
-        update['linkedIn'] = req.body['linkedIn'];
+    if (req.body['twitter']) {
+        update['twitter'] = req.body['twitter'];
     }
     if (req.body['instagram']) {
         update['instagram'] = req.body['instagram'];

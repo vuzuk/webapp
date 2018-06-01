@@ -7,10 +7,28 @@ const storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         let exten = file.originalname.split(".").pop();
-        cb(null, "" + req.user.id + exten);
+        if(req.path === "/upload/coverPic"){
+            return cb(null, "" + req.user.id + "Cover." + exten);
+        }
+        return cb(null, "" + req.user.id + "." + exten);
     }
 });
-const upload = multer({storage: storage});
+const upload = multer({
+    storage: storage,
+    limits:{
+        fileSize: 1024*1024*4   // 4 MB (1024*1024*4 bytes)
+    },
+    fileFilter: (req, file, cb) => {
+        if(!file.mimetype){
+            return cb("unknown file type");
+        }
+        if(file.mimetype !== 'image/jpeg'){
+            return cb(null, false)
+        }
+
+        return cb(null, true);
+    }
+});
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blogger = models["blogger"];
 
@@ -26,8 +44,8 @@ route.use(function (req, res, next) {
 route.get('/getDetails', function (req, res) {
     Blogger
         .findAll({
-            attributes: ["id","username","email","contact","isEmailVerified","isContactVerified","first_name",
-                "last_name","image","category","dob","gender","points"],
+            attributes: ["id", "username", "email", "contact", "isEmailVerified", "isContactVerified", "first_name",
+                "last_name", "image", "category", "dob", "gender", "points"],
             where: {
                 id: req.user.id
             },
@@ -55,11 +73,14 @@ route.get('/tempDeleteBlog', require('./functions/tempDeleteBlog'));
 //undo delete a blog   query = {blogId}
 route.get('/undoDeleteBlog', require('./functions/undoDeleteBlog'));
 
-//update Blogger profile
-route.post('/updateProfile', require("./functions/updateProfile"));
 
-// upload pics for blogger
+//update Blogger profile
+// body = {first_name, last_name, gender, twitter, instagram, facebook}
+route.post('/updateProfile', require("./functions/updateProfile"));
+// upload profile picture for blogger
 route.post('/upload/profilePic', upload.single('avatar'), require("./functions/uploadProfilePic"));
+// upload cover pic for blogger
+route.post('/upload/coverPic', upload.single('avatar'), require("./functions/uploadCoverPic"));
 
 const FroalaEditor = require(process.env.APP_ROOT + '/externals/wysiwyg-editor/lib/froalaEditor.js');
 route.post('/froala_upload', (req, res) => {

@@ -21,4 +21,10 @@ route.get('/toggleCommentLike', require("./functions/toggleCommentLike"));
 // get profile
 route.get('/getProfile', require("./functions/getProfile"));
 
+// logout
+route.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
+
 module.exports = route;

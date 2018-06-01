@@ -30,12 +30,12 @@ module.exports = (req, res) => {
                 }
                 blogger
                     .update({
-                        image: "/images/bloggers/"+req.file['filename']
+                        cover_image: "/images/bloggers/"+req.file['filename']
                     },{
                         logging: false
                     })
                     .then(() => {
-                        return res.status(200).json({status: true, msg: "image upload successfully"});
+                        return res.status(200).json({status: true, msg: "cover image upload successfully"});
                     })
                     .catch((err) => {
                         console.log(err);
