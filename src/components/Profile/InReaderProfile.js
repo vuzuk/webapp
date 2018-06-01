@@ -22,6 +22,9 @@ class InReaderProfile extends Component {
 
     render() {
         const {isActive, data} = this.state;
+        const {first_name, last_name, username} = data;
+        const author = `${first_name} ${last_name}`;
+
         return (
             <div id="profile-page">
                 <Navbar data={data}/>
@@ -31,7 +34,7 @@ class InReaderProfile extends Component {
                             <Image spaced="right" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular/>
                         </div>
                         <div>
-                            <div className="username">Matthew Stewards</div>
+                            <div className="username">{author}</div>
                             <div className="edit" style={{float: "left"}}><a href="#">Edit Profile</a></div>
                             {/* <div className="follow-count">0 FOLLOWERS &nbsp;&nbsp; 0 FOLLOWING</div> */}
                         </div>
@@ -47,7 +50,7 @@ class InReaderProfile extends Component {
                         <Segment basic>
                         <Statistic.Group widths='five' color="blue">
                             <Statistic>
-                            <Statistic.Value>60</Statistic.Value>
+                            <Statistic.Value>0</Statistic.Value>
                             <Statistic.Label className="info">
                                 View Points
                                 <Popup
@@ -58,7 +61,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>42</Statistic.Value>
+                            <Statistic.Value>0</Statistic.Value>
                             <Statistic.Label className="info">
                                 Comment Points
                                 <Popup
@@ -69,7 +72,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>38</Statistic.Value>
+                            <Statistic.Value>0</Statistic.Value>
                             <Statistic.Label className="info">
                                 Share Points
                                 <Popup
@@ -80,7 +83,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>20</Statistic.Value>
+                            <Statistic.Value>0</Statistic.Value>
                             <Statistic.Label  className="info">
                                 Referral Points
                                 <Popup
@@ -91,7 +94,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>160</Statistic.Value>
+                            <Statistic.Value>0</Statistic.Value>
                             <Statistic.Label  className="info">
                                 Total Points
                             </Statistic.Label>
@@ -100,27 +103,9 @@ class InReaderProfile extends Component {
                         <Segment>
                         <List size="large" relaxed verticalAlign="middle" selection>
                             <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
-                            <List.Content>
-                                <List.Description><b><a href="#">Rachel</a></b> started following <a><b>Varun</b></a> just now.</List.Description>
-                            </List.Content>
-                            </List.Item>
-                            <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matthew.png' />
-                            <List.Content>
-                                <List.Description><b><a href="#">Jake Archibald</a></b> shared a new post <a><b>How Bitcoin mining works</b></a></List.Description>
-                            </List.Content>
-                            </List.Item>
-                            <List.Item>
                                 <Icon name="hashtag" inverted circular/>
                             <List.Content>
-                                <List.Description>10 new posts labeled <a><b>ethnic</b></a> published since you last visited.</List.Description>
-                            </List.Content>
-                            </List.Item>
-                            <List.Item>
-                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/rachel.png' />
-                            <List.Content>
-                                <List.Description><b><a href="#">Rachel</a></b> started following <a><b>Varun</b></a> just now.</List.Description>
+                                <List.Description>Welcome to <a><b>VUZUK</b></a></List.Description>
                             </List.Content>
                             </List.Item>
                         </List>
@@ -131,7 +116,7 @@ class InReaderProfile extends Component {
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i)}
+                                    {myCard(i,{})}
                                 </Grid.Column>
                             ))}
                         </Grid>

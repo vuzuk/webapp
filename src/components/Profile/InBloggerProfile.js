@@ -29,11 +29,12 @@ class InBloggerProfile extends Component {
             chartData,
             data: props.data,
             posts: [],
-            isPostFetched: false
+            isPostFetched: false,
+            noPost: false
         }
     }
 
-    componentWillMount = () => {
+    componentDidMount() {
         const thiss = this;
         axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
             .then(({data}) => {
@@ -46,7 +47,9 @@ class InBloggerProfile extends Component {
             })
             .catch(err => {
                 console.log(err);
-                
+                thiss.setState({
+                    noPost: true
+                })
             })
     }
 
@@ -55,8 +58,8 @@ class InBloggerProfile extends Component {
     }
 
     render() {
-        const {data, isActive, posts, isPostFetched} = this.state;
-        const {first_name, last_name} = data;
+        const {data, isActive, posts, isPostFetched, noPost} = this.state;
+        const {first_name, last_name, username} = data;
         const author = `${first_name} ${last_name}`;
         
         return (
@@ -72,7 +75,7 @@ class InBloggerProfile extends Component {
                             <div className="edit"><a href="#">Edit Profile</a></div>
                         </div>
                         <div>
-                            <div className="username">Matthew Stewards</div>
+                            <div className="username">{author}</div>
                             <div className="follow-count"><a href="#">0</a> FOLLOWERS &nbsp;&nbsp; <a href="#">0</a> FOLLOWING</div>
                         </div>
                         <div className="create">
@@ -90,12 +93,12 @@ class InBloggerProfile extends Component {
                         {isPostFetched && posts[0].id && <Grid columns={3}>
                             {posts.map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i, author)}
+                                    {myCard(i, {author, username})}
                                 </Grid.Column>
                             ))}
                         </Grid>}
-                        {!isPostFetched && <h3 style={{textAlign: "center"}}>Loading...</h3>}
-                        {isPostFetched && !posts[0].id && <h3 style={{textAlign: "center"}}>No Posts</h3>}
+                        {!isPostFetched && !noPost && <h3 style={{textAlign: "center"}}>Loading...</h3>}
+                        {noPost && <h3 style={{textAlign: "center"}}>No Posts</h3>}
                     </div>
                 </Segment> }
                 {this.state.isActive === "stats" && <div className="bloggerStats" style={{width: "95%",margin: "auto", paddingTop: "20px"}}>

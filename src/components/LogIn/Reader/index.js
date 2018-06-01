@@ -8,6 +8,12 @@ const options = [
     { key: 'f', text: 'Female', value: 'F' },
 ];
 class LogIn extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSent: false
+        }
+    }
 
     handleFormText = (e) => {
         this.setState({[e.target.name]: e.target.value});
@@ -15,8 +21,11 @@ class LogIn extends Component {
 
     submit = (e) => {
         e.preventDefault();
+        this.setState({
+            isSent: true
+        })
         const data = this.state;
-        data.isBlogger = "true";
+        data.isBlogger = "false";
         console.log(data);
         axios({
             method: 'POST',
@@ -27,14 +36,19 @@ class LogIn extends Component {
             data: JSON.stringify(data)
         })
         .then(response => {
-            console.log(response);
+            location.href = "/in/reader"
         })
         .catch(error => {
-            console.log(error);
+            alert("Wrong credentials");
+            this.setState({
+                isSent: false
+            })
         })
     }
 
     render() {
+        const { isSent } = this.state;
+
         return (
             <div className="register">
                 <Navbar />
@@ -57,7 +71,7 @@ class LogIn extends Component {
                                         <label>Password</label>
                                         <Input name="password" fluid onChange={this.handleFormText} placeholder='Password' type="password" />
                                     </Form.Field>
-                                    <Button fluid size="big" secondary type='submit'>Login</Button>
+                                    <Button fluid size="big" secondary type='submit' loading={isSent}>Login</Button>
                                 </Form>
                             </Segment>
                         </Card.Content>

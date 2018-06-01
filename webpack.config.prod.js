@@ -60,13 +60,11 @@ const webpackConfig = [{
 			}
     }),
 		new webpack.optimize.UglifyJsPlugin({
-			compressor: {
-				unused: true,
-        dead_code: true,
-        warnings: false,
-        drop_debugger: true,
+      compress: {
         drop_console: true
-			}
+      },
+      minimize: true,
+      exclude: /bundle\.js$/,
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
@@ -86,7 +84,7 @@ const webpackConfig = [{
       jQuery: "jquery"
     }),
     new webpack.DefinePlugin({
-      __isBrowser__: false
+      __isBrowser__: true
     })
 	],
 	module: {

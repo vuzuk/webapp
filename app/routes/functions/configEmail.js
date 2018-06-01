@@ -6,7 +6,7 @@ var sesTransport = require('nodemailer-ses-transport');
 let transporter = nodemailer.createTransport(sesTransport({
     accessKeyId: process.env.ADMIN_EMAIL_USER,
     secretAccessKey: process.env.ADMIN_EMAIL_PASS,
-    rateLimit: 5
+    rateLimit: 14
 }));
 
 module.exports = transporter;

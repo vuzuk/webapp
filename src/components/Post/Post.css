@@ -12,6 +12,11 @@
 
 .post-tags {
     padding-left: 20px;
+    margin-top: 20px;
+}
+
+.read-more {
+    display: block !important;
 }
 
 .topics .content {
@@ -24,4 +29,10 @@
 
 .topics .header {
     margin-bottom: 18px !important;
+}
+
+.post-img {
+    max-width: 600px;
+    margin: auto;
+    display: block;
 }

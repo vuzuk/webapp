@@ -4,11 +4,17 @@ import classNames from 'classnames';
 import './Navbar.css';
 import isEmpty from '../../helpers/isEmpty';
 import {Fragment} from 'react';
+import deleteCookie from '../../helpers/deleteCookie';
+
+function signout() {
+  deleteCookie('connect.sid');
+  location.reload();
+}
 
 const options = [
-  { key: 'user', text: 'Account', icon: 'user', href: "/in/blogger" },
-  { key: 'settings', text: 'Settings', icon: 'settings' },
-  { key: 'sign-out', text: 'Sign Out', icon: 'sign out' },
+  { key: 'user', text: 'Account', icon: 'user', value: "account" },
+  { key: 'settings', text: 'Settings', icon: 'settings', value: 'settings' },
+  { key: 'sign-out', text: 'Sign Out', icon: 'sign out', value: 'sign-out'},
 ];
 
 const trigger = (
@@ -25,6 +31,13 @@ export default class Navbar extends Component {
       isLogin: !isEmpty(props.data),
       open: false
     }
+  }
+
+  handleChange = (e, { name, value }) => {
+    if(value === "account") {
+      this.props.data.liking ? location.href = "/in/reader" : location.href = "/in/blogger";
+    }
+    value === 'sign-out' ? signout() : null;
   }
 
   handleModal = () => {
@@ -90,7 +103,7 @@ export default class Navbar extends Component {
                 <Icon name='bell' size="medium"/>
             </Menu.Item>
             <Menu.Item>
-              <Dropdown trigger={trigger} options={options} pointing='top right' icon={null} />
+              <Dropdown onChange={this.handleChange} trigger={trigger} options={options} pointing='top right' icon={null} />
             </Menu.Item>
           </Fragment>
           }

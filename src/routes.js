@@ -8,6 +8,9 @@ import Post from './components/Post/Post';
 import { Terms, Disclaimer, Privacy} from './components/Documents';
 import SearchBar from './components/SearchBar/SearchBar';
 
+//api
+import { fetchPost } from './api';
+
 const routes = [
     {
         path: '/',
@@ -60,9 +63,14 @@ const routes = [
         redirectURL: "/blogger/login"
     },
     {
-        path: '/post',
+        path: '/post/:bloggerName/:slug',
         component: Post,
-        title: 'Post - VUZUK'
+        title: 'Post - VUZUK',
+        fetchInitialData: (path) => {            
+            const bloggerName = path[2];
+            const slug = path[3];            
+            return fetchPost(bloggerName, slug);
+        }
     },
     {
         path: '/blogger',

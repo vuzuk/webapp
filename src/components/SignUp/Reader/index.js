@@ -13,30 +13,45 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gender: "male"
+            gender: "male",
+            disabled: false,
+            isSent: false,
+            isAgreed: true,
         }
     }
 
     submit = (e) => {
         e.preventDefault();
-        const data = this.state;
-        if(data.password === data.cpassword) {
+        this.setState({
+            isSent: true
+        })
+        const thiss = this;
+        const data = {...this.state};
+        if(data.password === data.cpassword && data.isAgreed) {
             delete data.cpassword;
-            data.isBlogger = "true";
+            data.isBlogger = "false";
             console.log(data);
             axios({
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                url: '/api/auth/local/signup',
+                url: '/api/auth/local/signUp',
                 data: JSON.stringify(data)
             })
             .then(response => {
-                console.log(response);
+                alert("We've sent you an email containing a link to complete the registration process. Make sure to check your Spam folder too.");
+                thiss.setState({
+                    disabled: true
+                })
             })
             .catch(error => {
-                console.log(error);
+                alert("Some fields are missing");
+            })
+            .finally(() => {
+                console.log("finally");
+                
+                thiss.setState({isSent: false})
             })
         } else if(data.password !== data.cpassword) {
             alert("Password not matched");
@@ -51,6 +66,7 @@ class SignUp extends Component {
     }
 
     render() {
+        const { disabled, isSent } = this.state;
         return (
             <div className="register">
                 <Navbar />
@@ -110,7 +126,7 @@ class SignUp extends Component {
                                         <Input onChange={this.handleFormText} name="email" fluid placeholder='Email' />
                                     </Form.Field>
                                     <Form.Checkbox label='I agree to the Terms and Conditions' />
-                                    <Button fluid size="big" secondary type='submit'>Submit</Button>
+                                    <Button loading={isSent} disabled={disabled} fluid size="big" secondary type='submit'>Submit</Button>
                                 </Form>
                             </Segment>
                         </Card.Content>

@@ -2,7 +2,8 @@ const Op = require("sequelize").Op;
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blog = models["blog"];
 const Blogger = models["blogger"];
-const render = require(process.env.APP_ROOT + '/dist/SSR');
+const Tag = models["tag"];
+const Comment = models["comment"]
 
 module.exports = (req, res) => {
     let bloggerName = req.params["bloggerName"];
@@ -18,6 +19,12 @@ module.exports = (req, res) => {
                 where: {
                     slug: slug
                 },
+                include: [{
+                    model: Tag,
+                    attributes: ["name"]
+                },{
+                    model: Comment
+                }],
                 attributes: ["id", "title", "blog", "images", "date_published", "created_at",
                     "views", "post_link", "video_link", "place"]
             }],
@@ -42,13 +49,12 @@ module.exports = (req, res) => {
                 }
                 // console.log(key)
 
-                let img = value.replace(`@@${key}@@`,`<img src="${blogOnly['images'][key]}" alt="Image">`)
+                let img = value.replace(`@@${key}@@`,`<img class="post-img" src="${blogOnly['images'][key]}" alt="Image">`)
                 value = img;
             }
 
             blogOnly['blog'] = value;
 
-            // return render.default(req, res, {status: true, msg: blog})
             return res.status(200).json({status: true, msg: blog});
         })
         .catch((err) => {

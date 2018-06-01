@@ -24,6 +24,7 @@ class SignUp extends Component {
             isBlogger: "true",
             isSent: false,
             isAgreed: true,
+            disabled: false,
             categories: {
                 food: false,
                 travel: false,
@@ -66,7 +67,10 @@ class SignUp extends Component {
                 data: JSON.stringify(data)
             })
             .then(response => {
-                alert("We've sent you an email containing a link to complete the registration process.")
+                alert("We've sent you an email containing a link to complete the registration process. Make sure to check your Spam folder too.");
+                thiss.setState({
+                    disabled: true
+                })
             })
             .catch(error => {
                 alert("Some fields are missing");
@@ -88,7 +92,7 @@ class SignUp extends Component {
     }
 
     render() {
-        const { isSent, isAgreed } = this.state;
+        const { isSent, isAgreed, disabled } = this.state;
         return (
             <div className="register">
                 <Navbar />
@@ -156,7 +160,7 @@ class SignUp extends Component {
                                             isAgreed: !this.state.isAgreed
                                         })
                                     }} label={<label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>} />
-                                <Button type='submit' loading={isSent} fluid primary>Submit</Button>
+                                <Button type='submit' disabled={disabled} loading={isSent} fluid primary>Submit</Button>
                             </Form>
                         </Card.Content>
                     </Card>

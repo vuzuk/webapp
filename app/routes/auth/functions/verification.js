@@ -25,19 +25,17 @@ module.exports = (mailTransporter) => {
             })
             .then(obj => {
                 if (obj.length === 0) {
-                    return res.redirect('/blogger/login');
+                    return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
                 }
                 obj[0]
                     .update({
                         isEmailVerified: true,
                         emailVerifKey: null
                     })
-                    .then(() => {
-                        if (!isBlogger) {
-                            return res.redirect('/blogger/login')                        }
+                    .then(() => {                        
                         // return res.redirect('/verify/phone/?isBlogger=true');
                         // *************** BYPASSING PHONE VERIFICATION OF BLOGGER ***************
-                        return res.redirect('/blogger/login')
+                        return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
                     })
                     .catch((err) => {
                         console.log(err);

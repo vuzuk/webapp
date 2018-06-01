@@ -2,28 +2,9 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import myCard from '../../helpers/card';
+import { stringifyDate } from '../../helpers/stringifyDate';
 import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form, Label, Segment } from 'semantic-ui-react';
 import './Post.css';
-
-const post = `<div><img style="display: block; margin: auto; width: 80%" src="https://assets.pcmag.com/media/images/566167-best-android-apps.jpg?thumb=y&amp;width=810&amp;height=456"></div>
-<p><i>Disclaimers: These are my own personal opinions. A lot of them are probably wrong. I do not speak for my employer (Grab!). Take all this with a healthy grain of salt. In fact, don’t even read it.</i></p>
-<p>Here I am, writing a Medium post while on a plane to Jakarta again. This is getting to be a habit.</p>
-
-<p>I’m still not 100% sure why my “Why I Left Google” post got so much attention. I basically said, “I’m some random dude changing jobs, blah blah blah”, more or less verbatim. Somehow it was translated into like 80 languages and was surpassed that day only by Natalie Portman’s sex column — which to be fair was a lot more interesting.
-
-So it was a slow news week, I guess. Or maybe it took off because Medium reaches a lot of people? It’s a great platform. Back in my blogging days, I used to wish Google would create an innovative product just like this one, but… well, you know.</p>
-
-<p>In any case, my post garnered some interesting responses. A guy somewhere in Pakistan offered to buy me a beer if I ever happened to be in town. Someone in London offered me a thousand bucks to talk on the phone for an hour about voice search markets or some such garbo, which I politely declined because I do not actually know any useful facts about anything. A Russian guy even came up to me at a party and told me, “You heff many enemies”. Fun times.
-
-There also was a lot of misunderstanding about the core message, with people asking “Hey, isn’t this just ride hailing?” I tried to paint a picture that was bigger than that, but it flew over a lot of heads, so I guess I didn’t do a very good job of it. I’ll try to revisit it at some point and see if I can do better.
-
-But not today.</p><p>No, today I’m going to talk a little about Android: Just my own personal take on it, as an outsider and hobbyist Android/iOS developer. And since everyone knows you can’t catch lightning in a bottle twice in a row, it’s safe to assume that this post won’t go viral. Today it’s just me and you.
-
-Android has been on my mind because we’re trying to hire mobile developers, which you’d think would be a straightforward task. But it turns out they’re the hottest commodity on the market right now. Grab needs them, everyone needs them, and there aren’t enough to go around. It’s like trying to catch unicorns.
-
-Why does everyone need mobile devs? Because the web is slowly dying. I have friends — well, probably ex-friends now — in just about every org at Google, who used to point me at their gloomy graphs, and it doesn’t matter how you slice it, the web’s in a steady decline as the whole world moves to mobile. Heck, you probably remember Facebook going through its transition from web-first to mobile-first, what, maybe 8 or 9 years ago? Facebook almost kicked the bucket. I mean not overnight, but the company went through an existential crisis when they realized that they had to become a mobile company or face oblivion.
-
-They managed, but it sure as hell wasn’t easy, because Android’s dev stack is the world’s biggest poo sandwich.</p>`
 
 const users = [
     {
@@ -63,7 +44,8 @@ class Post extends Component {
         super(props);
         this.state = {
             isActive: 'popular',
-            data: props.data
+            data: props.data,
+            customData: props.customData
         }
     }
 
@@ -75,14 +57,14 @@ class Post extends Component {
         return e.map(i => {
             return(
                 <Grid.Column key={i}>
-                    {myCard(i,"Matthew")}
+                    {myCard(i,{author: "Matthew"})}
                 </Grid.Column>
             )
         })
     }
 
     render() {
-        const { isActive, data } = this.state;
+        const { isActive, data, customData } = this.state;
         return(
             <div>
                 <Navbar data={data} />
@@ -90,9 +72,9 @@ class Post extends Component {
                     <Grid divided>
                         <Grid.Column width={11}>
                             <Header as="h1">
-                                Who will steal Android from Google?
+                                {customData.blogs[0].title}
                                 <Header.Subheader>
-                                    January 10, 2018
+                                    {stringifyDate(customData.blogs[0]["date_published"])}
                                 </Header.Subheader>
                             </Header>
                             <List verticalAlign='middle' size="big">
@@ -101,32 +83,36 @@ class Post extends Component {
                                         <Grid columns='equal' padded>
                                             <Grid.Row textAlign='center'>
                                                 <Grid.Column as="a">
-                                                    <Icon name="unhide" /> 234
+                                                    <Icon name="unhide" /> {customData.blogs[0].views}
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
-                                                    <Icon name="heart" /> 663
+                                                    <Icon name="heart" /> 0
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
-                                                    <Icon name="comments" /> 245
+                                                    <Icon name="comments" /> {customData.blogs[0].comments.length}
                                                 </Grid.Column>
                                             </Grid.Row>
                                         </Grid>
                                     </List.Content>
                                     <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
                                     <List.Content as="a">
-                                        Matthew Stewards
+                                        {customData.first_name + " " + customData.last_name}
                                     </List.Content>
                                 </List.Item>
                             </List>
                             <Divider />
-                            <div className="blog-content" dangerouslySetInnerHTML={{__html: post}}></div>
+                            <div className="blog-content" dangerouslySetInnerHTML={{__html: customData.blogs[0].blog}}></div>
+                            {customData.blogs[0].post_link ? <Button className="read-more" primary target="_blank" href={customData.blogs[0].post_link}>Read More</Button> : null}
+                            {customData.blogs[0].video_link ? <video width="400" src={customData.blogs[0].video_link} height="240" controls>
+                            Your browser does not support the video tag.
+                            </video> : null}
+                            <hr />
                             <div className="post-tags">
                                 <span style={{opacity: 0.5, fontSize: "1.1em"}}>Tags: </span>
                                 <Label.Group tag as="a">
-                                    <Label as='a'>Android</Label>
-                                    <Label as='a'>Linux</Label>
-                                    <Label as='a'>Tech</Label>
-                                    <Label as='a'>Google</Label>
+                                    {customData.blogs[0].tags.map(tag => (
+                                        <Label as='a'>{tag.name}</Label>
+                                    ))}
                                 </Label.Group>
                                 <div style={{marginTop: "30px", marginBottom: "30px"}} className="sharethis-inline-share-buttons"></div>
                             </div>
@@ -136,7 +122,7 @@ class Post extends Component {
                                         <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
                                     </Grid.Column>
                                     <Grid.Column width={14}>
-                                        <Header size='large'>Matthew Stewards</Header>
+                                        <Header size='large'>{customData.first_name + " " + customData.last_name}</Header>
                                         <div>
                                             <Icon circular name='facebook' link/>
                                             <Icon circular name='twitter' link/>
