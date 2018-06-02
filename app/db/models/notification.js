@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER.UNSIGNED,
             defaultValue: null
         },
+        b_user_id: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            defaultValue: null
+        },
         seen: {
             type: DataTypes.BOOLEAN,
             defaultValue: false,

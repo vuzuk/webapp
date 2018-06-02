@@ -49,6 +49,9 @@ route.get('/deleteComment', require("./functions/deleteComment"));
 // like comment on a blog    query = {commentId}
 route.get('/toggleCommentLike', require("./functions/toggleCommentLike"));
 
+// share a blog    query = {}
+route.get('/share', require("./functions/share"));
+
 // get profile      req.query = {}
 route.get('/getProfile', require("./functions/getProfile"));
 //update profile        body = {first_name, last_name, gender, twitter, instagram, facebook, dob, contact}
@@ -57,6 +60,14 @@ route.post('/updateProfile', require("./functions/updateProfile"));
 route.post('/upload/profilePic', upload.single('avatar'), require("./functions/uploadProfilePic"));
 // upload cover pic
 route.post('/upload/coverPic', upload.single('avatar'), require("./functions/uploadCoverPic"));
+
+
+//user following a blogger      query = {bloggerId}
+route.get('/toggleFollowBlogger', require("./functions/toggleFollowBlogger"));
+// get following count   query = {}
+route.get('/following', require('./functions/following'));
+//get notifications
+route.get('/getNotifications', require("./functions/getNotifications"));
 
 
 // logout

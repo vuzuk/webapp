@@ -5,16 +5,18 @@ const User = models["user"];
 const Notification = models['notification']
 
 module.exports = (req, res) => {
+    let whereObj = {};
+    whereObj[req['user']['isBlogger'] ? 'b_user_id': 'user_id'] = req['user']['id'];
     Notification
         .findAll({
-            where: {user_id: req['user']['id']},
+            where: whereObj,
             limit: 10,
             logging: false
         })
         .then((notifications) => {
             Notification
                 .update({seen: True}, {
-                    where: {user_id: req['user']['id']},
+                    where: whereObj,
                     logging: false
                 })
                 .then(() => {

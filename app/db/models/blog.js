@@ -82,6 +82,14 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 isInt: true
             }
+        },
+        likes: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                isInt: true
+            }
         }
     }, {
         underscored: true,

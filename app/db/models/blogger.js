@@ -118,7 +118,34 @@ module.exports = (sequelize, DataTypes) => {
                 isAlpha: true,
             }
         },
-        points: {
+        view_points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
+        comment_points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
+        share_points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
+        referral_points: {
             type: DataTypes.BIGINT.UNSIGNED,
             allowNull: false,
             defaultValue: 0,
@@ -139,6 +166,15 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true
         },
+        place: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        views: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "[0,0,0,0,0]"
+        },
     }, {
         underscored: true,
         indexes: [{
@@ -151,7 +187,6 @@ module.exports = (sequelize, DataTypes) => {
         blogger.hasMany(models.blog, {
             foreignKey: 'blogger_id',
         });
-        blogger.belongsToMany(models.user, {through: models.follower});
         blogger.hasMany(models.comment, {
             foreignKey: {
                 name: 'blogger_id',

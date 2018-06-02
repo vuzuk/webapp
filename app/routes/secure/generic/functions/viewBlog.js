@@ -33,7 +33,7 @@ module.exports = (req, res) => {
                             // increment points of the user
                             let pointIncCount = parseInt(process.env[(req["user"]["isBlogger"] ? "BLOGGER" : "USER") + "_BLOG_VIEW_POINTS"])
                             req["user"]
-                                .increment('points', {
+                                .increment('view_points', {
                                     by: pointIncCount
                                 })
                                 .then(() => {
@@ -42,20 +42,8 @@ module.exports = (req, res) => {
                                         msg: "view added and points incremented"
                                     });
                                 })
-                                .catch((err) => {
-                                    console.log(err);
-                                    return res.status(503).json({status: false, msg: "error in database"});
-                                });
                         })
-                        .catch((err) => {
-                            console.log(err);
-                            return res.status(503).json({status: false, msg: "error in database"});
-                        });
                 })
-                .catch((err) => {
-                    console.log(err);
-                    return res.status(503).json({status: false, msg: "error in database"});
-                });
         })
         .catch((err) => {
             console.log(err);

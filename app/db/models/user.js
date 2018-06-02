@@ -110,7 +110,34 @@ module.exports = (sequelize, DataTypes) => {
                 isAlpha: true,
             }
         },
-        points: {
+        view_points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
+        comment_points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
+        share_points: {
+            type: DataTypes.BIGINT.UNSIGNED,
+            allowNull: false,
+            defaultValue: 0,
+            validate: {
+                min: 0,
+                isInt: true
+            }
+        },
+        referral_points: {
             type: DataTypes.BIGINT.UNSIGNED,
             allowNull: false,
             defaultValue: 0,
@@ -126,7 +153,11 @@ module.exports = (sequelize, DataTypes) => {
             validate: {
                 notEmpty: true
             }
-        }
+        },
+        place: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     }, {
         underscored: true,
         indexes: [{
@@ -136,7 +167,6 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     user.associate = (models) => {
-        user.belongsToMany(models.blogger, {through: models.follower});
         user.hasMany(models.comment, {
             foreignKey: {
                 name: 'user_id',

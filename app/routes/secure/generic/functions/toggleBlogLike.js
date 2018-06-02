@@ -23,17 +23,22 @@ module.exports = (req, res) => {
                     logging: false
                 })
                 .spread((obj, created) => {
-                    if (created) {
-                        return res.status(200).json({status: true, msg: "blog liked"});
+                    let updatefunction = "increment"
+                    if (!created) {
+                        updatefunction = "decrement"
                     }
-                    obj
-                        .destroy()
+                    blog[updatefunction]("likes", {
+                        by: 1
+                    })
                         .then(() => {
-                            return res.status(200).json({status: true, msg: "blog unLiked"});
-                        })
-                        .catch((err) => {
-                            console.log(err);
-                            return res.status(503).json({status: false, msg: "error in database"});
+                            if (created) {
+                                return res.status(200).json({status: true, msg: "blog liked"});
+                            }
+                            obj
+                                .destroy()
+                                .then(() => {
+                                    return res.status(200).json({status: true, msg: "blog unLiked"});
+                                })
                         })
                 })
                 .catch((err) => {

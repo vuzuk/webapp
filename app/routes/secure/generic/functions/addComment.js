@@ -3,7 +3,6 @@ const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blogger = models["blogger"];
 const User = models["user"];
 const Blog = models["blog"];
-const Blog_like = models["blog_like"];
 const Comment = models["comment"];
 
 module.exports = (req, res) => {
@@ -24,7 +23,18 @@ module.exports = (req, res) => {
             if (!created) {
                 return res.status(400).json({status: true, msg: "comment already posted"});
             }
-            return res.status(200).json({status: true, msg: "comment added"});
+            // increment points of the user
+            let pointIncCount = parseInt(process.env[(req["user"]["isBlogger"] ? "BLOGGER" : "USER") + "_BLOG_COMMENT_POINTS"])
+            req["user"]
+                .increment('comment_points', {
+                    by: pointIncCount
+                })
+                .then(() => {
+                    return res.status(200).json({
+                        status: true,
+                        msg: "comment added and points incremented"
+                    });
+                })
         })
         .catch((err) => {
             console.log(err);

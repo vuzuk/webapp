@@ -57,7 +57,7 @@ module.exports = (req, res) => {
                                             where: {
                                                 blogger_id: req['user']['id']
                                             },
-                                            attributes: ['user_id']
+                                            attributes: ['user_id', 'b_user_id']
                                         })
                                         .then(users => {
                                             users = users.map((userObj) => {

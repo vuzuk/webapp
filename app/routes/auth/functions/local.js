@@ -38,7 +38,7 @@ module.exports = (passport, mailTransporter) => {
         })(req, res, next);
     });
 
-    //body = {email, username, password, first_name, last_name, dob, gender, contact, isBlogger, category}
+    //body = {email, username, password, first_name, last_name, dob, gender, contact, isBlogger, category, place}
     route.post('/signUp', function (req, res) {
         let isBlogger = JSON.parse(req.body.isBlogger);
         let model_to_use = isBlogger ? Blogger : User;
@@ -56,6 +56,7 @@ module.exports = (passport, mailTransporter) => {
                 dob: req.body.dob,
                 gender: req.body.gender.toUpperCase(),
                 contact: req.body.contact,
+                place: req.body.place,
                 signed_up_via: 'local',
                 emailVerifKey: randomString.generate(15),
             };

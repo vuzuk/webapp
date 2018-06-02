@@ -32,6 +32,9 @@ module.exports = (req, res) => {
     if (req.body['contact']) {
         update['contact'] = req.body['contact'];
     }
+    if (req.body['place']) {
+        update['place'] = req.body['place'];
+    }
 
     modelToUse
         .findById(req['user']['id'])

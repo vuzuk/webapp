@@ -54,19 +54,22 @@ localhost:3000/api/secure/blogger/tempDeleteBlog
 ## undo delete a blog   
 GET - query = {blogId}
 localhost:3000/api/secure/blogger/undoDeleteBlog
-## upload pics for blog      
-POST - body = {blogId}
-localhost:3000/api/secure/blogger/upload/blogPic
+
 
 ## update likings      
 GET - query = {likings(stringified array)}
 localhost:3000/api/secure/user/updateLikings
-## user following a blogger      
+
+
+## toggle for follow blogger      
 GET - query = {bloggerId}
-localhost:3000/api/secure/user/followBlogger
-## user unfollow a blogger      
-GET - query = {bloggerId}
-localhost:3000/api/secure/user/unFollowBlogger
+localhost:3000/api/secure/generic/toggleFollowBlogger
+## get following count
+GET - query = {}
+api/secure/generic/following
+## get notifications
+GET - query = {}
+api/secure/generic/getNotifications
 
 
 ## view a blog      
@@ -87,11 +90,11 @@ localhost:3000/api/secure/generic/deleteComment
 ## like comment on a blog    
 GET - query = {commentId}
 localhost:3000/api/secure/generic/toggleCommentLike
+
+
 ## get profile
 GET - query = {}
 localhost:3000/api/secure/generic/getProfile
-
-
 ## update profile
 POST - body = {first_name, last_name, gender, twitter, instagram, facebook, dob, contact}
 api/secure/generic/updateProfile
@@ -115,6 +118,19 @@ api/unsecure/getBlogger
 ## get blogs of blogger     
 GET - query = {bloggerId}
 api/unsecure/getBlogsOfBlogger
+
+## logout
+GET - query = {}
+api/secure/generic/logout
+
+
+## STATS APIs
+## get followers count   
+GET - params = {para (views/likes)}
+api/secure/blogger/top/:para
+## get last 5 days views   
+GET - query = {}
+api/secure/blogger/lastFiveDaysViews
 
 
 ## Remaining tasks

@@ -3,6 +3,17 @@ const route = Router();
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blogger = models["blogger"];
 
+// Calling Logging script
+let logViews = require("./functions/logViews");
+var now = new Date();
+var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 0) - now;
+if (millisTill10 < 0) {
+    millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
+}
+setTimeout(function () {
+    setInterval(logViews, 24 * 60 * 60 * 1000);
+}, millisTill10);
+
 
 route.use(function (req, res, next) {
     if (!req["user"]["isBlogger"]) {     // person is a blogger
@@ -11,29 +22,6 @@ route.use(function (req, res, next) {
     next();
 });
 
-//Get Details
-route.get('/getDetails', function (req, res) {
-    Blogger
-        .findAll({
-            attributes: ["id", "username", "email", "contact", "isEmailVerified", "isContactVerified", "first_name",
-                "last_name", "image", "category", "dob", "gender", "points"],
-            where: {
-                id: req.user.id
-            },
-            limit: 1,
-            raw: true
-        })
-        .then((obj) => {
-            if (obj.length === 0) {
-                return res.status(400).json({status: true, msg: "Not found"});
-            }
-            return res.status(200).json({status: true, msg: obj});
-        })
-        .catch((err) => {
-            console.log(err);
-            return res.status(503).json({status: false, msg: "error in database"})
-        });
-});
 
 //Add Blog      body = {title, blog, categoryId, tags(stringified array), post_link, video_link, place, images}
 route.post('/newBlog', require("./functions/newBlog"));
@@ -43,6 +31,16 @@ route.post('/updateBlog', require("./functions/updateBlog"));
 route.get('/tempDeleteBlog', require('./functions/tempDeleteBlog'));
 //undo delete a blog   query = {blogId}
 route.get('/undoDeleteBlog', require('./functions/undoDeleteBlog'));
+
+// get followers count   query = {}
+route.get('/followers', require('./functions/followers'));
+
+
+// STATS APIs
+// get followers count   params = {para (views/likes)}
+route.get('/top/:para', require('./functions/top'));
+// get last 5 days views   query = {}
+route.get('/lastFiveDaysViews', (req, res) => res.status(200).json({status: true, msg: req['user']['views']}));
 
 
 const FroalaEditor = require(process.env.APP_ROOT + '/externals/wysiwyg-editor/lib/froalaEditor.js');

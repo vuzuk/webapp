@@ -11,13 +11,5 @@ route.use(function (req, res, next) {
 //update likings      query = {likings(stringified array)}
 route.post('/updateLikings', require("./functions/updateLikings"));
 
-//user following a blogger      query = {bloggerId}
-route.get('/followBlogger', require("./functions/followBlogger"));
-//user unfollow a blogger      query = {bloggerId}
-route.get('/unFollowBlogger', require("./functions/unFollowBlogger"));
-
-//get notifications
-route.get('/getNotifications', require("./functions/getNotifications"));
-
 
 module.exports = route;

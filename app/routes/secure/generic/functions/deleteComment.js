@@ -17,11 +17,18 @@ module.exports = (req, res) => {
             obj
                 .destroy()
                 .then(() => {
-                    return res.status(200).json({status: true, msg: "comment deleted"});
-                })
-                .catch((err) => {
-                    console.log(err);
-                    return res.status(503).json({status: false, msg: "error in database"});
+                    // decrement points of the user
+                    let pointIncCount = parseInt(process.env[(req["user"]["isBlogger"] ? "BLOGGER" : "USER") + "_BLOG_COMMENT_POINTS"])
+                    req["user"]
+                        .decrement('comment_points', {
+                            by: pointIncCount
+                        })
+                        .then(() => {
+                            return res.status(200).json({
+                                status: true,
+                                msg: "comment deleted and points decremented"
+                            });
+                        })
                 })
         })
         .catch((err) => {
