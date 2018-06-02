@@ -13,3 +13,7 @@
     height: 100vh !important;
     background: black !important;
 }
+
+.mobile-navbar {
+    margin: 0 !important;
+}

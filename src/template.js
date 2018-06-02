@@ -6,6 +6,7 @@ export function staticHTML ({ title, data, customData }) {
     <head>
       <title>${title}</title>
       <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
       <script>window.__CUSTOM_DATA__ = ${serialize(customData)}</script>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>

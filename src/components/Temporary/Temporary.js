@@ -24,9 +24,8 @@ class Temporary extends Component {
     render() {
         return (
             <div style={{marginTop: "10px"}}>
-                <Grid columns={4}>
-                    <Grid.Row>
-                        <Grid.Column>
+                <Grid>
+                        <Grid.Column computer={4} tablet={8} mobile={16}>
                             <Header as='h3'  className="category-title" icon textAlign="center">
                             <Icon name='tags' color="brown" circular/>
                                 FASHION
@@ -34,7 +33,7 @@ class Temporary extends Component {
                             {this.makeList([1,2,3,4])}
                             <Button fluid color="brown">Read More</Button>
                         </Grid.Column>
-                        <Grid.Column>
+                        <Grid.Column computer={4} tablet={8} mobile={16}>
                             <Header as='h3' className="category-title" icon textAlign="center">
                             <Icon name='spoon' color="pink" circular/>
                                 FOOD
@@ -42,7 +41,7 @@ class Temporary extends Component {
                             {this.makeList([5,6,7,8])}
                             <Button fluid color="pink">Read More</Button>
                         </Grid.Column>
-                        <Grid.Column>
+                        <Grid.Column computer={4} tablet={8} mobile={16}>
                             <Header as='h3' className="category-title" icon textAlign="center">
                             <Icon name='shopping bag' color="green" circular/>
                                 TRAVEL
@@ -50,7 +49,7 @@ class Temporary extends Component {
                             {this.makeList([9,10,12,13])}
                             <Button fluid color="green">Read More</Button>
                         </Grid.Column>
-                        <Grid.Column>
+                        <Grid.Column computer={4} tablet={8} mobile={16}>
                             <Header as='h3' className="category-title" icon textAlign="center">
                             <Icon name='desktop' color="red" circular/>
                                 TECH
@@ -58,7 +57,6 @@ class Temporary extends Component {
                             {this.makeList([14,15,16,17])}
                             <Button fluid color="red">Read More</Button>
                         </Grid.Column>
-                    </Grid.Row>
                 </Grid>
                 <Divider />
             </div>

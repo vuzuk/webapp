@@ -13,13 +13,13 @@ class Trending extends Component {
                         TRENDING #tags
                     </Header>
                 </Segment>
-                <div style={{padding: "10px", display: "flex"}}>
+                <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
                     {makeTags(["delhi","vintage","instafood","malware","foodgasm","mumbai"])}
                 </div>
-                <div style={{padding: "10px", display: "flex"}}>
+                <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
                     {makeTags(["instafood","ethnic","foodgasm","mens","italian"])}
                 </div>
-                <div style={{padding: "10px", display: "flex"}}>
+                <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
                     {makeTags(["malware","foodgasm","mens","delhi","wannacry","vintage"])}
                 </div>
             </div>
