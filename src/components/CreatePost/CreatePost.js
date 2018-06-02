@@ -8,6 +8,13 @@ import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 import axios from 'axios';
 import isEmpty from '../../helpers/isEmpty';
+
+var decodeHtmlEntity = function(str) {
+    return str.replace(/&#(\d+);/g, function(match, dec) {
+      return String.fromCharCode(dec);
+    });
+  };
+
 const categoryOptions = [
     {
         value: 1,
@@ -107,6 +114,8 @@ class CreatePost extends Component {
             data: JSON.stringify(data)
         })
         .then(response => {
+            console.log(response.data);
+            
             location.href = "/in/blogger"
         })
         .catch(error => {
@@ -147,6 +156,8 @@ class CreatePost extends Component {
             imgN++;
             console.log(blog)
         }
+        blog = blog.replace(/=/g,"##61##")
+        blog = decodeHtmlEntity(blog);
         this.setState({
             filteredBlog: blog,
             images

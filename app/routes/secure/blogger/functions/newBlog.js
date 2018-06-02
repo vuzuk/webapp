@@ -7,7 +7,7 @@ const Notification = models["notification"];
 
 module.exports = (req, res) => {
     // creating the blog
-    // req.body = {title, blog, category_id, tags, post_link, video_link, place, images}
+    // req.body = {title, blog, category_id, tags, post_link, video_link, place, images}    
     Blog
         .findOrCreate({
             where: {
