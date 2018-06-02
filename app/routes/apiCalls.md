@@ -92,9 +92,9 @@ GET - query = {}
 localhost:3000/api/secure/generic/getProfile
 
 
-## update Blogger profile
-POST - body = {first_name, last_name, gender, twitter, instagram, facebook}
-api/secure/blogger/updateProfile
+## update profile
+POST - body = {first_name, last_name, gender, twitter, instagram, facebook, dob, contact}
+api/secure/generic/updateProfile
 ## upload profile picture
 POST - {key: avatar}
 api/secure/generic/upload/profilePic

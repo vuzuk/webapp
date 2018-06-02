@@ -49,8 +49,10 @@ route.get('/deleteComment', require("./functions/deleteComment"));
 // like comment on a blog    query = {commentId}
 route.get('/toggleCommentLike', require("./functions/toggleCommentLike"));
 
-// get profile
+// get profile      req.query = {}
 route.get('/getProfile', require("./functions/getProfile"));
+//update profile        body = {first_name, last_name, gender, twitter, instagram, facebook, dob, contact}
+route.post('/updateProfile', require("./functions/updateProfile"));
 // upload profile picture
 route.post('/upload/profilePic', upload.single('avatar'), require("./functions/uploadProfilePic"));
 // upload cover pic

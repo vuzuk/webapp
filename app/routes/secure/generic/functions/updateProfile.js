@@ -2,9 +2,11 @@ const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blogger = models["blogger"];
+const User = models["user"];
 
-// body = {first_name, last_name, gender, twitter, instagram, facebook}
+// body = {first_name, last_name, gender, twitter, instagram, facebook, dob, contact}
 module.exports = (req, res) => {
+    let modelToUse = req['user']['isBlogger'] ? Blogger : User;
     let update = {};
     if (req.body['first_name']) {
         update['first_name'] = req.body['first_name']
@@ -31,22 +33,18 @@ module.exports = (req, res) => {
         update['contact'] = req.body['contact'];
     }
 
-    Blogger
+    modelToUse
         .findById(req['user']['id'])
-        .then((blogger) => {
-            if (!blogger) {
-                return res.status(404).json({status: false, msg: "blogger not found"});
+        .then((person) => {
+            if (!person) {
+                return res.status(404).json({status: false, msg: "person not found"});
             }
-            blogger
+            person
                 .update(update, {
                     logging: false
                 })
-                .then((updatedBlogger) => {
-                    return res.status(200).json({status: true, msg: "Blogger details updated"});
-                })
-                .catch((err) => {
-                    console.log(err);
-                    return res.status(503).json({status: false, msg: "error in database"})
+                .then((updatedPerson) => {
+                    return res.status(200).json({status: true, msg: "Profile details updated"});
                 })
         })
         .catch((err) => {

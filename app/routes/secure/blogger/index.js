@@ -45,10 +45,6 @@ route.get('/tempDeleteBlog', require('./functions/tempDeleteBlog'));
 route.get('/undoDeleteBlog', require('./functions/undoDeleteBlog'));
 
 
-//update Blogger profile
-// body = {first_name, last_name, gender, twitter, instagram, facebook}
-route.post('/updateProfile', require("./functions/updateProfile"));
-
 const FroalaEditor = require(process.env.APP_ROOT + '/externals/wysiwyg-editor/lib/froalaEditor.js');
 route.post('/froala_upload', (req, res) => {
     FroalaEditor.Image.upload(req, "../app/db/uploads/images/blogs/", function (err, data) {
