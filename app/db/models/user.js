@@ -65,7 +65,15 @@ module.exports = (sequelize, DataTypes) => {
         image: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: '/images/users/default.png',
+            defaultValue: '/images/users/default.jpg',
+            validate: {
+                notEmpty: true,
+            }
+        },
+        cover_image: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: '/images/users/defaultCover.jpg',
             validate: {
                 notEmpty: true,
             }

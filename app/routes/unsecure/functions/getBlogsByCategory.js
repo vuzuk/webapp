@@ -7,12 +7,16 @@ const render = require(process.env.APP_ROOT+'/dist/SSR');
 
 module.exports = (req, res) => {
     let categoryId = req.params['categoryId'];
+    let offset = req.params['offset'];
+    let limit = req.params['limit'];
     Blog
         .findAll({
             attributes: ["id", "title", "images", "date_published", "views", "slug"],
             where: {
                 category_id: categoryId
             },
+            offset: offset,
+            limit: limit,
             include: [{
                 model: Comment,
                 // attributes: [[sequelize.fn('count', sequelize.col('blog_id')), 'count']],

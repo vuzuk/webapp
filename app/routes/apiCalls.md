@@ -95,17 +95,17 @@ localhost:3000/api/secure/generic/getProfile
 ## update Blogger profile
 POST - body = {first_name, last_name, gender, twitter, instagram, facebook}
 api/secure/blogger/updateProfile
-## upload profile picture for blogger
+## upload profile picture
 POST - {key: avatar}
-api/secure/blogger/upload/profilePic
-## upload cover pic for blogger
+api/secure/generic/upload/profilePic
+## upload cover pic
 POST - {key: avatar}
-api/secure/blogger/upload/coverPic
+api/secure/generic/upload/coverPic
 
 
 ## get blogs by category
 GET - params = {categoryId}
-/api/unsecure/getBlogsByCategory/:categoryId'
+/api/unsecure/getBlogsByCategory/:categoryId/:offset/:limit
 ## get blog
 GET - query = {blogId}
 api/unsecure/getBlog/:bloggerName/:slug
