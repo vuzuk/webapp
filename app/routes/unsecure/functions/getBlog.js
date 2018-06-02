@@ -52,7 +52,7 @@ module.exports = (req, res) => {
                 let img = value.replace(`@@${key}@@`,`<img class="post-img" src="${blogOnly['images'][key]}" alt="Image">`)
                 value = img;
             }
-
+            value = value.replace(/##61##/g,"=")
             blogOnly['blog'] = value;
 
             return res.status(200).json({status: true, msg: blog});

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Segment, Button, Divider, Header, Image, List, Icon } from 'semantic-ui-react'
+import { Grid, Button, Divider, Header, Image, List, Icon } from 'semantic-ui-react'
 import './Bloggers.css';
 import classnames from 'classnames';
 class Bloggers extends Component {
     render() {
         return(
-            <Segment.Group horizontal className={classnames('bloggers')}>
-                <Segment>
+            <Grid divided className={classnames('bloggers')}>
+                <Grid.Column computer={8} mobile={16}>
                     <Header as='h3' textAlign="center" className="top">Top Bloggers</Header>
                     <List selection celled verticalAlign='middle' size="massive" classnames="list">
                         <List.Item>
@@ -40,8 +40,8 @@ class Bloggers extends Component {
                             </List.Content>
                         </List.Item>
                     </List>
-                </Segment> 
-            <Segment>
+                </Grid.Column> 
+            <Grid.Column computer={8} mobile={16}>
                 <Header as='h3' textAlign="center" className="new">New Bloggers</Header>
                 <List selection celled verticalAlign='middle' size="massive" classnames="list">
                     <List.Item>
@@ -75,8 +75,8 @@ class Bloggers extends Component {
                         </List.Content>
                     </List.Item>
                 </List>
-            </Segment>
-            </Segment.Group>
+            </Grid.Column>
+            </Grid>
         )
     }
 }
