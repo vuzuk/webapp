@@ -96,21 +96,22 @@ class Post extends Component {
 
     componentDidMount = () => {
         const thiss = this;
-        axios.get(`/api/secure/generic/likeStatus?blogId=${customData.blogs[0].id}`)
+        axios.get(`/api/secure/generic/likeStatus?blogId=${this.state.customData.blogs[0].id}`)
           .then(res => {
               thiss.setState({
-                  isLiked: true
+                  isLiked: !res.data.msg.length ? false : true
               })
           })
           .catch(err => console.log(err))
+
+        axios.get(`/api/secure/generic/viewBlog?blogId=${this.state.customData.blogs[0].id}`)
     }
 
     toggleLike = () => {
-        const thiss = this;
         const { customData } = this.state;
         axios.get(`/api/secure/generic/toggleBlogLike?blogId=${customData.blogs[0].id}`)
           .then((res) => {
-            thiss.setState({isLiked: !this.state.isLiked})
+            location.reload()
           })
           .catch(err => console.log(err))
     }
