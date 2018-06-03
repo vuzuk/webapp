@@ -125,7 +125,7 @@ api/secure/generic/logout
 
 
 ## STATS APIs
-## get followers count   
+## get top blogs by views/likes   
 GET - params = {para (views/likes)}
 api/secure/blogger/top/:para
 ## get last 5 days views   
