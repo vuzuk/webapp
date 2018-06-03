@@ -32,9 +32,6 @@ route.get('/tempDeleteBlog', require('./functions/tempDeleteBlog'));
 //undo delete a blog   query = {blogId}
 route.get('/undoDeleteBlog', require('./functions/undoDeleteBlog'));
 
-// get followers count   query = {}
-route.get('/followers', require('./functions/followers'));
-
 
 // STATS APIs
 // get top blogs by views/likes   params = {para (views/likes)}

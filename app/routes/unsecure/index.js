@@ -23,5 +23,7 @@ route.get('/checkEmail', require("./functions/checkEmail"));
 // check contact (for blogger only)   query = {contact}
 route.get('/checkContact', require("./functions/checkContact"));
 
+// get followers count   query = {bloggerId}
+route.get('/blogger/followersWithFollowing', require('./functions/followersWithFollowing'));
 
 module.exports = route;

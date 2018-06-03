@@ -2,6 +2,7 @@ const Op = require("sequelize").Op;
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blog = models["blog"];
 const Blogger = models["blogger"];
+const Follower = models["follower"];
 
 module.exports = (req, res) => {
     let username = parseInt(req.params["username"]);
@@ -18,7 +19,28 @@ module.exports = (req, res) => {
             if (blogger.length === 0) {
                 return res.status(400).json({status: true, msg: "blogger not found"});
             }
-            return res.status(200).json({status: true, msg: blogger});
+            let objId = blogger[0]['id']
+            Follower
+                .findAndCountAll({
+                    where: {
+                        blogger_id: objId
+                    },
+                    logging: false
+                })
+                .then((result) => {
+                    blogger.followers = result.count
+                    Follower
+                        .findAndCountAll({
+                            where: {
+                                b_user_id: objId
+                            },
+                            logging: false
+                        })
+                        .then((result) => {
+                            blogger.following = result.count
+                            return res.status(200).json({status: true, msg: blogger});
+                        })
+                })
         })
         .catch((err) => {
             console.log(err);

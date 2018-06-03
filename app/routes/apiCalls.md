@@ -90,6 +90,10 @@ localhost:3000/api/secure/generic/deleteComment
 ## like comment on a blog    
 GET - query = {commentId}
 localhost:3000/api/secure/generic/toggleCommentLike
+## get blog like status
+GET - query = {blogId}
+api/secure/generic/likeStatus
+
 
 
 ## get profile
