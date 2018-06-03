@@ -37,10 +37,14 @@ const upload = multer({
 route.get('/viewBlog', require("./functions/viewBlog"));
 // like a blog      query = {blogId}
 route.get('/toggleBlogLike', require("./functions/toggleBlogLike"));
+// get liked    query = {}
+route.get('/getLiked', require("./functions/getLiked"));
 // get blog like status      query = {blogId}
 route.get('/likeStatus', require("./functions/likeStatus"));
 // bookmark a blog      query = {blogId}
 route.get('/toggleBlogBookmark', require("./functions/toggleBlogBookmark"));
+// get bookmarks    query = {}
+route.get('/getBookmarks', require("./functions/getBookmarks"));
 
 // comment on a blog    body = {comment, blogId, parentId}
 route.post('/addComment', require("./functions/addComment"));

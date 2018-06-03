@@ -136,6 +136,13 @@ api/secure/blogger/top/:para
 GET - query = {}
 api/secure/blogger/lastFiveDaysViews
 
+## get liked    
+GET - query = {}
+api/secure/generic/getLiked
+## get bookmarks    
+GET - query = {}
+api/secure/generic/getBookmarks
+
 
 ## Remaining tasks
 update user profile
