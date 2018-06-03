@@ -34,7 +34,7 @@ module.exports = (req, res) => {
                     }]
                 }],
                 attributes: ["id", "title", "blog", "images", "date_published", "created_at",
-                    "views", "post_link", "video_link", "place"]
+                    "views", "post_link", "video_link", "place", "likes"]
             }],
             // raw: true
         })

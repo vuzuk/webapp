@@ -10,7 +10,7 @@ module.exports = (req, res) => {
     let bloggerId = parseInt(req.query["bloggerId"]);
     Blog
         .findAll({
-            attributes: ["id", "title", "images", "date_published", "views", "slug"],
+            attributes: ["id", "title", "images", "date_published", "views", "slug", "likes"],
             where: {
                 blogger_id: bloggerId
             },

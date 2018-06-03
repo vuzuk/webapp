@@ -44,16 +44,12 @@ class Post extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isActive: 'popular',
             data: props.data,
             customData: props.customData[0],
             isLiked: false,
-            comment: ""
+            comment: "",
+            isSent: false
         }
-    }
-
-    handleChange = (isActive) => {
-        this.setState({ isActive })
     }
 
     makeList = (e) => {
@@ -68,7 +64,9 @@ class Post extends Component {
 
     addComment = (e, x, parentId) => {
         const { comment: text, customData } = this.state;
-        
+        this.setState({
+            isSent: true
+        })
         const data = {
             comment: text,
             blogId: customData.blogs[0].id
@@ -89,6 +87,22 @@ class Post extends Component {
             location.reload()
         })
         .catch(err => console.log(err))
+        .finally(() => {
+            thiss.setState({
+                isSent: false
+            })
+        })
+    }
+
+    componentDidMount = () => {
+        const thiss = this;
+        axios.get(`/api/secure/generic/likeStatus?blogId=${customData.blogs[0].id}`)
+          .then(res => {
+              thiss.setState({
+                  isLiked: true
+              })
+          })
+          .catch(err => console.log(err))
     }
 
     toggleLike = () => {
@@ -102,7 +116,7 @@ class Post extends Component {
     }
 
     render() {
-        const { isActive, data, customData, isLiked } = this.state;
+        const { data, customData, isLiked, isSent } = this.state;
         const { image, facebook, twitter, instagram, description } = customData;
         
         return(
@@ -126,7 +140,7 @@ class Post extends Component {
                                                     <Icon name="unhide" /> {customData.blogs[0].views}
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
-                                                    <span onClick={this.toggleLike}>{isLiked ? <Icon name="heart" /> : <Icon name="heart outline" />}</span> 0
+                                                    <span onClick={this.toggleLike}>{isLiked ? <Icon name="heart" /> : <Icon name="heart outline" />}</span> {customData.blogs[0].likes}
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
                                                     <Icon name="comments" /> {customData.blogs[0].comments.length}
@@ -262,7 +276,7 @@ class Post extends Component {
                         }
                         <Form reply>
                         <Form.TextArea onChange={(e) => {this.setState({comment: e.target.value})}} placeholder="Type your comment here..."/>
-                            <Button onClick={this.addComment} content='Add Comment' labelPosition='left' icon='edit' primary />
+                            <Button loading={isSent} onClick={this.addComment} content='Add Comment' labelPosition='left' icon='edit' primary />
                         </Form>
                     </Comment.Group>
                 </div>

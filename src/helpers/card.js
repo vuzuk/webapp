@@ -14,8 +14,9 @@ const myCard = ({
         title = "Kabul Restaurant | Afghani Food in Delhi",
         images = ["/kabul.jpg"],
         date_published = "January 26, 2018",
-        views = "2.2K",
-        comments = 0,
+        views = "0",
+        comments = "0",
+        likes = "0",
         slug = "#",
         blogger = {}
     }) => {
@@ -53,7 +54,7 @@ const myCard = ({
                                 <Icon name="unhide" /> {views}
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("like")}}>
-                                <Icon name="heart" /> 0
+                                <Icon name="heart" /> {likes}
                             </Grid.Column>
                             <Grid.Column as="a" onClick={() => {handleActions("comment")}}>
                                 <Icon name="comments" /> {comments}
