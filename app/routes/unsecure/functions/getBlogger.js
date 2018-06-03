@@ -4,12 +4,12 @@ const Blog = models["blog"];
 const Blogger = models["blogger"];
 
 module.exports = (req, res) => {
-    let bloggerId = parseInt(req.query["bloggerId"]);
+    let username = parseInt(req.params["username"]);
     Blogger
         .findAll({
             attributes: ["id","username","first_name","last_name","image","gender","email"],
             where: {
-                id: bloggerId
+                username: username
             },
             limit: 1,
             raw: true

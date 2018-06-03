@@ -7,20 +7,23 @@ const Blogger = models["blogger"];
 
 module.exports = (req, res) => {
     let categoryId = req.params['categoryId'];
-    let offset = req.params['offset'];
-    let limit = req.params['limit'];
+    let offset = parseInt(req.params['offset']);
+    let limit = parseInt(req.params['limit']);
     
     Blog
         .findAll({
-            attributes: ["id", "title", "images", "date_published", "views", "slug"],
+            attributes: ["id", "title", "images", "date_published", "views", "slug", 'blogger_id'],
             where: {
                 category_id: categoryId
             },
+            offset: offset,
+            limit: limit,
             include: [{
                 model: Comment,
-                // attributes: [[sequelize.fn('count', sequelize.col('blog_id')), 'count']],
+                attributes: ['comment'],
             },{
-                model: Blogger
+                model: Blogger,
+                attributes: ['username', 'first_name', 'last_name', 'image']
             }]
         })
         .then((blogs) => {
