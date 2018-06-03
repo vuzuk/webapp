@@ -57,7 +57,7 @@ localhost:3000/api/secure/blogger/undoDeleteBlog
 
 
 ## update likings      
-GET - query = {likings(stringified array)}
+GET - query = {likings (stringified array)}
 localhost:3000/api/secure/user/updateLikings
 
 
@@ -135,6 +135,13 @@ api/secure/blogger/top/:para
 ## get last 5 days views   
 GET - query = {}
 api/secure/blogger/lastFiveDaysViews
+
+## get liked    
+GET - query = {}
+api/secure/generic/getLiked
+## get bookmarks    
+GET - query = {}
+api/secure/generic/getBookmarks
 
 
 ## Remaining tasks
