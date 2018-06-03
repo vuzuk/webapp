@@ -37,7 +37,7 @@ route.get('/followers', require('./functions/followers'));
 
 
 // STATS APIs
-// get followers count   params = {para (views/likes)}
+// get top blogs by views/likes   params = {para (views/likes)}
 route.get('/top/:para', require('./functions/top'));
 // get last 5 days views   query = {}
 route.get('/lastFiveDaysViews', (req, res) => res.status(200).json({status: true, msg: req['user']['views']}));
