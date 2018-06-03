@@ -5,6 +5,7 @@ import myCard from '../../helpers/card';
 import { stringifyDate } from '../../helpers/stringifyDate';
 import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form, Label, Segment } from 'semantic-ui-react';
 import './Post.css';
+import axios from 'axios';
 
 const users = [
     {
@@ -45,7 +46,8 @@ class Post extends Component {
         this.state = {
             isActive: 'popular',
             data: props.data,
-            customData: props.customData[0]
+            customData: props.customData[0],
+            isLiked: false
         }
     }
 
@@ -63,8 +65,18 @@ class Post extends Component {
         })
     }
 
+    toggleLike = () => {
+        const thiss = this;
+        const { customData } = this.state;
+        axios.get(`/api/secure/generic/toggleBlogLike?blogId=${customData.blogs[0].id}`)
+          .then((res) => {
+            thiss.setState({isLiked: !this.state.isLiked})
+          })
+          .catch(err => console.log(err))
+    }
+
     render() {
-        const { isActive, data, customData } = this.state;
+        const { isActive, data, customData, isLiked } = this.state;
         const { image, facebook, twitter, instagram, description } = customData;
         
         return(
@@ -88,7 +100,7 @@ class Post extends Component {
                                                     <Icon name="unhide" /> {customData.blogs[0].views}
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
-                                                    <Icon name="heart" /> 0
+                                                    <span onClick={this.toggleLike}>{isLiked ? <Icon name="heart" /> : <Icon name="heart outline" />}</span> 0
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
                                                     <Icon name="comments" /> {customData.blogs[0].comments.length}

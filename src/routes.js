@@ -88,17 +88,26 @@ const routes = [
     {
         path: '/travel',
         component: Travel,
-        title: 'Travel - VUZUK'
+        title: 'Travel - VUZUK',
+        fetchInitialData: (path) => {            
+            return getBlogsByCategory(3,0,10);
+        }
     },
     {
         path: '/tech',
         component: Tech,
-        title: 'Tech - VUZUK'
+        title: 'Tech - VUZUK',
+        fetchInitialData: (path) => {            
+            return getBlogsByCategory(4,0,10);
+        }
     },
     {
         path: '/fashion',
         component: Fashion,
-        title: 'Fashion - VUZUK'
+        title: 'Fashion - VUZUK',
+        fetchInitialData: (path) => {            
+            return getBlogsByCategory(2,0,10);
+        }
     },
     {
         path: '/terms',
