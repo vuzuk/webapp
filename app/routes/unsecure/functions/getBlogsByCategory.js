@@ -12,7 +12,7 @@ module.exports = (req, res) => {
     
     Blog
         .findAll({
-            attributes: ["id", "title", "images", "date_published", "views", "slug", 'blogger_id'],
+            attributes: ["id", "title", "images", "date_published", "views", "slug", 'blogger_id', "likes"],
             where: {
                 category_id: categoryId
             },
