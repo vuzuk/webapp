@@ -19,11 +19,12 @@ class Food extends Component {
         super(props);
 
         this.state = {
-            data: props.data
+            data: props.data,
+            customData: props.customData
         }
     }
     render() {
-        const { data } = this.state;
+        const { data, customData } = this.state;
         return (
             <div>
                 <Navbar data={data}/>
@@ -58,7 +59,7 @@ class Food extends Component {
                     </Grid>
                     <Segment basic>
                         <Grid columns={3}>
-                            {[1,1,1,1,1,1,1,1,1].map(i => (
+                            {customData.map(i => (
                                 <Grid.Column key={i}>
                                     {myCard(i,{})}
                                 </Grid.Column>

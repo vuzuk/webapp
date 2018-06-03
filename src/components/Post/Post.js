@@ -45,7 +45,7 @@ class Post extends Component {
         this.state = {
             isActive: 'popular',
             data: props.data,
-            customData: props.customData
+            customData: props.customData[0]
         }
     }
 

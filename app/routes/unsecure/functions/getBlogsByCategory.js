@@ -2,24 +2,25 @@ const Op = require("sequelize").Op;
 const sequelize = require('sequelize');
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blog = models["blog"];
-
-const render = require(process.env.APP_ROOT+'/dist/SSR');
+const Comment = models["comment"];
+const Blogger = models["blogger"];
 
 module.exports = (req, res) => {
     let categoryId = req.params['categoryId'];
     let offset = req.params['offset'];
     let limit = req.params['limit'];
+    
     Blog
         .findAll({
             attributes: ["id", "title", "images", "date_published", "views", "slug"],
             where: {
                 category_id: categoryId
             },
-            offset: offset,
-            limit: limit,
             include: [{
                 model: Comment,
                 // attributes: [[sequelize.fn('count', sequelize.col('blog_id')), 'count']],
+            },{
+                model: Blogger
             }]
         })
         .then((blogs) => {
@@ -32,7 +33,6 @@ module.exports = (req, res) => {
                 myblogs[i]['comments'] = myblogs[i]['comments'].length;
             }
 
-            // return render.default(req, res, {status: true, msg: blog})
             return res.status(200).json({status: true, msg: myblogs});
         })
         .catch((err) => {

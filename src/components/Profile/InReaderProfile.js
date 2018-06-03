@@ -5,13 +5,15 @@ import { Segment, Image, Statistic, Icon, Grid, Popup, Button, List } from 'sema
 import myCard from '../../helpers/card';
 import cx from 'classnames';
 import './InBloggerProfile.css';
+import axios from 'axios';
 class InReaderProfile extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
             isActive: "points",
-            data: props.data
+            data: props.data,
+            isSent: false
         }
     }
 
@@ -20,8 +22,36 @@ class InReaderProfile extends Component {
         this.setState({isActive});
     }
 
+    uploadProfile = (e) => {
+        this.setState({
+            isSent: true
+        });
+        const file = e.target.files[0];
+        console.log(file);
+        const data = new FormData();
+        data.append('avatar', file);
+        const thiss = this;
+        axios({
+            method: 'POST',
+            url: '/api/secure/generic/upload/profilePic',
+            data: data,
+            config: { headers: {'Content-Type': 'multipart/form-data' }}
+        })
+        .then(function (response) {
+            //handle success
+            location.reload();
+        })
+        .catch(function (response) {
+            //handle error
+            alert("File not supported. Only JPG/JPEG is supported")
+            thiss.setState({
+                isSent: false
+            })
+        });
+    }
+
     render() {
-        const {isActive, data} = this.state;
+        const {isActive, data, isSent} = this.state;
         const {first_name, last_name, username, image} = data;
         const author = `${first_name} ${last_name}`;
 
@@ -35,8 +65,10 @@ class InReaderProfile extends Component {
                         </div>
                         <div>
                             <div className="username">{author}</div>
-                            <div className="edit" style={{float: "left"}}><a href="#">Edit Profile</a></div>
-                            {/* <div className="follow-count">0 FOLLOWERS &nbsp;&nbsp; 0 FOLLOWING</div> */}
+                            <div className="edit" style={{float: "left"}}>
+                                <label for="profile-upload">{isSent ? "Uploading..." : "Change Photo"}</label>
+                                <input type="file" onChange={this.uploadProfile} id="profile-upload"></input>
+                            </div>
                         </div>
                     </div>
                 </Segment>

@@ -9,7 +9,7 @@ import { Terms, Disclaimer, Privacy} from './components/Documents';
 import SearchBar from './components/SearchBar/SearchBar';
 
 //api
-import { fetchPost } from './api';
+import { fetchPost, getBlogsByCategory } from './api';
 
 const routes = [
     {
@@ -80,7 +80,10 @@ const routes = [
     {
         path: '/food',
         component: Food,
-        title: 'Food - VUZUK'
+        title: 'Food - VUZUK',
+        fetchInitialData: (path) => {            
+            return getBlogsByCategory(1,0,10);
+        }
     },
     {
         path: '/travel',
