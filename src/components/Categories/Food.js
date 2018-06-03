@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import {Segment, Grid, Header} from 'semantic-ui-react';
-import myCard from '../../helpers/card';
+import MyCard from '../../helpers/card';
 import Slider from 'react-slick';
 
 const settings = {
@@ -61,7 +61,7 @@ class Food extends Component {
                         <Grid columns={3}>
                             {customData.map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i,{})}
+                                    <MyCard data={i} />
                                 </Grid.Column>
                             ))}
                         </Grid>

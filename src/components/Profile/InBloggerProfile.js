@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { Segment, Image, Grid, Button, Icon, List} from 'semantic-ui-react';
-import myCard from '../../helpers/card';
+import MyCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
 import axios from 'axios';
@@ -153,7 +153,7 @@ class InBloggerProfile extends Component {
                         {isPostFetched && posts[0].id && <Grid columns={3}>
                             {posts.map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i)}
+                                    <MyCard data={i} />
                                 </Grid.Column>
                             ))}
                         </Grid>}

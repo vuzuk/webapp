@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { Segment, Image, Statistic, Icon, Grid, Popup, Button, List } from 'semantic-ui-react';
-import myCard from '../../helpers/card';
+import MyCard from '../../helpers/card';
 import cx from 'classnames';
 import './InBloggerProfile.css';
 import axios from 'axios';
@@ -52,7 +52,7 @@ class InReaderProfile extends Component {
 
     render() {
         const {isActive, data, isSent} = this.state;
-        const {first_name, last_name, username, image} = data;
+        const {first_name, last_name, username, image, view_points, comment_points, share_points, referral_points} = data;
         const author = `${first_name} ${last_name}`;
 
         return (
@@ -82,7 +82,7 @@ class InReaderProfile extends Component {
                         <Segment basic>
                         <Statistic.Group widths='five' color="blue">
                             <Statistic>
-                            <Statistic.Value>0</Statistic.Value>
+                            <Statistic.Value>{view_points}</Statistic.Value>
                             <Statistic.Label className="info">
                                 View Points
                                 <Popup
@@ -93,7 +93,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>0</Statistic.Value>
+                            <Statistic.Value>{comment_points}</Statistic.Value>
                             <Statistic.Label className="info">
                                 Comment Points
                                 <Popup
@@ -104,7 +104,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>0</Statistic.Value>
+                            <Statistic.Value>{share_points}</Statistic.Value>
                             <Statistic.Label className="info">
                                 Share Points
                                 <Popup
@@ -115,7 +115,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>0</Statistic.Value>
+                            <Statistic.Value>{referral_points}</Statistic.Value>
                             <Statistic.Label  className="info">
                                 Referral Points
                                 <Popup
@@ -148,7 +148,7 @@ class InReaderProfile extends Component {
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i,{})}
+                                    <MyCard data={i} />
                                 </Grid.Column>
                             ))}
                         </Grid>

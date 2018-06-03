@@ -5,7 +5,7 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import makeTags from '../../helpers/makeTags';
 import './SearchBar.css';
-import myCard from '../../helpers/card';
+import MyCard from '../../helpers/card';
 
 const makeCard = () => {
     const tag = "GLAM"
@@ -55,7 +55,7 @@ class SearchBar extends Component {
                                         <Grid columns={3}>
                                             {[1,2,3,4,5,6].map(i => (
                                                 i % 2 ? <Grid.Column key={i}>
-                                                    {myCard(i, "Matthew")}
+                                                    <MyCard data={i} />
                                                 </Grid.Column>
                                                 :
                                                 <Grid.Column key={i}>

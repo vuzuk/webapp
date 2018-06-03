@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import {Segment, Grid, Header} from 'semantic-ui-react';
 import Slider from 'react-slick';
-import myCard from '../../helpers/card';
+import MyCard from '../../helpers/card';
 
 const settings = {
     dots: true,
@@ -61,7 +61,7 @@ class Fashion extends Component {
                         <Grid columns={3}>
                             {customData.map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i)}
+                                    <MyCard data={i} />
                                 </Grid.Column>
                             ))}
                         </Grid>

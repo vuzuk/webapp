@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import myCard from '../../helpers/card';
+import MyCard from '../../helpers/card';
 import { stringifyDate } from '../../helpers/stringifyDate';
 import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form, Label, Segment } from 'semantic-ui-react';
 import './Post.css';
@@ -56,7 +56,7 @@ class Post extends Component {
         return e.map(i => {
             return(
                 <Grid.Column key={i}>
-                    {myCard(i,{author: "Matthew"})}
+                    <MyCard data={i} />
                 </Grid.Column>
             )
         })
@@ -257,11 +257,14 @@ class Post extends Component {
                     <Comment.Group size="large">
                         <Header as='h2'>Comments</Header>
                         {
-                            customData.blogs[0].comments.map(comment => (
+                            customData.blogs[0].comments.map(comment => {
+                                const who = comment.blogger || comment.user;
+                                
+                                return (
                                 <Comment>
-                                <Comment.Avatar src={comment.blogger.image} />
+                                <Comment.Avatar src={who.image} />
                                 <Comment.Content>
-                                    <Comment.Author as='a'>{`${comment.blogger.first_name} ${comment.blogger.last_name}`}</Comment.Author>
+                                    <Comment.Author as='a'>{`${who.first_name} ${who.last_name}`}</Comment.Author>
                                     <Comment.Metadata>
                                     <div>{stringifyDate(comment.created_at)}</div>
                                     </Comment.Metadata>
@@ -273,7 +276,7 @@ class Post extends Component {
                                     </Comment.Actions>
                                 </Comment.Content>
                                 </Comment>
-                            ))
+                            )})
                         }
                         <Form reply>
                         <Form.TextArea onChange={(e) => {this.setState({comment: e.target.value})}} placeholder="Type your comment here..."/>

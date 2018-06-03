@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import { Image, Header, Segment, Grid, Divider, Icon, Popup } from 'semantic-ui-react'
 import axios from 'axios';
-import myCard from '../../helpers/card';
+import MyCard from '../../helpers/card';
 import './BloggerProfile.css'
 class BloggerProfile extends Component {
     constructor(props) {
@@ -100,7 +100,7 @@ class BloggerProfile extends Component {
                         <Grid columns={3}>
                             {[1,1,1,1,1,1,1,1,1].map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i,{})}
+                                    <MyCard data={i} />
                                 </Grid.Column>
                             ))}
                         </Grid>
