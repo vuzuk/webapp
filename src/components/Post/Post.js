@@ -65,7 +65,7 @@ class Post extends Component {
 
     render() {
         const { isActive, data, customData } = this.state;
-        const { image, facebook, twitter, instagram } = customData;
+        const { image, facebook, twitter, instagram, description } = customData;
         
         return(
             <div>
@@ -132,7 +132,7 @@ class Post extends Component {
                                         </div>
                                         <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
                                         <Header.Subheader>
-                                            Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
+                                            {description}
                                         </Header.Subheader>
                                     </Grid.Column>
                                 </Grid.Row>

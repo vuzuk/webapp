@@ -22,7 +22,7 @@ class InReaderProfile extends Component {
 
     render() {
         const {isActive, data} = this.state;
-        const {first_name, last_name, username} = data;
+        const {first_name, last_name, username, image} = data;
         const author = `${first_name} ${last_name}`;
 
         return (
@@ -31,7 +31,7 @@ class InReaderProfile extends Component {
                 <Segment className="main" id={cx("nocover")} basic>
                     <div className="blogger-profile">
                         <div>
-                            <Image spaced="right" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular/>
+                            <Image spaced="right" src={image} size='small' circular/>
                         </div>
                         <div>
                             <div className="username">{author}</div>

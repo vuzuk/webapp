@@ -18,6 +18,7 @@ class SignUp extends Component {
             contact: "",
             category: "food",
             isBlogger: "true",
+            place: "",
             isSent: false,
             isAgreed: true,
             disabled: false,
@@ -140,8 +141,8 @@ class SignUp extends Component {
                                 </Form.Group>
                                 <Form.Group widths="equal">
                                     <Form.Field>
-                                        <label>Email</label>
-                                        <Input onChange={this.handleFormText} name="email" placeholder='Email' />
+                                        <label>Place</label>
+                                        <Input onChange={this.handleFormText} name="place" placeholder='Place' />
                                     </Form.Field>
                                     <div className="field category">
                                         <label>Category</label>
@@ -151,6 +152,10 @@ class SignUp extends Component {
                                         <Form.Checkbox name="fashion" onClick={this.handleCheckbox} label='Fashion' />
                                     </div>
                                 </Form.Group>
+                                <Form.Field>
+                                    <label>Email</label>
+                                    <Input fluid onChange={this.handleFormText} name="email" placeholder='Email' />
+                                </Form.Field>
                                 <Form.Checkbox checked={isAgreed} onClick={() => {
                                         this.setState({
                                             isAgreed: !this.state.isAgreed

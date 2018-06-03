@@ -17,6 +17,7 @@ class SignUp extends Component {
             disabled: false,
             isSent: false,
             isAgreed: true,
+            place: ""
         }
     }
 
@@ -121,10 +122,16 @@ class SignUp extends Component {
                                             <option value='female'>Female</option>
                                         </Form.Field>
                                     </Form.Group>
-                                    <Form.Field>
-                                        <label>Email (for Newsletter)</label>
-                                        <Input onChange={this.handleFormText} name="email" fluid placeholder='Email' />
-                                    </Form.Field>
+                                    <Form.Group widths="equal">
+                                        <Form.Field>
+                                            <label>Email (for Newsletter)</label>
+                                            <Input onChange={this.handleFormText} name="email" placeholder='Email' />
+                                        </Form.Field>
+                                        <Form.Field>
+                                            <label>Place</label>
+                                            <Input onChange={this.handleFormText} name="place" placeholder='Place' />
+                                        </Form.Field>
+                                    </Form.Group>
                                     <Form.Checkbox label={<label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>} />
                                     <Button loading={isSent} disabled={disabled} fluid size="big" secondary type='submit'>Submit</Button>
                                 </Form>

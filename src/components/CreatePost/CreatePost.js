@@ -15,6 +15,7 @@ var decodeHtmlEntity = function(str) {
     });
   };
 
+
 const categoryOptions = [
     {
         value: 1,

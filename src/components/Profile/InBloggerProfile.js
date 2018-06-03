@@ -46,7 +46,7 @@ class InBloggerProfile extends Component {
         const thiss = this;
         axios({
             method: 'POST',
-            url: '/api/secure/blogger/upload/profilePic',
+            url: '/api/secure/generic/upload/profilePic',
             data: data,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
@@ -74,7 +74,7 @@ class InBloggerProfile extends Component {
         const thiss = this;
         axios({
             method: 'POST',
-            url: '/api/secure/blogger/upload/coverPic',
+            url: '/api/secure/generic/upload/coverPic',
             data: data,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
