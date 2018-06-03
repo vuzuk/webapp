@@ -7,13 +7,16 @@ const Comment = models["comment"];
 
 module.exports = (req, res) => {
     let comment = req.body["comment"], blogId = parseInt(req.body["blogId"]);
-    let parentId = req.body["parentId"] ? parseInt(req.body["parentId"]) : null;
     let whereObj = {
         comment: comment,
         blog_id: blogId,
-        parentId: parentId
     };
+
     whereObj[req["user"]["isBlogger"] ? "blogger_id" : "user_id"] = req["user"]["id"];
+    if(req.body['parentId']){
+        whereObj['parentId'] = parseInt(req.body['parentId']);
+    }
+
     Comment
         .findOrCreate({
             where: whereObj,
