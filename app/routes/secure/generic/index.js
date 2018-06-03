@@ -68,6 +68,8 @@ route.post('/upload/coverPic', upload.single('avatar'), require("./functions/upl
 route.get('/toggleFollowBlogger', require("./functions/toggleFollowBlogger"));
 // get following count   query = {}
 route.get('/following', require('./functions/following'));
+// get following count   query = {bloggerId}
+route.get('/isFollowing', require('./functions/isFollowing'));
 //get notifications
 route.get('/getNotifications', require("./functions/getNotifications"));
 
