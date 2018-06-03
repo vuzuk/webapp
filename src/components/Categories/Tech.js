@@ -47,7 +47,7 @@ class Tech extends Component {
                                     </Slider>
                                 </Segment>
                             </Grid.Column>
-                            <Grid.Column width={6} className="right-banners">
+                            <Grid.Column computer={10} tablet={10} mobile={16} className="right-banners">
                                 <Segment basic className="right-item">
                                     <img height="170px" width="90%" src="announcements.jpg" alt=""/>
                                 </Segment>
@@ -58,7 +58,7 @@ class Tech extends Component {
                         </Grid.Row>
                     </Grid>
                     <Segment basic>
-                        <Grid columns={3}>
+                        <Grid computer={10} tablet={10} mobile={16}>
                             {customData.map(i => (
                                 <Grid.Column key={i}>
                                     <MyCard data={i} />

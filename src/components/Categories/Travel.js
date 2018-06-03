@@ -34,7 +34,7 @@ class Travel extends Component {
                     </Header>
                     <Grid columns={2}>
                         <Grid.Row stretched>
-                            <Grid.Column width={10}>
+                            <Grid.Column computer={10} tablet={10} mobile={16}>
                                 <Segment basic>
                                     <Slider {...settings}>
                                         {[1,0,2,1,3,0].map((i,x) => {
@@ -47,7 +47,7 @@ class Travel extends Component {
                                     </Slider>
                                 </Segment>
                             </Grid.Column>
-                            <Grid.Column width={6} className="right-banners">
+                            <Grid.Column computer={10} tablet={10} mobile={16} className="right-banners">
                                 <Segment basic className="right-item">
                                     <img height="170px" width="90%" src="announcements.jpg" alt=""/>
                                 </Segment>
