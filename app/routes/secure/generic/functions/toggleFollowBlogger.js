@@ -7,7 +7,7 @@ const Follower = models['follower']
 module.exports = (req, res) => {
     let bloggerId = req['query']['bloggerId'];
     let whereObj = {
-        bloggerId: bloggerId
+        blogger_id: bloggerId
     };
     whereObj[req['user']['isBlogger'] ? 'b_user_id' : 'user_id'] = req['user']['id'];
     Follower

@@ -57,7 +57,7 @@ localhost:3000/api/secure/blogger/undoDeleteBlog
 
 
 ## update likings      
-GET - query = {likings(stringified array)}
+GET - query = {likings (stringified array)}
 localhost:3000/api/secure/user/updateLikings
 
 
