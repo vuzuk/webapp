@@ -5,6 +5,7 @@ import myCard from '../../helpers/card';
 import { stringifyDate } from '../../helpers/stringifyDate';
 import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form, Label, Segment } from 'semantic-ui-react';
 import './Post.css';
+import axios from 'axios';
 
 const users = [
     {
@@ -45,7 +46,9 @@ class Post extends Component {
         this.state = {
             isActive: 'popular',
             data: props.data,
-            customData: props.customData[0]
+            customData: props.customData[0],
+            isLiked: false,
+            comment: ""
         }
     }
 
@@ -63,8 +66,43 @@ class Post extends Component {
         })
     }
 
+    addComment = (e, x, parentId) => {
+        const { comment: text, customData } = this.state;
+        
+        const data = {
+            comment: text,
+            blogId: customData.blogs[0].id,
+            parentId
+        }
+        console.log(data);
+        
+        axios({
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            url: '/api/secure/generic/addComment',
+            data: JSON.stringify(data)
+        })
+        .then((res) => {
+            console.log(res);
+            
+        })
+        .catch(err => console.log(err))
+    }
+
+    toggleLike = () => {
+        const thiss = this;
+        const { customData } = this.state;
+        axios.get(`/api/secure/generic/toggleBlogLike?blogId=${customData.blogs[0].id}`)
+          .then((res) => {
+            thiss.setState({isLiked: !this.state.isLiked})
+          })
+          .catch(err => console.log(err))
+    }
+
     render() {
-        const { isActive, data, customData } = this.state;
+        const { isActive, data, customData, isLiked } = this.state;
         const { image, facebook, twitter, instagram, description } = customData;
         
         return(
@@ -88,7 +126,7 @@ class Post extends Component {
                                                     <Icon name="unhide" /> {customData.blogs[0].views}
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
-                                                    <Icon name="heart" /> 0
+                                                    <span onClick={this.toggleLike}>{isLiked ? <Icon name="heart" /> : <Icon name="heart outline" />}</span> 0
                                                 </Grid.Column>
                                                 <Grid.Column as="a">
                                                     <Icon name="comments" /> {customData.blogs[0].comments.length}
@@ -203,73 +241,28 @@ class Post extends Component {
                 <Divider />
                     <Comment.Group size="large">
                         <Header as='h2'>Comments</Header>
-
-                        <Comment>
-                        <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/matt.jpg' />
-                        <Comment.Content>
-                            <Comment.Author as='a'>Matt</Comment.Author>
-                            <Comment.Metadata>
-                            <div>Today at 5:42PM</div>
-                            </Comment.Metadata>
-                            <Comment.Text>How artistic!</Comment.Text>
-                            <Comment.Actions>
-                            <Comment.Action>Reply</Comment.Action>
-                            </Comment.Actions>
-                        </Comment.Content>
-                        </Comment>
-
-                        <Comment>
-                        <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
-                        <Comment.Content>
-                            <Comment.Author as='a'>Elliot Fu</Comment.Author>
-                            <Comment.Metadata>
-                            <div>Yesterday at 12:30AM</div>
-                            </Comment.Metadata>
-                            <Comment.Text>
-                            <p>This has been very useful for my research. Thanks as well!</p>
-                            </Comment.Text>
-                            <Comment.Actions>
-                            <Comment.Action>Reply</Comment.Action>
-                            </Comment.Actions>
-                        </Comment.Content>
-                        <Comment.Group size="large">
-                            <Comment>
-                            <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/jenny.jpg' />
-                            <Comment.Content>
-                                <Comment.Author as='a'>Jenny Hess</Comment.Author>
-                                <Comment.Metadata>
-                                <div>Just now</div>
-                                </Comment.Metadata>
-                                <Comment.Text>
-                                Elliot you are always so right :)
-                                </Comment.Text>
-                                <Comment.Actions>
-                                <Comment.Action>Reply</Comment.Action>
-                                </Comment.Actions>
-                            </Comment.Content>
-                            </Comment>
-                        </Comment.Group>
-                        </Comment>
-
-                        <Comment>
-                        <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
-                        <Comment.Content>
-                            <Comment.Author as='a'>Joe Henderson</Comment.Author>
-                            <Comment.Metadata>
-                            <div>5 days ago</div>
-                            </Comment.Metadata>
-                            <Comment.Text>
-                            Dude, this is awesome. Thanks so much
-                            </Comment.Text>
-                            <Comment.Actions>
-                            <Comment.Action>Reply</Comment.Action>
-                            </Comment.Actions>
-                        </Comment.Content>
-                        </Comment>
-
+                        {
+                            customData.blogs[0].comments.map(comment => (
+                                <Comment>
+                                <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
+                                <Comment.Content>
+                                    <Comment.Author as='a'>Joe Henderson</Comment.Author>
+                                    <Comment.Metadata>
+                                    <div>5 days ago</div>
+                                    </Comment.Metadata>
+                                    <Comment.Text>
+                                        Dude, this is awesome. Thanks so much
+                                    </Comment.Text>
+                                    <Comment.Actions>
+                                    <Comment.Action>Reply</Comment.Action>
+                                    </Comment.Actions>
+                                </Comment.Content>
+                                </Comment>
+                            ))
+                        }
                         <Form reply>
-                        <Form.TextArea />
-                        <Button content='Add Comment' labelPosition='left' icon='edit' primary />
+                        <Form.TextArea onChange={(e) => {this.setState({comment: e.target.value})}} placeholder="Type your comment here..."/>
+                            <Button onClick={this.addComment} content='Add Comment' labelPosition='left' icon='edit' primary />
                         </Form>
                     </Comment.Group>
                 </div>
