@@ -46,7 +46,7 @@ class InBloggerProfile extends Component {
         const thiss = this;
         axios({
             method: 'POST',
-            url: '/api/secure/blogger/upload/profilePic',
+            url: '/api/secure/generic/upload/profilePic',
             data: data,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
@@ -74,7 +74,7 @@ class InBloggerProfile extends Component {
         const thiss = this;
         axios({
             method: 'POST',
-            url: '/api/secure/blogger/upload/coverPic',
+            url: '/api/secure/generic/upload/coverPic',
             data: data,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
@@ -116,7 +116,7 @@ class InBloggerProfile extends Component {
 
     render() {
         const {data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent} = this.state;
-        const {first_name, last_name, username, image: profilePic, cover_image} = data;
+        const {first_name, last_name, image, cover_image} = data;
         const author = `${first_name} ${last_name}`;
         
         return (
@@ -128,7 +128,7 @@ class InBloggerProfile extends Component {
 
                     <div className="blogger-profile">
                         <div>
-                            <Image spaced="right" src={profilePic} size='small' circular/>
+                            <Image spaced="right" src={image} size='small' circular/>
                             <div className="edit">
                                 <label for="profile-upload">{isSent ? "Uploading..." : "Change Photo"}</label>
                                 <input type="file" onChange={this.uploadProfile} id="profile-upload"></input>
@@ -153,7 +153,7 @@ class InBloggerProfile extends Component {
                         {isPostFetched && posts[0].id && <Grid columns={3}>
                             {posts.map(i => (
                                 <Grid.Column key={i}>
-                                    {myCard(i, {author, username, profilePic})}
+                                    {myCard(i)}
                                 </Grid.Column>
                             ))}
                         </Grid>}

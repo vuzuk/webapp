@@ -16,19 +16,22 @@ const myCard = ({
         date_published = "January 26, 2018",
         views = "2.2K",
         comments = 0,
-        slug = "#"
-    }, {author = "Matthew Stewards", username = "#", profilePic = "https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg"}) => {
+        slug = "#",
+        blogger = {}
+    }) => {
 
     images = images[0];
     date_published = stringifyDate(date_published);
+
+    const {first_name = "Matthew", last_name = "", username = "#", image = "https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg"} = blogger
     
     return (
         <div className="myCard">
             <Card>
                 <Card.Content extra>
                     <Label size="large" as='a' className="myHeader" href="/blogger" image>
-                    <Image avatar spaced='right' src={profilePic} />
-                        {author}
+                    <Image avatar spaced='right' src={image} />
+                        {`${first_name} ${last_name}`}
                     </Label>
                     <Button size="tiny" primary>Follow</Button>
                 </Card.Content>

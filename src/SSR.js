@@ -18,7 +18,7 @@ export default function render(req,res) {
   const promise = fetchInitialData ? fetchInitialData(req.path.split("/")) : Promise.resolve();
       
   promise.then(response => {
-    customData = response ? response.data.msg[0] : {};
+    customData = response ? response.data.msg : {};
 
     res.write(staticHTML({
       title: title || 'VUZUK',
