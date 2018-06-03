@@ -71,10 +71,11 @@ class Post extends Component {
         
         const data = {
             comment: text,
-            blogId: customData.blogs[0].id,
-            parentId
+            blogId: customData.blogs[0].id
         }
-        console.log(data);
+        if(parentId) {
+            data.parentId = parentId
+        }
         
         axios({
             method: 'POST',
@@ -85,8 +86,7 @@ class Post extends Component {
             data: JSON.stringify(data)
         })
         .then((res) => {
-            console.log(res);
-            
+            location.reload()
         })
         .catch(err => console.log(err))
     }
@@ -244,17 +244,17 @@ class Post extends Component {
                         {
                             customData.blogs[0].comments.map(comment => (
                                 <Comment>
-                                <Comment.Avatar src='https://react.semantic-ui.com/assets/images/avatar/small/joe.jpg' />
+                                <Comment.Avatar src={comment.blogger.image} />
                                 <Comment.Content>
-                                    <Comment.Author as='a'>Joe Henderson</Comment.Author>
+                                    <Comment.Author as='a'>{`${comment.blogger.first_name} ${comment.blogger.last_name}`}</Comment.Author>
                                     <Comment.Metadata>
-                                    <div>5 days ago</div>
+                                    <div>{stringifyDate(comment.created_at)}</div>
                                     </Comment.Metadata>
                                     <Comment.Text>
-                                        Dude, this is awesome. Thanks so much
+                                        {comment.comment}
                                     </Comment.Text>
                                     <Comment.Actions>
-                                    <Comment.Action>Reply</Comment.Action>
+                                    {/* <Comment.Action>Reply</Comment.Action> */}
                                     </Comment.Actions>
                                 </Comment.Content>
                                 </Comment>
