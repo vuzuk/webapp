@@ -1,6 +1,6 @@
 const Op = require("sequelize").Op;
 const models = require(process.env.APP_ROOT + "/app/db/models");
-const Follower = models['follower']
+const Blog_like = models['blog_like']
 
 module.exports = (req, res) => {
     let whereObj = {
@@ -8,7 +8,7 @@ module.exports = (req, res) => {
     };
     whereObj[req['user']['isBlogger'] ? 'blogger_id' : 'user_id'] = req['user']['id'];
 
-    Follower
+    Blog_like
         .findAll({
             where: whereObj,
             logging: false
