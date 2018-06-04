@@ -24,7 +24,7 @@ class BloggerProfile extends Component {
 
     componentDidMount() {
         const thiss = this;
-        axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.data.id}`)
+        axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.customData.id}`)
         .then(res => {
             thiss.setState({
                 followers: res.data.msg.followers.count,
@@ -33,7 +33,7 @@ class BloggerProfile extends Component {
         })
         .catch(err => console.log(err))
 
-        axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
+        axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.customData.id}`)
             .then(({data}) => {
                 thiss.setState({
                     posts: data.msg,
