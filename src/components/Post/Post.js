@@ -55,7 +55,7 @@ class Post extends Component {
     makeList = (e) => {
         return e.map(i => {
             return(
-                <Grid.Column key={i}>
+                <Grid.Column computer={5} tablet={8} mobile={16} key={i}>
                     <MyCard data={i} />
                 </Grid.Column>
             )
@@ -104,7 +104,16 @@ class Post extends Component {
           })
           .catch(err => console.log(err))
 
-        axios.get(`/api/secure/generic/viewBlog?blogId=${this.state.customData.blogs[0].id}`)
+        axios.get(`/api/secure/generic/viewBlog?blogId=${this.state.customData.blogs[0].id}`);
+
+        axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.customData.id}`)
+          .then(res => {
+              thiss.setState({
+                  followers: res.data.msg.followers.count,
+                  following: res.data.msg.following.count
+              })
+          })
+          .catch(err => console.log(err))
     }
 
     toggleLike = () => {
@@ -117,7 +126,7 @@ class Post extends Component {
     }
 
     render() {
-        const { data, customData, isLiked, isSent } = this.state;
+        const { data, customData, isLiked, isSent, followers, following } = this.state;
         const { image, facebook, twitter, instagram, description } = customData;
         
         return(
@@ -125,7 +134,7 @@ class Post extends Component {
                 <Navbar data={data} />
                 <div className="post">
                     <Grid divided>
-                        <Grid.Column width={11}>
+                        <Grid.Column computer={11} mobile={16}>
                             <Header as="h1">
                                 {customData.blogs[0].title}
                                 <Header.Subheader>
@@ -183,7 +192,7 @@ class Post extends Component {
                                             {twitter && <a href={twitter} target="_blank"><Icon circular name='twitter' link/></a>}
                                             {instagram && <a href={instagram} target="_blank"><Icon circular name='instagram' link/></a>}
                                         </div>
-                                        <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
+                                        {followers && <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
                                         <Header.Subheader>
                                             {description}
                                         </Header.Subheader>
@@ -194,7 +203,7 @@ class Post extends Component {
                                 {this.makeList([1,2,3])}
                             </Grid>
                         </Grid.Column>
-                        <Grid.Column width={5}>
+                        <Grid.Column computer={5} mobile={16}>
                             <Segment className="topics">
                                 <Header>
                                     Topics

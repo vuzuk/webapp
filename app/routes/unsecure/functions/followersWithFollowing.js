@@ -9,7 +9,7 @@ module.exports = (req, res) => {
     let retval = {};
     Follower
         .findAndCountAll({
-            where: {blogger_id: req['user']['id']},
+            where: {blogger_id},
             logging: false,
             raw: true
         })
@@ -17,7 +17,7 @@ module.exports = (req, res) => {
             retval['followers'] = result;
             Follower
                 .findAndCountAll({
-                    where: {b_user_id: req['user']['id']},
+                    where: {b_user_id: blogger_id},
                     logging: false,
                     raw: true
                 })

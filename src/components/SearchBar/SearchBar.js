@@ -54,12 +54,8 @@ class SearchBar extends Component {
                                     <Segment basic>
                                         <Grid columns={3}>
                                             {[1,2,3,4,5,6].map(i => (
-                                                i % 2 ? <Grid.Column key={i}>
-                                                    <MyCard data={i} />
-                                                </Grid.Column>
-                                                :
-                                                <Grid.Column key={i}>
-                                                    {makeCard()}
+                                                <Grid.Column  computer={5} tablet={5} mobile={16} key={i}>
+                                                    {i % 2 ? <MyCard data={i} /> : makeCard()}
                                                 </Grid.Column>
                                             ))}
                                         </Grid>

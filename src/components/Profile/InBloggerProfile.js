@@ -108,6 +108,16 @@ class InBloggerProfile extends Component {
                     noPost: true
                 })
             })
+
+        axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.data.id}`)
+        .then(res => {
+            thiss.setState({
+                followers: res.data.msg.followers.count,
+                following: res.data.msg.following.count
+            })
+        })
+        .catch(err => console.log(err))
+  
     }
 
     handleChange = (isActive) => {
@@ -115,7 +125,7 @@ class InBloggerProfile extends Component {
     }
 
     render() {
-        const {data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent} = this.state;
+        const {data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent, followers, following} = this.state;
         const {first_name, last_name, image, cover_image} = data;
         const author = `${first_name} ${last_name}`;
         
@@ -136,7 +146,7 @@ class InBloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">{author}</div>
-                            <div className="follow-count"><a href="#">0</a> FOLLOWERS &nbsp;&nbsp; <a href="#">0</a> FOLLOWING</div>
+                            {followers && <div className="follow-count"><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
                         </div>
                         <div className="create">
                             <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
