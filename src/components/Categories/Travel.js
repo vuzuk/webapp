@@ -60,7 +60,7 @@ class Travel extends Component {
                     <Segment basic>
                         <Grid columns={3}>
                             {customData.map(i => (
-                                <Grid.Column key={i}>
+                                <Grid.Column computer={5} tablet={8} mobile={16} key={i}>
                                     <MyCard data={i} />
                                 </Grid.Column>
                             ))}

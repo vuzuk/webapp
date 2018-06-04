@@ -58,9 +58,9 @@ class Tech extends Component {
                         </Grid.Row>
                     </Grid>
                     <Segment basic>
-                        <Grid computer={10} tablet={10} mobile={16}>
+                        <Grid>
                             {customData.map(i => (
-                                <Grid.Column key={i}>
+                                <Grid.Column computer={5} tablet={8} mobile={16} key={i}>
                                     <MyCard data={i} />
                                 </Grid.Column>
                             ))}
