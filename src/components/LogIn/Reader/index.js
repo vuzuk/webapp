@@ -54,7 +54,7 @@ class LogIn extends Component {
                 <Navbar />
                     <Card fluid>
                         <Card.Content>
-                            <Card.Header as="h1">LOG IN</Card.Header>
+                            <Card.Header as="h1">READER LOG IN</Card.Header>
                         </Card.Content>
                         <Card.Content>
                             <Segment basic>
