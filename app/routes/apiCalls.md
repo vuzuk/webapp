@@ -148,6 +148,14 @@ api/secure/generic/getLiked
 GET - query = {}
 api/secure/generic/getBookmarks
 
+## get blog like status
+GET - query = {blogId}
+api/secure/generic/likeStatus
+## get blog bookmark status
+GET - query = {blogId}
+api/secure/generic/bookmarkStatus
+
+
 
 ## Remaining tasks
 update user profile
