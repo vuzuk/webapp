@@ -9,7 +9,7 @@ import { Terms, Disclaimer, Privacy} from './components/Documents';
 import SearchBar from './components/SearchBar/SearchBar';
 
 //api
-import { fetchPost, getBlogsByCategory } from './api';
+import { fetchPost, getBlogsByCategory, getBlogger } from './api';
 
 const routes = [
     {
@@ -73,9 +73,13 @@ const routes = [
         }
     },
     {
-        path: '/blogger',
+        path: '/blogger/:username',
         component: BloggerProfile,
-        title: 'Blogger Profile - VUZUK'
+        title: 'Blogger Profile - VUZUK',
+        fetchInitialData: (path) => {
+            const username = path[2];
+            return getBlogger(username);
+        }
     },
     {
         path: '/food',

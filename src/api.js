@@ -9,3 +9,7 @@ export function fetchPost(bloggerName, slug) {
 export function getBlogsByCategory(id, offset, limit) {
   return axios.get(`http://${DOMAIN}/api/unsecure/getBlogsByCategory/${id}/${offset}/${limit}`);
 }
+
+export function getBlogger(username) {
+  return axios.get(`http://${DOMAIN}/api/unsecure/getBlogger/${username}`)
+}

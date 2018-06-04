@@ -11,7 +11,10 @@ class BloggerProfile extends Component {
     
         this.state = {
             isActive: "viewed",
-            data: props.data
+            data: props.data,
+            customData: props.customData[0],
+            posts: [],
+            isPostFetched: false
         }
     }
 
@@ -19,24 +22,63 @@ class BloggerProfile extends Component {
         this.setState({isActive});
     }
 
+    componentDidMount() {
+        const thiss = this;
+        axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.data.id}`)
+        .then(res => {
+            thiss.setState({
+                followers: res.data.msg.followers.count,
+                following: res.data.msg.following.count
+            })
+        })
+        .catch(err => console.log(err))
+
+        axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
+            .then(({data}) => {
+                thiss.setState({
+                    posts: data.msg,
+                    isPostFetched: true
+                })
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
     render() {
-        const { isActive, data } = this.state;
+        let { isActive, data, customData, followers, following, isPostFetched, posts } = this.state;
+        const {
+            cover_image,
+            image,
+            first_name,
+            last_name,
+            facebook,
+            instagram,
+            twitter,
+            description
+        } = customData;
+        isActive === "viewed" ? posts = posts.sort((a, b) => {
+            return b.views - a.views
+        }) : posts = posts.sort((a, b) => {
+            return b.likes - a.likes
+        })
+        
+
         return (
             <div id="profile">
                 <Navbar data={data}/>
-                <Segment textAlign="center" basic className="main">
+                <Segment style={{backgroundImage: `url(${cover_image})`}} textAlign="center" basic className="main">
                     <div className="profile">
-                        <Image className="profile-pic" src='https://react.semantic-ui.com/assets/images/avatar/large/elliot.jpg' size='small' circular />
-                        <Header size='large'>Matthew Stewards</Header>
+                        <Image className="profile-pic" src={image} size='small' circular />
+                        <Header size='large'>{`${first_name} ${last_name}`}</Header>
                         <div>
-                            <Icon circular name='facebook' link/>
-                            <Icon circular name='twitter' link/>
-                            <Icon circular name='instagram' link/>
-                            <Icon circular name='linkedin' link/>
+                            {facebook && <a href={facebook} target="_blank"><Icon circular name='facebook'/></a>}
+                            {twitter && <a href={twitter} target="_blank"><Icon circular name='twitter'/></a>}
+                            {instagram && <a href={instagram} target="_blank"><Icon circular name='instagram'/></a>}
                         </div>
-                        <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a href="#">2.2K</a> FOLLOWERS &nbsp;&nbsp; <a href="#">959</a> FOLLOWING</div>
+                        {followers !== undefined && <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
                         <Header.Subheader>
-                            Lorem ipsum dolor sit amet, sed at nullam honestatis, dissentias mediocritatem id sed. Tollit nusquam corpora cu his, sumo everti vituperata vix eu. Te vero natum denique his, dolore oblique usu at, usu commune lucilius ex
+                            {description}
                         </Header.Subheader>
                     </div>
                 </Segment>
@@ -44,14 +86,13 @@ class BloggerProfile extends Component {
                     <div className="tabs profilet">
                         <span style={{fontWeight: "bold"}}>Sort By: </span>
                         <div className="tab profilet" onClick={() => {this.handleChange("viewed")}} style={isActive === "viewed" ? {borderBottom: "2px solid #55ACEE"} : null}><Popup trigger={<Icon name="eye" />} position="top center" inverted content="Most Viewed"/></div>
-                        <div className="tab profilet" onClick={() => {this.handleChange("commented")}} style={isActive === "commented" ? {borderBottom: "2px solid #55ACEE"} : null}><Popup trigger={<Icon name="comments" />} position="top center" inverted content="Most Commented"/></div>
                         <div className="tab profilet" onClick={() => {this.handleChange("liked")}} style={isActive === "liked" ? {borderBottom: "2px solid #55ACEE"} : null}><Popup trigger={<Icon name="thumbs up" />} position="top center" inverted content="Most Liked"/></div>
                     </div>
                 </div>
                 <Divider />
                 <Segment basic>
                     <div className="profile-cards">
-                    {isActive === "viewed" && <div className="mySlider">
+                    {/*isActive === "viewed" && <div className="mySlider">
                         <div id="tech1">
                             <a href="" style={{background:"url(https://4.bp.blogspot.com/-BlBi18JGkEA/Vupbk40a0UI/AAAAAAAADXk/rydm_x2vsJURxIq763HgLebaYXvmhrnQA/s1600/person-731479_960_720.jpg) no-repeat center center", backgroundSize: "cover", display: "block", height: "400px"}}></a>
                             <div className="tech-title">
@@ -96,13 +137,14 @@ class BloggerProfile extends Component {
                                 </div>
                             </div>
                         </div>
-                    </div>}
+                    </div>*/}
                         <Grid columns={3}>
-                            {[1,1,1,1,1,1,1,1,1].map(i => (
-                                <Grid.Column key={i}>
+                            {isPostFetched && posts.map((i, x) => (
+                                <Grid.Column key={i.likes}>
                                     <MyCard data={i} />
                                 </Grid.Column>
                             ))}
+                            {!isPostFetched && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3> }
                         </Grid>
                     </div>
                 </Segment>

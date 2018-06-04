@@ -159,7 +159,7 @@ class Post extends Component {
                                         </Grid>
                                     </List.Content>
                                     <Image avatar src={image} />
-                                    <List.Content as="a">
+                                    <List.Content href={`/blogger/${customData.username}`}>
                                         {customData.first_name + " " + customData.last_name}
                                     </List.Content>
                                 </List.Item>
@@ -173,7 +173,7 @@ class Post extends Component {
                             <hr />
                             <div className="post-tags">
                                 <span style={{opacity: 0.5, fontSize: "1.1em"}}>Tags: </span>
-                                <Label.Group tag as="a">
+                                <Label.Group tag as="span">
                                     {customData.blogs[0].tags.map((tag, i) => (
                                         <Label key={tag + i} as='a'>{tag.name}</Label>
                                     ))}
@@ -186,11 +186,11 @@ class Post extends Component {
                                         <Image className="profile-pic" src={image} size='small' circular />
                                     </Grid.Column>
                                     <Grid.Column width={14}>
-                                        <Header size='large'>{customData.first_name + " " + customData.last_name}</Header>
+                                        <Header size='large' href={`/blogger/${customData.username}`}>{customData.first_name + " " + customData.last_name}</Header>
                                         <div>
-                                            {facebook && <a href={facebook} target="_blank"><Icon circular name='facebook' link/></a>}
-                                            {twitter && <a href={twitter} target="_blank"><Icon circular name='twitter' link/></a>}
-                                            {instagram && <a href={instagram} target="_blank"><Icon circular name='instagram' link/></a>}
+                                            {facebook && <a href={facebook} target="_blank"><Icon circular name='facebook'/></a>}
+                                            {twitter && <a href={twitter} target="_blank"><Icon circular name='twitter'/></a>}
+                                            {instagram && <a href={instagram} target="_blank"><Icon circular name='instagram'/></a>}
                                         </div>
                                         {followers !== undefined && <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
                                         <Header.Subheader>

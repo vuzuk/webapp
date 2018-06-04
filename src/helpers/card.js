@@ -78,7 +78,7 @@ class myCard extends Component {
             <div className="myCard">
                 <Card>
                     <Card.Content extra>
-                        <Label size="large" as='a' className="myHeader" href="/blogger" image>
+                        <Label size="large" as='a' className="myHeader" href={`/blogger/${username}`} image>
                         <Image avatar spaced='right' src={image} />
                             {`${first_name} ${last_name}`}
                         </Label>

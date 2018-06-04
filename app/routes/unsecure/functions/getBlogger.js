@@ -5,10 +5,10 @@ const Blogger = models["blogger"];
 const Follower = models["follower"];
 
 module.exports = (req, res) => {
-    let username = parseInt(req.params["username"]);
+    let username = req.params["username"];
     Blogger
         .findAll({
-            attributes: ["id","username","first_name","last_name","image","gender","email"],
+            attributes: ["id","username","first_name","last_name","image", "description","email", "facebook", "instagram", "twitter", "cover_image", "image"],
             where: {
                 username: username
             },
