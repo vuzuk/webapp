@@ -94,6 +94,10 @@ class Post extends Component {
         })
     }
 
+    share = () => {
+        axios.get(`/api/secure/generic/share`)
+    }
+
     componentDidMount = () => {
         const thiss = this;
         axios.get(`/api/secure/generic/likeStatus?blogId=${this.state.customData.blogs[0].id}`)
@@ -178,7 +182,7 @@ class Post extends Component {
                                         <Label key={tag + i} as='a'>{tag.name}</Label>
                                     ))}
                                 </Label.Group>
-                                <div style={{marginTop: "30px", marginBottom: "30px"}} className="sharethis-inline-share-buttons"></div>
+                                <div onClick={this.share} style={{marginTop: "30px", marginBottom: "30px"}} className="sharethis-inline-share-buttons"></div>
                             </div>
                             <Grid>
                                 <Grid.Row>
