@@ -13,12 +13,26 @@ class InReaderProfile extends Component {
         this.state = {
             isActive: "points",
             data: props.data,
-            isSent: false
+            isSent: false,
+            posts: [],
+            fetched: false
         }
     }
 
+    fetchBlogs = () => {
+        
+    }
+
     handleChange = (isActive) => {
-        console.log(isActive);
+        let ids = []
+        if(isActive === "likes") {
+            axios.get('/api/secure/generic/getLiked')
+              .then(res => {
+                ids = res.data.msg.map(i => i.blog_id);
+                thiss.setState({idFetched: true})
+              })
+              .catch(err => console.log(err))
+        }
         this.setState({isActive});
     }
 
