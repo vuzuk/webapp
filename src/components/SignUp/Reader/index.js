@@ -77,10 +77,6 @@ class SignUp extends Component {
                         </Card.Content>
                         <Card.Content>
                             <Segment basic>
-                                <Button size="big" color='facebook' fluid>
-                                    <Icon name='facebook' /> Join With Facebook
-                                </Button>
-                                <Divider horizontal>OR</Divider>
                                 <Form onSubmit={this.submit}>
                                     <Form.Group widths='equal'>
                                         <Form.Field>

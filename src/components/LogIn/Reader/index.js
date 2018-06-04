@@ -58,10 +58,6 @@ class LogIn extends Component {
                         </Card.Content>
                         <Card.Content>
                             <Segment basic>
-                                <Button size="big" color='facebook' fluid>
-                                    <Icon name='facebook' /> Login With Facebook
-                                </Button>
-                                <Divider horizontal>OR</Divider>
                                 <Form onSubmit={this.submit}>
                                     <Form.Field>
                                         <label>Email or Username</label>
