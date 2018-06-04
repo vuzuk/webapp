@@ -15,25 +15,48 @@ class InReaderProfile extends Component {
             data: props.data,
             isSent: false,
             posts: [],
-            fetched: false
+            fetched: false,
+            noPost: false
         }
     }
 
-    fetchBlogs = () => {
-        
+    fetchBlogs = (ids) => {
+        const thiss = this;
+        axios.get(`/api/unsecure/getBlogsByIds?blogIds=${JSON.stringify(ids)}`)
+         .then(res => {
+             thiss.setState({
+                 posts: res.data.msg,
+                 fetched: true
+             })
+         })
+         .catch(err => {
+             thiss.setState({
+                 noPost: true
+             })
+         })
     }
 
     handleChange = (isActive) => {
-        let ids = []
+        this.setState({isActive, fetched: false, posts: [], noPost: false});
+        let ids = [];
+        const thiss = this;
         if(isActive === "likes") {
             axios.get('/api/secure/generic/getLiked')
               .then(res => {
                 ids = res.data.msg.map(i => i.blog_id);
-                thiss.setState({idFetched: true})
+                thiss.fetchBlogs(ids)
               })
               .catch(err => console.log(err))
         }
-        this.setState({isActive});
+
+        if(isActive === "bookmark") {
+            axios.get('/api/secure/generic/getBookmarks')
+              .then(res => {
+                ids = res.data.msg.map(i => i.blog_id);
+                thiss.fetchBlogs(ids)
+              })
+              .catch(err => console.log(err))
+        }
     }
 
     uploadProfile = (e) => {
@@ -65,7 +88,7 @@ class InReaderProfile extends Component {
     }
 
     render() {
-        const {isActive, data, isSent} = this.state;
+        const {isActive, data, isSent, fetched, posts, noPost} = this.state;
         const {first_name, last_name, username, image, view_points, comment_points, share_points, referral_points} = data;
         const author = `${first_name} ${last_name}`;
 
@@ -158,15 +181,21 @@ class InReaderProfile extends Component {
                         </Segment>
                         </Segment>
                     </div>}
-                    {isActive !== "points" && <div className="profile-cards">
-                        <Grid columns={3}>
-                            {[1,1,1,1,1,1,1,1,1].map(i => (
-                                <Grid.Column key={i}>
-                                    <MyCard data={i} />
-                                </Grid.Column>
-                            ))}
-                        </Grid>
-                    </div>}
+                    {isActive !== "points" && fetched &&
+                        <div className="profile-cards">
+                            <Grid columns={3}>
+                                {posts.length !== 0 && posts.map(i => (
+                                    <Grid.Column key={i}>
+                                        <MyCard data={i} />
+                                    </Grid.Column>
+                                ))}
+                            </Grid>
+                        </div>
+                    }
+                    {!noPost && isActive !== "points" && !fetched && <h3 style={{textAlign: "center", marginTop: "100px", marginBottom: "150px"}}>Loading...</h3>}
+                    {
+                        noPost && <h3 style={{textAlign: "center", marginTop: "100px", marginBottom: "150px"}}>No posts</h3>
+                    }
                 </Segment>
                 <Footer />
             </div>
