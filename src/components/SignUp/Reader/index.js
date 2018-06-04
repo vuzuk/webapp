@@ -129,7 +129,7 @@ class SignUp extends Component {
                                         </Form.Field>
                                     </Form.Group>
                                     <Form.Checkbox label={<label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>} />
-                                    <Button loading={isSent} disabled={disabled} fluid size="big" secondary type='submit'>Submit</Button>
+                                    <Button loading={isSent} disabled={disabled} fluid size="big" secondary type='submit'>{disabled ? "Thanks for registering" : "Submit"}</Button>
                                 </Form>
                             </Segment>
                         </Card.Content>

@@ -71,9 +71,7 @@ class SignUp extends Component {
             })
             .catch(error => {
                 alert("Some fields are missing");
-            })
-            .finally(() => {
-                thiss.setState({isSent: false})
+                thiss.setState({isSent: false});
             })
         } else if(data.password !== data.cpassword) {
             alert("Password not matched");
@@ -82,9 +80,7 @@ class SignUp extends Component {
         }
     }
 
-    handleFormText = (e) => {
-        console.log([e.target.name],e.target.value);
-        
+    handleFormText = (e) => {        
         this.setState({[e.target.name]: e.target.value});
     }
 
@@ -161,7 +157,7 @@ class SignUp extends Component {
                                             isAgreed: !this.state.isAgreed
                                         })
                                     }} label={<label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>} />
-                                <Button type='submit' disabled={disabled} loading={isSent} fluid primary>Submit</Button>
+                                <Button type='submit' disabled={disabled} loading={isSent} fluid primary>{disabled ? "Thanks for registering" : "Submit"}</Button>
                             </Form>
                         </Card.Content>
                     </Card>
