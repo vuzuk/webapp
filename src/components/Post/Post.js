@@ -192,7 +192,7 @@ class Post extends Component {
                                             {twitter && <a href={twitter} target="_blank"><Icon circular name='twitter' link/></a>}
                                             {instagram && <a href={instagram} target="_blank"><Icon circular name='instagram' link/></a>}
                                         </div>
-                                        {followers && <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
+                                        {followers !== undefined && <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
                                         <Header.Subheader>
                                             {description}
                                         </Header.Subheader>
