@@ -15,7 +15,8 @@ class myCard extends Component {
             likes = "0",
             slug = "#",
             blogger = {},
-            blogger_id: id
+            blogger_id: id,
+            id: post_id
         } = props.data;
 
         const {first_name = "Matthew", last_name = "", username = "#", image = "https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg"} = blogger
@@ -36,16 +37,26 @@ class myCard extends Component {
             first_name,
             last_name,
             username,
-            image
+            image,
+            post_id,
+            bookmark: false,
+            isSaving: false
         }
     }
 
     componentDidMount() {
         const thiss = this;
         axios.get(`/api/secure/generic/isFollowing?bloggerId=${this.state.id}`)
-        .then(res => {
+          .then(res => {
             res.data.msg.length ? thiss.setState({
                 follow: true
+            }) : null
+        })
+
+        axios.get(`/api/secure/generic/bookmarkStatus?blogId=${this.state.post_id}`)
+          .then(res => {
+            res.data.msg.length ? thiss.setState({
+                bookmark: true
             }) : null
         })
     }
@@ -61,8 +72,17 @@ class myCard extends Component {
             .catch(err => console.log(err))
     }
 
+    toggleBookmark = () => {
+        this.setState({isSaving: true})
+        axios.get(`/api/secure/generic/toggleBlogBookmark?blogId=${this.state.post_id}`)
+            .then(res => location.reload())
+            .catch(err => console.log(err))
+    }
+
     render() {
-        const {follow,id,
+        const {
+            isSaving,
+            follow,id,
             title,
             images,
             date_published,
@@ -73,6 +93,7 @@ class myCard extends Component {
             first_name,
             last_name,
             username,
+            bookmark,
             image} = this.state;
         return (
             <div className="myCard">
@@ -107,9 +128,12 @@ class myCard extends Component {
                                 <Grid.Column as="a">
                                     <Icon name="comments" /> {comments}
                                 </Grid.Column>
-                                <Grid.Column as="a">
-                                    <Icon name="bookmark" /> Save
-                                </Grid.Column>
+                                {bookmark && <Grid.Column as="a">
+                                    <Icon name="bookmark" /> Saved
+                                </Grid.Column>}
+                                {!bookmark && <Grid.Column as="a" onClick={this.toggleBookmark}>
+                                    <Icon name="bookmark" /> {!isSaving ? "Save" : "Wait"}
+                                </Grid.Column>}
                             </Grid.Row>
                         </Grid>
                     </Card.Content>

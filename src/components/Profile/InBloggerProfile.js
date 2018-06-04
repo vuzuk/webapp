@@ -91,7 +91,7 @@ class InBloggerProfile extends Component {
         });
     }
 
-    componentDidMount() {
+    fetchMyBlog = () => {
         const thiss = this;
         axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
             .then(({data}) => {
@@ -108,6 +108,11 @@ class InBloggerProfile extends Component {
                     noPost: true
                 })
             })
+    }
+
+    componentDidMount() {
+        const thiss = this;
+        this.fetchMyBlog();
 
         axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.data.id}`)
         .then(res => {
@@ -120,8 +125,37 @@ class InBloggerProfile extends Component {
   
     }
 
+    fetchBlogs = (ids) => {
+        const thiss = this;
+        axios.get(`/api/unsecure/getBlogsByIds?blogIds=${JSON.stringify(ids)}`)
+         .then(res => {
+             thiss.setState({
+                 posts: res.data.msg,
+                 isPostFetched: true
+             })
+         })
+         .catch(err => {
+             thiss.setState({
+                 noPost: true
+             })
+         })
+    }
+
     handleChange = (isActive) => {
-        this.setState({isActive});
+        this.setState({isActive, isPostFetched: false, noPost: false});
+        let ids;
+        if(isActive === "bookmark") {
+            const thiss = this;
+            axios.get('/api/secure/generic/getBookmarks')
+              .then(res => {
+                ids = res.data.msg.map(i => i.blog_id);
+                thiss.fetchBlogs(ids)
+              })
+              .catch(err => console.log(err))
+        }
+        if(isActive === "post") {
+            this.fetchMyBlog()
+        }
     }
 
     render() {
@@ -156,7 +190,7 @@ class InBloggerProfile extends Component {
                 <div className="tabs">
                     <div className="tab" onClick={() => {this.handleChange("post")}} style={isActive === "post" ? {borderBottom: "4px solid #55ACEE"} : null}>POST</div>
                     <div className="tab" onClick={() => {this.handleChange("stats")}} style={isActive === "stats" ? {borderBottom: "4px solid #55ACEE"} : null}>STATS</div>
-                    <div className="tab" onClick={() => {this.handleChange("likes")}} style={isActive === "likes" ? {borderBottom: "4px solid #55ACEE"} : null}>LIKES</div>
+                    <div className="tab" onClick={() => {this.handleChange("bookmark")}} style={isActive === "bookmark" ? {borderBottom: "4px solid #55ACEE"} : null}>BOOKMARK</div>
                 </div>
                 {this.state.isActive !== "stats" && <Segment basic>
                     <div className="profile-cards">
