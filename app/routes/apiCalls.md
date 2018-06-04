@@ -122,6 +122,10 @@ api/unsecure/getBlogger
 ## get blogs of blogger     
 GET - query = {bloggerId}
 api/unsecure/getBlogsOfBlogger
+## get blogs by ids (array)
+GET - req.query={blogIds (array)}
+api/unsecure/getBlogsByIds
+
 
 ## logout
 GET - query = {}
@@ -135,6 +139,7 @@ api/secure/blogger/top/:para
 ## get last 5 days views   
 GET - query = {}
 api/secure/blogger/lastFiveDaysViews
+
 
 ## get liked    
 GET - query = {}
