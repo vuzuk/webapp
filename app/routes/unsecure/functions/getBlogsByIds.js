@@ -7,12 +7,12 @@ const Comment = models["comment"]
 const render = require(process.env.APP_ROOT+'/dist/SSR');
 
 module.exports = (req, res) => {
-    let bloggerId = parseInt(req.query["bloggerId"]);
+    let blogIds = JSON.parse(req.query["blogIds"]);
     Blog
         .findAll({
             attributes: ["id", "title", "images", "date_published", "views", "slug", "likes"],
             where: {
-                blogger_id: bloggerId
+                id: blogIds
             },
             include: [{
                 model: Comment,

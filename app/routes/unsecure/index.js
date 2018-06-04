@@ -8,6 +8,9 @@ route.get('/getLatestBlogs', require("./functions/getLatestBlogs"));
 
 // get blog     query = {blogId}
 route.get('/getBlog/:bloggerName/:slug', require("./functions/getBlog"));
+// get blogs by ids (array)     req.query={blogIds (array)}
+route.get('/getBlogsByIds', require("./functions/getBlogsByIds"));
+
 // get blogger details      params = {username}
 route.get('/getBlogger/:username', require("./functions/getBlogger"));
 // get blogs of blogger     req.query={bloggerId}
