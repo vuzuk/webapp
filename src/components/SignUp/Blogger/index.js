@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../../Navbar/Navbar';
 import Footer from '../../Footer/Footer';
-import { Card, Form, Input, Button } from 'semantic-ui-react'
+import { Card, Form, Input, Button, Popup, Icon } from 'semantic-ui-react'
 import axios from 'axios';
 import '../SignUp.css';
 
@@ -107,7 +107,7 @@ class SignUp extends Component {
                                 </Form.Group>
                                 <Form.Group widths='equal'>
                                     <Form.Field>
-                                        <label>Username</label>
+                                        <label>Username <Popup trigger={<Icon name='info' circular size="small" />} content="Don't include spaces" /></label>
                                         <Input name="username" onChange={this.handleFormText} fluid placeholder='Username' />
                                     </Form.Field>
                                     <Form.Field>

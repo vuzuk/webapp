@@ -181,7 +181,7 @@ class CreatePost extends Component {
         this.removeWrapper();
         try {
             if(this.state.method !== "create") {
-                $('.selector').data('froala.editor').opts.placeholderText = 'Write a small description about your post. Add an image too.';
+                $('.selector').data('froala.editor').opts.placeholderText = 'Write a small description about your post(Min. 300 words) to get better ranking. Add an image too.';
                 $('.selector').froalaEditor('placeholder.refresh');    
             }
         } catch(err) {
@@ -228,7 +228,7 @@ class CreatePost extends Component {
                                             config={{
                                                 editorClass: 'selector',
                                                 height: 300,
-                                                placeholderText: "Write your post here!!",
+                                                placeholderText: "Write your post here!! Make sure you upload atleast one image",
                                                 imageUploadURL: '/api/secure/blogger/froala_upload',
                                                 charCounterCount: false,
                                                 quickInsertButtons: ['image', 'video', 'table'],
