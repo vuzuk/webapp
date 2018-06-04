@@ -43,6 +43,8 @@ route.get('/getLiked', require("./functions/getLiked"));
 route.get('/likeStatus', require("./functions/likeStatus"));
 // bookmark a blog      query = {blogId}
 route.get('/toggleBlogBookmark', require("./functions/toggleBlogBookmark"));
+// get blog bookmark status      query = {blogId}
+route.get('/bookmarkStatus', require("./functions/bookmarkStatus"));
 // get bookmarks    query = {}
 route.get('/getBookmarks', require("./functions/getBookmarks"));
 
