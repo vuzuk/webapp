@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid, Button, Icon, List} from 'semantic-ui-react';
+import { Segment, Image, Grid, Button, Icon, List, Popup} from 'semantic-ui-react';
 import MyCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
@@ -167,7 +167,7 @@ class InBloggerProfile extends Component {
             <div id="profile-page">
                 <Navbar data={data}/>
                 <Segment style={{backgroundImage: `url(${cover_image})`}} className="main" basic>
-                    <label for="cover-upload">{isCoverSent ? "Uploading..." : "Change Cover"}</label>
+                    <Popup trigger={<label for="cover-upload">{isCoverSent ? "Uploading..." : "Change Cover"}</label>} content='Recommend Size: 851 X 315' />
                     <input type="file" onChange={this.uploadCover} id="cover-upload"></input>
 
                     <div className="blogger-profile">

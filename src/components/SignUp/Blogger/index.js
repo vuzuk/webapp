@@ -50,7 +50,15 @@ class SignUp extends Component {
         e.preventDefault();
         const thiss = this;
         const data = {...this.state};
-        if(data.password === data.cpassword && data.isAgreed) {
+        if(!data.first_name || !data.last_name || !data.username || !data.dob || !data.email || !data.contact || !data.place || !data.password || !data.cpassword) {
+            alert("Some fields are missing!!")
+        } else if (data.password !== data.cpassword) {
+            alert("Password doesn't matched!!")
+        } else if(!data.isAgreed) {
+            alert("Can't proceed without checking the Terms and Conditions!!")
+        } else if(data.username.indexOf(" ") !== -1) {
+            alert("Don't include spaces in username")
+        } else {
             this.setState({isSent: true})
             delete data.cpassword;
             delete data.isAgreed;
@@ -70,13 +78,9 @@ class SignUp extends Component {
                 })
             })
             .catch(error => {
-                alert("Some fields are missing");
+                alert("Username or Email is already taken!!");
                 thiss.setState({isSent: false});
             })
-        } else if(data.password !== data.cpassword) {
-            alert("Password not matched");
-        } else {
-            alert("Some fields are missing");
         }
     }
 
