@@ -49,10 +49,10 @@ class Travel extends Component {
                             </Grid.Column>
                             <Grid.Column computer={6} tablet={6} mobile={16} className="right-banners">
                                 <Segment basic className="right-item">
-                                    <img height="170px" width="100%" src="announcements.jpg" alt=""/>
+                                    <img height="178px" width="100%" src="announcements.jpg" alt=""/>
                                 </Segment>
                                 <Segment basic>
-                                    <img height="170px" width="100%" src="announcements.jpg" alt=""/>
+                                    <img height="178px" width="100%" src="announcements.jpg" alt=""/>
                                 </Segment>
                             </Grid.Column>
                         </Grid.Row>
