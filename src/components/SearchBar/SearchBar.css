@@ -23,3 +23,6 @@
 .rightside, .rightside > div, .rightside > div > div {
     padding-left: 0 !important;
 }
+.leftside {
+    padding-right: 0 !important;
+}

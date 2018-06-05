@@ -38,7 +38,7 @@ class SearchBar extends Component {
                 <div id="search">
                     <Grid>
                         <Grid.Column mobile={16} computer={5}>
-                            <Segment>
+                            <Segment className="leftside">
                                 <Header as='h3'>Trending Tags</Header>
                                 {makeTags(["delhi","vintage","instafood","malware", "cool","foodgasm", "bold","mumbai", "fashion", "makeup", "street", "vintage","instafood","malware", "cool","foodgasm", "mumbai", "fashion", "makeup"])}
                             </Segment>
