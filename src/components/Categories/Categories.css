@@ -13,7 +13,7 @@
 }
 
 .right-banners, .right-banners > div {
-    padding-left: 0;
+    padding-left: 0 !important;
 }
 
 .right-banners > div:nth-of-type(2) {

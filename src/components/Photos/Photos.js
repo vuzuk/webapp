@@ -35,7 +35,9 @@ class Photos extends Component {
                     </Dimmer.Dimmable>
                 } size="mini">
                     <Modal.Content>
-                    <Image wrapped size='medium' src={`${img}_min.jpg`} />
+                        {/* <div style={{position: "absolute", left: "-2px", top: "50%"}}><Icon size="large" name="angle left" /></div>
+                        <div style={{position: "absolute", right: "-3px", top: "50%"}}><Icon size="large" name="angle right" /></div> */}
+                        <Image style={{margin: "auto"}} wrapped size='medium' src={`${img}_min.jpg`} />
                         <Button href="#" secondary>View Post</Button>
                     </Modal.Content>
                 </Modal>
@@ -52,7 +54,7 @@ class Photos extends Component {
                         PHOTOS
                     </Header>
                 </Segment>
-                <section id="photos" style={{backgroundColor: "#e0e0e0"}}>
+                <section id="photos" style={{backgroundImage: "url(/gradient.jpg)", backgroundSize: "cover"}}>
                     {this.makeList()}
                 </section>
             </div>
