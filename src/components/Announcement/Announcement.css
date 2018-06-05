@@ -8,6 +8,10 @@
     margin-top: 0 !important;
 }
 
+.slides img{
+    height: 350px;
+}
+
 .slick-prev, .slick-next {
     position: absolute !important;
     top: 50% !important;

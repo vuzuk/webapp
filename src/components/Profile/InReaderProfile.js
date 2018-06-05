@@ -185,7 +185,7 @@ class InReaderProfile extends Component {
                         <div className="profile-cards">
                             <Grid columns={3}>
                                 {posts.length !== 0 && posts.map(i => (
-                                    <Grid.Column key={i}>
+                                    <Grid.Column computer={5} tablet={8} mobile={16} key={i}>
                                         <MyCard data={i} />
                                     </Grid.Column>
                                 ))}

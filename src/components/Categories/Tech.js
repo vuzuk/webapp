@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
 import {Segment, Grid, Header} from 'semantic-ui-react';
 import MyCard from '../../helpers/card';
 import Slider from 'react-slick';
+import {Desktop, Mobile} from '../../helpers/responsive';
 
 const settings = {
     dots: true,
@@ -34,13 +35,13 @@ class Tech extends Component {
                     </Header>
                     <Grid columns={2}>
                         <Grid.Row stretched>
-                            <Grid.Column width={10}>
+                            <Grid.Column computer={10} tablet={10} mobile={16}>
                                 <Segment basic>
                                     <Slider {...settings}>
                                         {[1,0,2,1,3,0].map((i,x) => {
                                             return (
                                                 <div key={x}>
-                                                    <img height="350px" width="90%" src="announcements.jpg" alt=""/>
+                                                    <img width="90%" src="announcements.jpg" alt=""/>
                                                 </div>
                                             )
                                         })}
@@ -48,12 +49,26 @@ class Tech extends Component {
                                 </Segment>
                             </Grid.Column>
                             <Grid.Column computer={6} tablet={6} mobile={16} className="right-banners">
-                                <Segment basic className="right-item">
-                                    <img height="178px" width="100%" src="announcements.jpg" alt=""/>
-                                </Segment>
-                                <Segment basic>
-                                    <img height="178px" width="100%" src="announcements.jpg" alt=""/>
-                                </Segment>
+                            {Desktop(
+                                    <Fragment>
+                                    <Segment basic className="right-item">
+                                        <img height="178px" width="100%" src="announcements.jpg" alt=""/>
+                                    </Segment>
+                                    <Segment basic>
+                                        <img height="178px" width="100%" src="announcements.jpg" alt=""/>
+                                    </Segment>
+                                    </Fragment>
+                                )}
+                                {Mobile(
+                                    <Segment.Group horizontal>
+                                    <Segment basic className="right-item">
+                                        <img height="90px" width="100%" src="announcements.jpg" alt=""/>
+                                    </Segment>
+                                    <Segment basic>
+                                        <img height="90px" width="100%" src="announcements.jpg" alt=""/>
+                                    </Segment>
+                                    </Segment.Group>
+                                )}
                             </Grid.Column>
                         </Grid.Row>
                     </Grid>
