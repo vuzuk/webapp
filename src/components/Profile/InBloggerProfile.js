@@ -180,7 +180,7 @@ class InBloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">{author}</div>
-                            {followers !== undefined && <div className="follow-count"><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
+                            {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}} className="follow-count"><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
                         </div>
                         <div className="create">
                             <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
