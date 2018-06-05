@@ -63,6 +63,8 @@ class BloggerProfile extends Component {
             return b.likes - a.likes
         })
         
+        console.log(posts);
+        
 
         return (
             <div id="profile">
@@ -140,7 +142,7 @@ class BloggerProfile extends Component {
                     </div>*/}
                         <Grid columns={3}>
                             {isPostFetched && posts.map((i, x) => (
-                                <Grid.Column key={i.likes}>
+                                <Grid.Column key={i.id}>
                                     <MyCard data={i} />
                                 </Grid.Column>
                             ))}
