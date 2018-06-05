@@ -69,14 +69,18 @@ class myCard extends Component {
                     follow: true
                 })
             })
-            .catch(err => console.log(err))
+            .catch(err => alert("You must login before following a user"))
     }
 
     toggleBookmark = () => {
+        const thiss = this;
         this.setState({isSaving: true})
         axios.get(`/api/secure/generic/toggleBlogBookmark?blogId=${this.state.post_id}`)
             .then(res => location.reload())
-            .catch(err => console.log(err))
+            .catch(err => {
+                thiss.setState({isSaving: false})
+                alert("You must login before saving a post")
+            })
     }
 
     render() {
