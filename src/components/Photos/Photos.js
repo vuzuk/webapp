@@ -59,7 +59,7 @@ class Photos extends Component {
                         PHOTOS
                     </Header>
                 </Segment>
-                <section id="photos" style={{backgroundImage: "url(/gradient.jpg)", backgroundSize: "cover"}}>
+                <section id="photos" style={{background: "#9E9E9E"}}>
                     {this.makeList()}
                 </section>
             </div>
