@@ -332,7 +332,7 @@ export default class Navbar extends Component {
           </Fragment>
           }
           <Menu.Item>
-            <Button compact color="red" size="tiny" icon={<Icon name="close" size="tiny"/>} onClick={this.toggleVisibility} />
+            <div onClick={this.toggleVisibility}><Icon name="close" size="small"/></div>
           </Menu.Item>
           </Sidebar>
           {rightModals}
