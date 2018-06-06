@@ -6,13 +6,14 @@ const Like = models['like']
 
 module.exports = (req, res) => {
     let para = req['params']['para'];
-    let order = sequelize.fn('max', sequelize.col('views'));
+    let order = [[sequelize.col('views'), 'DESC']];
     if(para === "likes"){
-        order = sequelize.fn('max', sequelize.col('likes'))
+        order = [[sequelize.col('likes'), 'DESC']]
     }
 
     Blog
         .findAll({
+            attributes: ["id", "title", "images", "date_published", "views", "slug", 'blogger_id', "likes"],
             where: {blogger_id: req['user']['id']},
             logging: false,
             limit: 10,
