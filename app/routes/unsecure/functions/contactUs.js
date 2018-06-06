@@ -13,7 +13,7 @@ module.exports = (req, res) => {
     let mailOptions = {
         from: process.env.ADMIN_EMAIL_ID, // sender address
         // to: process.env.ADMIN_EMAIL_ID, // list of receivers
-        to: 'bansal.pawan96@gmail.com', // list of receivers
+        to: process.env.ADMIN_EMAIL_ID, // list of receivers
         subject: 'Contact Query', // Subject line
         text: emailText, // plain text body
     };
