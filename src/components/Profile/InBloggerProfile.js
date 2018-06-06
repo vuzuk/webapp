@@ -51,7 +51,34 @@ class InBloggerProfile extends Component {
             data: props.data,
             isSent: false,
             isCoverSent: false,
-            loading: true
+            loading: true,
+            top: [],
+            loading1: true,
+            sortActive: "viewed"
+        }
+    }
+
+    handleSort = (sortActive) => {
+        const thiss = this;
+        this.setState({sortActive, loading1: true, top: []});
+        if(sortActive === "viewed") {
+            axios.get('/api/secure/blogger/top/views')
+              .then(res => {
+                thiss.setState({
+                    top: res.data.msg,
+                    loading1: false
+                })
+              })
+              .catch(err => console.log(err))
+        } else {
+            axios.get('/api/secure/blogger/top/likes')
+              .then(res => {
+                thiss.setState({
+                    top: res.data.msg,
+                    loading1: false
+                })
+              })
+              .catch(err => console.log(err))
         }
     }
 
@@ -187,14 +214,17 @@ class InBloggerProfile extends Component {
 
               axios.get('/api/secure/blogger/top/views')
               .then(res => {
-                console.log(res.data)
+                thiss.setState({
+                    top: res.data.msg,
+                    loading1: false
+                })
               })
               .catch(err => console.log(err))
         }
     }
 
     render() {
-        const {loading, data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent, followers, following} = this.state;
+        const { sortActive, loading1, top, loading, data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent, followers, following} = this.state;
         const {first_name, last_name, image, cover_image, view_points, comment_points, share_points, referral_points} = data;
         const author = `${first_name} ${last_name}`;
         
@@ -252,7 +282,7 @@ class InBloggerProfile extends Component {
                     />}
                     {loading && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3>}
 
-<div style={{marginBottom: "50px"}} className="points">
+                    <div style={{marginBottom: "50px"}} className="points">
                         <Segment basic>
                         <Statistic.Group widths='five' color="blue">
                             <Statistic>
@@ -308,51 +338,28 @@ class InBloggerProfile extends Component {
                         </Statistic.Group>
                         </Segment>
                         </div>
-
-                        {/* <Segment padded>
+                        <div className="sortby">
+                            <div className="tabs profilet">
+                                <span style={{fontWeight: "bold"}}>Top 10 posts sorted by: </span>
+                                <div className="tab profilet" onClick={() => {this.handleSort("viewed")}} style={sortActive === "viewed" ? {borderBottom: "2px solid #55ACEE"} : null}><Popup trigger={<Icon name="eye" />} position="top center" inverted content="Most Viewed"/></div>
+                                <div className="tab profilet" onClick={() => {this.handleSort("liked")}} style={sortActive === "liked" ? {borderBottom: "2px solid #55ACEE"} : null}><Popup trigger={<Icon name="thumbs up" />} position="top center" inverted content="Most Liked"/></div>
+                            </div>
+                        </div>
+                        {loading1 && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3>}
+                        {!loading1 && <Segment padded>
                             <List divided verticalAlign='middle'>
-                                <List.Item>
+                                {top.map(i => (<List.Item>
                                     <List.Content floated='right'>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                        <span style={{marginRight: "20px"}}><a><Icon name="unhide" /> {i.views}</a></span>
+                                        <span style={{marginRight: "20px"}}><a><Icon name="heart" /> {i.likes}</a></span>
+                                        <span style={{marginRight: "20px"}}><a><Icon name="comments" /> {i.comments.length}</a></span>
                                     </List.Content>
-                                    <List.Header as="a">
-                                        Kabul Restaurant Afghani Food in Delhi
+                                    <List.Header href={`/post/${data.username}/${i.slug}`}>
+                                        {i.title}
                                     </List.Header>
-                                </List.Item>
-                                <List.Item>
-                                    <List.Content floated='right'>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
-                                    </List.Content>
-                                    <List.Header as="a">
-                                        Kabul Restaurant Afghani Food in Delhi
-                                    </List.Header>
-                                </List.Item>
-                                <List.Item>
-                                    <List.Content floated='right'>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
-                                    </List.Content>
-                                    <List.Header as="a">
-                                        Kabul Restaurant Afghani Food in Delhi
-                                    </List.Header>
-                                </List.Item>
-                                <List.Item>
-                                    <List.Content floated='right'>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
-                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
-                                    </List.Content>
-                                    <List.Header as="a">
-                                        Kabul Restaurant Afghani Food in Delhi
-                                    </List.Header>
-                                </List.Item>
-                        </List>
-                        </Segment> */}
+                                </List.Item>))}
+                            </List>
+                        </Segment>}
                 </div>}
                 <Footer />
             </div>
