@@ -174,6 +174,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        // last 5 days views of blogs of the blogger
         views: {
             type: DataTypes.STRING,
             allowNull: false,

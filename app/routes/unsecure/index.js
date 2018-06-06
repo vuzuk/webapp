@@ -6,6 +6,9 @@ route.get('/getTrendingBlogs', require("./functions/getTrendingBlogs"));
 // get latest blogs of a month (could be via category, blogger)       query = {categoryId, bloggerId, limit, offset}
 route.get('/getLatestBlogs', require("./functions/getLatestBlogs"));
 
+
+// search a blog     query = {title}
+route.get('/searchBlogs/:offset/:limit', require("./functions/searchBlogs"));
 // get blog     query = {blogId}
 route.get('/getBlog/:bloggerName/:slug', require("./functions/getBlog"));
 // get blogs by ids (array)     req.query={blogIds (array)}
@@ -16,6 +19,8 @@ route.get('/getBlogger/:username', require("./functions/getBlogger"));
 route.get('/getBlogsOfBlogger', require("./functions/getBlogsOfBlogger"));
 // get blogs by category    req.param={categoryId}
 route.get('/getBlogsByCategory/:categoryId/:offset/:limit', require("./functions/getBlogsByCategory"));
+// get blogs by tag    req.param={tag}
+route.get('/getBlogsByTag/:tag', require("./functions/getBlogsByTag"));
 
 
 // check username   query = {username, isBlogger}
