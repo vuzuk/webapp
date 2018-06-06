@@ -272,6 +272,7 @@ export default class Navbar extends Component {
           <Fragment>
             <Segment padded basic inverted className="mobile-navbar">
               <Button icon="content" onClick={this.toggleVisibility}/>
+              <Input style={{float: "right"}} onClick={() => {location.href = "/search"}} size="small" placeholder='Search...' />
             </Segment>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
             <Menu.Item name='home' as="a" href="/">
@@ -292,9 +293,6 @@ export default class Navbar extends Component {
 
             <Menu.Item name='tech' as="a" href="/tech">
               Tech
-            </Menu.Item>
-            <Menu.Item>
-              <Input onClick={() => {location.href = "/search"}} size="mini" placeholder='Search...' />
             </Menu.Item>
           {!isLogin &&
           <Fragment>
@@ -334,7 +332,7 @@ export default class Navbar extends Component {
           </Fragment>
           }
           <Menu.Item>
-            <Button compact color="red" size="tiny" icon={<Icon name="close" size="tiny"/>} onClick={this.toggleVisibility} />
+            <div onClick={this.toggleVisibility}><Icon name="close" size="small"/></div>
           </Menu.Item>
           </Sidebar>
           {rightModals}

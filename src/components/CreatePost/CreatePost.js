@@ -46,7 +46,7 @@ class CreatePost extends Component {
         this.state = {
             isDimmed: true,
             method: "create",
-            post: "",
+            blog: "",
             images: [],
             tag: "",
             tags: [],
@@ -102,39 +102,49 @@ class CreatePost extends Component {
 
     submit = () => {
         // this.filterImages();
-        const { title, category_id, tags, place, filteredBlog , images, post_link, video_link } = this.state;
+        const { title, category_id, tags, place, filteredBlog , images, post_link, video_link, method } = this.state;
         const blog = filteredBlog;
         const data = { title, category_id, tags, place, blog, images, post_link, video_link };
         const thiss = this;
-        axios({
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            url: '/api/secure/blogger/newBlog',
-            data: JSON.stringify(data)
-        })
-        .then(response => {
-            console.log(response.data);
-            
-            location.href = "/in/blogger"
-        })
-        .catch(error => {
-            alert("Some fields are missing. Make sure you upload atleast one image.");
-        })
-        .finally(() => {
-            thiss.setState({
-                isSubmit: false
+        if(!title) {
+            alert("Title is missing")
+        } else if (!category_id) {
+            alert("Select any category!!")
+        } else if (!images.length) {
+            alert("Upload atleast one image")
+        } else if(method === "submit link" && !post_link) {
+            alert("Insert post link!!")
+        } else if(method === "submit video" && !video_link) {
+            alert("Insert video link!!")
+        } else {
+            this.setState({
+                isSubmit: true
             })
-        })
+            axios({
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                url: '/api/secure/blogger/newBlog',
+                data: JSON.stringify(data)
+            })
+            .then(response => {
+                console.log(response.data);
+                
+                location.href = "/in/blogger"
+            })
+            .catch(error => {
+                alert("DO NOT PASTE THE CONTENT FROM ANOTHER WEBSITE!!");
+                thiss.setState({
+                    isSubmit: false
+                })
+            })
+        }
     }
 
     filterImages = () => {
         let blog = this.state.blog;
         let images = [], imgN = 0;
-        this.setState({
-            isSubmit: true
-        })
         while(blog.indexOf("<img") !== -1) {
             let start = blog.indexOf("<img");
             let end = blog.indexOf("\">", start);
@@ -181,7 +191,8 @@ class CreatePost extends Component {
         this.removeWrapper();
         try {
             if(this.state.method !== "create") {
-                $('.selector').data('froala.editor').opts.placeholderText = 'Write a small description about your post. Add an image too.';
+                $('.selector').data('froala.editor').opts.placeholderText = `Write a small description about your post(Min. 300 words) to get better ranking. Add an image too.
+                DO NOT PASTE CONTENT FROM ANOTHER WEBSITE`;
                 $('.selector').froalaEditor('placeholder.refresh');    
             }
         } catch(err) {
@@ -228,7 +239,8 @@ class CreatePost extends Component {
                                             config={{
                                                 editorClass: 'selector',
                                                 height: 300,
-                                                placeholderText: "Write your post here!!",
+                                                placeholderText: `Write your post here!! Make sure you upload atleast one image
+                                                DO NOT PASTE CONTENT FROM ANOTHER WEBSITE`,
                                                 imageUploadURL: '/api/secure/blogger/froala_upload',
                                                 charCounterCount: false,
                                                 quickInsertButtons: ['image', 'video', 'table'],

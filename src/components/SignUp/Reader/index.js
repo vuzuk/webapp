@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../../Navbar/Navbar';
 import Footer from '../../Footer/Footer';
-import { Card, Form, Input, Button, Segment, Divider, Icon } from 'semantic-ui-react'
+import { Card, Form, Input, Button, Segment, Divider, Icon, Popup } from 'semantic-ui-react'
 import axios from 'axios';
 import '../SignUp.css';
 
@@ -28,7 +28,15 @@ class SignUp extends Component {
         })
         const thiss = this;
         const data = {...this.state};
-        if(data.password === data.cpassword && data.isAgreed) {
+        if(!data.first_name || !data.last_name || !data.username || !data.dob || !data.email || !data.contact || !data.place || !data.password || !data.cpassword) {
+            alert("Some fields are missing!!")
+        } else if (data.password !== data.cpassword) {
+            alert("Password doesn't matched!!")
+        } else if(!data.isAgreed) {
+            alert("Can't proceed without checking the Terms and Conditions!!")
+        } else if(data.username.indexOf(" ") !== -1) {
+            alert("Don't include spaces in username")
+        } else {
             delete data.cpassword;
             data.isBlogger = "false";
             console.log(data);
@@ -47,17 +55,9 @@ class SignUp extends Component {
                 })
             })
             .catch(error => {
-                alert("Some fields are missing");
-            })
-            .finally(() => {
-                console.log("finally");
-                
+                alert("Username or Email already taken");
                 thiss.setState({isSent: false})
             })
-        } else if(data.password !== data.cpassword) {
-            alert("Password not matched");
-        } else {
-            alert("Some fields are missing");
         }
     }
 
@@ -67,7 +67,7 @@ class SignUp extends Component {
     }
 
     render() {
-        const { disabled, isSent } = this.state;
+        const { disabled, isSent, isAgreed } = this.state;
         return (
             <div className="register">
                 <Navbar />
@@ -90,7 +90,7 @@ class SignUp extends Component {
                                     </Form.Group>
                                     <Form.Group widths='equal'>
                                         <Form.Field>
-                                            <label>Username</label>
+                                            <label>Username <Popup trigger={<Icon name='info' circular size="small" />} content="Don't include spaces" /></label>
                                             <Input name="username" onChange={this.handleFormText} fluid placeholder='Username' />
                                         </Form.Field>
                                         <Form.Field>
@@ -120,7 +120,7 @@ class SignUp extends Component {
                                     </Form.Group>
                                     <Form.Group widths="equal">
                                         <Form.Field>
-                                            <label>Email (for Newsletter)</label>
+                                            <label>Email</label>
                                             <Input onChange={this.handleFormText} name="email" placeholder='Email' />
                                         </Form.Field>
                                         <Form.Field>
@@ -128,7 +128,11 @@ class SignUp extends Component {
                                             <Input onChange={this.handleFormText} name="place" placeholder='Place' />
                                         </Form.Field>
                                     </Form.Group>
-                                    <Form.Checkbox label={<label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>} />
+                                    <Form.Checkbox checked={isAgreed} onClick={() => {
+                                        this.setState({
+                                            isAgreed: !this.state.isAgreed
+                                        })
+                                    }} label={<label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></label>} />
                                     <Button loading={isSent} disabled={disabled} fluid size="big" secondary type='submit'>{disabled ? "Thanks for registering" : "Submit"}</Button>
                                 </Form>
                             </Segment>

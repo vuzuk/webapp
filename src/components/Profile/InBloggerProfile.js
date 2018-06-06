@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid, Button, Icon, List} from 'semantic-ui-react';
+import { Segment, Image, Grid, Button, Icon, List, Popup} from 'semantic-ui-react';
 import MyCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
 import axios from 'axios';
-
+import {Desktop, Mobile} from '../../helpers/responsive';
 const chartData = {
     labels: ['Mar 25', 'Mar 26', 'Mar 27', 'Mar 28', 'Mar 29'],
     datasets:[
@@ -91,7 +91,7 @@ class InBloggerProfile extends Component {
         });
     }
 
-    componentDidMount() {
+    fetchMyBlog = () => {
         const thiss = this;
         axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
             .then(({data}) => {
@@ -108,6 +108,11 @@ class InBloggerProfile extends Component {
                     noPost: true
                 })
             })
+    }
+
+    componentDidMount() {
+        const thiss = this;
+        this.fetchMyBlog();
 
         axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.data.id}`)
         .then(res => {
@@ -120,8 +125,37 @@ class InBloggerProfile extends Component {
   
     }
 
+    fetchBlogs = (ids) => {
+        const thiss = this;
+        axios.get(`/api/unsecure/getBlogsByIds?blogIds=${JSON.stringify(ids)}`)
+         .then(res => {
+             thiss.setState({
+                 posts: res.data.msg,
+                 isPostFetched: true
+             })
+         })
+         .catch(err => {
+             thiss.setState({
+                 noPost: true
+             })
+         })
+    }
+
     handleChange = (isActive) => {
-        this.setState({isActive});
+        this.setState({isActive, isPostFetched: false, noPost: false});
+        let ids;
+        if(isActive === "bookmark") {
+            const thiss = this;
+            axios.get('/api/secure/generic/getBookmarks')
+              .then(res => {
+                ids = res.data.msg.map(i => i.blog_id);
+                thiss.fetchBlogs(ids)
+              })
+              .catch(err => console.log(err))
+        }
+        if(isActive === "post") {
+            this.fetchMyBlog()
+        }
     }
 
     render() {
@@ -133,7 +167,7 @@ class InBloggerProfile extends Component {
             <div id="profile-page">
                 <Navbar data={data}/>
                 <Segment style={{backgroundImage: `url(${cover_image})`}} className="main" basic>
-                    <label for="cover-upload">{isCoverSent ? "Uploading..." : "Change Cover"}</label>
+                    <Popup trigger={<label for="cover-upload">{isCoverSent ? "Uploading..." : "Change Cover"}</label>} content='Recommend Size: 851 X 315' />
                     <input type="file" onChange={this.uploadCover} id="cover-upload"></input>
 
                     <div className="blogger-profile">
@@ -146,23 +180,28 @@ class InBloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">{author}</div>
-                            {followers !== undefined && <div className="follow-count"><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
+                            {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}} className="follow-count"><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
+                            {Mobile(
+                                <p>Login from Desktop to create post</p>
+                            )}
                         </div>
-                        <div className="create">
-                            <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
-                        </div>
+                        {Desktop(
+                            <div className="create">
+                                <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
+                            </div>
+                        )}
                     </div>
                 </Segment>
                 <div className="tabs">
                     <div className="tab" onClick={() => {this.handleChange("post")}} style={isActive === "post" ? {borderBottom: "4px solid #55ACEE"} : null}>POST</div>
                     <div className="tab" onClick={() => {this.handleChange("stats")}} style={isActive === "stats" ? {borderBottom: "4px solid #55ACEE"} : null}>STATS</div>
-                    <div className="tab" onClick={() => {this.handleChange("likes")}} style={isActive === "likes" ? {borderBottom: "4px solid #55ACEE"} : null}>LIKES</div>
+                    <div className="tab" onClick={() => {this.handleChange("bookmark")}} style={isActive === "bookmark" ? {borderBottom: "4px solid #55ACEE"} : null}>BOOKMARK</div>
                 </div>
                 {this.state.isActive !== "stats" && <Segment basic>
                     <div className="profile-cards">
                         {isPostFetched && posts[0].id && <Grid columns={3}>
                             {posts.map(i => (
-                                <Grid.Column key={i}>
+                                <Grid.Column computer={5} tablet={8} mobile={16} key={i}>
                                     <MyCard data={i} />
                                 </Grid.Column>
                             ))}

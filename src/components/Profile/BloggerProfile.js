@@ -63,6 +63,8 @@ class BloggerProfile extends Component {
             return b.likes - a.likes
         })
         
+        console.log(posts);
+        
 
         return (
             <div id="profile">
@@ -76,7 +78,7 @@ class BloggerProfile extends Component {
                             {twitter && <a href={twitter} target="_blank"><Icon circular name='twitter'/></a>}
                             {instagram && <a href={instagram} target="_blank"><Icon circular name='instagram'/></a>}
                         </div>
-                        {followers !== undefined && <div style={{fontWeight: "bold", fontSize: "1.1em", margin: "10px"}}><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
+                        {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}}><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
                         <Header.Subheader>
                             {description}
                         </Header.Subheader>
@@ -140,7 +142,7 @@ class BloggerProfile extends Component {
                     </div>*/}
                         <Grid columns={3}>
                             {isPostFetched && posts.map((i, x) => (
-                                <Grid.Column key={i.likes}>
+                                <Grid.Column computer={5} tablet={8} mobile={16} key={i.id}>
                                     <MyCard data={i} />
                                 </Grid.Column>
                             ))}

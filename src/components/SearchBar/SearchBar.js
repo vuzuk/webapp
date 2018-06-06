@@ -37,13 +37,13 @@ class SearchBar extends Component {
                 <Navbar data={data}/>
                 <div id="search">
                     <Grid>
-                        <Grid.Column mobile={16} computer={4}>
-                            <Segment>
+                        <Grid.Column mobile={16} computer={5}>
+                            <Segment className="leftside">
                                 <Header as='h3'>Trending Tags</Header>
                                 {makeTags(["delhi","vintage","instafood","malware", "cool","foodgasm", "bold","mumbai", "fashion", "makeup", "street", "vintage","instafood","malware", "cool","foodgasm", "mumbai", "fashion", "makeup"])}
                             </Segment>
                         </Grid.Column>
-                        <Grid.Column mobile={16} computer={12}>
+                        <Grid.Column className="rightside" mobile={16} computer={11}>
                             <Segment basic>
                                 <Input icon='search' size="large" placeholder='Search...' iconPosition="left" fluid/>
                                 <Segment>

@@ -39,6 +39,26 @@ class Bloggers extends Component {
                                 <Button primary>Follow</Button>
                             </List.Content>
                         </List.Item>
+                        <List.Item>
+                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
+                            <List.Content>
+                                <List.Header as='a'>Elliot Fu</List.Header>
+                                <List.Description>Punjab</List.Description>
+                            </List.Content>
+                            <List.Content floated="right">
+                                <Button primary>Follow</Button>
+                            </List.Content>
+                        </List.Item>
+                        <List.Item>
+                            <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg' />
+                            <List.Content>
+                                <List.Header as='a'>Elliot Fu</List.Header>
+                                <List.Description>Punjab</List.Description>
+                            </List.Content>
+                            <List.Content floated="right">
+                                <Button primary>Follow</Button>
+                            </List.Content>
+                        </List.Item>
                     </List>
                 </Grid.Column> 
             <Grid.Column computer={8} mobile={16}>
@@ -69,6 +89,26 @@ class Bloggers extends Component {
                         <List.Content>
                             <List.Header as='a'>Elliot Fu</List.Header>
                             <List.Description>Punjab</List.Description>
+                        </List.Content>
+                        <List.Content floated="right">
+                                <Button primary>Follow</Button>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item>
+                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/stevie.jpg' />
+                        <List.Content>
+                            <List.Header as='a'>Stevie Feliciano</List.Header>
+                            <List.Description>Chennai</List.Description>
+                        </List.Content>
+                        <List.Content floated="right">
+                                <Button primary>Follow</Button>
+                        </List.Content>
+                    </List.Item>
+                    <List.Item>
+                        <Image avatar src='https://react.semantic-ui.com/assets/images/avatar/small/stevie.jpg' />
+                        <List.Content>
+                            <List.Header as='a'>Stevie Feliciano</List.Header>
+                            <List.Description>Chennai</List.Description>
                         </List.Content>
                         <List.Content floated="right">
                                 <Button primary>Follow</Button>

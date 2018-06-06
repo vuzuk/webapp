@@ -6,9 +6,14 @@ class Photos extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: -1
+            active: -1,
+            modal: -1
         }
     }
+
+    handleModalOpen = (i) => this.setState({modal: i})
+
+    handleModalClose = (i) => this.setState({modal: -1})
 
     handleShow = (i) => this.setState({ active: i })
 
@@ -21,8 +26,8 @@ class Photos extends Component {
 
         return imgs.map((img,i) => {
             return (
-                <Modal className="photo-modal" trigger={
-                    <Dimmer.Dimmable as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
+                <Modal className="photo-modal" open={this.state.modal === i} onClose={this.handleModalClose} trigger={
+                    <Dimmer.Dimmable onClick={() => {this.handleModalOpen(i)}} as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
                     <Dimmer active={this.state.active === i} onClickOutside={this.handleHide}>
                         <Header as='h2' inverted>
                             Blog Post Title
@@ -35,7 +40,9 @@ class Photos extends Component {
                     </Dimmer.Dimmable>
                 } size="mini">
                     <Modal.Content>
-                    <Image wrapped size='medium' src={`${img}_min.jpg`} />
+                        {i !== 0 && <div onClick={() => {this.handleModalOpen(i - 1)}} style={{position: "absolute", left: "-2px", top: "50%"}}><Icon size="large" name="angle left" /></div>}
+                        {i !== imgs.length - 1 && <div onClick={() => {this.handleModalOpen(i + 1)}} style={{position: "absolute", right: "-3px", top: "50%"}}><Icon size="large" name="angle right" /></div>}
+                        <Image style={{margin: "auto"}} wrapped size='medium' src={`${img}_min.jpg`} />
                         <Button href="#" secondary>View Post</Button>
                     </Modal.Content>
                 </Modal>
@@ -52,7 +59,7 @@ class Photos extends Component {
                         PHOTOS
                     </Header>
                 </Segment>
-                <section id="photos" style={{backgroundColor: "#e0e0e0"}}>
+                <section id="photos" style={{background: "#9E9E9E"}}>
                     {this.makeList()}
                 </section>
             </div>
