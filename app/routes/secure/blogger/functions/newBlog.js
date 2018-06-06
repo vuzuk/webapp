@@ -60,6 +60,8 @@ module.exports = (req, res) => {
                                             attributes: ['user_id', 'b_user_id']
                                         })
                                         .then(users => {
+                                            let newUsers = users.map((obj) => obj.get({plain: true}));
+                                            users = newUsers;
                                             users = users.map((userObj) => {
                                                 userObj['blog_id'] = blog.id
                                                 userObj['blogger_id'] = req['user']['id']
