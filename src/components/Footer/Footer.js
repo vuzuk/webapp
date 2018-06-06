@@ -5,8 +5,8 @@ const Footer = (props) => {
     return (
         <div className="footer">
             <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
                 <li><a href="#">Team</a></li>
                 <li><a href="/disclaimer">Disclaimer</a></li>
                 <li><a href="/privacy">Privacy Policy</a></li>

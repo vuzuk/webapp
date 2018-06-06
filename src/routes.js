@@ -5,7 +5,7 @@ import {BloggerProfile, InBloggerProfile, InReaderProfile} from './components/Pr
 import CreatePost from './components/CreatePost/CreatePost'
 import { Food, Travel, Tech, Fashion } from './components/Categories';
 import Post from './components/Post/Post';
-import { Terms, Disclaimer, Privacy} from './components/Documents';
+import { Terms, Disclaimer, Privacy, About, Contact} from './components/Documents';
 import SearchBar from './components/SearchBar/SearchBar';
 
 //api
@@ -127,6 +127,16 @@ const routes = [
         path: '/privacy',
         component: Privacy,
         title: 'Privacy - VUZUK'
+    },
+    {
+        path: '/about',
+        component: About,
+        title: 'About - VUZUK'
+    },
+    {
+        path: '/contact',
+        component: Contact,
+        title: 'Contact - VUZUK'
     }
 ];
 
