@@ -13,7 +13,7 @@ class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            gender: "male",
+            gender: "M",
             disabled: false,
             isSent: false,
             isAgreed: true,
@@ -51,11 +51,14 @@ class SignUp extends Component {
             .then(response => {
                 alert("We've sent you an email containing a link to complete the registration process. Make sure to check your Spam folder too.");
                 thiss.setState({
-                    disabled: true
+                    disabled: true,
+                    isSent: false
                 })
             })
             .catch(error => {
-                alert("Username or Email already taken");
+                alert(`Username or Email is already taken!
+                OR
+                Invalid Characters in some fileds`);
                 thiss.setState({isSent: false})
             })
         }
@@ -63,7 +66,7 @@ class SignUp extends Component {
 
     handleFormText = (e) => {
         console.log(e.target.value)
-        this.setState({[e.target.name]: e.target.value});
+        this.setState({[e.target.name]: e.target.value.trim()});
     }
 
     render() {
@@ -114,8 +117,8 @@ class SignUp extends Component {
                                             <Input name="dob" onChange={this.handleFormText} fluid type="date" />
                                         </Form.Field>
                                         <Form.Field name="gender" onChange={this.handleFormText} label='Gender' control='select'>
-                                            <option value='male'>Male</option>
-                                            <option value='female'>Female</option>
+                                            <option value='M'>Male</option>
+                                            <option value='F'>Female</option>
                                         </Form.Field>
                                     </Form.Group>
                                     <Form.Group widths="equal">
