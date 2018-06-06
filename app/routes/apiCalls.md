@@ -110,6 +110,12 @@ POST - {key: avatar}
 api/secure/generic/upload/coverPic
 
 
+## search a blog
+GET - query = {title}
+api/unsecure/searchBlogs/:offset/:limit
+## get blogs by tag
+GET - req.param={tag}
+api/unsecure/getBlogsByTag/:tag
 ## get blogs by category
 GET - params = {categoryId}
 /api/unsecure/getBlogsByCategory/:categoryId/:offset/:limit
