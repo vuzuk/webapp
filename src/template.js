@@ -7,6 +7,15 @@ export function staticHTML ({ title, data, customData }) {
       <title>${title}</title>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120432266-1"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-120432266-1');
+      </script>
       <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
       <script>window.__CUSTOM_DATA__ = ${serialize(customData)}</script>
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.12/semantic.min.css"></link>
