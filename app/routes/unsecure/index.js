@@ -1,10 +1,12 @@
 const Router = require("express").Router;
 const route = Router();
 
-// get trending blogs of a month (could be via category, blogger)       query = {categoryId, bloggerId}
+// get trending blogs (could be via category, blogger)       query = {categoryId, bloggerId}
 route.get('/getTrendingBlogs/:offset/:limit', require("./functions/getTrendingBlogs"));
-// get latest blogs of a month (could be via category, blogger)       query = {categoryId, bloggerId}
+// get latest blogs (could be via category, blogger)       query = {categoryId, bloggerId}
 route.get('/getLatestBlogs/:offset/:limit', require("./functions/getLatestBlogs"));
+// get trending pics (could be via category, blogger)       query = {categoryId, bloggerId}
+route.get('/getTrendingPics/:offset/:limit', require("./functions/getTrendingPics"));
 
 
 // search a blog     query = {title}
