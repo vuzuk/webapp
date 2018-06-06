@@ -1,69 +1,75 @@
 ## local login
 POST - body = {email_username, password, isBlogger}
-localhost:3000/api/auth/local/login
+/api/auth/local/login
 ## local signUp
 POST - body = {email, username, password, first_name, last_name, dob, gender, contact(opt), isBlogger}
-localhost:3000/api/auth/local/signUp
+/api/auth/local/signUp
 
 ## verification of email 
 GET - query = {isBlogger, emailVerifKey, email}
-localhost:3000/api/auth/verification/verifyEmail
+/api/auth/verification/verifyEmail
 ## resending the email
 GET - query = {isBlogger, email}
-localhost:3000/api/auth/verification/resendEmail
+/api/auth/verification/resendEmail
 ## verification of otp
 POST - body = {isBlogger, otp, contact}
-localhost:3000/api/auth/verification/verifyOTP
+/api/auth/verification/verifyOTP
 ## sending/resending of otp
 GET - query = {isBlogger, contact}
-localhost:3000/api/auth/verification/resendOTP
+/api/auth/verification/resendOTP
 
-## get trending blogs of a month (could be via category, blogger)
-GET - query = {categoryId, bloggerId, limit, offset} 
-localhost:3000/api/unsecure/getTrendingBlogs
-## get latest blogs of a month (could be via category, blogger)
-GET - query = {categoryId, bloggerId, limit, offset} 
-localhost:3000/api/unsecure/getLatestBlogs
+
+## get trending blogs (could be via category, blogger)
+GET - query = {categoryId, bloggerId}  -  params = {limit, offset} 
+/api/unsecure/getTrendingBlogs/:offset/:limit
+## get latest blogs (could be via category, blogger)
+GET - query = {categoryId, bloggerId}  -  params = {offset, limit}
+api/unsecure/getLatestBlogs/:offset/:limit
+## get trending pics (could be via category, blogger)
+GET - query = {categoryId, bloggerId}  -  params = {offset, limit}
+api/unsecure/getTrendingPics/:offset/:limit
+
+
 ## get blog
 GET - query = {blogId} 
-localhost:3000/api/unsecure/getBlog
+/api/unsecure/getBlog
 ## get blogger details
 GET - query = {bloggerId} 
-localhost:3000/api/unsecure/getBlogger
+/api/unsecure/getBlogger
 
 ## check username
 GET - query = {username, isBlogger} 
-localhost:3000/api/unsecure/checkUsername
+/api/unsecure/checkUsername
 ## check email
 GET - query = {email, isBlogger} 
-localhost:3000/api/unsecure/checkEmail
+/api/unsecure/checkEmail
 ## check contact (for blogger only)
 GET - query = {contact} 
-localhost:3000/api/unsecure/checkContact
+/api/unsecure/checkContact
 
 
 ## Add Blog      
 POST - body = {title, blog, categoryId, tags(stringified array)}
-localhost:3000/api/secure/blogger/newBlog
+/api/secure/blogger/newBlog
 ## update Blog      
 POST - body = {blogId, title, blog, category_id, tags(stringified array)}
-localhost:3000/api/secure/blogger/updateBlog
+/api/secure/blogger/updateBlog
 ## temporary delete a blog   
 GET - query = {blogId}
-localhost:3000/api/secure/blogger/tempDeleteBlog
+/api/secure/blogger/tempDeleteBlog
 ## undo delete a blog   
 GET - query = {blogId}
-localhost:3000/api/secure/blogger/undoDeleteBlog
+/api/secure/blogger/undoDeleteBlog
 
 
 ## update likings      
 GET - query = {likings (stringified array)}
-localhost:3000/api/secure/user/updateLikings
+/api/secure/user/updateLikings
 
 
 ## toggle for follow blogger      
 GET - query = {bloggerId}
-localhost:3000/api/secure/generic/toggleFollowBlogger
+/api/secure/generic/toggleFollowBlogger
 ## get following count
 GET - query = {}
 api/secure/generic/following
@@ -74,22 +80,22 @@ api/secure/generic/getNotifications
 
 ## view a blog      
 GET - query = {blogId}
-localhost:3000/api/secure/generic/viewBlog
+/api/secure/generic/viewBlog
 ## like a blog      
 GET - query = {blogId}
-localhost:3000/api/secure/generic/toggleBlogLike
+/api/secure/generic/toggleBlogLike
 ## comment on a blog    
 POST - body = {comment, blogId, parentId}
-localhost:3000/api/secure/generic/addComment
+/api/secure/generic/addComment
 ## update comment on a blog    
 POST - body = {commentId, comment}
-localhost:3000/api/secure/generic/updateComment
+/api/secure/generic/updateComment
 ## delete comment on a blog    
 GET - query = {commentId}
-localhost:3000/api/secure/generic/deleteComment
+/api/secure/generic/deleteComment
 ## like comment on a blog    
 GET - query = {commentId}
-localhost:3000/api/secure/generic/toggleCommentLike
+/api/secure/generic/toggleCommentLike
 ## get blog like status
 GET - query = {blogId}
 api/secure/generic/likeStatus
@@ -98,7 +104,7 @@ api/secure/generic/likeStatus
 
 ## get profile
 GET - query = {}
-localhost:3000/api/secure/generic/getProfile
+/api/secure/generic/getProfile
 ## update profile
 POST - body = {first_name, last_name, gender, twitter, instagram, facebook, dob, contact}
 api/secure/generic/updateProfile
