@@ -4,6 +4,7 @@ const Blog = models["blog"];
 const Blogger = models["blogger"];
 const User = models["user"];
 const Notification = models['notification']
+const Comment = models['comment']
 
 module.exports = (req, res) => {
     let whereObj = {};
@@ -16,13 +17,14 @@ module.exports = (req, res) => {
         })
         .then((notifications) => {
             Notification
-                .update({seen: True}, {
+                .update({seen: true}, {
                     where: whereObj,
                     logging: false
                 })
                 .then(() => {
                     let myNotifications = notifications.map((notif) => notif.get({plain: true}));
                     let blogIds = myNotifications.map((obj) => obj['blog_id'])
+                    console.log(blogIds);
                     Blog
                         .findAll({
                             attributes: ["id", "title", "images", "date_published", "views", "slug", "blogger_id", "likes"],
@@ -47,18 +49,13 @@ module.exports = (req, res) => {
                                 myBlogs[i]['comments'] = myBlogs[i]['comments'].length;
                             }
 
-                            for(let i =0; i<myBlogs.length; i++){
+                            for (let i = 0; i < myBlogs.length; i++) {
                                 myNotifications[i]['blog'] = myBlogs[i]
                             }
 
                             // return render.default(req, res, {status: true, msg: blog})
-                            return res.status(200).json({status: true, msg: myBlogs});
+                            return res.status(200).json({status: true, msg: myNotifications});
                         })
-                        .catch((err) => {
-                            console.log(err);
-                            return res.status(503).json({status: false, msg: "error in database"})
-                        });
-                    return res.status(200).json({status: true, msg: myNotifications});
                 })
         })
         .catch((err) => {
