@@ -163,7 +163,7 @@ class InReaderProfile extends Component {
                             </Statistic.Label>
                             </Statistic>
                             <Statistic>
-                            <Statistic.Value>0</Statistic.Value>
+                            <Statistic.Value>{view_points + share_points + comment_points + referral_points}</Statistic.Value>
                             <Statistic.Label  className="info">
                                 Total Points
                             </Statistic.Label>

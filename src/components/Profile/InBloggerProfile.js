@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid, Button, Icon, List, Popup} from 'semantic-ui-react';
+import { Segment, Image, Grid, Button, Icon, List, Popup, Statistic} from 'semantic-ui-react';
 import MyCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
@@ -31,7 +31,8 @@ class InBloggerProfile extends Component {
             chartData,
             data: props.data,
             isSent: false,
-            isCoverSent: false
+            isCoverSent: false,
+            loading: true
         }
     }
 
@@ -40,7 +41,6 @@ class InBloggerProfile extends Component {
             isSent: true
         });
         const file = e.target.files[0];
-        console.log(file);
         const data = new FormData();
         data.append('avatar', file);
         const thiss = this;
@@ -68,7 +68,6 @@ class InBloggerProfile extends Component {
             isCoverSent: true
         });
         const file = e.target.files[0];
-        console.log(file);
         const data = new FormData();
         data.append('avatar', file);
         const thiss = this;
@@ -152,15 +151,32 @@ class InBloggerProfile extends Component {
                 thiss.fetchBlogs(ids)
               })
               .catch(err => console.log(err))
-        }
-        if(isActive === "post") {
+        } else if(isActive === "post") {
             this.fetchMyBlog()
+        } else {
+            const thiss = this;
+            axios.get('/api/secure/blogger/lastFiveDaysViews')
+              .then(res => {
+                let chartData = {...this.state.chartData};
+                chartData.datasets[0].data = JSON.parse(res.data.msg);
+                thiss.setState({
+                    chartData,
+                    loading: false
+                })
+              })
+              .catch(err => console.log(err))
+
+              axios.get('/api/secure/blogger/top/views')
+              .then(res => {
+                console.log(res.data)
+              })
+              .catch(err => console.log(err))
         }
     }
 
     render() {
-        const {data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent, followers, following} = this.state;
-        const {first_name, last_name, image, cover_image} = data;
+        const {loading, data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent, followers, following} = this.state;
+        const {first_name, last_name, image, cover_image, view_points, comment_points, share_points, referral_points} = data;
         const author = `${first_name} ${last_name}`;
         
         return (
@@ -211,10 +227,69 @@ class InBloggerProfile extends Component {
                     </div>
                 </Segment> }
                 {this.state.isActive === "stats" && <div className="bloggerStats" style={{width: "95%",margin: "auto", paddingTop: "20px"}}>
-                    <Line
+                    {!loading && <Line
                         data={this.state.chartData}
                         height={100}
-                    />
+                    />}
+                    {loading && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3>}
+
+<div style={{marginBottom: "50px"}} className="points">
+                        <Segment basic>
+                        <Statistic.Group widths='five' color="blue">
+                            <Statistic>
+                            <Statistic.Value>{view_points}</Statistic.Value>
+                            <Statistic.Label className="info">
+                                View Points
+                                <Popup
+                                    trigger={<Button icon='info' size="mini" circular/>}
+                                    content="1 share = 1 point"
+                                    size="mini"
+                                />
+                            </Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                            <Statistic.Value>{comment_points}</Statistic.Value>
+                            <Statistic.Label className="info">
+                                Comment Points
+                                <Popup
+                                    trigger={<Button icon='info' size="mini" circular/>}
+                                    content="1 comment = 2 points"
+                                    size="mini"
+                                />
+                            </Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                            <Statistic.Value>{share_points}</Statistic.Value>
+                            <Statistic.Label className="info">
+                                Share Points
+                                <Popup
+                                    trigger={<Button icon='info' size="mini" circular/>}
+                                    content="1 share = 5 points"
+                                    size="mini"
+                                />
+                            </Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                            <Statistic.Value>{referral_points}</Statistic.Value>
+                            <Statistic.Label  className="info">
+                                Referral Points
+                                <Popup
+                                    trigger={<Button icon='info' size="mini" circular/>}
+                                    content="1 refer = 20 points"
+                                    size="mini"
+                                />
+                            </Statistic.Label>
+                            </Statistic>
+                            <Statistic>
+                            <Statistic.Value>{view_points + share_points + comment_points + referral_points}</Statistic.Value>
+                            <Statistic.Label  className="info">
+                                Total Points
+                            </Statistic.Label>
+                            </Statistic>
+                        </Statistic.Group>
+                        </Segment>
+                        </div>
+
                     <Segment padded>
                         <List divided verticalAlign='middle'>
                             <List.Item>
