@@ -7,8 +7,27 @@ import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
 import axios from 'axios';
 import {Desktop, Mobile} from '../../helpers/responsive';
+
+const a = new Date();
+a.setDate(a.getDate() - 1);
+const b = new Date();
+b.setDate(b.getDate() - 2);
+const c = new Date();
+c.setDate(c.getDate() - 3);
+const d = new Date();
+d.setDate(d.getDate() - 4);
+const e = new Date();
+e.setDate(e.getDate() - 5);
+
+
 const chartData = {
-    labels: ['Mar 25', 'Mar 26', 'Mar 27', 'Mar 28', 'Mar 29'],
+    labels: [
+        e.toString().substring(4, 11),
+        d.toString().substring(4, 11),
+        c.toString().substring(4, 11),
+        b.toString().substring(4, 11),
+        a.toString().substring(4, 11)
+    ],
     datasets:[
       {
         label:'Total Views',
@@ -290,50 +309,50 @@ class InBloggerProfile extends Component {
                         </Segment>
                         </div>
 
-                    <Segment padded>
-                        <List divided verticalAlign='middle'>
-                            <List.Item>
-                                <List.Content floated='right'>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
-                                </List.Content>
-                                <List.Header as="a">
-                                    Kabul Restaurant Afghani Food in Delhi
-                                </List.Header>
-                            </List.Item>
-                            <List.Item>
-                                <List.Content floated='right'>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
-                                </List.Content>
-                                <List.Header as="a">
-                                    Kabul Restaurant Afghani Food in Delhi
-                                </List.Header>
-                            </List.Item>
-                            <List.Item>
-                                <List.Content floated='right'>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
-                                </List.Content>
-                                <List.Header as="a">
-                                    Kabul Restaurant Afghani Food in Delhi
-                                </List.Header>
-                            </List.Item>
-                            <List.Item>
-                                <List.Content floated='right'>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
-                                    <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
-                                </List.Content>
-                                <List.Header as="a">
-                                    Kabul Restaurant Afghani Food in Delhi
-                                </List.Header>
-                            </List.Item>
-                    </List>
-                    </Segment>
+                        {/* <Segment padded>
+                            <List divided verticalAlign='middle'>
+                                <List.Item>
+                                    <List.Content floated='right'>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                    </List.Content>
+                                    <List.Header as="a">
+                                        Kabul Restaurant Afghani Food in Delhi
+                                    </List.Header>
+                                </List.Item>
+                                <List.Item>
+                                    <List.Content floated='right'>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                    </List.Content>
+                                    <List.Header as="a">
+                                        Kabul Restaurant Afghani Food in Delhi
+                                    </List.Header>
+                                </List.Item>
+                                <List.Item>
+                                    <List.Content floated='right'>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                    </List.Content>
+                                    <List.Header as="a">
+                                        Kabul Restaurant Afghani Food in Delhi
+                                    </List.Header>
+                                </List.Item>
+                                <List.Item>
+                                    <List.Content floated='right'>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="unhide" /> 2.2K</a></span>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="heart" /> 663</a></span>
+                                        <span style={{marginRight: "20px"}}><a href="#"><Icon name="comments" /> 245</a></span>
+                                    </List.Content>
+                                    <List.Header as="a">
+                                        Kabul Restaurant Afghani Food in Delhi
+                                    </List.Header>
+                                </List.Item>
+                        </List>
+                        </Segment> */}
                 </div>}
                 <Footer />
             </div>
