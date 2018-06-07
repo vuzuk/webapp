@@ -7,9 +7,7 @@ const settings = {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    className: 'slides',
-    centerMode: true,
-    centerPadding: "0px"
+    className: 'slides main'
 };
 
 const imgs = [

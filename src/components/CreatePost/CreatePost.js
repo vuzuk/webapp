@@ -196,7 +196,6 @@ class CreatePost extends Component {
             }
         } catch(err) {
             console.log(err);
-            
         }
     }
 

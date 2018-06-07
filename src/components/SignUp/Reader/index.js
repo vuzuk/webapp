@@ -124,7 +124,7 @@ class SignUp extends Component {
                                     <Form.Group widths="equal">
                                         <Form.Field>
                                             <label>Email</label>
-                                            <Input onChange={this.handleFormText} name="email" placeholder='Email' />
+                                            <Input onChange={this.handleFormText} type="email" name="email" placeholder='Email' />
                                         </Form.Field>
                                         <Form.Field>
                                             <label>Place</label>

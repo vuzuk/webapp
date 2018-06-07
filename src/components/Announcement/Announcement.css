@@ -23,11 +23,20 @@
 
 .slick-list {
     width: 78% !important;
-    margin: auto !important;
+    margin: auto;
+}
+
+.main .slick-list {
+    margin: 0 !important;
+    overflow: visible !important;
 }
 
 .slick-track {
     width: 1820% !important;
+}
+
+.main div.slick-active {
+    width: 8.8% !important;
 }
 
 /* .slick-slide {
@@ -40,11 +49,14 @@
 
 .slick-prev {
     left: 2% !important;
+    z-index: 99;
 }
 .slick-next {
     right: 2% !important;
+    z-index: 99;
 }
 
 .slides ul {
     background: #1e5799; /* Old browsers */
+    /* display: none !important; */
 }

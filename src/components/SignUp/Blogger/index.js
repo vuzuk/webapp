@@ -157,7 +157,7 @@ class SignUp extends Component {
                                 </Form.Group>
                                 <Form.Field>
                                     <label>Email</label>
-                                    <Input fluid onChange={this.handleFormText} name="email" placeholder='Email' />
+                                    <Input fluid onChange={this.handleFormText} type="email" name="email" placeholder='Email' />
                                 </Form.Field>
                                 <Form.Checkbox checked={isAgreed} onClick={() => {
                                         this.setState({
