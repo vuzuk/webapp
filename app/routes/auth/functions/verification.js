@@ -142,7 +142,7 @@ module.exports = (mailTransporter) => {
     });
 
     //body = {isBlogger, emailVerifKey, email, password}
-    route.body('/resetPassword', function (req, res, next) {
+    route.post('/resetPassword', function (req, res, next) {
         let isBlogger = JSON.parse(req.body["isBlogger"]);
         let emailVerifKey = req.body["emailVerifKey"];
         let email = req.body["email"];
