@@ -1,6 +1,11 @@
 body {
     background: #F5F5F5 !important;
     font-family: 'Lato' !important;
+    width: 100vw;
+}
+
+#root {
+    overflow-x: hidden;
 }
 
 .main {

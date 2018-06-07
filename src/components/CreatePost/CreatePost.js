@@ -9,6 +9,11 @@ import './CreatePost.css';
 import axios from 'axios';
 import isEmpty from '../../helpers/isEmpty';
 
+function countWords(value){
+	const s = value;
+	return s.split(' ').length;
+}
+
 var decodeHtmlEntity = function(str) {
     return str.replace(/&#(\d+);/g, function(match, dec) {
       return String.fromCharCode(dec);
@@ -116,6 +121,8 @@ class CreatePost extends Component {
             alert("Insert post link!!")
         } else if(method === "submit video" && !video_link) {
             alert("Insert video link!!")
+        } else if(countWords(blog) < 300) {
+            alert("Post should have atleast 300 words")
         } else {
             this.setState({
                 isSubmit: true

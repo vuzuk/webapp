@@ -49,7 +49,7 @@ class SignUp extends Component {
                 data: JSON.stringify(data)
             })
             .then(response => {
-                alert("We've sent you an email containing a link to complete the registration process. Make sure to check your Spam folder too.");
+                alert("We've sent you an email containing a link to complete the registration process. Make sure to check your Spam folder too. You will receive the mail within 2 mins.");
                 thiss.setState({
                     disabled: true,
                     isSent: false

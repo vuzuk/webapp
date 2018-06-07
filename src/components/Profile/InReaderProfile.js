@@ -124,7 +124,7 @@ class InReaderProfile extends Component {
                                 View Points
                                 <Popup
                                     trigger={<Button icon='info' size="mini" circular/>}
-                                    content="1 share = 1 point"
+                                    content="1 share = 1 point. You must be active for atleast 1 min."
                                     size="mini"
                                 />
                             </Statistic.Label>
