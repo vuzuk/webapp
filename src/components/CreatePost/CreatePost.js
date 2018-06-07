@@ -128,13 +128,11 @@ class CreatePost extends Component {
                 url: '/api/secure/blogger/newBlog',
                 data: JSON.stringify(data)
             })
-            .then(response => {
-                console.log(response.data);
-                
+            .then(response => {                
                 location.href = "/in/blogger"
             })
             .catch(error => {
-                alert("DO NOT PASTE THE CONTENT FROM ANOTHER WEBSITE!!");
+                alert("Something went wrong");
                 thiss.setState({
                     isSubmit: false
                 })
@@ -169,6 +167,7 @@ class CreatePost extends Component {
         }
         blog = blog.replace(/=/g,"##61##")
         blog = blog.replace(/:/g,"##62##")
+        blog = blog.replace(/&/g,"##63##")
         blog = decodeHtmlEntity(blog);
         this.setState({
             filteredBlog: blog,
@@ -192,8 +191,7 @@ class CreatePost extends Component {
         this.removeWrapper();
         try {
             if(this.state.method !== "create") {
-                $('.selector').data('froala.editor').opts.placeholderText = `Write a small description about your post(Min. 300 words) to get better ranking. Add an image too.
-                DO NOT PASTE CONTENT FROM ANOTHER WEBSITE`;
+                $('.selector').data('froala.editor').opts.placeholderText = `Write a small description about your post(Min. 300 words) to get better ranking. Add an image too.`;
                 $('.selector').froalaEditor('placeholder.refresh');    
             }
         } catch(err) {
@@ -240,8 +238,7 @@ class CreatePost extends Component {
                                             config={{
                                                 editorClass: 'selector',
                                                 height: 300,
-                                                placeholderText: `Write your post here!! Make sure you upload atleast one image
-                                                DO NOT PASTE CONTENT FROM ANOTHER WEBSITE`,
+                                                placeholderText: `Write your post here!! Make sure you upload atleast one image`,
                                                 imageUploadURL: '/api/secure/blogger/froala_upload',
                                                 charCounterCount: false,
                                                 quickInsertButtons: ['image', 'video', 'table'],
