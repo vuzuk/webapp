@@ -58,5 +58,8 @@
 
 .slides ul {
     background: #1e5799; /* Old browsers */
-    /* display: none !important; */
+}
+
+.main.slides ul {
+    display: none !important;
 }
