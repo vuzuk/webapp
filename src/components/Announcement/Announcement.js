@@ -12,14 +12,21 @@ const settings = {
     centerPadding: "0px"
 };
 
+const imgs = [
+    "food-image.jpg",
+    "fashion-image.jpg",
+    "travel-image.jpg",
+    "tech-image.jpg"
+]
+
 class Trending extends Component {
     makeTrendingList = () => {
         return(
             <Slider {...settings}>
-                {[1,0,2,1,3,0].map((i,x) => {
+                {imgs.map((i,x) => {
                     return (
                         <div key={x}>
-                            <img width="80%" src="coming-soon.jpg" alt=""/>
+                            <img width="80%" src={i} alt=""/>
                         </div>
                     )
                 })}

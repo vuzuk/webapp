@@ -3,6 +3,7 @@ const Op = require("sequelize").Op;
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const Blog = models['blog']
 const Like = models['like']
+const Comment = models['comment']
 
 module.exports = (req, res) => {
     let para = req['params']['para'];
@@ -17,6 +18,10 @@ module.exports = (req, res) => {
             where: {blogger_id: req['user']['id']},
             logging: false,
             limit: 10,
+            include: [{
+                model: Comment,
+                attributes: ['comment']
+            }],
             order: order,
         })
         .then((result) => {

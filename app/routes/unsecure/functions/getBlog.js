@@ -61,6 +61,7 @@ module.exports = (req, res) => {
                 value = img;
             }
             value = value.replace(/##61##/g, "=")
+            value = value.replace(/##62##/g, ":")
             blogOnly['blog'] = value;
 
             return res.status(200).json({status: true, msg: blog});

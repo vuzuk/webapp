@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const path = require('path');
-// const favicon = require('serve-favicon');
+const favicon = require('serve-favicon');
 const logger = require('morgan');
 const dotenv = require('dotenv');
 
@@ -15,7 +15,7 @@ const app = express();
 const routes = require("./app/routes");
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'uploads', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cookieParser(process.env.SECRET));
 app.use(bodyParser.json());

@@ -41,7 +41,7 @@ class Tech extends Component {
                                         {[1,0,2,1,3,0].map((i,x) => {
                                             return (
                                                 <div key={x}>
-                                                    <img width="90%" src="announcements.jpg" alt=""/>
+                                                    <img width="90%" src="tech-image.jpg" alt=""/>
                                                 </div>
                                             )
                                         })}
@@ -52,20 +52,20 @@ class Tech extends Component {
                             {Desktop(
                                     <Fragment>
                                     <Segment basic className="right-item">
-                                        <img height="178px" width="100%" src="announcements.jpg" alt=""/>
+                                        <img height="178px" width="100%" src="tech-plain.jpg" alt=""/>
                                     </Segment>
                                     <Segment basic>
-                                        <img height="178px" width="100%" src="announcements.jpg" alt=""/>
+                                        <img height="178px" width="100%" src="tech.jpg" alt=""/>
                                     </Segment>
                                     </Fragment>
                                 )}
                                 {Mobile(
                                     <Segment.Group horizontal>
                                     <Segment basic className="right-item">
-                                        <img height="90px" width="100%" src="announcements.jpg" alt=""/>
+                                        <img height="90px" width="100%" src="tech-plain.jpg" alt=""/>
                                     </Segment>
                                     <Segment basic>
-                                        <img height="90px" width="100%" src="announcements.jpg" alt=""/>
+                                        <img height="90px" width="100%" src="tech.jpg" alt=""/>
                                     </Segment>
                                     </Segment.Group>
                                 )}
