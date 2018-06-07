@@ -19,6 +19,10 @@
   height: 4em;
   /* margin-top: -3em; */
 }
+.footer img {
+  display: none;
+  margin: auto;
+}
 .footer ul {
   list-style-type: none;
   float: left;
@@ -145,5 +149,8 @@
   }
   .social {
     float: none;
+  }
+  .footer img {
+    display: block;
   }
 }

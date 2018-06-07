@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Image, List } from 'semantic-ui-react';
 import './Footer.css';
-import { Mobile } from "../../helpers/responsive";
 const Footer = (props) => {
     return (
         <div className="footer">
             <ul>
-                {Mobile(<li><a href="http://vuzuk.com"><img width="160px" height="70px" src="/logo.png" alt="logo"/></a></li>)}
+                <li><a href="http://vuzuk.com"><img width="160px" height="70px" src="/logo.png" alt="logo"/></a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/contact">Contact</a></li>
                 <li><a href="#">Team</a></li>
