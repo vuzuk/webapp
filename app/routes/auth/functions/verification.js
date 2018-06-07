@@ -32,7 +32,7 @@ module.exports = (mailTransporter) => {
                         isEmailVerified: true,
                         emailVerifKey: null
                     })
-                    .then(() => {                        
+                    .then(() => {
                         // return res.redirect('/verify/phone/?isBlogger=true');
                         // *************** BYPASSING PHONE VERIFICATION OF BLOGGER ***************
                         return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
@@ -86,6 +86,101 @@ module.exports = (mailTransporter) => {
             .catch((err) => {
                 console.log(err);
                 return res.status(503).json({status: false, msg: "error in database"});
+            });
+    });
+
+    //query = {isBlogger, email}
+    route.get('/forgotPassword', function (req, res, next) {
+        let isBlogger = JSON.parse(req.query["isBlogger"]);
+        let email = req.query["email"];
+        let model_to_use = isBlogger ? Blogger : User;
+        model_to_use
+            .findAll({
+                where: {
+                    email: email,
+                },
+                limit: 1
+            })
+            .then(obj => {
+                if (obj.length === 0) {
+                    return res.status(400).json({status: false, msg: "email not found"});
+                }
+                if (!obj[0].isEmailVerified) {
+                    return res.status(400).json({status: false, msg: "email not verified"});
+                }
+
+                let user = obj[0];
+
+                user
+                    .update({emailVerifKey: randomString.generate(15)},
+                        {logging: false})
+                    .then(() => {
+                        let emailLink = "http://" + process.env.DOMAIN + "/resetPassword?email="
+                            + user.email + "&emailVerifKey=" + user.emailVerifKey + "&isBlogger=" + isBlogger;
+                        let mailOptions = {
+                            from: process.env.ADMIN_EMAIL_ID, // sender address
+                            to: user.email, // list of receivers
+                            subject: 'Reset Password', // Subject line
+                            text: `Click this link or copy paste in browser to reset password id: ${emailLink}`, // plain text body
+                        };
+
+                        // send mail with defined transport object
+                        mailTransporter.sendMail(mailOptions, (error, info) => {
+                            if (error) {
+                                console.log(error);
+                                return res.status(503).json({status: false, msg: "error in sending mail"});
+                            }
+                            console.log('Message sent: %s', info.messageId);
+                            return res.status(200).json({status: true, msg: "password reset link sent on mail"});
+                        });
+                    })
+            })
+            .catch((err) => {
+                console.log(err);
+                return res.status(503).json({status: false, msg: "error in database"});
+            });
+    });
+
+    //body = {isBlogger, emailVerifKey, email, password}
+    route.body('/resetPassword', function (req, res, next) {
+        let isBlogger = JSON.parse(req.body["isBlogger"]);
+        let emailVerifKey = req.body["emailVerifKey"];
+        let email = req.body["email"];
+        let password = req.body["password"];
+
+        let model_to_use = isBlogger ? Blogger : User;
+        model_to_use
+            .findAll({
+                where: {
+                    email: email,
+                    emailVerifKey: emailVerifKey
+                },
+                limit: 1
+            })
+            .then(obj => {
+                if (obj.length === 0) {
+                    return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+                }
+
+                bcrypt.hash(password, process.env.SALT, function (err, hash) {
+                    if (err) {
+                        console.log(err);
+                        return res.status(503).json({status: false, msg: "error in processing"});
+                    }
+                    password = hash;
+                    obj[0]
+                        .update({
+                            password: password,
+                            emailVerifKey: null
+                        })
+                        .then(() => {
+                            return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+                        })
+                });
+            })
+            .catch((err) => {
+                console.log(err);
+                return res.status(503).json({status: false, msg: "error in database"})
             });
     });
 

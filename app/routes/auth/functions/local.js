@@ -19,11 +19,15 @@ module.exports = (passport, mailTransporter) => {
             if (!user) {
                 return res.status(404).json({status: false, msg: info.message});
             }
-            if(!user.isEmailVerified){
-                return res.status(404).json({status: false, msg: "please verify your email address " + user.email, notVerified: "email"});
+            if (!user.isEmailVerified) {
+                return res.status(404).json({
+                    status: false,
+                    msg: "please verify your email address " + user.email,
+                    notVerified: "email"
+                });
             }
-            if(user.isBlogger) {
-                if(!user.isContactVerified){
+            if (user.isBlogger) {
+                if (!user.isContactVerified) {
                     // *************** BYPASSING PHONE VERIFICATION OF BLOGGER ***************
                     // return res.status(404).json({status: false, msg: "please verify your contact " + user.contact, notVerified: "contact"});
                 }
@@ -60,7 +64,7 @@ module.exports = (passport, mailTransporter) => {
                 signed_up_via: 'local',
                 emailVerifKey: randomString.generate(15),
             };
-            if(isBlogger){
+            if (isBlogger) {
                 defaults['category'] = req.body.category
             }
 
@@ -73,13 +77,13 @@ module.exports = (passport, mailTransporter) => {
                     logging: false
                 })
                 .spread((user, created) => {
-                    if(!created) {
+                    if (!created) {
                         return res.status(400).json({status: false, msg: "already signedUp"});
                     }
                     user.isBlogger = JSON.parse(req.body.isBlogger);
                     //send verification email and otp
                     // setup email data with unicode symbols
-                    let emailLink = "http://"+process.env.DOMAIN + "/api/auth/verification/verifyEmail?email=" + user.email + "&emailVerifKey=" + user.emailVerifKey+"&isBlogger="+isBlogger;
+                    let emailLink = "http://" + process.env.DOMAIN + "/api/auth/verification/verifyEmail?email=" + user.email + "&emailVerifKey=" + user.emailVerifKey + "&isBlogger=" + isBlogger;
                     let mailOptions = {
                         from: process.env.ADMIN_EMAIL_ID, // sender address
                         to: user.email, // list of receivers
