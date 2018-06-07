@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
             unique: true,
             validate: {
                 notEmpty: true,
-                isAlphanumeric: true
             }
         },
         password: {
