@@ -17,6 +17,12 @@ POST - body = {isBlogger, otp, contact}
 ## sending/resending of otp
 GET - query = {isBlogger, contact}
 /api/auth/verification/resendOTP
+## forgot password
+GET - query = {isBlogger, email}
+api/auth/verification/forgotPassword
+## reset password
+POST - body = {isBlogger, emailVerifKey, email, password}
+api/auth/verification/resetPassword
 
 
 ## get trending blogs (could be via category, blogger)
