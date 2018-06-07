@@ -169,6 +169,7 @@ class CreatePost extends Component {
         }
         blog = blog.replace(/=/g,"##61##")
         blog = blog.replace(/:/g,"##62##")
+        blog = blog.replace(/&/g,"##63##")
         blog = decodeHtmlEntity(blog);
         this.setState({
             filteredBlog: blog,
