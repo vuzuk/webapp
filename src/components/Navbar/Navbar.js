@@ -46,7 +46,8 @@ export default class Navbar extends Component {
       liking,
       isSetting: false,
       isSent: false,
-      visible: false
+      visible: false,
+      notifications: []
     }
   }
 
@@ -99,10 +100,19 @@ export default class Navbar extends Component {
 
   handleFormText = (e) => {
     this.setState({[e.target.name]: e.target.value});
-}
+  }
+
+  componentDidMount() {
+    const thiss = this;
+    axios.get('/api/secure/generic/getNotifications')
+      .then(res => thiss.setState({
+        notifications: res.data.msg
+      }))
+      .catch(err => console.log(err))
+  }
 
   render() {
-    const { liking, description, place, visible, facebook, twitter, instagram,isSent, isLogin, open, data, isSettings, first_name, last_name, username, email, contact, dob, gender, image } = this.state;
+    const { notifications, liking, description, place, visible, facebook, twitter, instagram,isSent, isLogin, open, data, isSettings, first_name, last_name, username, email, contact, dob, gender, image } = this.state;
 
     const rightModals = (
           <Fragment>
@@ -112,12 +122,18 @@ export default class Navbar extends Component {
             </Modal.Header>
             <Modal.Content>
             <List size="large" relaxed verticalAlign="middle" selection>
-                <List.Item>
+                {notifications.map(({blog: notif, seen}) => (<List.Item active={!seen} key={notif.slug}>
+                  <Image avatar src={notif.images[0]} />
+                <List.Content>
+                    <List.Description><a href={`/blogger/${notif.blogger.username}`}><b>{notif.blogger.first_name + " " + notif.blogger.last_name}</b></a> posted a new post <a href={`/post/${notif.blogger.username}/${notif.slug}`}>{notif.title}</a>.</List.Description>
+                </List.Content>
+                </List.Item>))}
+                {notifications.length === 0 && <List.Item>
                     <Icon name="hashtag" inverted circular/>
                 <List.Content>
                     <List.Description>Welcome to <a><b>VUZUK.</b></a></List.Description>
                 </List.Content>
-                </List.Item>
+                </List.Item>}
             </List>
             </Modal.Content>
         </Modal>
