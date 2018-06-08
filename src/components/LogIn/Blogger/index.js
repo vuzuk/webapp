@@ -68,6 +68,7 @@ class LogIn extends Component {
                                 <Input name="password" fluid onChange={this.handleFormText} placeholder='Password' type="password" />
                             </Form.Field>
                             <Button type='submit' loading={isSent}>Submit</Button>
+                            <a id="forgot" href="/forgot-password">Forgot Password?</a>
                         </Form>
                         </Card.Content>
                     </Card>

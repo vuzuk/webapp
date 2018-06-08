@@ -7,7 +7,7 @@ import { Food, Travel, Tech, Fashion } from './components/Categories';
 import Post from './components/Post/Post';
 import { Terms, Disclaimer, Privacy, About, Contact} from './components/Documents';
 import SearchBar from './components/SearchBar/SearchBar';
-
+import { Forget, Reset } from './components/Account'
 //api
 import { fetchPost, getBlogsByCategory, getBlogger } from './api';
 
@@ -137,6 +137,16 @@ const routes = [
         path: '/contact',
         component: Contact,
         title: 'Contact - VUZUK'
+    },
+    {
+        path: '/forgot-password',
+        component: Forget,
+        title: 'Forgot Password - VUZUK'
+    },
+    {
+        path: '/reset-password',
+        component: Reset,
+        title: 'Reset Password - VUZUK'
     }
 ];
 
