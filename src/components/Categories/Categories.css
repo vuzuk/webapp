@@ -27,7 +27,8 @@
     }
 
     .right-banners > div {
-        margin-top: 10px !important;
+        margin-top: 0px !important;
+        margin-bottom: 0 !important;
         background: none !important;
         border: none !important;
         box-shadow: none !important;
@@ -41,4 +42,17 @@
     .slides img{
         height: 150px;
     }
+
+    .categories-page .ten.wide .ui.segment {
+        padding-bottom: 0;
+    }
+}
+
+.slides.category .slick-list {
+    overflow: hidden !important;
+    width: 100% !important;
+}
+
+.slides.category img {
+    height: auto;
 }
