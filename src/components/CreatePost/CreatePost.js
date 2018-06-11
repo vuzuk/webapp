@@ -10,8 +10,9 @@ import axios from 'axios';
 import isEmpty from '../../helpers/isEmpty';
 
 function countWords(value){
-	const s = value;
-	return s.split(' ').length;
+    const s = value;
+    const length = s.split('nbsp;').length;
+	return s.split(' ').length + length;
 }
 
 var decodeHtmlEntity = function(str) {
