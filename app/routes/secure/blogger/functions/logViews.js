@@ -4,11 +4,13 @@ const Blog = models["blog"];
 const Blogger = models["blogger"];
 
 module.exports = () => {
+    console.log("logging values");
+
     Blog
         .findAll({
             attributes: ['blogger_id',
                 sequelize.fn('sum', sequelize.col('views'))],
-            group: ["Blog.blogger_id"],
+            group: ["blog.blogger_id"],
             order: [['blogger_id']]
         })
         .then(result => {
@@ -19,20 +21,22 @@ module.exports = () => {
                 })
                 .then((bloggers) => {
                     let i = 0;
-                    bloggers.map((blogger) => {
-                        blogger['views'] = JSON.parse(blogger['views']);
-                        blogger['views'].shift();
-                        blogger['views'].push(result[i]['views'])
-                        blogger['views'] = JSON.stringify(blogger['views']);
+                    bloggers = bloggers.map((blogger) => {
+                        let arr = blogger['views'];
+                        arr = JSON.parse(arr);
+                        arr.shift();
+                        arr.push(result[i]['views'])
+                        blogger['views'] = JSON.stringify(arr);
                         return blogger;
-                    })
+                    });
 
-                    bloggers
-                        .save()
-                        .then(() => {
-                            console.log("successfully logged views");
-                            return "success";
-                        })
+                    bloggers.map((blogger) => {
+                        blogger
+                            .save()
+                            .then(() => {
+                                // console.log("successfully logged views");
+                            })
+                    })
                 })
         })
         .catch((err) => {
