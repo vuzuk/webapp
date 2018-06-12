@@ -56,3 +56,7 @@
 .slides.category img {
     height: auto;
 }
+
+.right-banners {
+    min-height: 104%;
+}

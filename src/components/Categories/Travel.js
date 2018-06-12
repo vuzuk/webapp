@@ -52,10 +52,10 @@ class Travel extends Component {
                             {Desktop(
                                     <Fragment>
                                     <Segment basic className="right-item">
-                                        <img height="200px" width="100%" src="travel-plain.jpg" alt=""/>
+                                        <img width="100%" src="travel-plain.jpg" alt=""/>
                                     </Segment>
                                     <Segment basic>
-                                        <img height="200px" width="100%" src="travel.jpg" alt=""/>
+                                        <img width="100%" src="travel.jpg" alt=""/>
                                     </Segment>
                                     </Fragment>
                                 )}

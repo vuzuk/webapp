@@ -52,10 +52,10 @@ class Tech extends Component {
                             {Desktop(
                                     <Fragment>
                                     <Segment basic className="right-item">
-                                        <img height="200px" width="100%" src="tech-plain.jpg" alt=""/>
+                                        <img width="100%" src="tech-plain.jpg" alt=""/>
                                     </Segment>
                                     <Segment basic>
-                                        <img height="200px" width="100%" src="tech.jpg" alt=""/>
+                                        <img width="100%" src="tech.jpg" alt=""/>
                                     </Segment>
                                     </Fragment>
                                 )}

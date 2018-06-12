@@ -52,10 +52,10 @@ class Food extends Component {
                                 {Desktop(
                                     <Fragment>
                                     <Segment basic className="right-item">
-                                        <img height="200px" width="100%" src="food-plain.jpg" alt=""/>
+                                        <img width="100%" src="food-plain.jpg" alt=""/>
                                     </Segment>
                                     <Segment basic>
-                                        <img height="200px" width="100%" src="food.jpg" alt=""/>
+                                        <img width="100%" src="food.jpg" alt=""/>
                                     </Segment>
                                     </Fragment>
                                 )}
