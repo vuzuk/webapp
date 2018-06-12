@@ -32,9 +32,6 @@ module.exports = (req, res) => {
                                 id: blogIds
                             },
                             include: [{
-                                model: Comment,
-                                attributes: ['comment'],
-                            }, {
                                 model: Blogger,
                                 attributes: ['username', 'first_name', 'last_name', 'image']
                             }]
@@ -45,9 +42,6 @@ module.exports = (req, res) => {
                             }
 
                             const myBlogs = blogs.map((blog) => blog.get({plain: true}));
-                            for (let i = 0; i < myBlogs.length; i++) {
-                                myBlogs[i]['comments'] = myBlogs[i]['comments'].length;
-                            }
 
                             for (let i = 0; i < myBlogs.length; i++) {
                                 myNotifications[i]['blog'] = myBlogs[i]

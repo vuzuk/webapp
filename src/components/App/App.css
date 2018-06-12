@@ -3,6 +3,10 @@ body {
     font-family: 'Lato' !important;
 }
 
+#root {
+    overflow-x: hidden;
+}
+
 .main {
     background: white;
 }

@@ -16,7 +16,8 @@ class InReaderProfile extends Component {
             isSent: false,
             posts: [],
             fetched: false,
-            noPost: false
+            noPost: false,
+            notifications: []
         }
     }
 
@@ -87,8 +88,17 @@ class InReaderProfile extends Component {
         });
     }
 
+    componentDidMount() {
+        const thiss = this;
+        axios.get('/api/secure/generic/getNotifications')
+          .then(res => thiss.setState({
+            notifications: res.data.msg
+          }))
+          .catch(err => console.log(err))
+      }
+
     render() {
-        const {isActive, data, isSent, fetched, posts, noPost} = this.state;
+        const {isActive, data, isSent, fetched, posts, noPost, notifications} = this.state;
         const {first_name, last_name, username, image, view_points, comment_points, share_points, referral_points} = data;
         const author = `${first_name} ${last_name}`;
 
@@ -124,7 +134,7 @@ class InReaderProfile extends Component {
                                 View Points
                                 <Popup
                                     trigger={<Button icon='info' size="mini" circular/>}
-                                    content="1 share = 1 point"
+                                    content="1 share = 1 point. You must be active for atleast 1 min."
                                     size="mini"
                                 />
                             </Statistic.Label>
@@ -171,12 +181,18 @@ class InReaderProfile extends Component {
                         </Statistic.Group>
                         <Segment padded>
                         <List size="large" relaxed verticalAlign="middle" selection>
-                            <List.Item>
+                            {notifications.map(({blog: notif, seen}) => (<List.Item active={!seen} key={notif.slug}>
+                            <Image avatar src={notif.images[0]} />
+                            <List.Content>
+                                <List.Description><a href={`/blogger/${notif.blogger.username}`}><b>{notif.blogger.first_name + " " + notif.blogger.last_name}</b></a> posted a new post <a href={`/post/${notif.blogger.username}/${notif.slug}`}>{notif.title}</a>.</List.Description>
+                            </List.Content>
+                            </List.Item>))}
+                            {notifications.length === 0 && <List.Item>
                                 <Icon name="hashtag" inverted circular/>
                             <List.Content>
-                                <List.Description>Welcome to <a><b>VUZUK</b></a></List.Description>
+                                <List.Description>Welcome to <a><b>VUZUK.</b></a></List.Description>
                             </List.Content>
-                            </List.Item>
+                            </List.Item>}
                         </List>
                         </Segment>
                         </Segment>

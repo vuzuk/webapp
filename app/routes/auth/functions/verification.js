@@ -7,6 +7,7 @@ const Blogger = models.blogger;
 const accountSid = process.env.TWILIO_ACCOUNTSID;
 const authToken = process.env.TWILIO_AUTHTOKEN;
 const client = require('twilio')(accountSid, authToken);
+const bcrypt = require('bcrypt');
 
 module.exports = (mailTransporter) => {
 //query = {isBlogger, emailVerifKey, email}
@@ -103,10 +104,10 @@ module.exports = (mailTransporter) => {
             })
             .then(obj => {
                 if (obj.length === 0) {
-                    return res.status(400).json({status: false, msg: "email not found"});
+                    return res.status(400).json({status: false, msg: "Email not found"});
                 }
                 if (!obj[0].isEmailVerified) {
-                    return res.status(400).json({status: false, msg: "email not verified"});
+                    return res.status(400).json({status: false, msg: "Email not verified"});
                 }
 
                 let user = obj[0];
@@ -115,13 +116,13 @@ module.exports = (mailTransporter) => {
                     .update({emailVerifKey: randomString.generate(15)},
                         {logging: false})
                     .then(() => {
-                        let emailLink = "http://" + process.env.DOMAIN + "/resetPassword?email="
+                        let emailLink = "http://" + process.env.DOMAIN + "/reset-password/?email="
                             + user.email + "&emailVerifKey=" + user.emailVerifKey + "&isBlogger=" + isBlogger;
                         let mailOptions = {
                             from: process.env.ADMIN_EMAIL_ID, // sender address
                             to: user.email, // list of receivers
                             subject: 'Reset Password', // Subject line
-                            text: `Click this link or copy paste in browser to reset password id: ${emailLink}`, // plain text body
+                            text: `Click this link or copy paste in browser to reset password: ${emailLink}`, // plain text body
                         };
 
                         // send mail with defined transport object
@@ -159,10 +160,10 @@ module.exports = (mailTransporter) => {
             })
             .then(obj => {
                 if (obj.length === 0) {
-                    return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+                    return isBlogger ? res.status(200).send({location: '/blogger/login'}) : res.status(200).send({location: '/reader/login'});
                 }
 
-                bcrypt.hash(password, process.env.SALT, function (err, hash) {
+                bcrypt.hash(password, parseInt(process.env.SALT), function (err, hash) {
                     if (err) {
                         console.log(err);
                         return res.status(503).json({status: false, msg: "error in processing"});
@@ -174,7 +175,7 @@ module.exports = (mailTransporter) => {
                             emailVerifKey: null
                         })
                         .then(() => {
-                            return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+                            return isBlogger ? res.status(200).send({location: '/blogger/login'}) : res.status(200).send({location: '/reader/login'});
                         })
                 });
             })

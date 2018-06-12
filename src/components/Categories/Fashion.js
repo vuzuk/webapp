@@ -11,7 +11,7 @@ const settings = {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    className: 'slides',
+    className: 'slides category',
     autoplay: true
 };
 
@@ -52,10 +52,10 @@ class Fashion extends Component {
                             {Desktop(
                                     <Fragment>
                                     <Segment basic className="right-item">
-                                        <img height="178px" width="100%" src="fashion-plain.jpg" alt=""/>
+                                        <img width="100%" src="fashion-plain.jpg" alt=""/>
                                     </Segment>
                                     <Segment basic>
-                                        <img height="178px" width="100%" src="fashion.jpg" alt=""/>
+                                        <img width="100%" src="fashion.jpg" alt=""/>
                                     </Segment>
                                     </Fragment>
                                 )}
