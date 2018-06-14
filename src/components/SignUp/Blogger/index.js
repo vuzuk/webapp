@@ -58,6 +58,8 @@ class SignUp extends Component {
             alert("Can't proceed without checking the Terms and Conditions!!")
         } else if(data.username.indexOf(" ") !== -1) {
             alert("Don't include spaces in username")
+        } else if(data.contact.length !== 10) {
+            alert("Invalid mobile no.")
         } else {
             this.setState({isSent: true})
             delete data.cpassword;
