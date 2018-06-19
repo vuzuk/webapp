@@ -48,18 +48,40 @@ const categoryOptions = [
 class CreatePost extends Component {
     constructor(props) {
         super(props);
+        
+        let {
+            blog = "",
+            video_link = "",
+            post_link = "",
+            category_id = 0,
+            title = "",
+            tags = [],
+            place = ""
+        } = !isEmpty(props.customData[0]) ? props.customData[0].blogs[0] : {}
+
+        tags = tags.map(({name}) => name)
+
+        let postAPI = '/api/secure/blogger/newBlog',
+        isDimmed = true;
+
+        if(!isEmpty(props.customData[0])) {
+            isDimmed = false,
+            postAPI = `/api/secure/blogger/updateBlog?blogId=${props.customData[0].blogs[0].id}`
+        }
 
         this.state = {
-            isDimmed: true,
+            isDimmed,
+            postAPI,
             method: "create",
-            blog: "",
+            blog,
             images: [],
             tag: "",
-            tags: [],
-            place: "",
-            category_id: 0,
-            video_link: "",
-            post_link: "",
+            tags,
+            place,
+            title,
+            category_id,
+            video_link,
+            post_link,
             data: props.data,
             isSubmit: false
         }
@@ -133,7 +155,7 @@ class CreatePost extends Component {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                url: '/api/secure/blogger/newBlog',
+                url: this.state.postAPI,
                 data: JSON.stringify(data)
             })
             .then(response => {                
@@ -215,7 +237,7 @@ class CreatePost extends Component {
     }
 
     render() {
-        const { blog, tag, tags, method, data, isSubmit } = this.state;
+        const { blog, tag, tags, method, data, isSubmit, title, category_id, place, post_link, video_link } = this.state;
         return (
             <div>
                 <Navbar data={data}/>
@@ -225,7 +247,7 @@ class CreatePost extends Component {
                         </Header>
                         <Grid divided>
                             <Grid.Column width={10}>
-                                <Input name="title" onChange={this.handleChange} size="big" focus fluid placeholder="Enter title here"/>
+                                <Input name="title" value={title} onChange={this.handleChange} size="big" focus fluid placeholder="Enter title here"/>
                                 <div style={{marginTop: "10px"}}>
                                     <Dimmer.Dimmable dimmed={this.state.isDimmed}>
                                         <Dimmer active={this.state.isDimmed}>
@@ -236,9 +258,9 @@ class CreatePost extends Component {
                                             <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit video")}><Icon name='video' /> Submit Video Link</Button>
                                         </Dimmer>
                                         {method === "submit link" &&
-                                        <Input name="post_link" onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Blog Post Link Here...' />}
+                                        <Input name="post_link" value={post_link} onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Blog Post Link Here...' />}
                                         {method === "submit video" &&
-                                        <Input name="video_link" onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Video Link Here...' />}
+                                        <Input name="video_link" value={video_link} onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Video Link Here...' />}
                                         <FroalaEditor
                                             model={blog}
                                             onModelChange={this.onModelChange} 
@@ -256,7 +278,7 @@ class CreatePost extends Component {
                             </Grid.Column>
                             <Grid.Column width={6}>
                                 <Header as="h3">Choose Your Category</Header>
-                                <Dropdown name="category_id" onChange={(e, {value}) => {this.setState({category_id: value})}} selection fluid placeholder='Select your category' options={categoryOptions} />
+                                <Dropdown value={category_id} name="category_id" onChange={(e, {value}) => {this.setState({category_id: value})}} selection fluid placeholder='Select your category' options={categoryOptions} />
                                 <Header as="h3">
                                     Enter Tags
                                 </Header>
@@ -301,6 +323,7 @@ class CreatePost extends Component {
                                     className="tags"
                                     name="place"
                                     onChange={this.handleChange}
+                                    value={place}
                                 />
                                 <div style={{marginTop: "20px"}}>
                                     <Button.Group fluid>

@@ -17,8 +17,9 @@ module.exports = (req, res) => {
                     title: req.body.title,
                     blog: req.body.blog,
                     category_id: req.body.category_id,
-                    date_updated: Sequelize.DataTypes.NOW,
-                    is_published: false
+                    date_updated: Date(),
+                    is_published: false,
+                    place: req.body.place
                 }, {
                     logging: false
                 })

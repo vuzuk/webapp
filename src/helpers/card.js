@@ -159,7 +159,7 @@ class myCard extends Component {
                         <Grid style={{margin: "auto"}} centered divided columns='equal'>
                             <Grid.Row style={{padding: "0"}}>
                             <Grid.Column>
-                                <Button color='blue' content='Edit' />
+                                <Button color='blue' href={`/edit-post/${username}/${slug}`} content='Edit' />
                             </Grid.Column>
                             <Grid.Column>
                                 <Button onClick={this.deletePost} color='red' content='Delete' />
