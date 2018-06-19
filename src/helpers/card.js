@@ -83,6 +83,16 @@ class myCard extends Component {
             })
     }
 
+    deletePost = () => {
+        if(confirm(`Press OK, to delete ${this.state.title.toUpperCase()}`)) {
+            axios.get(`/api/secure/blogger/tempDeleteBlog?blogId=${this.state.post_id}`)
+                .then(res => location.reload())
+                .catch(err => {
+                    alert("You are not authorised to delete the blog")
+                })
+        }
+    }
+
     render() {
         const {
             isSaving,
@@ -152,7 +162,7 @@ class myCard extends Component {
                                 <Button color='blue' content='Edit' />
                             </Grid.Column>
                             <Grid.Column>
-                                <Button color='red' content='Delete' />
+                                <Button onClick={this.deletePost} color='red' content='Delete' />
                             </Grid.Column>
                             </Grid.Row>
                         </Grid>
