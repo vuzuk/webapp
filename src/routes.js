@@ -73,6 +73,16 @@ const routes = [
         }
     },
     {
+        path: '/edit-post/:bloggerName/:slug',
+        component: Post,
+        title: 'Edit Post - VUZUK',
+        fetchInitialData: (path) => {            
+            const bloggerName = path[2];
+            const slug = path[3];            
+            return fetchPost(bloggerName, slug);
+        }
+    },
+    {
         path: '/blogger/:username',
         component: BloggerProfile,
         title: 'Blogger Profile - VUZUK',
