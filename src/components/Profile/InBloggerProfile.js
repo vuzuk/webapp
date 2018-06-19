@@ -267,7 +267,7 @@ class InBloggerProfile extends Component {
                         {isPostFetched && posts[0].id && <Grid columns={3}>
                             {posts.map(i => (
                                 <Grid.Column computer={5} tablet={8} mobile={16} key={i}>
-                                    <MyCard data={i} />
+                                    <MyCard isAdmin={this.state.isActive === "post" ? true : false} data={i} />
                                 </Grid.Column>
                             ))}
                         </Grid>}

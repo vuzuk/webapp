@@ -98,7 +98,9 @@ class myCard extends Component {
             last_name,
             username,
             bookmark,
-            image} = this.state;
+            image
+        } = this.state;
+        const {isAdmin} = this.props;
         return (
             <div className="myCard">
                 <Card>
@@ -141,6 +143,21 @@ class myCard extends Component {
                             </Grid.Row>
                         </Grid>
                     </Card.Content>
+                    {isAdmin ? 
+                    <React.Fragment>
+                    <Card.Content extra>
+                        <Grid style={{margin: "auto"}} centered divided columns='equal'>
+                            <Grid.Row style={{padding: "0"}}>
+                            <Grid.Column>
+                                <Button color='blue' content='Edit' />
+                            </Grid.Column>
+                            <Grid.Column>
+                                <Button color='red' content='Delete' />
+                            </Grid.Column>
+                            </Grid.Row>
+                        </Grid>
+                    </Card.Content>
+                    </React.Fragment> : null}
                 </Card>
             </div>
         )
