@@ -20,7 +20,7 @@ class Tags extends Component {
         <Navbar data={data}/>
         <div className="categories-page">
           <Header as='h1' dividing>
-            Posts with tag "{__isBrowser__ ? location.href.split('/')[4] : null}"
+            Posts with tag "{__isBrowser__ ? decodeURI(location.href.split('/')[4]) : null}"
           </Header>
             <Segment basic>
               <Grid columns={3}>
