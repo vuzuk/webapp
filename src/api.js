@@ -13,3 +13,23 @@ export function getBlogsByCategory(id, offset, limit) {
 export function getBlogger(username) {
   return axios.get(`http://${DOMAIN}/api/unsecure/getBlogger/${username}`)
 }
+
+export function getHomepage() {
+  return axios.all([
+    axios.get(`http://${DOMAIN}/api/unsecure/getTrendingBlogs/0/5`), //get trending tags
+    axios.get(`http://${DOMAIN}/api/unsecure/getLatestBlogs/0/5`)
+  ])
+   .then(axios.spread((tags, post) => {
+     return new Promise((res, rej) => {
+       res({
+         data: {
+           msg: {
+            tags: tags.data.msg,
+            post: post.data.msg
+          }
+         }
+       })
+     })
+   }))
+   .catch(err => console.log(err))
+}

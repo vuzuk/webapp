@@ -9,13 +9,16 @@ import { Terms, Disclaimer, Privacy, About, Contact} from './components/Document
 import SearchBar from './components/SearchBar/SearchBar';
 import { Forget, Reset } from './components/Account'
 //api
-import { fetchPost, getBlogsByCategory, getBlogger } from './api';
+import { fetchPost, getBlogsByCategory, getBlogger, getHomepage } from './api';
 
 const routes = [
     {
         path: '/',
         exact: true,
-        component: App
+        component: App,
+        fetchInitialData: () => {             
+            return getHomepage();
+        }
     },
     {
         path: '/search',
