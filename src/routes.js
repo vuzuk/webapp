@@ -8,9 +8,9 @@ import Post from './components/Post/Post';
 import { Terms, Disclaimer, Privacy, About, Contact} from './components/Documents';
 import SearchBar from './components/SearchBar/SearchBar';
 import { Forget, Reset } from './components/Account'
-import { SearchByTag } from './components/SearchBy';
+import { SearchByTag, SearchByQuery } from './components/SearchBy';
 //api
-import { fetchPost, getBlogsByCategory, getBlogger, getHomepage, getPostsByTag } from './api';
+import { fetchPost, getBlogsByCategory, getBlogger, getHomepage, getPostsByTag, getPostsByQuery } from './api';
 
 const routes = [
     {
@@ -23,7 +23,8 @@ const routes = [
     },
     {
         path: '/search',
-        component: SearchBar
+        component: SearchBar,
+        exact: true
     },
     {
         path: '/blogger/signup',
@@ -134,6 +135,15 @@ const routes = [
         fetchInitialData: (path) => {      
             const tag = path[2];      
             return getPostsByTag(tag);
+        }
+    },
+    {
+        path: '/search/:tag',
+        component: SearchByQuery,
+        title: 'Search Result - VUZUK',
+        fetchInitialData: (path) => {      
+            const query = path[2];      
+            return getPostsByQuery(query);
         }
     },
     {

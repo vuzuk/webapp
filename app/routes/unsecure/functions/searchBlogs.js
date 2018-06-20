@@ -33,7 +33,7 @@ module.exports = (req, res) => {
         })
         .then((blogs) => {
             if (blogs.length === 0) {
-                return res.status(400).json({status: true, msg: "blog not found"});
+                return res.status(200).json({status: true, msg: "blog not found"});
             }
 
             const myblogs = blogs.map((blog) => blog.get({ plain: true }));
