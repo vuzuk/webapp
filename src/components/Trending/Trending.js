@@ -29,7 +29,7 @@ class Trending extends Component {
                     {makeTags(tags.slice(6, 11))}
                 </div>
                 <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
-                    {makeTags(tags.slice(11, 16))}
+                    {makeTags(tags.slice(11, 17))}
                 </div>
             </div>
         )
