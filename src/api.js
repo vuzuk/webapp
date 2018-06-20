@@ -14,6 +14,10 @@ export function getBlogger(username) {
   return axios.get(`http://${DOMAIN}/api/unsecure/getBlogger/${username}`)
 }
 
+export function getPostsByTag(tag) {
+  return axios.get(`http://${DOMAIN}/api/unsecure/getBlogsByTag/${tag}`)
+}
+
 export function getHomepage() {
   return axios.all([
     axios.get(`http://${DOMAIN}/api/unsecure/getTrendingBlogs/0/5`), //get trending tags

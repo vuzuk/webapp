@@ -8,8 +8,9 @@ import Post from './components/Post/Post';
 import { Terms, Disclaimer, Privacy, About, Contact} from './components/Documents';
 import SearchBar from './components/SearchBar/SearchBar';
 import { Forget, Reset } from './components/Account'
+import { SearchByTag } from './components/SearchBy';
 //api
-import { fetchPost, getBlogsByCategory, getBlogger, getHomepage } from './api';
+import { fetchPost, getBlogsByCategory, getBlogger, getHomepage, getPostsByTag } from './api';
 
 const routes = [
     {
@@ -124,6 +125,15 @@ const routes = [
         title: 'Fashion - VUZUK',
         fetchInitialData: (path) => {            
             return getBlogsByCategory(2,0,10);
+        }
+    },
+    {
+        path: '/tag/:tag',
+        component: SearchByTag,
+        title: 'Search By Tag - VUZUK',
+        fetchInitialData: (path) => {      
+            const tag = path[2];      
+            return getPostsByTag(tag);
         }
     },
     {
