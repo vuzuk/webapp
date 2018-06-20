@@ -10,7 +10,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import { Forget, Reset } from './components/Account'
 import { SearchByTag, SearchByQuery } from './components/SearchBy';
 //api
-import { fetchPost, getBlogsByCategory, getBlogger, getHomepage, getPostsByTag, getPostsByQuery } from './api';
+import { fetchPost, getBlogsByCategory, getBlogger, getHomepage, getPostsByTag, getPostsByQuery, getSearch } from './api';
 
 const routes = [
     {
@@ -24,7 +24,10 @@ const routes = [
     {
         path: '/search',
         component: SearchBar,
-        exact: true
+        exact: true,
+        fetchInitialData: () => {             
+            return getSearch();
+        }
     },
     {
         path: '/blogger/signup',

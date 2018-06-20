@@ -27,7 +27,7 @@ export default class App extends Component {
   _fetchTags = (blogs) => {
     let Tags = [];
     for(let i = 0; i < blogs.length; i++) {
-      Tags.push(...blogs[i].tags.map(tags => tags.name))
+      Tags.push(...blogs[i].tags.map(tag => tag.name))
     }
     return Tags;
   }

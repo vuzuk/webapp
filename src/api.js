@@ -23,18 +23,36 @@ export function getPostsByQuery(query) {
   return axios.get(`http://${DOMAIN}/api/unsecure/searchBlogs/0/10?title=${query}`)
 }
 
-export function getHomepage() {
+export function getSearch() {
   return axios.all([
-    axios.get(`http://${DOMAIN}/api/unsecure/getTrendingBlogs/0/5`), //get trending tags
-    axios.get(`http://${DOMAIN}/api/unsecure/getLatestBlogs/0/5`)
+    axios.get(`http://${DOMAIN}/api/unsecure/getTrendingBlogs/0/6`), //get trending tags
+    // axios.get(`http://${DOMAIN}/api/unsecure/getLatestBlogs/0/5`)
   ])
-   .then(axios.spread((tags, post) => {
+   .then(axios.spread((blogs) => {
      return new Promise((res, rej) => {
        res({
          data: {
            msg: {
-            tags: tags.data.msg,
-            post: post.data.msg
+            blogs: blogs.data.msg
+          }
+         }
+       })
+     })
+   }))
+   .catch(err => console.log(err))
+}
+
+export function getHomepage() {
+  return axios.all([
+    axios.get(`http://${DOMAIN}/api/unsecure/getTrendingBlogs/0/5`), //get trending tags
+    // axios.get(`http://${DOMAIN}/api/unsecure/getLatestBlogs/0/5`)
+  ])
+   .then(axios.spread((tags) => {
+     return new Promise((res, rej) => {
+       res({
+         data: {
+           msg: {
+            tags: tags.data.msg
           }
          }
        })

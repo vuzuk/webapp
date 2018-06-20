@@ -7,31 +7,50 @@ import makeTags from '../../helpers/makeTags';
 import './SearchBar.css';
 import MyCard from '../../helpers/card';
 
-const makeCard = () => {
-    const tag = "GLAM"
-    return (
+const makeCard = (blog) => {
+    return blog.tags.length ? (
         <div className="search-card">
-            <a href="#">#{tag}</a>
+            <a href={`/tag/${blog.tags[0].name}`}>#{blog.tags[0].name}</a>
         </div>
-    )
+    ) : null
 }
 
 class SearchBar extends Component {
     constructor(props) {
         super(props);
+
+        const tags = this._fetchTags(props.customData.blogs)
+        const blogs = props.customData.blogs;
         
         this.state = {
             data: props.data,
-            isActive: "posts"
+            isActive: "posts",
+            tags,
+            blogs,
+            query: ""
         }
-    }    
+    }   
+    
+    _fetchTags = (blogs) => {
+        let Tags = [];
+        for(let i = 0; i < blogs.length; i++) {
+            Tags.push(...blogs[i].tags.map(tags => tags.name))
+        }
+        return Tags;
+    }
 
     handleChange = (isActive) => {
         this.setState({isActive});
     }
 
+    search = () => {
+        if(this.state.query) {
+            location.href = `/search/${this.state.query.replace(/ /g,"-")}`
+        }
+    }
+
     render() {
-        const { data, isActive } = this.state;
+        const { data, isActive, tags, blogs } = this.state;
         return(
             <Fragment>
                 <Navbar data={data}/>
@@ -40,12 +59,23 @@ class SearchBar extends Component {
                         <Grid.Column mobile={16} computer={5}>
                             <Segment className="leftside">
                                 <Header as='h3'>Trending Tags</Header>
-                                {makeTags(["delhi","vintage","instafood","malware", "cool","foodgasm", "bold","mumbai", "fashion", "makeup", "street", "vintage","instafood","malware", "cool","foodgasm", "mumbai", "fashion", "makeup"])}
+                                {makeTags(tags)}
                             </Segment>
                         </Grid.Column>
                         <Grid.Column className="rightside" mobile={16} computer={11}>
                             <Segment basic>
-                                <Input icon='search' size="large" placeholder='Search...' iconPosition="left" fluid/>
+                                <Input 
+                                    onKeyPress={e => {
+                                        if(e.which === 13 || e.keyCode === 13) this.search();
+                                    }} 
+                                    icon='search'
+                                    size="large"
+                                    placeholder='Search...'
+                                    iconPosition="left"
+                                    onChange={e => this.setState({
+                                        query: e.target.value
+                                    })}
+                                    fluid/>
                                 <Segment>
                                     <div className="tabs">
                                         <div className="tab" onClick={() => {this.handleChange("posts")}} style={isActive === "posts" ? {borderBottom: "4px solid #55ACEE"} : null}>TRENDING POSTS</div>
@@ -53,10 +83,12 @@ class SearchBar extends Component {
                                     </div>
                                     <Segment basic>
                                         <Grid columns={3}>
-                                            {[1,2,3,4,5,6].map(i => (
-                                                <Grid.Column  computer={5} tablet={5} mobile={16} key={i}>
-                                                    {i % 2 ? <MyCard data={i} /> : makeCard()}
-                                                </Grid.Column>
+                                            {blogs.map((blog, i) => (
+                                                <React.Fragment>
+                                                    {i < 6 ? <Grid.Column  computer={5} tablet={5} mobile={16} key={i}>
+                                                        {i % 2 === 0 ? <MyCard data={blog} /> : makeCard(blog)}
+                                                    </Grid.Column> : null}
+                                                </React.Fragment>
                                             ))}
                                         </Grid>
                                     </Segment>
