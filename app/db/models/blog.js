@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
         images: {   // stringified array
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false,
             validate: {
                 notEmpty: true,
