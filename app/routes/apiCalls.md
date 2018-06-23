@@ -173,13 +173,9 @@ api/secure/generic/likeStatus
 GET - query = {blogId}
 api/secure/generic/bookmarkStatus
 
-
-
-## Remaining tasks
-update user profile
-update blogger profile
-upload user image
-upload blogger image
-getting blogs based on likings
-password reset
-
+## share a blog   
+GET - query = {}
+route.get('/share', require("./functions/share"));
+## refer   
+GET - query = {username, email, blogger_reader}
+route.get('/refer', require("./functions/refer"));

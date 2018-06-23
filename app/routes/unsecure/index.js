@@ -7,8 +7,13 @@ route.get('/getTrendingBlogs/:offset/:limit', require("./functions/getTrendingBl
 route.get('/getLatestBlogs/:offset/:limit', require("./functions/getLatestBlogs"));
 // get trending pics (could be via category, blogger)       query = {categoryId, bloggerId}
 route.get('/getTrendingPics/:offset/:limit', require("./functions/getTrendingPics"));
+// get latest and trending bloggers    query = {}
+route.get('/getLatestTrendingBloggers', require("./functions/getLatestTrendingBloggers"));
 
 
+
+// view a blog      query = {blogId}
+route.get('/viewBlog', require("./functions/viewBlog"));
 // search a blog     query = {title}
 route.get('/searchBlogs/:offset/:limit', require("./functions/searchBlogs"));
 // get blog     query = {blogId}

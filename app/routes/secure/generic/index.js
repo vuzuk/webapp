@@ -33,8 +33,7 @@ const upload = multer({
     }
 });
 
-// view a blog      query = {blogId}
-route.get('/viewBlog', require("./functions/viewBlog"));
+
 // like a blog      query = {blogId}
 route.get('/toggleBlogLike', require("./functions/toggleBlogLike"));
 // get liked    query = {}
@@ -59,6 +58,8 @@ route.get('/toggleCommentLike', require("./functions/toggleCommentLike"));
 
 // share a blog    query = {}
 route.get('/share', require("./functions/share"));
+// refer    query = {username, email, blogger_reader}
+route.get('/refer', require("./functions/refer"));
 
 // get profile      req.query = {}
 route.get('/getProfile', require("./functions/getProfile"));

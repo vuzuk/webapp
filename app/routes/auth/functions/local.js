@@ -1,6 +1,7 @@
 const Router = require("express").Router;
 const route = Router();
 const randomString = require("randomstring");
+const sequelize = require('sequelize');
 const models = require(process.env.APP_ROOT + "/app/db/models");
 const User = models.user;
 const Blogger = models.blogger;
@@ -42,7 +43,8 @@ module.exports = (passport, mailTransporter) => {
         })(req, res, next);
     });
 
-    //body = {email, username, password, first_name, last_name, dob, gender, contact, isBlogger, category, place}
+    //body = {email, username, password, first_name, last_name, dob, gender, contact, isBlogger, category, place
+    // , ref_username, ref_blogger}
     route.post('/signUp', function (req, res) {
         let isBlogger = JSON.parse(req.body.isBlogger);
         let model_to_use = isBlogger ? Blogger : User;
@@ -83,7 +85,16 @@ module.exports = (passport, mailTransporter) => {
                     user.isBlogger = JSON.parse(req.body.isBlogger);
                     //send verification email and otp
                     // setup email data with unicode symbols
-                    let emailLink = "http://" + process.env.DOMAIN + "/api/auth/verification/verifyEmail?email=" + user.email + "&emailVerifKey=" + user.emailVerifKey + "&isBlogger=" + isBlogger;
+                    let emailLink = "http://" + process.env.DOMAIN + "/api/auth/verification/verifyEmail?email=" +
+                        user.email + "&emailVerifKey=" + user.emailVerifKey + "&isBlogger=" + isBlogger;
+
+                    // adding referer if available
+                    let ref_username = req.body['ref_username'];
+                    let ref_blogger = JSON.parse(req.body['ref_blogger']);
+                    if(ref_username){
+                        emailLink += '&ref_username='+ref_username+'&ref_blogger='+ref_blogger;
+                    }
+
                     let mailOptions = {
                         from: process.env.ADMIN_EMAIL_ID, // sender address
                         to: user.email, // list of receivers

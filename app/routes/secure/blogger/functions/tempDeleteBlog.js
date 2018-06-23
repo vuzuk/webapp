@@ -9,17 +9,9 @@ module.exports = (req, res) => {
                 return res.status(404).json({status: false, msg: "blog not found"});
             }
             blog
-                .update({
-                    is_deleted: true
-                },{
-                    logging: false
-                })
+                .destroy()
                 .then(() => {
-                    return res.status(200).json({status: true, msg: "blog temporarily deleted"});
-                })
-                .catch((err) => {
-                    console.log(err);
-                    return res.status(503).json({status: false, msg: "error in database"})
+                    return res.status(200).json({status: true, msg: "blog deleted"});
                 })
         })
         .catch((err) => {

@@ -13,7 +13,7 @@ module.exports = (req, res) => {
     };
 
     whereObj[req["user"]["isBlogger"] ? "blogger_id" : "user_id"] = req["user"]["id"];
-    if(req.body['parentId']){
+    if (req.body['parentId']) {
         whereObj['parentId'] = parseInt(req.body['parentId']);
     }
 
@@ -33,10 +33,27 @@ module.exports = (req, res) => {
                     by: pointIncCount
                 })
                 .then(() => {
-                    return res.status(200).json({
-                        status: true,
-                        msg: "comment added and points incremented"
-                    });
+                    // increment point of the bloger
+                    Blog
+                        .findById(blogId)
+                        .then(blog => {
+                            let pointIncCount = parseInt(process.env["BLOGGER_BLOG_COMMENT_POINTS"])
+                            Blogger
+                                .update({
+                                        comment_points: sequelize.literal('comment_points + ' + pointIncCount)
+                                    },
+                                    {
+                                        where: {
+                                            id: blog.blogger_id
+                                        }
+                                    })
+                                .then(() => {
+                                    return res.status(200).json({
+                                        status: true,
+                                        msg: "comment added and points incremented"
+                                    });
+                                })
+                        })
                 })
         })
         .catch((err) => {

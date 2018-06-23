@@ -10,11 +10,12 @@ const client = require('twilio')(accountSid, authToken);
 const bcrypt = require('bcrypt');
 
 module.exports = (mailTransporter) => {
-//query = {isBlogger, emailVerifKey, email}
+//query = {isBlogger, emailVerifKey, email, ref_username, ref_blogger}
     route.get('/verifyEmail', function (req, res, next) {
         let isBlogger = JSON.parse(req.query["isBlogger"]);
         let emailVerifKey = req.query["emailVerifKey"];
         let email = req.query["email"];
+
         let model_to_use = isBlogger ? Blogger : User;
         model_to_use
             .findAll({
@@ -36,7 +37,28 @@ module.exports = (mailTransporter) => {
                     .then(() => {
                         // return res.redirect('/verify/phone/?isBlogger=true');
                         // *************** BYPASSING PHONE VERIFICATION OF BLOGGER ***************
-                        return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+
+                        if (!req.query['ref_username']) {
+                            return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+                        }
+
+                        // incrementing referer points
+                        let ref_username = req.query['ref_username'];
+                        let ref_blogger = JSON.parse(req.query['ref_blogger']);
+                        model_to_use = ref_blogger === "blogger" ? Blogger : User;
+                        let pointIncCount = parseInt(process.env[(ref_blogger === "blogger" ? "BLOGGER" : "USER") + "_REFER_POINTS"])
+                        model_to_use
+                            .update({
+                                    referral_points: sequelize.literal('referral_points + ' + pointIncCount)
+                                },
+                                {
+                                    where: {
+                                        username: ref_username
+                                    }
+                                })
+                            .then(() => {
+                                return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+                            })
                     })
                     .catch((err) => {
                         console.log(err);
