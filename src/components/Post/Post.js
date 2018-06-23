@@ -109,7 +109,7 @@ class Post extends Component {
           .catch(err => console.log(err))
 
         setTimeout(() => {
-            axios.get(`/api/secure/generic/viewBlog?blogId=${this.state.customData.blogs[0].id}`);
+            axios.get(`/api/unsecure/viewBlog?blogId=${this.state.customData.blogs[0].id}`);
         }, 60000)
 
         axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.customData.id}`)
