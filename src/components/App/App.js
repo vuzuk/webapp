@@ -15,21 +15,32 @@ import axios from 'axios';
 export default class App extends Component {
   constructor(props) {
     super(props);
-    
+
+    const tags = this._fetchTags(props.customData.tags)
+
     this.state = {
-      data: props.data
+      data: props.data,
+      tags
     }
+  }
+
+  _fetchTags = (blogs) => {
+    let Tags = [];
+    for(let i = 0; i < blogs.length; i++) {
+      Tags.push(...blogs[i].tags.map(tag => tag.name))
+    }
+    return Tags;
   }
 
 
   render() {
-    const { data } = this.state;
+    const { data, tags } = this.state;
     return (
       <Segment>
         <Navbar data={data}/>
         {/* <SearchBar /> */}
         <Announcement />
-        <Trending />
+        <Trending tags={tags}/>
         <Bloggers />
         <Temporary />
         {/* <Blogs /> */}

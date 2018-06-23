@@ -8,18 +8,26 @@ import Post from './components/Post/Post';
 import { Terms, Disclaimer, Privacy, About, Contact} from './components/Documents';
 import SearchBar from './components/SearchBar/SearchBar';
 import { Forget, Reset } from './components/Account'
+import { SearchByTag, SearchByQuery } from './components/SearchBy';
 //api
-import { fetchPost, getBlogsByCategory, getBlogger } from './api';
+import { fetchPost, getBlogsByCategory, getBlogger, getHomepage, getPostsByTag, getPostsByQuery, getSearch } from './api';
 
 const routes = [
     {
         path: '/',
         exact: true,
-        component: App
+        component: App,
+        fetchInitialData: () => {             
+            return getHomepage();
+        }
     },
     {
         path: '/search',
-        component: SearchBar
+        component: SearchBar,
+        exact: true,
+        fetchInitialData: () => {             
+            return getSearch();
+        }
     },
     {
         path: '/blogger/signup',
@@ -73,6 +81,16 @@ const routes = [
         }
     },
     {
+        path: '/edit-post/:bloggerName/:slug',
+        component: CreatePost,
+        title: 'Edit Post - VUZUK',
+        fetchInitialData: (path) => {            
+            const bloggerName = path[2];
+            const slug = path[3];            
+            return fetchPost(bloggerName, slug);
+        }
+    },
+    {
         path: '/blogger/:username',
         component: BloggerProfile,
         title: 'Blogger Profile - VUZUK',
@@ -111,6 +129,24 @@ const routes = [
         title: 'Fashion - VUZUK',
         fetchInitialData: (path) => {            
             return getBlogsByCategory(2,0,10);
+        }
+    },
+    {
+        path: '/tag/:tag',
+        component: SearchByTag,
+        title: 'Search By Tag - VUZUK',
+        fetchInitialData: (path) => {      
+            const tag = path[2];      
+            return getPostsByTag(tag);
+        }
+    },
+    {
+        path: '/search/:tag',
+        component: SearchByQuery,
+        title: 'Search Result - VUZUK',
+        fetchInitialData: (path) => {      
+            const query = path[2];      
+            return getPostsByQuery(query);
         }
     },
     {

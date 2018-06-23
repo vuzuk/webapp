@@ -64,7 +64,6 @@ const webpackConfig = [{
         drop_console: true
       },
       minimize: true,
-      exclude: /bundle\.js$/,
     }),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

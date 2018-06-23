@@ -2,9 +2,18 @@ import React, { Component } from 'react';
 import { Divider, Segment, Header, Icon } from 'semantic-ui-react';
 import './Trending.css';
 import makeTags from '../../helpers/makeTags';
+
 class Trending extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            tags: props.tags
+        }
+    }
     
     render() {
+        const { tags } = this.state;
         return(
             <div className="trend-tags">
                 <Segment vertical padded>
@@ -14,13 +23,13 @@ class Trending extends Component {
                     </Header>
                 </Segment>
                 <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
-                    {makeTags(["delhi","vintage","instafood","malware","foodgasm","mumbai"])}
+                    {makeTags(tags.slice(0, 6))}
                 </div>
                 <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
-                    {makeTags(["instafood","ethnic","foodgasm","mens","italian"])}
+                    {makeTags(tags.slice(6, 11))}
                 </div>
                 <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
-                    {makeTags(["malware","foodgasm","mens","delhi","wannacry","vintage"])}
+                    {makeTags(tags.slice(11, 17))}
                 </div>
             </div>
         )
