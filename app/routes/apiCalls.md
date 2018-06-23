@@ -34,6 +34,10 @@ api/unsecure/getLatestBlogs/:offset/:limit
 ## get trending pics (could be via category, blogger)
 GET - query = {categoryId, bloggerId}  -  params = {offset, limit}
 api/unsecure/getTrendingPics/:offset/:limit
+## get latest and trending bloggers
+GET - query = {}
+api/unsecure/getLatestTrendingBloggers
+
 
 
 ## get blog
@@ -175,7 +179,7 @@ api/secure/generic/bookmarkStatus
 
 ## share a blog   
 GET - query = {}
-route.get('/share', require("./functions/share"));
+api/secure/generic/share
 ## refer   
 GET - query = {username, email, blogger_reader}
-route.get('/refer', require("./functions/refer"));
+api/secure/generic/refer
