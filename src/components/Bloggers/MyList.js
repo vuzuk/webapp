@@ -6,17 +6,21 @@ class MyList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: props.id,
+      id: props.blogger.id,
       isFollowing: false
     }
   }
 
-  toggleFollow = (id) => {
+  toggleFollow = () => {
     const thiss = this;
-    axios.get(`/api/secure/generic/toggleFollowBlogger?bloggerId=${id}`)
+    axios.get(`/api/secure/generic/toggleFollowBlogger?bloggerId=${this.state.id}`)
         .then(res => {
+            let isFollowing = true;
+            if(res.data.msg === "Un-following now") {
+                isFollowing = false
+            }
             thiss.setState({
-                isFollowing: true
+                isFollowing
             })
         })
         .catch(err => alert("You must login before following a user"))
@@ -33,6 +37,7 @@ class MyList extends Component {
   }
 
   render() {
+    const { isFollowing } = this.state;
     return (
       <List.Item>
         <Image avatar src={this.props.blogger.image} />
@@ -41,7 +46,7 @@ class MyList extends Component {
             <List.Description>{this.props.blogger.place}</List.Description>
         </List.Content>
         <List.Content floated="right">
-            <Button primary>Follow</Button>
+            <Button onClick={this.toggleFollow} primary>{isFollowing ? "Unfollow" : "Follow"}</Button>
         </List.Content>
       </List.Item>
     )

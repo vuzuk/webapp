@@ -65,8 +65,12 @@ class myCard extends Component {
         const thiss = this;
         axios.get(`/api/secure/generic/toggleFollowBlogger?bloggerId=${this.state.id}`)
             .then(res => {
+                let follow = true;
+                if(res.data.msg === "Un-following now") {
+                    follow = false
+                }
                 thiss.setState({
-                    follow: true
+                    follow
                 })
             })
             .catch(err => alert("You must login before following a user"))
