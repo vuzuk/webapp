@@ -125,7 +125,7 @@ class myCard extends Component {
                         </Label>
                         <Button size="tiny" primary onClick={this.toggleFollow}>{follow ? "Unfollow" : "Follow"}</Button>
                     </Card.Content>
-                    <Image src={images} className="card-img"/>
+                    <a href={`/post/${username}/${slug}`}><Image src={images} className="card-img"/></a>
                     <Card.Content>
                         <Card.Header as="a" href={`/post/${username}/${slug}`}>
                             {title}
