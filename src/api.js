@@ -45,14 +45,15 @@ export function getSearch() {
 export function getHomepage() {
   return axios.all([
     axios.get(`http://${DOMAIN}/api/unsecure/getTrendingBlogs/0/5`), //get trending tags
-    // axios.get(`http://${DOMAIN}/api/unsecure/getLatestBlogs/0/5`)
+    axios.get(`http://${DOMAIN}/api/unsecure//getLatestTrendingBloggers`)
   ])
-   .then(axios.spread((tags) => {
+   .then(axios.spread((tags, bloggers) => {
      return new Promise((res, rej) => {
        res({
          data: {
            msg: {
-            tags: tags.data.msg
+            tags: tags.data.msg,
+            bloggers: bloggers.data.msg
           }
          }
        })
