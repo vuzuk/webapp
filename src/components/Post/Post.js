@@ -111,7 +111,7 @@ class Post extends Component {
 
         setTimeout(() => {
             axios.get(`/api/unsecure/viewBlog?blogId=${this.state.customData.blogs[0].id}`);
-        }, 60000)
+        }, 30000)
 
         axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.customData.id}`)
           .then(res => {
