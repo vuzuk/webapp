@@ -57,7 +57,8 @@ class InBloggerProfile extends Component {
             sortActive: "viewed",
             follower_list: [],
             following_list: [],
-            followModal: false
+            followModal: false,
+            followingModal: false
         }
     }
 
@@ -177,7 +178,7 @@ class InBloggerProfile extends Component {
             });
 
             res.data.msg.following.rows.map(acc => {
-                following_ids.push(acc.b_user_id)
+                following_ids.push(acc.blogger_id)
             })
 
             thiss.setState({
@@ -195,16 +196,28 @@ class InBloggerProfile extends Component {
         this.setState({followModal: true})
         if(!this.state.follower_list.length) {
             axios.get(`/api/unsecure/getBloggersByIds?bloggerIds=${this.state.follower_ids.bloggers}`)
-          .then(res => thiss.setState({
-              follower_list: [...this.state.follower_list, ...res.data.msg]
-            }))
-          .catch(err => console.log(err))
+                .then(res => thiss.setState({
+                    follower_list: [...this.state.follower_list, ...res.data.msg]
+                    }))
+                .catch(err => console.log(err))
 
             axios.get(`/api/unsecure/getUsersByIds?userIds=${this.state.follower_ids.users}`)
             .then(res => thiss.setState({
                 follower_list: [...this.state.follower_list, ...res.data.msg]
             }))
             .catch(err => console.log(err))
+        }
+    }
+
+    fetchFollowing = () => {
+        const thiss = this;
+        this.setState({followingModal: true})
+        if(!this.state.following_list.length) {
+            axios.get(`/api/unsecure/getBloggersByIds?bloggerIds=${this.state.following_ids}`)
+                .then(res => thiss.setState({
+                    following_list: [...res.data.msg]
+                    }))
+                .catch(err => console.log(err))
         }
     }
 
@@ -283,7 +296,7 @@ class InBloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">{author}</div>
-                            {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}} className="follow-count"><a href="#" onClick={this.fetchFollowers}>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
+                            {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}} className="follow-count"><a href="#" onClick={this.fetchFollowers}>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a href="#" onClick={this.fetchFollowing}>{following}</a> FOLLOWING</div>}
                             {Mobile(
                                 <p>Login from Desktop to create post</p>
                             )}
@@ -405,6 +418,25 @@ class InBloggerProfile extends Component {
                         {!this.state.follower_list.length && <p style={{textAlign: "center"}}>Loading...</p>}
                         {this.state.follower_list.length !== 0 && <List relaxed>
                             {this.state.follower_list.map(acc => (
+                                <List.Item key={acc.username + acc.id}>
+                                    <Image avatar src={acc.image} />
+                                    <List.Content>
+                                        <List.Header as='a'>{`${acc.first_name} ${acc.last_name}`}</List.Header>
+                                        <List.Description>
+                                          {acc.username}
+                                        </List.Description>
+                                    </List.Content>
+                                </List.Item>
+                            ))}
+                        </List>}
+                    </Modal.Content>
+                </Modal>
+                <Modal open={this.state.followingModal} onClose={() => {this.setState({followingModal: false})}}>
+                    <Modal.Header>Following</Modal.Header>
+                    <Modal.Content>
+                        {!this.state.following_list.length && <p style={{textAlign: "center"}}>Loading...</p>}
+                        {this.state.following_list.length !== 0 && <List relaxed>
+                            {this.state.following_list.map(acc => (
                                 <List.Item key={acc.username + acc.id}>
                                     <Image avatar src={acc.image} />
                                     <List.Content>
