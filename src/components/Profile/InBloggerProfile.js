@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Segment, Image, Grid, Button, Icon, List, Popup, Statistic} from 'semantic-ui-react';
+import { Segment, Image, Grid, Button, Icon, List, Popup, Statistic, Modal, Loader} from 'semantic-ui-react';
 import MyCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
@@ -54,7 +54,10 @@ class InBloggerProfile extends Component {
             loading: true,
             top: [],
             loading1: true,
-            sortActive: "viewed"
+            sortActive: "viewed",
+            follower_list: [],
+            following_list: [],
+            followModal: false
         }
     }
 
@@ -139,9 +142,7 @@ class InBloggerProfile extends Component {
     fetchMyBlog = () => {
         const thiss = this;
         axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
-            .then(({data}) => {
-                console.log(data.msg);
-                
+            .then(({data}) => {                
                 thiss.setState({
                     posts: data.msg,
                     isPostFetched: true
@@ -161,13 +162,50 @@ class InBloggerProfile extends Component {
 
         axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.data.id}`)
         .then(res => {
+            let follower_ids = {
+                bloggers: [],
+                users: []
+            }; 
+            let following_ids = []; 
+
+            res.data.msg.followers.rows.map(acc => {
+                if(acc.b_user_id) {
+                    follower_ids["bloggers"].push(acc.b_user_id)
+                } else {
+                    follower_ids["users"].push(acc.user_id)
+                }
+            });
+
+            res.data.msg.following.rows.map(acc => {
+                following_ids.push(acc.b_user_id)
+            })
+
             thiss.setState({
                 followers: res.data.msg.followers.count,
-                following: res.data.msg.following.count
+                following: res.data.msg.following.count,
+                follower_ids,
+                following_ids
             })
         })
         .catch(err => console.log(err))
-  
+    }
+
+    fetchFollowers = () => {
+        const thiss = this;
+        this.setState({followModal: true})
+        if(!this.state.follower_list.length) {
+            axios.get(`/api/unsecure/getBloggersByIds?bloggerIds=${this.state.follower_ids.bloggers}`)
+          .then(res => thiss.setState({
+              follower_list: [...this.state.follower_list, ...res.data.msg]
+            }))
+          .catch(err => console.log(err))
+
+            axios.get(`/api/unsecure/getUsersByIds?userIds=${this.state.follower_ids.users}`)
+            .then(res => thiss.setState({
+                follower_list: [...this.state.follower_list, ...res.data.msg]
+            }))
+            .catch(err => console.log(err))
+        }
     }
 
     fetchBlogs = (ids) => {
@@ -245,7 +283,7 @@ class InBloggerProfile extends Component {
                         </div>
                         <div>
                             <div className="username">{author}</div>
-                            {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}} className="follow-count"><a>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
+                            {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}} className="follow-count"><a href="#" onClick={this.fetchFollowers}>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a>{following}</a> FOLLOWING</div>}
                             {Mobile(
                                 <p>Login from Desktop to create post</p>
                             )}
@@ -361,6 +399,25 @@ class InBloggerProfile extends Component {
                             </List>
                         </Segment>}
                 </div>}
+                <Modal open={this.state.followModal} onClose={() => {this.setState({followModal: false})}}>
+                    <Modal.Header>Followers</Modal.Header>
+                    <Modal.Content>
+                        {!this.state.follower_list.length && <p style={{textAlign: "center"}}>Loading...</p>}
+                        {this.state.follower_list.length !== 0 && <List relaxed>
+                            {this.state.follower_list.map(acc => (
+                                <List.Item key={acc.username + acc.id}>
+                                    <Image avatar src={acc.image} />
+                                    <List.Content>
+                                        <List.Header as='a'>{`${acc.first_name} ${acc.last_name}`}</List.Header>
+                                        <List.Description>
+                                          {acc.username}
+                                        </List.Description>
+                                    </List.Content>
+                                </List.Item>
+                            ))}
+                        </List>}
+                    </Modal.Content>
+                </Modal>
                 <Footer />
             </div>
         )
