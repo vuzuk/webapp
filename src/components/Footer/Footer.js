@@ -14,9 +14,10 @@ const Footer = (props) => {
                 <li><a href="/terms">Terms and Conditions</a></li>
             </ul>
             <div className="social">
-                <a href="#" className="fab fa-facebook"></a>
-                <a href="#" className="fab fa-twitter"></a>
-                <a href="#" className="fab fa-google"></a>
+                <a href="https://www.facebook.com/VuzukIndia" target="_blank" className="fab fa-facebook"></a>
+                <a href="https://www.instagram.com/vuzukindia/" target="_blank" className="fab fa-instagram"></a>
+                <a href="https://plus.google.com/108027812894643530938" target="_blank" className="fab fa-google"></a>
+                <a href="https://www.youtube.com/channel/UCTFrV6CFsR7S4Ru9_Vruojw" target="_blank" className="fab fa-youtube"></a>
             </div>
         </div>
     )
