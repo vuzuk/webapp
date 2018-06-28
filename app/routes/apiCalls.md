@@ -2,7 +2,8 @@
 POST - body = {email_username, password, isBlogger}
 /api/auth/local/login
 ## local signUp
-POST - body = {email, username, password, first_name, last_name, dob, gender, contact(opt), isBlogger}
+POST - body = {email, username, password, first_name, last_name, dob, gender, contact, 
+isBlogger, category, place, ref_username, ref_blogger}
 /api/auth/local/signUp
 
 ## verification of email 

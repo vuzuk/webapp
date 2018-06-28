@@ -58,8 +58,6 @@ route.get('/toggleCommentLike', require("./functions/toggleCommentLike"));
 
 // share a blog    query = {}
 route.get('/share', require("./functions/share"));
-// refer    query = {username, email, blogger_reader}
-route.get('/refer', require("./functions/refer"));
 
 // get profile      req.query = {}
 route.get('/getProfile', require("./functions/getProfile"));

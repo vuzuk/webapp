@@ -45,7 +45,7 @@ module.exports = (mailTransporter) => {
                         // incrementing referer points
                         let ref_username = req.query['ref_username'];
                         let ref_blogger = JSON.parse(req.query['ref_blogger']);
-                        model_to_use = ref_blogger === "blogger" ? Blogger : User;
+                        model_to_use = ref_blogger ? Blogger : User;
                         let pointIncCount = parseInt(process.env[(ref_blogger === "blogger" ? "BLOGGER" : "USER") + "_REFER_POINTS"])
                         model_to_use
                             .update({

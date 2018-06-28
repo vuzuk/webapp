@@ -46,6 +46,7 @@ module.exports = (req, res) => {
 
             blog = blog.map((node) => node.get({plain: true}));
             let blogOnly = blog[0]['blogs'][0];
+            let blogId = blogOnly['id'];
             let value = blogOnly['blog'];
 
             while (value.indexOf("@@") !== -1) {
@@ -65,7 +66,26 @@ module.exports = (req, res) => {
             value = value.replace(/##63##/g, "&")
             blogOnly['blog'] = value;
 
-            return res.status(200).json({status: true, msg: blog});
+            // find the blog to add view points
+            Blog
+                .findById(blogId)
+                .then((obj) => {
+                    if (!obj) {
+                        return res.status(404).json({status: false, msg: "blog not found"});
+                    }
+                    let blogger_id = blog['blogger_id'];
+                    //increment views on the blog
+                    obj
+                        .increment('views', {by: 1})
+                        .then(() => {
+                            // increment points of the blogger
+                            return res.status(200).json({status: true, msg: blog});
+                        })
+                })
+                .catch((err) => {
+                    console.log(err);
+                    return res.status(503).json({status: false, msg: "error in database"});
+                });
         })
         .catch((err) => {
             console.log(err);

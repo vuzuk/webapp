@@ -90,8 +90,8 @@ module.exports = (passport, mailTransporter) => {
 
                     // adding referer if available
                     let ref_username = req.body['ref_username'];
-                    let ref_blogger = ref_username ? JSON.parse(req.body['ref_blogger']) : null;
                     if(ref_username){
+                        let ref_blogger = req.body['ref_blogger'] === 'blogger'
                         emailLink += '&ref_username='+ref_username+'&ref_blogger='+ref_blogger;
                     }
 
