@@ -7,6 +7,7 @@ const Blogger = models['blogger']
 
 module.exports = (req, res) => {
     let blogId = parseInt(req.query["blogId"]);
+    //find the blog
     Blog
         .findById(blogId)
         .then((blog) => {
@@ -14,49 +15,57 @@ module.exports = (req, res) => {
                 return res.status(404).json({status: false, msg: "blog not found"});
             }
             let blogger_id = blog['blogger_id'];
-
+            //increment views on the blog
             blog
                 .increment('views', {by: 1})
                 .then(() => {
-                    if (!req['user']) {
-                        return res.status(200).json({
-                            status: true,
-                            msg: "view added"
-                        });
-                    }
 
-                    let whereObj = {
-                        blog_id: blogId
-                    };
-                    whereObj[req["user"]["isBlogger"] ? "blogger_id" : "user_id"] = req["user"]["id"];
-                    View
-                        .findOrCreate({
-                            where: whereObj,
-                            logging: false
-                        })
-                        .spread((obj, created) => {
-                            let pointIncCount = parseInt(process.env[(req["user"]["isBlogger"] ? "BLOGGER" : "USER") + "_BLOG_VIEW_POINTS"])
-                            if (!created) {
-                                pointIncCount = 0
+                    // increment points of the blogger
+                    let pointIncCount = parseInt(process.env["BLOGGER_BLOG_VIEW_POINTS"])
+                    Blogger
+                        .update({
+                                view_points: sequelize.literal('view_points + ' + pointIncCount)
+                            },
+                            {
+                                where: {
+                                    id: blogger_id
+                                }
+                            })
+                        .then(() => {
+                            //if not logged in, return
+                            if (!req['user']) {
+                                return res.status(200).json({
+                                    status: true,
+                                    msg: "view added"
+                                });
                             }
 
-                            // increment points of the user
-                            req["user"]
-                                .increment('view_points', {
-                                    by: pointIncCount
+                            // add viewer to the database (View Table)
+                            let whereObj = {
+                                blog_id: blogId
+                            };
+                            whereObj[req["user"]["isBlogger"] ? "blogger_id" : "user_id"] = req["user"]["id"];
+                            View
+                                .findOrCreate({
+                                    where: whereObj,
+                                    logging: false
                                 })
-                                .then(() => {
-                                    // increment points of the blogger
-                                    let pointIncCount = parseInt(process.env["BLOGGER_BLOG_VIEW_POINTS"])
-                                    Blogger
-                                        .update({
-                                                view_points: sequelize.literal('view_points + ' + pointIncCount)
-                                            },
-                                            {
-                                                where: {
-                                                    id: blogger_id
-                                                }
-                                            })
+                                .spread((obj, created) => {
+                                    //if already added, return
+                                    if (!created) {
+                                        return res.status(200).json({
+                                            status: true,
+                                            msg: "view added and but points not incremented"
+                                        });
+                                    }
+
+                                    // increment points of the user
+                                    let pointIncCount = parseInt(process.env[(req["user"]["isBlogger"] ? "BLOGGER" : "USER")
+                                    + "_BLOG_VIEW_POINTS"]);
+                                    req["user"]
+                                        .increment('view_points', {
+                                            by: pointIncCount
+                                        })
                                         .then(() => {
                                             return res.status(200).json({
                                                 status: true,
