@@ -55,18 +55,17 @@ class CreatePost extends Component {
             post_link = "",
             category_id = 0,
             title = "",
-            tags = [],
             place = ""
         } = !isEmpty(props.customData[0]) ? props.customData[0].blogs[0] : {}
 
-        tags = tags.map(({name}) => name)
-
         let postAPI = '/api/secure/blogger/newBlog',
-        isDimmed = true;
+        isDimmed = true,
+        edit = false;
 
         if(!isEmpty(props.customData[0])) {
             isDimmed = false,
-            postAPI = `/api/secure/blogger/updateBlog?blogId=${props.customData[0].blogs[0].id}`
+            postAPI = `/api/secure/blogger/updateBlog?blogId=${props.customData[0].blogs[0].id}`,
+            edit = true
         }
 
         this.state = {
@@ -76,14 +75,15 @@ class CreatePost extends Component {
             blog,
             images: [],
             tag: "",
-            tags,
+            tags: [],
             place,
             title,
             category_id,
             video_link,
             post_link,
             data: props.data,
-            isSubmit: false
+            isSubmit: false,
+            edit
         }
     }    
 
@@ -235,7 +235,7 @@ class CreatePost extends Component {
     }
 
     render() {
-        const { blog, tag, tags, method, data, isSubmit, title, category_id, place, post_link, video_link } = this.state;
+        const { edit, blog, tag, tags, method, data, isSubmit, title, category_id, place, post_link, video_link } = this.state;
         return (
             <div>
                 <Navbar data={data}/>
@@ -277,7 +277,8 @@ class CreatePost extends Component {
                             <Grid.Column width={6}>
                                 <Header as="h3">Choose Your Category</Header>
                                 <Dropdown value={category_id} name="category_id" onChange={(e, {value}) => {this.setState({category_id: value})}} selection fluid placeholder='Select your category' options={categoryOptions} />
-                                <Header as="h3">
+                                {!edit && <React.Fragment>
+                                    <Header as="h3">
                                     Enter Tags
                                 </Header>
                                 <Popup
@@ -300,6 +301,7 @@ class CreatePost extends Component {
                                     size="mini"
                                     on="focus"
                                 />
+                                </React.Fragment>}
                                 <div style={{marginTop: "10px"}}>
                                     {
                                         tags.map((tag, i) => (

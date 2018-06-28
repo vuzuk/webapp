@@ -39,6 +39,11 @@ route.get('/checkContact', require("./functions/checkContact"));
 
 // get followers count   query = {bloggerId}
 route.get('/blogger/followersWithFollowing', require('./functions/followersWithFollowing'));
+// get bloggers by ids (array)     req.query={bloggerIds (array)}
+route.get('/getBloggersByIds', require("./functions/getBloggersByIds"));
+// get users by ids (array)     req.query={userIds (array)}
+route.get('/getUsersByIds', require("./functions/getUsersByIds"));
+
 
 // contact us   body = {name, email, message}
 route.post('/contactUs', require("./functions/contactUs"));

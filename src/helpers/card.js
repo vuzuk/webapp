@@ -65,8 +65,12 @@ class myCard extends Component {
         const thiss = this;
         axios.get(`/api/secure/generic/toggleFollowBlogger?bloggerId=${this.state.id}`)
             .then(res => {
+                let follow = true;
+                if(res.data.msg === "Un-following now") {
+                    follow = false
+                }
                 thiss.setState({
-                    follow: true
+                    follow
                 })
             })
             .catch(err => alert("You must login before following a user"))
@@ -121,7 +125,7 @@ class myCard extends Component {
                         </Label>
                         <Button size="tiny" primary onClick={this.toggleFollow}>{follow ? "Unfollow" : "Follow"}</Button>
                     </Card.Content>
-                    <Image src={images} className="card-img"/>
+                    <a href={`/post/${username}/${slug}`}><Image src={images} className="card-img"/></a>
                     <Card.Content>
                         <Card.Header as="a" href={`/post/${username}/${slug}`}>
                             {title}

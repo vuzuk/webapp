@@ -17,10 +17,12 @@ export default class App extends Component {
     super(props);
 
     const tags = this._fetchTags(props.customData.tags)
-
+    const { trendingBloggers, latestBloggers } = props.customData.bloggers;
     this.state = {
       data: props.data,
-      tags
+      tags,
+      trendingBloggers,
+      latestBloggers
     }
   }
 
@@ -34,14 +36,14 @@ export default class App extends Component {
 
 
   render() {
-    const { data, tags } = this.state;
+    const { data, tags, trendingBloggers, latestBloggers } = this.state;
     return (
       <Segment>
         <Navbar data={data}/>
         {/* <SearchBar /> */}
         <Announcement />
         <Trending tags={tags}/>
-        <Bloggers />
+        <Bloggers latestBloggers={latestBloggers} trendingBloggers={trendingBloggers}/>
         <Temporary />
         {/* <Blogs /> */}
         <Photos />

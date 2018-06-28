@@ -11,7 +11,7 @@ module.exports = (req, res) => {
     //get latest bloggers
     Blogger
         .findAll({
-            attributes: ["id", "username", "first_name", "last_name", "image"],
+            attributes: ["id", "username", "first_name", "last_name", "image", "place"],
             order: [[Sequelize.col('id'), 'DESC']],
             limit: 5
         })
@@ -23,7 +23,7 @@ module.exports = (req, res) => {
             Blog
                 .findAll({
                     attributes: ['blogger_id',
-                        sequelize.fn('sum', sequelize.col('views'))],
+                        Sequelize.fn('sum', Sequelize.col('views'))],
                     group: ["blog.blogger_id"],
                     order: [[Sequelize.col('id'), 'DESC']]
                 })
@@ -38,7 +38,7 @@ module.exports = (req, res) => {
 
                     Blogger
                         .findAll({
-                            attributes: ["id", "username", "first_name", "last_name", "image"],
+                            attributes: ["id", "username", "first_name", "last_name", "image", "place"],
                             where: {
                                 id: bloggerIds
                             },

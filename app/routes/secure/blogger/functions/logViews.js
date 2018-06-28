@@ -25,7 +25,7 @@ module.exports = () => {
                         let arr = blogger['views'];
                         arr = JSON.parse(arr);
                         arr.shift();
-                        if(result[i]['views']){
+                        if(!result[i]['views']){
                             arr.push(0)
                         }else{
                             arr.push(result[i]['views']-arr[3])

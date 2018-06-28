@@ -64,6 +64,7 @@ class Post extends Component {
 
     addComment = (e, x, parentId) => {
         const { comment: text, customData } = this.state;
+        const thiss = this;
         this.setState({
             isSent: true
         })
@@ -86,11 +87,11 @@ class Post extends Component {
         .then((res) => {
             location.reload()
         })
-        .catch(err => console.log(err))
-        .finally(() => {
+        .catch(err => {
             thiss.setState({
                 isSent: false
             })
+            alert("Login to comment")
         })
     }
 
@@ -110,7 +111,7 @@ class Post extends Component {
 
         setTimeout(() => {
             axios.get(`/api/unsecure/viewBlog?blogId=${this.state.customData.blogs[0].id}`);
-        }, 60000)
+        }, 30000)
 
         axios.get(`/api/unsecure/blogger/followersWithFollowing?bloggerId=${this.state.customData.id}`)
           .then(res => {
@@ -128,7 +129,7 @@ class Post extends Component {
           .then((res) => {
             location.reload()
           })
-          .catch(err => console.log(err))
+          .catch(err => alert("Login to like the post"))
     }
 
     render() {

@@ -84,6 +84,7 @@ const routes = [
         path: '/edit-post/:bloggerName/:slug',
         component: CreatePost,
         title: 'Edit Post - VUZUK',
+        required: true,
         fetchInitialData: (path) => {            
             const bloggerName = path[2];
             const slug = path[3];            
