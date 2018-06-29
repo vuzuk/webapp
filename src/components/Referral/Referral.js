@@ -21,8 +21,8 @@ class Referral extends Component {
             isSent: false,
             isAgreed: true,
             disabled: false,
-            ref_username: props.match.params["ref_username"],
-            ref_blogger: props.match.params["ref_blogger"],
+            ref_username: __isBrowser__ && props.match.params["ref_username"],
+            ref_blogger: __isBrowser__ && props.match.params["ref_blogger"],
             categories: {
                 food: false,
                 travel: false,
