@@ -32,7 +32,8 @@ module.exports = (mailTransporter) => {
                 obj[0]
                     .update({
                         isEmailVerified: true,
-                        emailVerifKey: null
+                        emailVerifKey: null,
+                        referral_points: 20
                     })
                     .then(() => {
                         // return res.redirect('/verify/phone/?isBlogger=true');
