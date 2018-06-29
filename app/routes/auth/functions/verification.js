@@ -49,16 +49,20 @@ module.exports = (mailTransporter) => {
                         model_to_use = ref_blogger ? Blogger : User;
                         let pointIncCount = parseInt(process.env[(ref_blogger === "blogger" ? "BLOGGER" : "USER") + "_REFER_POINTS"])
                         model_to_use
-                            .update({
-                                    referral_points: sequelize.literal('referral_points + ' + pointIncCount)
-                                },
-                                {
-                                    where: {
-                                        username: ref_username
-                                    }
-                                })
-                            .then(() => {
-                                return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+                            .findAll({
+                                where: {
+                                    username: ref_username
+                                }
+                            })
+                            .then(objs => {
+                                obj = objs[0]
+                                obj
+                                    .increment('referral_points', {
+                                        by: pointIncCount
+                                    })
+                                    .then(() => {
+                                        return isBlogger ? res.redirect('/blogger/login') : res.redirect('/reader/login');
+                                    })
                             })
                     })
                     .catch((err) => {
