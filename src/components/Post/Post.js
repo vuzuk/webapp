@@ -36,7 +36,7 @@ const users = [
     {
         name: "Daniel",
         follower: "5523",
-        img: "https://react.semantic-ui.com/assets/images/avatar/large/daniel.jpg"
+        img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
     }
 ]
 
