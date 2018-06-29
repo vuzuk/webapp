@@ -13,7 +13,7 @@ module.exports = (req, res) => {
             if (!obj) {
                 return res.status(404).json({status: false, msg: "blog not found"});
             }
-            let blogger_id = blog['blogger_id'];
+            let blogger_id = obj['blogger_id'];
             let pointIncCount = parseInt(process.env["BLOGGER_BLOG_VIEW_POINTS"])
             Blogger
                 .update({
