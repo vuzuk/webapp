@@ -9,6 +9,7 @@ import { Terms, Disclaimer, Privacy, About, Contact} from './components/Document
 import SearchBar from './components/SearchBar/SearchBar';
 import { Forget, Reset } from './components/Account'
 import { SearchByTag, SearchByQuery } from './components/SearchBy';
+import Referral from './components/Referral/Referral'
 //api
 import { fetchPost, getBlogsByCategory, getBlogger, getHomepage, getPostsByTag, getPostsByQuery, getSearch } from './api';
 
@@ -48,6 +49,11 @@ const routes = [
         path: '/reader/login',
         component: RLogIn,
         title: 'Reader Login - VUZUK'
+    },
+    {
+        path: '/refer/signup/:ref_username/:ref_blogger',
+        component: Referral,
+        title: 'Sign Up - VUZUK'
     },
     {
         path: '/in/blogger',

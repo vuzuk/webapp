@@ -1,3 +1,4 @@
+const Sequelize = require('sequelize');
 const Router = require("express").Router;
 const route = Router();
 const randomString = require("randomstring");
@@ -50,7 +51,7 @@ module.exports = (mailTransporter) => {
                         let pointIncCount = parseInt(process.env[(ref_blogger === "blogger" ? "BLOGGER" : "USER") + "_REFER_POINTS"])
                         model_to_use
                             .update({
-                                    referral_points: sequelize.literal('referral_points + ' + pointIncCount)
+                                    referral_points: Sequelize.literal('referral_points + ' + pointIncCount)
                                 },
                                 {
                                     where: {
