@@ -11,27 +11,27 @@ const users = [
     {
         name: "Deep Kaur",
         follower: "9548",
-        img: "https://react.semantic-ui.com/assets/images/avatar/large/helen.jpg"
+        img: "https://react.semantic-ui.com/images/avatar/large/helen.jpg"
     },
     {
         name: "Vipul Gupta",
         follower: "2795",
-        img: "https://react.semantic-ui.com/assets/images/avatar/large/christian.jpg"
+        img: "https://react.semantic-ui.com/images/avatar/large/christian.jpg"
     },
     {
         name: "Daniel",
         follower: "5523",
-        img: "https://react.semantic-ui.com/assets/images/avatar/large/daniel.jpg"
+        img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
     },
     {
         name: "Deep Kaur",
         follower: "9548",
-        img: "https://react.semantic-ui.com/assets/images/avatar/large/helen.jpg"
+        img: "https://react.semantic-ui.com/images/avatar/large/helen.jpg"
     },
     {
         name: "Vipul Gupta",
         follower: "2795",
-        img: "https://react.semantic-ui.com/assets/images/avatar/large/christian.jpg"
+        img: "https://react.semantic-ui.com/images/avatar/large/christian.jpg"
     },
     {
         name: "Daniel",

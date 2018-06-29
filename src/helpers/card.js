@@ -19,7 +19,7 @@ class myCard extends Component {
             id: post_id
         } = props.data;
 
-        const {first_name = "Matthew", last_name = "", username = "#", image = "https://react.semantic-ui.com/assets/images/avatar/small/elliot.jpg"} = blogger
+        const {first_name = "Matthew", last_name = "", username = "#", image = "https://react.semantic-ui.com/images/avatar/small/elliot.jpg"} = blogger
 
         images = images[0];
         date_published = stringifyDate(date_published);
