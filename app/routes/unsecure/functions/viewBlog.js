@@ -7,57 +7,66 @@ const Blogger = models['blogger']
 
 module.exports = (req, res) => {
     let blogId = parseInt(req.query["blogId"]);
-    let pointIncCount = parseInt(process.env["BLOGGER_BLOG_VIEW_POINTS"])
-    Blogger
-        .update({
-                view_points: sequelize.literal('view_points + ' + pointIncCount)
-            },
-            {
-                where: {
-                    id: blogger_id
-                }
-            })
-        .then(() => {
-            //if not logged in, return
-            if (!req['user']) {
-                return res.status(200).json({
-                    status: true,
-                    msg: "view added"
-                });
+    Blog
+        .findById(blogId)
+        .then((obj) => {
+            if (!obj) {
+                return res.status(404).json({status: false, msg: "blog not found"});
             }
-
-            // add viewer to the database (View Table)
-            let whereObj = {
-                blog_id: blogId
-            };
-            whereObj[req["user"]["isBlogger"] ? "blogger_id" : "user_id"] = req["user"]["id"];
-            View
-                .findOrCreate({
-                    where: whereObj,
-                    logging: false
-                })
-                .spread((obj, created) => {
-                    //if already added, return
-                    if (!created) {
+            let blogger_id = blog['blogger_id'];
+            let pointIncCount = parseInt(process.env["BLOGGER_BLOG_VIEW_POINTS"])
+            Blogger
+                .update({
+                        view_points: sequelize.literal('view_points + ' + pointIncCount)
+                    },
+                    {
+                        where: {
+                            id: blogger_id
+                        }
+                    })
+                .then(() => {
+                    //if not logged in, return
+                    if (!req['user']) {
                         return res.status(200).json({
                             status: true,
-                            msg: "view added and but points not incremented"
+                            msg: "view added"
                         });
                     }
 
-                    // increment points of the user
-                    let pointIncCount = parseInt(process.env[(req["user"]["isBlogger"] ? "BLOGGER" : "USER")
-                    + "_BLOG_VIEW_POINTS"]);
-                    req["user"]
-                        .increment('view_points', {
-                            by: pointIncCount
+                    // add viewer to the database (View Table)
+                    let whereObj = {
+                        blog_id: blogId
+                    };
+                    whereObj[req["user"]["isBlogger"] ? "blogger_id" : "user_id"] = req["user"]["id"];
+                    View
+                        .findOrCreate({
+                            where: whereObj,
+                            logging: false
                         })
-                        .then(() => {
-                            return res.status(200).json({
-                                status: true,
-                                msg: "view added and points incremented"
-                            });
+                        .spread((obj, created) => {
+                            //if already added, return
+                            if (!created) {
+                                return res.status(200).json({
+                                    status: true,
+                                    msg: "view added and but points not incremented"
+                                });
+                            }
+
+                            // increment points of the user
+                            let pointIncCount = parseInt(process.env[(req["user"]["isBlogger"] ? "BLOGGER" : "USER")
+                            + "_BLOG_VIEW_POINTS"]);
+                            req["user"]
+                                .increment('view_points', {
+                                    by: pointIncCount
+                                })
+                                .then(() => {
+                                    return res.status(200).json({
+                                        status: true,
+                                        msg: "view added and points incremented"
+                                    });
+                                })
                         })
                 })
+
         })
 };
