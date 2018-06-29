@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TextArea, Sidebar, Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image, List, Form } from 'semantic-ui-react'
+import { Message, TextArea, Sidebar, Divider, Menu, Button, Modal, Header, Icon, Input, Segment, Dropdown, Image, List, Form } from 'semantic-ui-react'
 import classNames from 'classnames';
 import './Navbar.css';
 import isEmpty from '../../helpers/isEmpty';
@@ -25,7 +25,7 @@ export default class Navbar extends Component {
 
     const data = props.data || {};
     const {liking, description, place, image, first_name, last_name, username, email, contact, dob, gender, facebook, twitter, instagram} = data;
-
+    const referral = `http://vuzuk.com/refer/signup/${username}/${liking ? "user" : "blogger"}`
     this.state = {
       isLogin: !isEmpty(props.data),
       open: false,
@@ -44,6 +44,7 @@ export default class Navbar extends Component {
       place,
       description,
       liking,
+      referral,
       isSetting: false,
       isSent: false,
       visible: false,
@@ -102,6 +103,16 @@ export default class Navbar extends Component {
     this.setState({[e.target.name]: e.target.value});
   }
 
+  copyLink = () => {
+    const el = document.createElement('textarea');
+    el.value = this.state.referral;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    alert("Copied")
+  }
+
   componentDidMount() {
     const thiss = this;
     axios.get('/api/secure/generic/getNotifications')
@@ -112,7 +123,7 @@ export default class Navbar extends Component {
   }
 
   render() {
-    const { notifications, liking, description, place, visible, facebook, twitter, instagram,isSent, isLogin, open, data, isSettings, first_name, last_name, username, email, contact, dob, gender, image } = this.state;
+    const { referral, notifications, liking, description, place, visible, facebook, twitter, instagram,isSent, isLogin, open, data, isSettings, first_name, last_name, username, email, contact, dob, gender, image } = this.state;
 
     const rightModals = (
           <Fragment>
@@ -142,6 +153,18 @@ export default class Navbar extends Component {
             Edit Profile
           </Modal.Header>
           <Modal.Content>
+            <Message info>
+              <Message.Header>Referral Link</Message.Header>
+              <p>
+                <strong>
+                {referral}
+                </strong>
+                <Button size="large" onClick={this.copyLink} floated="right" icon labelPosition='left'>
+                  <Icon name='copy' />
+                  Copy
+                </Button>
+              </p>
+            </Message>
             <Form onSubmit={this.submit}>
             <Form.Group widths='equal'>
                 <Form.Field>
