@@ -19,7 +19,8 @@ module.exports = (req, res) => {
                     category_id: req.body.category_id,
                     date_updated: Date(),
                     is_published: false,
-                    place: req.body.place
+                    place: req.body.place,
+                    images: req.body.images
                 }, {
                     logging: false
                 })
