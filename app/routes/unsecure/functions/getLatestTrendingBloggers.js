@@ -23,14 +23,19 @@ module.exports = (req, res) => {
             Blog
                 .findAll({
                     attributes: ['blogger_id',
-                        Sequelize.fn('sum', Sequelize.col('views'))],
+                        [Sequelize.fn('sum', Sequelize.col('views')), 'total_views']],
                     group: ["blog.blogger_id"],
-                    order: [[Sequelize.col('id'), 'DESC']]
+                    order: [[Sequelize.col('total_views'), 'DESC']]
                 })
                 .then(result => {
                     if (result.length === 0) {
                         return res.status(400).json({status: true, msg: "bloggers not found"});
                     }
+
+                    console.log(result.length);
+                    console.log(result);
+                    // console.log(result[0].dt);
+                    // console.log(result[1].dt);
 
                     let len = result.length > 5 ? 5 : result.length
                     result = result.slice(0, len)
