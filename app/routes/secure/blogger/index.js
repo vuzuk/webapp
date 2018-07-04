@@ -6,14 +6,15 @@ const Blogger = models["blogger"];
 // Calling Logging script
 let logViews = require("./functions/logViews");
 var now = new Date();
-var millisTill10 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 0) - now;
-if (millisTill10 < 0) {
-    millisTill10 += 86400000; // it's after 10am, try 10am tomorrow.
+var millisTill12 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23, 59, 59, 0) - now;
+if (millisTill12 < 0) {
+    millisTill12 += 86400000; // it's after 12am, try 12am tomorrow.
 }
 setTimeout(function () {
     setInterval(logViews, 24 * 60 * 60 * 1000);
-}, millisTill10);
+}, millisTill12);
 
+// logViews()
 
 route.use(function (req, res, next) {
     if (!req["user"]["isBlogger"]) {     // person is a blogger

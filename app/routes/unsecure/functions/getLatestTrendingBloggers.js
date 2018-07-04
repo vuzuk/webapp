@@ -32,14 +32,10 @@ module.exports = (req, res) => {
                         return res.status(400).json({status: true, msg: "bloggers not found"});
                     }
 
-                    console.log(result.length);
-                    console.log(result);
-                    // console.log(result[0].dt);
-                    // console.log(result[1].dt);
-
                     let len = result.length > 5 ? 5 : result.length
                     result = result.slice(0, len)
                     let bloggerIds = result.map(obj => obj.blogger_id)
+
 
                     Blogger
                         .findAll({
@@ -54,9 +50,17 @@ module.exports = (req, res) => {
                                 return res.status(400).json({status: true, msg: "bloggers not found"});
                             }
 
+                            let orderedTrendingBloggers = bloggerIds.map((id) => {
+                                for (let i in trendingBloggers) {
+                                    if (trendingBloggers[i].id === id) {
+                                        return trendingBloggers[i]
+                                    }
+                                }
+                            });
+
                             let bloggers = {
-                                trendingBloggers,
-                                latestBloggers
+                                "trendingBloggers" : orderedTrendingBloggers,
+                                "latestBloggers": latestBloggers
                             }
                             return res.status(200).json({status: true, msg: bloggers});
                         })
