@@ -14,7 +14,6 @@ setTimeout(function () {
     setInterval(logViews, 24 * 60 * 60 * 1000);
 }, millisTill12);
 
-// logViews()
 
 route.use(function (req, res, next) {
     if (!req["user"]["isBlogger"]) {     // person is a blogger

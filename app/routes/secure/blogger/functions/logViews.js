@@ -4,18 +4,21 @@ const Blog = models["blog"];
 const Blogger = models["blogger"];
 
 module.exports = () => {
-    console.log("logging values");
-
     Blog
         .findAll({
             attributes: ['blogger_id',
-                [sequelize.fn('sum', sequelize.col('views')), 'dt']],
+                [sequelize.fn('sum', sequelize.col('views')), 'sum_views']],
             group: ["blog.blogger_id"],
-            order: [['dt']]
+            order: [['blogger_id']]
         })
         .then(result => {
+            let bloggerIds = result.map(blog => blog['blogger_id'])
+
             Blogger
                 .findAll({
+                    where: {
+                        id: bloggerIds
+                    },
                     attributes: ["id", "views"],
                     order: [['id']]
                 })
@@ -23,18 +26,10 @@ module.exports = () => {
                     let i = 0;
                     bloggers = bloggers.map((blogger) => {
                         let arr = blogger['views'];
-                        console.log("************************");
-                        console.log(arr);
                         arr = JSON.parse(arr);
-                        console.log(arr);
                         arr.shift();
-                        if(!result[i]['views']){
-                            arr.push(0)
-                        }else{
-                            arr.push(result[i]['views']-arr[3])
-                        }
+                        arr.push(result[i]['dataValues']['sum_views'] - arr[3])
                         blogger['views'] = JSON.stringify(arr);
-                        console.log(blogger['views']);
                         i += 1;
                         return blogger;
                     });
