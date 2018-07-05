@@ -34,7 +34,7 @@ export function staticHTML ({ title, data, customData }) {
 export function dynamicHTML ({body}) {
   return `
   <div id="root">${body}</div>
-      <script src='/vendor.js'></script>
+      <script src='/vendor.7e62145e3d1afb83ad09.js'></script>
       <script src='/bundle.js'></script>
       <script type='text/javascript' src='http://platform-api.sharethis.com/js/sharethis.js#property=5abf669cce89f00013641dd1&product=inline-share-buttons' async='async'></script>
     </body>
