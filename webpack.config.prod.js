@@ -68,7 +68,7 @@ const webpackConfig = [{
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: 'vendor.js'
+      filename: 'vendor.[chunkhash].js'
     }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.ModuleConcatenationPlugin(),
