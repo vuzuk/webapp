@@ -62,7 +62,7 @@
 }
 
 .category div.slick-active {
-    width: 7.8%;
+    width: 7.8% !important;
 }
 
 .right-banners {
