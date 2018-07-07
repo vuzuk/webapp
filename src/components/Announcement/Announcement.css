@@ -31,8 +31,8 @@
     width: 1820% !important;
 }
 
-div.slick-active {
-    width: 8.8%;
+.slides div.slick-active {
+    width: 8.8% !important;
 }
 
 /* .slick-slide {

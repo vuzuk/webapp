@@ -12,6 +12,7 @@ const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     className: 'slides category',
+    autoplay: true
 };
 
 class Travel extends Component {
