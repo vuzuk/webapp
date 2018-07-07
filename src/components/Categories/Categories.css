@@ -66,5 +66,9 @@
 }
 
 .right-banners {
-    min-height: 104%;
+    min-height: 415px;
+}
+
+.right-banners img {
+    height: 195px;
 }
