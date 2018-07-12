@@ -28,7 +28,7 @@ module.exports = () => {
                         let arr = blogger['views'];
                         arr = JSON.parse(arr);
                         arr.shift();
-                        arr.push(result[i]['dataValues']['sum_views'] - arr[3])
+                        arr.push(result[i]['dataValues']['sum_views'])
                         blogger['views'] = JSON.stringify(arr);
                         i += 1;
                         return blogger;
