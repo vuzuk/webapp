@@ -6,37 +6,43 @@ import { stringifyDate } from '../../helpers/stringifyDate';
 import { Divider, List, Image, Icon, Grid, Comment, Header, Button, Form, Label, Segment } from 'semantic-ui-react';
 import './Post.css';
 import axios from 'axios';
+import MyList from './MyList';
 
 const users = [
     {
-        name: "Deep Kaur",
-        follower: "9548",
-        img: "https://react.semantic-ui.com/images/avatar/large/helen.jpg"
+        name: "Happily Veggie",
+        follower: "3",
+        img: "/images/bloggers/default.png",
+        username: "happilyveggie",
+        id: 2
     },
     {
-        name: "Vipul Gupta",
-        follower: "2795",
-        img: "https://react.semantic-ui.com/images/avatar/large/christian.jpg"
+        name: "Manjulika Pramod",
+        follower: "1",
+        img: "/images/bloggers/44.JPG",
+        username: "PENDOWN",
+        id: 44
     },
     {
-        name: "Daniel",
-        follower: "5523",
-        img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+        name: "Amanpreet Singh",
+        follower: "1",
+        img: "/images/bloggers/35.jpg",
+        username: "aman",
+        id: 35
     },
     {
-        name: "Deep Kaur",
-        follower: "9548",
-        img: "https://react.semantic-ui.com/images/avatar/large/helen.jpg"
+        name: "Varun M",
+        follower: "1",
+        img: "/images/bloggers/default.png",
+        username: "varunzxzx",
+        id: 3
     },
     {
-        name: "Vipul Gupta",
-        follower: "2795",
-        img: "https://react.semantic-ui.com/images/avatar/large/christian.jpg"
-    },
-    {
-        name: "Daniel",
-        follower: "5523",
-        img: "https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+        name: "Tech Updates",
+        follower: "1",
+        img: "/images/bloggers/45.jpg",
+        username: "Akshayfadte",
+        id: 45
     }
 ]
 
@@ -48,7 +54,8 @@ class Post extends Component {
             customData: props.customData[0],
             isLiked: false,
             comment: "",
-            isSent: false
+            isSent: false,
+            posts: []
         }
     }
 
@@ -121,6 +128,12 @@ class Post extends Component {
               })
           })
           .catch(err => console.log(err))
+
+          axios.get(`/api/unsecure/getBlogsByCategory/${this.state.customData.blogs[0].category_id}/0/3`)
+           .then(res => thiss.setState({
+               posts: res.data.msg
+           }))
+           .catch(err => console.log(err))
     }
 
     toggleLike = () => {
@@ -207,7 +220,7 @@ class Post extends Component {
                                 </Grid.Row>
                             </Grid>
                             <Grid columns={3}>
-                                {this.makeList([1,2,3])}
+                                {this.state.posts.length !== 0 && this.makeList(this.state.posts)}
                             </Grid>
                         </Grid.Column>
                         <Grid.Column computer={5} mobile={16}>
@@ -218,34 +231,34 @@ class Post extends Component {
                                 <List verticalAlign='middle'>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="red">12</Label>
+                                            <Label circular color="red">3</Label>
                                         </List.Content>
-                                        <List.Content>
+                                        <List.Content href="/travel">
                                             Travel
                                         </List.Content>
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="orange">19</Label>
+                                            <Label circular color="orange">7</Label>
                                         </List.Content>
-                                        <List.Content>
-                                            Technology
+                                        <List.Content href="/tech">
+                                            Tech
                                         </List.Content>
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="green">15</Label>
+                                            <Label circular color="green">3</Label>
                                         </List.Content>
-                                        <List.Content>
+                                        <List.Content href="/food">
                                             Food
                                         </List.Content>
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="violet">11</Label>
+                                            <Label circular color="violet">0</Label>
                                         </List.Content>
-                                        <List.Content>
-                                            Tech
+                                        <List.Content href="/fashion">
+                                            Fashion
                                         </List.Content>
                                     </List.Item>
                                 </List>
@@ -253,16 +266,7 @@ class Post extends Component {
                             <Segment>
                                 <Header>Related Users</Header>
                                 <List size="big" divided relaxed>
-                                    {users.map(user => (<List.Item>
-                                    <Image avatar src={user.img} size="tiny"/>
-                                    <List.Content>
-                                        <List.Header>{user.name}</List.Header>
-                                        <div style={{fontSize: "0.8em", marginTop: "10px"}}><a style={{display: "block"}} href="#">@{user.name.split(" ")[0].toLowerCase()}</a>{user.follower} Followers</div>
-                                    </List.Content>
-                                    <List.Content floated='right'>
-                                        <Button>Follow</Button>
-                                    </List.Content>
-                                    </List.Item>))}
+                                    {users.map(user => <MyList blogger={user}/>)}
                                 </List>
                             </Segment>
                         </Grid.Column>
