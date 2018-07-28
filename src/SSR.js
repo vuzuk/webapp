@@ -7,7 +7,7 @@ import isEmpty from './helpers/isEmpty';
 
 export default function render(req,res) {
   const activeRoute = routes.find(route => matchPath(req.url, route));
-  const {component: Component, title, required, redirectURL, fetchInitialData} = activeRoute;
+  const {component: Component, title, required, redirectURL, fetchInitialData, meta} = activeRoute;
   const data = req.user || {};
   let customData;  
   
@@ -23,7 +23,8 @@ export default function render(req,res) {
     res.write(staticHTML({
       title: title || 'VUZUK',
       data,
-      customData
+      customData,
+      meta
     }))
     res.flush();
 

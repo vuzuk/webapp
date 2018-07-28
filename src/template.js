@@ -1,5 +1,5 @@
 import serialize from 'serialize-javascript';
-export function staticHTML ({ title, data, customData }) {
+export function staticHTML ({ title, data, customData, meta }) {
   return `
   <!DOCTYPE html>
   <html>
@@ -7,6 +7,13 @@ export function staticHTML ({ title, data, customData }) {
       <title>${title}</title>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      ${meta !== undefined ? `<meta property="title" content="${meta.title}">
+      <meta property="description" content="${meta.description}">` : `<null>`}
+      <meta property="og:title" content=" ">
+      <meta property="og:description" content=" ">
+      <meta property="og:sitename" content=" ">
+      <meta itemprop="title" content=" ">
+      <meta itemprop="description" content=" ">
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120432266-1"></script>
       <script>
