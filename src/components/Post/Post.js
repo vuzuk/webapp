@@ -231,7 +231,7 @@ class Post extends Component {
                                 <List verticalAlign='middle'>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="red">3</Label>
+                                            <Label circular color="red">4</Label>
                                         </List.Content>
                                         <List.Content href="/travel">
                                             Travel
@@ -239,7 +239,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="orange">7</Label>
+                                            <Label circular color="orange">12</Label>
                                         </List.Content>
                                         <List.Content href="/tech">
                                             Tech
@@ -247,7 +247,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="green">3</Label>
+                                            <Label circular color="green">4</Label>
                                         </List.Content>
                                         <List.Content href="/food">
                                             Food
@@ -255,7 +255,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="violet">0</Label>
+                                            <Label circular color="violet">1</Label>
                                         </List.Content>
                                         <List.Content href="/fashion">
                                             Fashion
