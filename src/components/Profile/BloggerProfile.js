@@ -150,7 +150,7 @@ class BloggerProfile extends Component {
                                 </Grid.Column>
                             ))}
                             {!isPostFetched && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3> }
-                            {isPostFetched && posts.length === 0 && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3> }
+                            {isPostFetched && posts.length === 0 && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>No Post</h3> }
                         </Grid>
                     </div>
                 </Segment>
