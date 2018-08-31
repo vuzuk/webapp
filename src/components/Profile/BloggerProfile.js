@@ -8,7 +8,7 @@ import './BloggerProfile.css'
 class BloggerProfile extends Component {
     constructor(props) {
         super(props);
-    
+
         this.state = {
             isActive: "viewed",
             data: props.data,
@@ -41,6 +41,9 @@ class BloggerProfile extends Component {
                 })
             })
             .catch(err => {
+                thiss.setState({
+                    isPostFetched: true
+                })
                 console.log(err);
             })
     }
@@ -62,9 +65,9 @@ class BloggerProfile extends Component {
         }) : posts = posts.sort((a, b) => {
             return b.likes - a.likes
         })
-        
+
         console.log(posts);
-        
+
 
         return (
             <div id="profile">
@@ -147,6 +150,7 @@ class BloggerProfile extends Component {
                                 </Grid.Column>
                             ))}
                             {!isPostFetched && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3> }
+                            {isPostFetched && posts.length === 0 && <h3 style={{textAlign: "center", marginTop: "50px", marginBottom: "65px"}}>Loading...</h3> }
                         </Grid>
                     </div>
                 </Segment>
