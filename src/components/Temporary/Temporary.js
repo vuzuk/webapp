@@ -25,7 +25,7 @@ class Temporary extends Component {
           </div>
           <div className="post">
             <a href={`/post/${i.blogger.username}/${i.slug}`}>
-              <p className="title">{i.title}</p>
+              <p className="title">{i.title.slice(0, 66)}</p>
             </a>
             <div className="author">
               <span><i className="fa fa-user"></i> {i.blogger.first_name}</span>
