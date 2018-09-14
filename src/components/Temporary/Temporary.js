@@ -19,7 +19,9 @@ class Temporary extends Component {
       return (
         <div key={i + "t"} className="travel-item">
           <div className="img">
-            <img style={{ width: "100%" }} src={i.images} alt="" />
+            <a href={`/post/${i.blogger.username}/${i.slug}`}>
+              <img style={{ width: "100%" }} src={i.images} alt="" />
+            </a>
           </div>
           <div className="post">
             <a href={`/post/${i.blogger.username}/${i.slug}`}>
