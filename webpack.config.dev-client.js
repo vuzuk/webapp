@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
   devtool: 'eval',
   name: 'client',
-  context: path.join(__dirname, '.', 'src'),  
+  context: path.join(__dirname, '.', 'src'),
   entry: [
     './client.js',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000'

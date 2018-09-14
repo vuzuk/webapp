@@ -82,7 +82,7 @@ class Post extends Component {
         if(parentId) {
             data.parentId = parentId
         }
-        
+
         axios({
             method: 'POST',
             headers: {
@@ -148,7 +148,7 @@ class Post extends Component {
     render() {
         const { data, customData, isLiked, isSent, followers, following } = this.state;
         const { image, facebook, twitter, instagram, description } = customData;
-        
+
         return(
             <div>
                 <Navbar data={data} />
@@ -239,7 +239,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="orange">12</Label>
+                                            <Label circular color="orange">15</Label>
                                         </List.Content>
                                         <List.Content href="/tech">
                                             Tech
@@ -247,7 +247,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="green">4</Label>
+                                            <Label circular color="green">5</Label>
                                         </List.Content>
                                         <List.Content href="/food">
                                             Food
@@ -255,7 +255,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="violet">1</Label>
+                                            <Label circular color="violet">4</Label>
                                         </List.Content>
                                         <List.Content href="/fashion">
                                             Fashion
@@ -279,7 +279,7 @@ class Post extends Component {
                         {
                             customData.blogs[0].comments.map(comment => {
                                 const who = comment.blogger || comment.user;
-                                
+
                                 return (
                                 <Comment>
                                 <Comment.Avatar src={who.image} />

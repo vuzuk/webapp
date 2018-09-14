@@ -18,7 +18,7 @@ const routes = [
         path: '/',
         exact: true,
         component: App,
-        fetchInitialData: () => {             
+        fetchInitialData: () => {
             return getHomepage();
         },
         meta: {
@@ -30,7 +30,7 @@ const routes = [
         path: '/search',
         component: SearchBar,
         exact: true,
-        fetchInitialData: () => {             
+        fetchInitialData: () => {
             return getSearch();
         },
         meta: {
@@ -104,9 +104,9 @@ const routes = [
         path: '/post/:bloggerName/:slug',
         component: Post,
         title: 'Post - VUZUK',
-        fetchInitialData: (path) => {            
+        fetchInitialData: (path) => {
             const bloggerName = path[2];
-            const slug = path[3];            
+            const slug = path[3];
             return fetchPost(bloggerName, slug);
         }
     },
@@ -115,9 +115,9 @@ const routes = [
         component: CreatePost,
         title: 'Edit Post - VUZUK',
         required: true,
-        fetchInitialData: (path) => {            
+        fetchInitialData: (path) => {
             const bloggerName = path[2];
-            const slug = path[3];            
+            const slug = path[3];
             return fetchPost(bloggerName, slug);
         }
     },
@@ -134,8 +134,8 @@ const routes = [
         path: '/food',
         component: Food,
         title: 'Food - VUZUK',
-        fetchInitialData: (path) => {            
-            return getBlogsByCategory(1,0,10);
+        fetchInitialData: (path) => {
+            return getBlogsByCategory(1,0,20);
         },
         meta: {
             title: "Food blogs or articles by India's top food bloggers | Vuzuk",
@@ -146,8 +146,8 @@ const routes = [
         path: '/travel',
         component: Travel,
         title: 'Travel - VUZUK',
-        fetchInitialData: (path) => {            
-            return getBlogsByCategory(3,0,10);
+        fetchInitialData: (path) => {
+            return getBlogsByCategory(3,0,20);
         },
         meta: {
             title: "Travel reviews and blogs by India's top travel bloggers | Vuzuk",
@@ -158,16 +158,16 @@ const routes = [
         path: '/tech',
         component: Tech,
         title: 'Tech - VUZUK',
-        fetchInitialData: (path) => {            
-            return getBlogsByCategory(4,0,10);
+        fetchInitialData: (path) => {
+            return getBlogsByCategory(4,0,20);
         }
     },
     {
         path: '/fashion',
         component: Fashion,
         title: 'Fashion - VUZUK',
-        fetchInitialData: (path) => {            
-            return getBlogsByCategory(2,0,10);
+        fetchInitialData: (path) => {
+            return getBlogsByCategory(2,0,20);
         },
         meta: {
             title: "Latest fashion trends by India's top fashion bloggers | Vuzuk",
@@ -178,8 +178,8 @@ const routes = [
         path: '/tag/:tag',
         component: SearchByTag,
         title: 'Search By Tag - VUZUK',
-        fetchInitialData: (path) => {      
-            const tag = path[2];      
+        fetchInitialData: (path) => {
+            const tag = path[2];
             return getPostsByTag(tag);
         }
     },
@@ -187,8 +187,8 @@ const routes = [
         path: '/search/:tag',
         component: SearchByQuery,
         title: 'Search Result - VUZUK',
-        fetchInitialData: (path) => {      
-            const query = path[2];      
+        fetchInitialData: (path) => {
+            const query = path[2];
             return getPostsByQuery(query);
         }
     },
