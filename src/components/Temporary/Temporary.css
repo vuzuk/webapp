@@ -1,8 +1,7 @@
 .travel-item {
   padding: 10px;
   position: relative;
-  max-height: 129px;
-  /* box-shadow: 1px 1px 1px #3d3d3d; */
+  max-height: 159px;
 }
 
 .travel-item .img {
