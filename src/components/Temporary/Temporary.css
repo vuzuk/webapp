@@ -1,6 +1,7 @@
 .travel-item {
   padding: 10px;
   position: relative;
+  max-height: 129px;
   /* box-shadow: 1px 1px 1px #3d3d3d; */
 }
 
@@ -12,7 +13,7 @@
 
 .travel-item .title {
   color: rgb(0, 153, 229);
-  cursor: pointer;   
+  cursor: pointer;
   margin-bottom: 0;
 }
 
