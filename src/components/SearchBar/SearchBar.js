@@ -12,7 +12,9 @@ const makeCard = (blog) => {
         <div className="search-card">
             <a href={`/tag/${blog.tags[0].name}`}>#{blog.tags[0].name}</a>
         </div>
-    ) : null
+    ) : (<div className="search-card">
+        <a href={`/tag/Xiaomi${blog.tags[0].name}`}>#Xiaomi</a>
+    </div>)
 }
 
 class SearchBar extends Component {
@@ -21,7 +23,7 @@ class SearchBar extends Component {
 
         const tags = this._fetchTags(props.customData.blogs)
         const blogs = props.customData.blogs;
-        
+
         this.state = {
             data: props.data,
             isActive: "posts",
@@ -29,8 +31,8 @@ class SearchBar extends Component {
             blogs,
             query: ""
         }
-    }   
-    
+    }
+
     _fetchTags = (blogs) => {
         let Tags = [];
         for(let i = 0; i < blogs.length; i++) {
@@ -64,10 +66,10 @@ class SearchBar extends Component {
                         </Grid.Column>
                         <Grid.Column className="rightside" mobile={16} computer={11}>
                             <Segment basic>
-                                <Input 
+                                <Input
                                     onKeyPress={e => {
                                         if(e.which === 13 || e.keyCode === 13) this.search();
-                                    }} 
+                                    }}
                                     icon='search'
                                     size="large"
                                     placeholder='Search...'
