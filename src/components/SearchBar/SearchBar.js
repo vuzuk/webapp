@@ -13,7 +13,7 @@ const makeCard = (blog) => {
             <a href={`/tag/${blog.tags[0].name}`}>#{blog.tags[0].name}</a>
         </div>
     ) : (<div className="search-card">
-        <a href={`/tag/Xiaomi${blog.tags[0].name}`}>#Xiaomi</a>
+        <a href={`/tag/Xiaomi`}>#Xiaomi</a>
     </div>)
 }
 
