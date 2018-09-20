@@ -5,7 +5,7 @@ const makeTags = (e) => {
   return e.map((label, i) => {
       return (
           <Label as="a" href={`/tag/${label}`} key={label+ i} size="big">
-              <Icon name='hashtag' /> {label}
+              <Icon name='hashtag' /> <h1 className="head-label">{label}</h1>
           </Label>
       )
   })

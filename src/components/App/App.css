@@ -25,3 +25,9 @@ body {
     width: 290px !important;
     height: 218px !important;
 }
+
+.head-label {
+    font-size: 1em !important;
+    margin: 0 !important;
+    display: inline !important;
+}
