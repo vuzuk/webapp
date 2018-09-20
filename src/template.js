@@ -8,7 +8,8 @@ export function staticHTML ({ title, data, customData, meta }) {
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       ${meta !== undefined ? `<meta property="title" content="${meta.title}">
-      <meta property="description" content="${meta.description}">` : `<null>`}
+      <meta property="description" content="${meta.description}">
+      <meta property="keywords" content="${meta.keywords}">`: `<null>`}
       <meta property="og:title" content=" ">
       <meta property="og:description" content=" ">
       <meta property="og:sitename" content=" ">
