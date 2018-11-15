@@ -204,13 +204,13 @@ class InBloggerProfile extends Component {
         const thiss = this;
         this.setState({followModal: true})
         if(!this.state.follower_list.length) {
-            axios.get(`/api/unsecure/getBloggersByIds?bloggerIds=${this.state.follower_ids.bloggers}`)
+            axios.get(`/api/unsecure/getBloggersByIds?bloggerIds=[${this.state.follower_ids.bloggers}]`)
                 .then(res => thiss.setState({
                     follower_list: [...this.state.follower_list, ...res.data.msg]
                     }))
                 .catch(err => console.log(err))
 
-            axios.get(`/api/unsecure/getUsersByIds?userIds=${this.state.follower_ids.users}`)
+            axios.get(`/api/unsecure/getUsersByIds?userIds=[${this.state.follower_ids.users}]`)
             .then(res => thiss.setState({
                 follower_list: [...this.state.follower_list, ...res.data.msg]
             }))
@@ -222,7 +222,7 @@ class InBloggerProfile extends Component {
         const thiss = this;
         this.setState({followingModal: true})
         if(!this.state.following_list.length) {
-            axios.get(`/api/unsecure/getBloggersByIds?bloggerIds=${this.state.following_ids}`)
+            axios.get(`/api/unsecure/getBloggersByIds?bloggerIds=[${this.state.following_ids}]`)
                 .then(res => thiss.setState({
                     following_list: [...res.data.msg]
                     }))
