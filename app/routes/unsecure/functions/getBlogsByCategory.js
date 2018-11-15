@@ -9,7 +9,7 @@ module.exports = (req, res) => {
     let categoryId = req.params['categoryId'];
     let offset = parseInt(req.params['offset']);
     let limit = parseInt(req.params['limit']);
-    
+
     Blog
         .findAll({
             attributes: ["id", "title", "images", "date_published", "views", "slug", 'blogger_id', "likes"],
@@ -17,6 +17,7 @@ module.exports = (req, res) => {
                 category_id: categoryId
             },
             offset: offset,
+            order: [['id', 'DESC']],
             limit: limit,
             include: [{
                 model: Comment,
