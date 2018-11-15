@@ -120,30 +120,39 @@ class InBloggerProfile extends Component {
         const file = e.target.files[0];
         const data = new FormData();
         data.append('avatar', file);
+        const img = new window.Image();
+        img.src = URL.createObjectURL(file);
         const thiss = this;
-        axios({
-            method: 'POST',
-            url: '/api/secure/generic/upload/coverPic',
-            data: data,
-            config: { headers: {'Content-Type': 'multipart/form-data' }}
-        })
-        .then(function (response) {
-            //handle success
-            location.reload();
-        })
-        .catch(function (response) {
-            //handle error
-            alert("File not supported. Only JPG/JPEG is supported")
-            thiss.setState({
-                isCoverSent: false
-            })
-        });
+        img.onload = function() {
+            alert(this.width + " " + this.height);
+            if(this.width === 850 && this.height === 315) {
+                axios({
+                    method: 'POST',
+                    url: '/api/secure/generic/upload/coverPic',
+                    data: data,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                })
+                .then(function (response) {
+                    //handle success
+                    location.reload();
+                })
+                .catch(function (response) {
+                    //handle error
+                    alert("File not supported. Only JPG/JPEG is supported")
+                    thiss.setState({
+                        isCoverSent: false
+                    })
+                });
+            } else {
+                alert("Image should be 850 pixels wide and 315 pixels tall.")
+            }
+        };
     }
 
     fetchMyBlog = () => {
         const thiss = this;
         axios.get(`/api/unsecure/getBlogsOfBlogger?bloggerId=${this.state.data.id}`)
-            .then(({data}) => {                
+            .then(({data}) => {
                 thiss.setState({
                     posts: data.msg,
                     isPostFetched: true
@@ -166,8 +175,8 @@ class InBloggerProfile extends Component {
             let follower_ids = {
                 bloggers: [],
                 users: []
-            }; 
-            let following_ids = []; 
+            };
+            let following_ids = [];
 
             res.data.msg.followers.rows.map(acc => {
                 if(acc.b_user_id) {
@@ -278,12 +287,12 @@ class InBloggerProfile extends Component {
         const { sortActive, loading1, top, loading, data, isActive, posts, isPostFetched, noPost, isSent, isCoverSent, followers, following} = this.state;
         const {first_name, last_name, image, cover_image, view_points, comment_points, share_points, referral_points} = data;
         const author = `${first_name} ${last_name}`;
-        
+
         return (
             <div id="profile-page">
                 <Navbar data={data}/>
                 <Segment style={{backgroundImage: `url(${cover_image})`}} className="main" basic>
-                    <Popup trigger={<label for="cover-upload">{isCoverSent ? "Uploading..." : "Change Cover"}</label>} content='Recommend Size: 851 X 315' />
+                    <Popup trigger={<label for="cover-upload">{isCoverSent ? "Uploading..." : "Change Cover"}</label>} content='Recommended Size: 850 X 315' />
                     <input type="file" onChange={this.uploadCover} id="cover-upload"></input>
 
                     <div className="blogger-profile">

@@ -9,14 +9,14 @@ export default function render(req,res) {
   const activeRoute = routes.find(route => matchPath(req.url, route));
   const {component: Component, title, required, redirectURL, fetchInitialData, meta} = activeRoute;
   const data = req.user || {};
-  let customData;  
-  
+  let customData;
+
   if(required && isEmpty(data)) {
     return res.redirect(redirectURL)
   }
-  
+
   const promise = fetchInitialData ? fetchInitialData(req.path.split("/")) : Promise.resolve();
-      
+
   promise.then(response => {
     customData = response ? response.data.msg : {};
 
