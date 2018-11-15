@@ -48,7 +48,7 @@ const categoryOptions = [
 class CreatePost extends Component {
     constructor(props) {
         super(props);
-        
+
         let {
             blog = "",
             video_link = "",
@@ -85,9 +85,9 @@ class CreatePost extends Component {
             isSubmit: false,
             edit
         }
-    }    
+    }
 
-    handleChange = (e) => {        
+    handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -98,10 +98,10 @@ class CreatePost extends Component {
             blog
         })
     }
-    
+
     addTags = () => {
         let { tag, tags } = this.state;
-        if(tags.length < 6) {
+        if(tags.length < 20) {
             tags.push(tag);
             tag = "";
             console.log(tags);
@@ -156,7 +156,7 @@ class CreatePost extends Component {
                 url: this.state.postAPI,
                 data: JSON.stringify(data)
             })
-            .then(response => {                
+            .then(response => {
                 location.href = "/in/blogger"
             })
             .catch(error => {
@@ -220,7 +220,7 @@ class CreatePost extends Component {
         try {
             if(this.state.method !== "create") {
                 $('.selector').data('froala.editor').opts.placeholderText = `Write a small description about your post(Min. 300 words) to get better ranking. Add an image too.`;
-                $('.selector').froalaEditor('placeholder.refresh');    
+                $('.selector').froalaEditor('placeholder.refresh');
             }
         } catch(err) {
             console.log(err);
@@ -261,7 +261,7 @@ class CreatePost extends Component {
                                         <Input name="video_link" value={video_link} onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Video Link Here...' />}
                                         <FroalaEditor
                                             model={blog}
-                                            onModelChange={this.onModelChange} 
+                                            onModelChange={this.onModelChange}
                                             config={{
                                                 editorClass: 'selector',
                                                 height: 300,
