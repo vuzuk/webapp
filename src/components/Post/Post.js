@@ -239,7 +239,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="orange">15</Label>
+                                            <Label circular color="orange">40</Label>
                                         </List.Content>
                                         <List.Content href="/tech">
                                             Tech
@@ -247,7 +247,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="green">5</Label>
+                                            <Label circular color="green">10</Label>
                                         </List.Content>
                                         <List.Content href="/food">
                                             Food
@@ -255,7 +255,7 @@ class Post extends Component {
                                     </List.Item>
                                     <List.Item>
                                         <List.Content floated='right'>
-                                            <Label circular color="violet">4</Label>
+                                            <Label circular color="violet">5</Label>
                                         </List.Content>
                                         <List.Content href="/fashion">
                                             Fashion
