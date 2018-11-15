@@ -28,6 +28,7 @@
 
 .ui.card .extra.content a.myHeader {
     width: 100% !important;
+    font-size: 0.95em !important;
 }
 
 .sortby {
