@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Label, Image, Grid, Icon, Button } from 'semantic-ui-react';
+import { Card, Label, Image, Grid, Icon, Button, Modal, Divider } from 'semantic-ui-react';
 import { stringifyDate } from "./stringifyDate";
 import axios from 'axios';
 
@@ -40,7 +40,8 @@ class myCard extends Component {
             image,
             post_id,
             bookmark: false,
-            isSaving: false
+            isSaving: false,
+            isOpen: false
         }
     }
 
@@ -61,6 +62,12 @@ class myCard extends Component {
         })
     }
 
+    toggleModal = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
+
     toggleFollow = () => {
         const thiss = this;
         axios.get(`/api/secure/generic/toggleFollowBlogger?bloggerId=${this.state.id}`)
@@ -73,7 +80,9 @@ class myCard extends Component {
                     follow
                 })
             })
-            .catch(err => alert("You must login before following a user"))
+            .catch(err => {
+                thiss.toggleModal();
+            })
     }
 
     toggleBookmark = () => {
@@ -83,7 +92,7 @@ class myCard extends Component {
             .then(res => location.reload())
             .catch(err => {
                 thiss.setState({isSaving: false})
-                alert("You must login before saving a post")
+                thiss.toggleModal();
             })
     }
 
@@ -157,7 +166,7 @@ class myCard extends Component {
                             </Grid.Row>
                         </Grid>
                     </Card.Content>
-                    {isAdmin ? 
+                    {isAdmin ?
                     <React.Fragment>
                     <Card.Content extra>
                         <Grid style={{margin: "auto"}} centered divided columns='equal'>
@@ -172,6 +181,28 @@ class myCard extends Component {
                         </Grid>
                     </Card.Content>
                     </React.Fragment> : null}
+                    <Modal open={this.state.isOpen} onClose={this.toggleModal}>
+                        <Modal.Content>
+                            You must login first!
+                        </Modal.Content>
+                        <Modal.Actions>
+                            <Modal trigger={<Button primary>Sign Up</Button>} size="mini">
+                                <Modal.Content>
+                                <Button as="a" href="/blogger/signup" primary size="huge" fluid>Blogger</Button>
+                                <Divider horizontal>OR</Divider>
+                                <Button as="a" href="/reader/signup" secondary size="huge" fluid>Reader</Button>
+                                </Modal.Content>
+                            </Modal>
+                            <Modal trigger={<Button secondary>Log In</Button>} size="mini">
+                                <Modal.Content>
+                                    <Button as="a" href="/blogger/login" primary size="huge" fluid>Blogger</Button>
+                                    <Divider horizontal>OR</Divider>
+                                    <Button as="a" href="/reader/login" secondary size="huge" fluid>Reader</Button>
+                                </Modal.Content>
+                            </Modal>
+                            <Button onClick={this.toggleModal}>OK</Button>
+                        </Modal.Actions>
+                    </Modal>
                 </Card>
             </div>
         )
