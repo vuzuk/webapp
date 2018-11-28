@@ -124,7 +124,6 @@ class InBloggerProfile extends Component {
         img.src = URL.createObjectURL(file);
         const thiss = this;
         img.onload = function() {
-            alert(this.width + " " + this.height);
             if(this.width === 850 && this.height === 315) {
                 axios({
                     method: 'POST',
