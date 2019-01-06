@@ -6,7 +6,6 @@ import MyCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
 import axios from 'axios';
-import {Desktop, Mobile} from '../../helpers/responsive';
 
 const a = new Date();
 a.setDate(a.getDate() - 1);
@@ -305,15 +304,10 @@ class InBloggerProfile extends Component {
                         <div>
                             <div className="username">{author}</div>
                             {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}} className="follow-count"><a href="#" onClick={this.fetchFollowers}>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a href="#" onClick={this.fetchFollowing}>{following}</a> FOLLOWING</div>}
-                            {Mobile(
-                                <p>Login from Desktop to create post</p>
-                            )}
                         </div>
-                        {Desktop(
                             <div className="create">
                                 <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
                             </div>
-                        )}
                     </div>
                 </Segment>
                 <div className="tabs">

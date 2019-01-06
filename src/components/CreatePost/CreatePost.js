@@ -8,6 +8,7 @@ import FroalaEditor from 'react-froala-wysiwyg';
 import './CreatePost.css';
 import axios from 'axios';
 import isEmpty from '../../helpers/isEmpty';
+import {Desktop, Mobile} from '../../helpers/responsive';
 
 function countWords(value){
     const s = value;
@@ -243,7 +244,7 @@ class CreatePost extends Component {
                         <Header as='h1' dividing>
                             Create Post
                         </Header>
-                        <Grid divided>
+                        {Desktop(<Grid divided>
                             <Grid.Column width={10}>
                                 <Input name="title" value={title} onChange={this.handleChange} size="big" focus fluid placeholder="Enter title here"/>
                                 <div style={{marginTop: "10px"}}>
@@ -332,7 +333,93 @@ class CreatePost extends Component {
                                     </Button.Group>
                                 </div>
                             </Grid.Column>
-                        </Grid>
+                        </Grid>)}
+                        {Mobile(<React.Fragment>
+                            <div style={{marginTop: "10px"}}>
+                            <Dimmer.Dimmable dimmed={this.state.isDimmed}>
+                                <Dimmer active={this.state.isDimmed}>
+                                    <Button primary size="large" icon labelPosition='left' onClick={() => this.handleClick("create")}><Icon name='write' /> Create Blog Post</Button>
+                                    <Divider horizontal inverted>OR</Divider>
+                                    <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit link")}><Icon name='linkify' /> Submit Post Link</Button>
+                                    <Divider horizontal inverted>OR</Divider>
+                                    <Button size="large" icon labelPosition='left' onClick={() => this.handleClick("submit video")}><Icon name='video' /> Submit Video Link</Button>
+                                </Dimmer>
+                                {method === "submit link" &&
+                                <Input name="post_link" value={post_link} onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Blog Post Link Here...' />}
+                                {method === "submit video" &&
+                                <Input name="video_link" value={video_link} onChange={this.handleChange} icon='linkify' fluid size="massive" iconPosition='left' placeholder='Enter Video Link Here...' />}
+                                <FroalaEditor
+                                    model={blog}
+                                    onModelChange={this.onModelChange}
+                                    config={{
+                                        editorClass: 'selector',
+                                        height: 300,
+                                        placeholderText: `Write your post here!! Make sure you upload atleast one image`,
+                                        imageUploadURL: '/api/secure/blogger/froala_upload',
+                                        charCounterCount: false,
+                                        quickInsertButtons: ['image', 'video', 'table'],
+                                        toolbarButtons: ['bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|', 'fontFamily', 'fontSize', 'color', 'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', 'quote', 'insertLink', 'insertImage', 'insertVideo','insertTable', '|', 'insertHR', 'selectAll', 'clearFormatting', '|', 'print', 'spellChecker', 'help', 'html', '|', 'undo', 'redo']
+                                    }} />
+                            </Dimmer.Dimmable>
+                        </div>
+                        <Header as="h3">Choose Your Category</Header>
+                        <Dropdown value={category_id} name="category_id" onChange={(e, {value}) => {this.setState({category_id: value})}} selection fluid placeholder='Select your category' options={categoryOptions} />
+                        {!edit && <React.Fragment>
+                            <Header as="h3">
+                            Enter Tags
+                        </Header>
+                        <Popup
+                            trigger={<Input
+                                icon='tags'
+                                iconPosition='left'
+                                label={{ tag: true, content: 'Add Tag'}}
+                                labelPosition='right'
+                                placeholder='Enter tags'
+                                fluid
+                                className="tags"
+                                value={tag}
+                                name="tag"
+                                onChange={this.handleChange}
+                                onKeyPress={e => {
+                                    if(e.which === 13 || e.keyCode === 13) this.addTags();
+                                }}
+                            />}
+                            content="Press Enter to add tags"
+                            size="mini"
+                            on="focus"
+                        />
+                        </React.Fragment>}
+                        <div style={{marginTop: "10px"}}>
+                            {
+                                tags.map((tag, i) => (
+                                    <Label color="violet">
+                                        {tag}
+                                        <Icon name='delete' value="fd" onClick={() => {this.removeTag(i)}} />
+                                    </Label>
+                                ))
+                            }
+                        </div>
+                        <Header as="h3">Place</Header>
+                        <Input
+                            icon='marker'
+                            iconPosition='left'
+                            label={{ icon: 'asterisk' }}
+                            labelPosition='right corner'
+                            placeholder='Enter place'
+                            fluid
+                            className="tags"
+                            name="place"
+                            onChange={this.handleChange}
+                            value={place}
+                        />
+                        <div style={{marginTop: "20px"}}>
+                            <Button.Group fluid>
+                                <Button size="huge" onClick={() => {location.href = "/in/blogger"}}>Cancel</Button>
+                                <Button size="huge" loading={isSubmit} primary onClick={this.filterImages}>Publish</Button>
+                            </Button.Group>
+                        </div>
+                        </React.Fragment>
+                        )}
                     </Segment>
                 <Footer />
             </div>
