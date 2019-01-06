@@ -6,6 +6,7 @@ import MyCard from '../../helpers/card';
 import { Line } from 'react-chartjs-2';
 import './InBloggerProfile.css';
 import axios from 'axios';
+import {Desktop, Mobile} from '../../helpers/responsive';
 
 const a = new Date();
 a.setDate(a.getDate() - 1);
@@ -306,10 +307,11 @@ class InBloggerProfile extends Component {
                             {followers !== undefined && <div style={{width: "220px",fontWeight: "bold", fontSize: "1.1em", margin: "10px auto 10px auto"}} className="follow-count"><a href="#" onClick={this.fetchFollowers}>{followers}</a> FOLLOWERS &nbsp;&nbsp; <a href="#" onClick={this.fetchFollowing}>{following}</a> FOLLOWING</div>}
                         </div>
                             <div className="create">
-                                <Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>
+                                {Desktop(<Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>)}
                             </div>
                     </div>
                 </Segment>
+                {Mobile(<Button as="a" href="/create" icon size="big" primary><Icon name='send' /> Create Post</Button>)}
                 <div className="tabs">
                     <div className="tab" onClick={() => {this.handleChange("post")}} style={isActive === "post" ? {borderBottom: "4px solid #55ACEE"} : null}>POST</div>
                     <div className="tab" onClick={() => {this.handleChange("stats")}} style={isActive === "stats" ? {borderBottom: "4px solid #55ACEE"} : null}>STATS</div>
