@@ -310,8 +310,8 @@ class InBloggerProfile extends Component {
                                 {Desktop(<Button as="a" href="/create" icon labelPosition='left' size="big" primary><Icon name='send' /> Create Post</Button>)}
                             </div>
                     </div>
+                    {Mobile(<Button as="a" href="/create" icon size="big" primary><Icon name='send' />Create Post</Button>)}
                 </Segment>
-                {Mobile(<Button as="a" href="/create" icon size="big" primary><Icon name='send' />Create Post</Button>)}
                 <div className="tabs">
                     <div className="tab" onClick={() => {this.handleChange("post")}} style={isActive === "post" ? {borderBottom: "4px solid #55ACEE"} : null}>POST</div>
                     <div className="tab" onClick={() => {this.handleChange("stats")}} style={isActive === "stats" ? {borderBottom: "4px solid #55ACEE"} : null}>STATS</div>
