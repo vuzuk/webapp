@@ -303,6 +303,7 @@ class Post extends Component {
                             <Button loading={isSent} onClick={this.addComment} content='Add Comment' labelPosition='left' icon='edit' primary />
                         </Form>
                     </Comment.Group>
+                    <div class="fb-comments" data-href="https://vuzuk.com/" data-numposts="5"></div>
                 </div>
                 <Footer />
             </div>
