@@ -15,7 +15,7 @@ export function staticHTML ({ title, data, customData, meta }) {
       <meta property="og:sitename" content=" ">
       <meta itemprop="title" content=" ">
       <meta itemprop="description" content=" ">
-      <!-- Global site tag (gtag.js) - Google Analytics -->
+      <!-- Global site tag - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120432266-1"></script>
       <script>
         window.dataLayer = window.dataLayer || [];
