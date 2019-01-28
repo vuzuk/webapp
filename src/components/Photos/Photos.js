@@ -12,7 +12,8 @@ class Photos extends Component {
                     "blogger": post.blogger.username,
                     "title": post.title,
                     "image": post.images[0],
-                    "slug": post.slug
+                    "slug": post.slug,
+                    "id": post.id
                 })
             })
         }
@@ -32,10 +33,9 @@ class Photos extends Component {
 
     handleHide = () => this.setState({ active: -1 })
 
-    makeList = () => {
-        const imgs = this.state.imgs
-
-        return imgs.map((img,i) => {
+    makeList = (imgs) => {
+        return imgs.map((img) => {
+            const i = img.id
             return (
                 <Modal className="photo-modal" open={this.state.modal === i} onClose={this.handleModalClose} trigger={
                     <Dimmer.Dimmable onClick={() => {this.handleModalOpen(i)}} as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
@@ -71,7 +71,20 @@ class Photos extends Component {
                     </Header>
                 </Segment>
                 <section id="photos" style={{background: "#9E9E9E"}}>
-                    {this.makeList()}
+                    <div class="c-row">
+                        <div class="c-column">
+                            {this.makeList(this.state.imgs.slice(0,4))}
+                        </div>
+                        <div class="c-column">
+                            {this.makeList(this.state.imgs.slice(4,8))}
+                        </div>
+                        <div class="c-column">
+                            {this.makeList(this.state.imgs.slice(8,12))}
+                        </div>
+                        <div class="c-column">
+                            {this.makeList(this.state.imgs.slice(12,16))}
+                        </div>
+                    </div>
                 </section>
             </div>
         )
