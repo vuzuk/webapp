@@ -5,9 +5,22 @@ import './Photos.css';
 class Photos extends Component {
     constructor(props) {
         super(props);
+        const imgs = [], blogs = this.props.blogs;
+        for(let key in blogs) {
+            blogs[key].map(post => {
+                imgs.push({
+                    "blogger": post.blogger.username,
+                    "title": post.title,
+                    "image": post.images[0],
+                    "slug": post.slug
+                })
+            })
+        }
+        console.log(imgs)
         this.state = {
             active: -1,
-            modal: -1
+            modal: -1,
+            imgs
         }
     }
 
@@ -17,12 +30,10 @@ class Photos extends Component {
 
     handleShow = (i) => this.setState({ active: i })
 
-    handleHide = () => this.setState({ active: -1 })  
+    handleHide = () => this.setState({ active: -1 })
 
     makeList = () => {
-        const imgs = [
-            "a","b","c","d","e","f","g","h","i","e","k"
-        ];
+        const imgs = this.state.imgs
 
         return imgs.map((img,i) => {
             return (
@@ -30,25 +41,25 @@ class Photos extends Component {
                     <Dimmer.Dimmable onClick={() => {this.handleModalOpen(i)}} as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
                     <Dimmer active={this.state.active === i} onClickOutside={this.handleHide}>
                         <Header as='h2' inverted>
-                            Blog Post Title
+                            {img.title}
                         </Header>
                         <Header as='h5' inverted>
-                            -by Varun
+                            -by {img.blogger}
                         </Header>
                     </Dimmer>
-                    <Image src={`${img}_min.jpg`} bordered={false} ui={false}/>
+                    <Image src={`${img.image}`} bordered={false} ui={false}/>
                     </Dimmer.Dimmable>
                 } size="mini">
                     <Modal.Content>
                         {i !== 0 && <div onClick={() => {this.handleModalOpen(i - 1)}} style={{position: "absolute", left: "-2px", top: "50%"}}><Icon size="large" name="angle left" /></div>}
                         {i !== imgs.length - 1 && <div onClick={() => {this.handleModalOpen(i + 1)}} style={{position: "absolute", right: "-3px", top: "50%"}}><Icon size="large" name="angle right" /></div>}
-                        <Image style={{margin: "auto"}} wrapped size='medium' src={`${img}_min.jpg`} />
-                        <Button href="#" secondary>View Post</Button>
+                        <Image style={{margin: "auto"}} wrapped size='medium' src={`${img.image}`} />
+                        <Button href={`/post/${img.blogger}/${img.slug}`} secondary>View Post</Button>
                     </Modal.Content>
                 </Modal>
             )
         })
-    }  
+    }
 
     render() {
         return (

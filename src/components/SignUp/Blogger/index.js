@@ -89,7 +89,7 @@ class SignUp extends Component {
         }
     }
 
-    handleFormText = (e) => {        
+    handleFormText = (e) => {
         this.setState({[e.target.name]: e.target.value.trim()});
     }
 
@@ -100,7 +100,7 @@ class SignUp extends Component {
                 <Navbar />
                     <Card fluid>
                         <Card.Content>
-                            <Card.Header as="h1">BLOGGER SIGN UP</Card.Header>
+                            <Card.Header as="h1">SIGN UP</Card.Header>
                         </Card.Content>
                         <Card.Content>
                             <Form onSubmit={this.submit}>
@@ -172,7 +172,7 @@ class SignUp extends Component {
                     </Card>
                 <Footer />
             </div>
-        )    
+        )
     }
 }
 

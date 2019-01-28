@@ -55,7 +55,7 @@ class LogIn extends Component {
                 <Navbar />
                     <Card fluid>
                         <Card.Content>
-                            <Card.Header as="h1">BLOGGER LOG IN</Card.Header>
+                            <Card.Header as="h1">LOG IN</Card.Header>
                         </Card.Content>
                         <Card.Content>
                         <Form onSubmit={this.submit}>
@@ -74,7 +74,7 @@ class LogIn extends Component {
                     </Card>
                 <Footer />
             </div>
-        )    
+        )
     }
 }
 

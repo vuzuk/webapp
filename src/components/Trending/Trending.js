@@ -11,7 +11,7 @@ class Trending extends Component {
             tags: props.tags
         }
     }
-    
+
     render() {
         const { tags } = this.state;
         return(
@@ -27,9 +27,6 @@ class Trending extends Component {
                 </div>
                 <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
                     {makeTags(tags.slice(6, 11))}
-                </div>
-                <div style={{padding: "10px", display: "flex", flexWrap: "wrap"}}>
-                    {makeTags(tags.slice(11, 17))}
                 </div>
             </div>
         )

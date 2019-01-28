@@ -35,7 +35,7 @@ export default class Navbar extends Component {
       username,
       email,
       contact,
-      dob, 
+      dob,
       gender,
       facebook,
       twitter,
@@ -266,23 +266,11 @@ export default class Navbar extends Component {
           {!isLogin &&
           <Fragment>
             <Menu.Item name='signup'>
-              <Modal trigger={<Button primary>Sign Up</Button>} size="mini">
-                <Modal.Content>
-                  <Button as="a" href="/blogger/signup" primary size="huge" fluid>Blogger</Button>
-                  <Divider horizontal>OR</Divider>
-                  <Button as="a" href="/reader/signup" secondary size="huge" fluid>Reader</Button>
-                </Modal.Content>
-              </Modal>
+              <Button href="/blogger/signup" primary>Sign Up</Button>
             </Menu.Item>
 
             <Menu.Item name='login'>
-              <Modal trigger={<Button>Log In</Button>} size="mini">
-                  <Modal.Content>
-                    <Button as="a" href="/blogger/login" primary size="huge" fluid>Blogger</Button>
-                    <Divider horizontal>OR</Divider>
-                    <Button as="a" href="/reader/login" secondary size="huge" fluid>Reader</Button>
-                  </Modal.Content>
-                </Modal>
+              <Button href="/blogger/login">Log In</Button>
             </Menu.Item>
           </Fragment>
           }

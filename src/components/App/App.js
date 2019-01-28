@@ -47,7 +47,7 @@ export default class App extends Component {
         <Bloggers latestBloggers={latestBloggers} trendingBloggers={trendingBloggers}/>
         <Temporary blogs={blogs}/>
         {/* <Blogs /> */}
-        <Photos />
+        <Photos blogs={blogs}/>
         <Footer/>
       </Segment>
     );
