@@ -239,10 +239,6 @@ export default class Navbar extends Component {
         <Menu id={classNames('navbar')} inverted borderless fluid>
           <a href="http://vuzuk.com"><img width="240px" height="70px" src="/logo.png" alt="logo"/></a>
 
-          <Menu.Item name='home' as="a" href="/">
-            Home
-          </Menu.Item>
-
           <Menu.Item name='food' as="a" href="/food">
             Food
           </Menu.Item>
@@ -305,10 +301,6 @@ export default class Navbar extends Component {
             </Segment>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
             <a href="http://vuzuk.com"><img width="160px" height="70px" src="/logo.png" alt="logo"/></a>
-            <Menu.Item name='home' as="a" href="/">
-              Home
-            </Menu.Item>
-
             <Menu.Item name='food' as="a" href="/food">
               Food
             </Menu.Item>
