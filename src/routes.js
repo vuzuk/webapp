@@ -10,6 +10,7 @@ import SearchBar from './components/SearchBar/SearchBar';
 import { Forget, Reset } from './components/Account'
 import { SearchByTag, SearchByQuery } from './components/SearchBy';
 import Referral from './components/Referral/Referral'
+import Event from './components/Event/Event'
 //api
 import { fetchPost, getBlogsByCategory, getBlogger, getHomepage, getPostsByTag, getPostsByQuery, getSearch } from './api';
 
@@ -245,6 +246,11 @@ const routes = [
         path: '/reset-password',
         component: Reset,
         title: 'Reset Password - VUZUK'
+    },
+    {
+        path: '/event',
+        component: Event,
+        title: 'Event - VUZUK'
     }
 ];
 
