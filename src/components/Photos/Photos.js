@@ -52,7 +52,7 @@ class Photos extends Component {
                     <Modal.Content>
                         {i !== 0 && <div onClick={() => {this.handleModalOpen(i - 1)}} style={{position: "absolute", left: "-2px", top: "50%"}}><Icon size="large" name="angle left" /></div>}
                         {i !== imgs.length - 1 && <div onClick={() => {this.handleModalOpen(i + 1)}} style={{position: "absolute", right: "-3px", top: "50%"}}><Icon size="large" name="angle right" /></div>}
-                        <Image style={{margin: "auto"}} wrapped size='medium' src={`${img.image}`} />
+                        <Image style={{margin: "auto"}} wrapped size='big' src={`${img.image}`} />
                         <Button href={`/post/${img.blogger}/${img.slug}`} secondary>View Post</Button>
                     </Modal.Content>
                 </Modal>
