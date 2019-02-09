@@ -71,20 +71,7 @@ class Photos extends Component {
                     </Header>
                 </Segment>
                 <section id="photos" style={{background: "#9E9E9E"}}>
-                    <div class="c-row">
-                        <div class="c-column">
-                            {this.makeList(this.state.imgs.slice(0,4))}
-                        </div>
-                        <div class="c-column">
-                            {this.makeList(this.state.imgs.slice(4,8))}
-                        </div>
-                        <div class="c-column">
-                            {this.makeList(this.state.imgs.slice(8,12))}
-                        </div>
-                        <div class="c-column">
-                            {this.makeList(this.state.imgs.slice(12,16))}
-                        </div>
-                    </div>
+                    {this.makeList(this.state.imgs}
                 </section>
             </div>
         )
