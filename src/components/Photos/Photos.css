@@ -62,5 +62,10 @@
 }
 
 .ui.medium.image {
-  margin: 0;
+  margin: 0 !important;
+}
+
+.ui.image img {
+  min-width: 100% !important;
+  max-width: 100% !important;
 }
