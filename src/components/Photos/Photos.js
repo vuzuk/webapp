@@ -36,7 +36,7 @@ class Photos extends Component {
     makeList = (imgs) => {
         return imgs.map((img, i) => {
             return (
-                <Modal size="large" className="photo-modal" open={this.state.modal === i} onClose={this.handleModalClose} trigger={
+                <Modal size="small" className="photo-modal" open={this.state.modal === i} onClose={this.handleModalClose} trigger={
                     <Dimmer.Dimmable onClick={() => {this.handleModalOpen(i)}} as={Segment} key={i} onMouseEnter={() => {this.handleShow(i)}} onMouseLeave={this.handleHide} dimmed={this.state.active === i} className="custom-dimmer">
                     <Dimmer active={this.state.active === i} onClickOutside={this.handleHide}>
                         <Header as='h2' inverted>
