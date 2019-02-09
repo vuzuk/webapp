@@ -48,7 +48,7 @@ class Photos extends Component {
                     </Dimmer>
                     <Image src={`${img.image}`} bordered={false} ui={false}/>
                     </Dimmer.Dimmable>
-                } size="mini">
+                }>
                     <Modal.Content>
                         {i !== 0 && <div onClick={() => {this.handleModalOpen(i - 1)}} style={{position: "absolute", left: "-2px", top: "50%"}}><Icon size="large" name="angle left" /></div>}
                         {i !== imgs.length - 1 && <div onClick={() => {this.handleModalOpen(i + 1)}} style={{position: "absolute", right: "-3px", top: "50%"}}><Icon size="large" name="angle right" /></div>}
