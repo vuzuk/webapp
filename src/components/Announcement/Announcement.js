@@ -7,7 +7,8 @@ const settings = {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    className: 'slides'
+    className: 'slides',
+    autoplay: true
 };
 
 const imgs = [

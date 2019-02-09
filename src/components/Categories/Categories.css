@@ -10,6 +10,11 @@
 .right-item {
     padding-bottom: 0 !important;
     margin-bottom: 0 !important;
+    height: 250px;
+}
+
+.right-item + div {
+    height: 250px;
 }
 
 .right-banners, .right-banners > div {
@@ -24,6 +29,10 @@
     .right-banners > div > div:nth-of-type(1) {
         padding-left: 28px !important;
         padding-right: 7px;
+    }
+
+    .slides.category .slick-slide {
+        height: 250px !important;
     }
 
     .right-banners > div {
@@ -46,6 +55,14 @@
     .categories-page .ten.wide .ui.segment {
         padding-bottom: 0;
     }
+
+    .right-banners {
+        max-height: 200px;
+    }
+
+    .right-banners img {
+        height: 170px !important;
+    }
 }
 
 .slides.category .slick-list {
@@ -66,9 +83,17 @@
 }
 
 .right-banners {
-    min-height: 415px;
+    height: 415px;
 }
 
 .right-banners img {
     height: 195px;
+}
+
+.categories-page .ui.grid.container {
+    margin-left: 0 !important;
+}
+
+.categories-page .myCard .ui.card {
+    margin: auto !important;
 }
