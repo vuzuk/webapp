@@ -56,3 +56,8 @@
   width: 110px;
   display: block;
  }
+
+ .ui.fluid.image img {
+   max-width: 80% !important;
+   margin: auto !important;
+ }
