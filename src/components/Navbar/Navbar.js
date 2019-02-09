@@ -237,7 +237,7 @@ export default class Navbar extends Component {
     const menu = (
       <Fragment>
         <Menu id={classNames('navbar')} inverted borderless fluid>
-          <a href="http://vuzuk.com"><img width="240px" height="70px" src="/logo.png" alt="logo"/></a>
+          <a href="http://vuzuk.com"><img width="240px" class="logo" height="70px" src="/logo.png" alt="logo"/></a>
 
           <Menu.Item name='food' as="a" href="/food">
             Food
@@ -300,7 +300,7 @@ export default class Navbar extends Component {
               <Input style={{float: "right"}} onClick={() => {location.href = "/search"}} size="small" placeholder='Search...' />
             </Segment>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
-            <a href="http://vuzuk.com"><img width="160px" height="70px" src="/logo.png" alt="logo"/></a>
+            <a href="http://vuzuk.com"><img class="logo" width="160px" height="70px" src="/logo.png" alt="logo"/></a>
             <Menu.Item name='food' as="a" href="/food">
               Food
             </Menu.Item>
