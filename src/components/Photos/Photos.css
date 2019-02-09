@@ -56,16 +56,3 @@
   width: 110px;
   display: block;
  }
-
-.ui.mini.modal.transition.visible.active.photo-modal {
-   width: 60% !important;
-}
-
-.ui.medium.image {
-  margin: 0 !important;
-  width: 100% !important;
-}
-
-.ui.image img {
-  margin: auto !important;
-}
