@@ -70,7 +70,7 @@ class Photos extends Component {
                         PHOTOS
                     </Header>
                 </Segment>
-                <section id="photos" style={{background: "#9E9E9E"}}>
+                <section id="photos">
                     {this.makeList(this.state.imgs.slice(0,16))}
                 </section>
             </div>
