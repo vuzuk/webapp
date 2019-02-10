@@ -25,7 +25,6 @@ class Food extends Component {
             old: props.customData,
             selected: 'date_published'
         }
-        console.log(props.customData)
     }
 
     sort = (param) => {
@@ -91,16 +90,16 @@ class Food extends Component {
                     </Grid>
                     <Segment basic>
                         <Grid style={{marginLeft: 0}} container columns={5}>
-                         <Grid.Column mobile={4} computer={3}>
+                         <Grid.Column mobile={16} computer={3}>
                          <Button onClick={() => {this.sort('date_published')}} secondary={this.state.selected === "date_published"}>Latest Posts</Button>
                          </Grid.Column>
-                         <Grid.Column mobile={4} computer={3}>
+                         <Grid.Column mobile={16} computer={3}>
                          <Button onClick={() => {this.sort('views')}} secondary={this.state.selected === "views"}>Most Viewed</Button>
                          </Grid.Column>
-                         <Grid.Column mobile={4} computer={3}>
+                         <Grid.Column mobile={16} computer={3}>
                          <Button onClick={() => {this.sort('likes')}} secondary={this.state.selected === "likes"}>Most Liked</Button>
                          </Grid.Column>
-                         <Grid.Column mobile={4} computer={3}>
+                         <Grid.Column mobile={16} computer={3}>
                          <Button onClick={() => {this.sort('comments')}} secondary={this.state.selected === "comments"}>Most Commented</Button>
                          </Grid.Column>
                         </Grid>

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import {Segment, Grid, Header} from 'semantic-ui-react';
+import {Segment, Grid, Header, Button} from 'semantic-ui-react';
 import MyCard from '../../helpers/card';
 import Slider from 'react-slick';
 import {Desktop, Mobile} from '../../helpers/responsive';
@@ -21,9 +21,25 @@ class Tech extends Component {
 
         this.state = {
             data: props.data,
-            customData: props.customData
+            customData: props.customData,
+            old: props.customData,
+            selected: 'date_published'
         }
     }
+
+    sort = (param) => {
+        let customData = this.state.customData.map(i => i);
+        if(param === 'date_published') {
+            customData = this.state.old.map(i => i)
+        } else {
+            customData.sort((a, b) => b[param] - a[param])
+        }
+        this.setState({
+            selected: param,
+            customData
+        })
+    }
+
     render() {
         const { data, customData } = this.state;
         return (
@@ -73,9 +89,23 @@ class Tech extends Component {
                         </Grid.Row>
                     </Grid>
                     <Segment basic>
+                        <Grid style={{marginLeft: 0}} container columns={5}>
+                         <Grid.Column mobile={16} computer={3}>
+                         <Button onClick={() => {this.sort('date_published')}} secondary={this.state.selected === "date_published"}>Latest Posts</Button>
+                         </Grid.Column>
+                         <Grid.Column mobile={16} computer={3}>
+                         <Button onClick={() => {this.sort('views')}} secondary={this.state.selected === "views"}>Most Viewed</Button>
+                         </Grid.Column>
+                         <Grid.Column mobile={16} computer={3}>
+                         <Button onClick={() => {this.sort('likes')}} secondary={this.state.selected === "likes"}>Most Liked</Button>
+                         </Grid.Column>
+                         <Grid.Column mobile={16} computer={3}>
+                         <Button onClick={() => {this.sort('comments')}} secondary={this.state.selected === "comments"}>Most Commented</Button>
+                         </Grid.Column>
+                        </Grid>
                         <Grid>
                             {customData.map(i => (
-                                <Grid.Column computer={5} tablet={8} mobile={16} key={i}>
+                                <Grid.Column computer={5} tablet={8} mobile={16} key={i.id}>
                                     <MyCard data={i} />
                                 </Grid.Column>
                             ))}
