@@ -122,6 +122,12 @@ export default class Navbar extends Component {
       .catch(err => console.log(err))
   }
 
+  search = () => {
+    if(this.state.query) {
+        location.href = `/search/${this.state.query.replace(/ /g,"-")}`
+    }
+  }
+
   render() {
     const { referral, notifications, liking, description, place, visible, facebook, twitter, instagram,isSent, isLogin, open, data, isSettings, first_name, last_name, username, email, contact, dob, gender, image } = this.state;
 
@@ -255,9 +261,19 @@ export default class Navbar extends Component {
             Tech
           </Menu.Item>
 
+          <Menu.Item name='search' as="a" href="/search">
+            Trending
+          </Menu.Item>
+
           <Menu.Menu position='right'>
             <Menu.Item>
-              <Input onClick={() => {location.href = "/search"}} icon='search' size="small" placeholder='Search...' />
+              <Input
+                onChange={e => this.setState({
+                  query: e.target.value
+                })}
+                onKeyPress={e => {
+                if(e.which === 13 || e.keyCode === 13) this.search();
+                }} icon='search' size="small" placeholder='Search...' />
             </Menu.Item>
           {!isLogin &&
           <Fragment>
@@ -297,7 +313,14 @@ export default class Navbar extends Component {
           <Fragment>
             <Segment padded basic inverted className="mobile-navbar">
               <Button icon="content" onClick={this.toggleVisibility}/>
-              <Input style={{float: "right"}} onClick={() => {location.href = "/search"}} size="small" placeholder='Search...' />
+              <Input
+                onChange={e => this.setState({
+                  query: e.target.value
+                })}
+                onKeyPress={e => {
+                if(e.which === 13 || e.keyCode === 13) this.search();
+                }}
+                style={{float: "right"}} size="small" placeholder='Search...' />
             </Segment>
           <Sidebar as={Menu} animation='overlay' width='thin' visible={visible} icon='labeled' vertical inverted>
             <a href="http://vuzuk.com"><img class="logo" width="160px" height="70px" src="/logo.png" alt="logo"/></a>
@@ -315,6 +338,10 @@ export default class Navbar extends Component {
 
             <Menu.Item name='tech' as="a" href="/tech">
               Tech
+            </Menu.Item>
+
+            <Menu.Item name='search' as="a" href="/search">
+              Trending
             </Menu.Item>
           {!isLogin &&
           <Fragment>
