@@ -43,7 +43,7 @@ export default class App extends Component {
         <Navbar data={data}/>
         {/* <SearchBar /> */}
         <Announcement />
-        <Trending tags={tags}/>
+        {/* <Trending tags={tags}/> */}
         <Bloggers latestBloggers={latestBloggers} trendingBloggers={trendingBloggers}/>
         <Temporary blogs={blogs}/>
         {/* <Blogs /> */}
