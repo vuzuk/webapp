@@ -51,6 +51,7 @@ export function staticHTML ({ title, data, customData, meta }) {
         src="https://www.facebook.com/tr?id=241928490081325&ev=PageView&noscript=1"
       /></noscript>
       <!-- End Facebook Pixel Code -->
+      <script type='text/javascript' src='//platform-api.sharethis.com/js/sharethis.js#property=5c72ab9c312f9c0011357e2d&product=inline-share-buttons' async='async'></script>
     </head>
     <body>
 `;
@@ -61,7 +62,6 @@ export function dynamicHTML ({body}) {
   <div id="root">${body}</div>
       <script src='/vendor.ea266617f357338a28c4.js'></script>
       <script src='/bundle.js'></script>
-      <script type='text/javascript' src='http://platform-api.sharethis.com/js/sharethis.js#property=5abf669cce89f00013641dd1&product=inline-share-buttons' async='async'></script>
     </body>
   </html>
   `;
