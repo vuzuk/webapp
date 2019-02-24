@@ -2,12 +2,9 @@ body {
     font-family: 'Lato' !important;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1300px) {
     body {
         max-width: 80%;
-    }
-
-    body > *:nth-of-type(1) {
         margin: auto;
     }
 }
