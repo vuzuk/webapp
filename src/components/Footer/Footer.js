@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Grid, Image, List } from 'semantic-ui-react';
 import './Footer.css';
 const Footer = (props) => {
     return (
@@ -16,7 +15,7 @@ const Footer = (props) => {
             <div className="social">
                 <a href="https://www.facebook.com/VuzukIndia" target="_blank" className="fab fa-facebook"></a>
                 <a href="https://www.instagram.com/vuzukindia/" target="_blank" className="fab fa-instagram"></a>
-                <a href="https://plus.google.com/108027812894643530938" target="_blank" className="fab fa-google"></a>
+                <a href="https://www.reddit.com/r/VuzukIndia" target="_blank" className="fab fa-reddit"></a>
                 <a href="https://www.youtube.com/channel/UCTFrV6CFsR7S4Ru9_Vruojw" target="_blank" className="fab fa-youtube"></a>
             </div>
         </div>
