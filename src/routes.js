@@ -44,7 +44,7 @@ const routes = [
     {
         path: '/blogger/signup',
         component: BSignUp,
-        title: 'Blogger Sign Up - VUZUK',
+        title: 'Sign Up - VUZUK',
         meta: {
             title: "INDIA'S LARGEST INFLUENCER MARKETING PLATFORM | Vuzuk",
             description: "The perfect blogging platform to get free reach for your blog, tips, tutorial, and a place to showcase your blogging talent. Vuzuk stands for bloggers, brands and digital media influencers to connect and produce the most awesome campaigns!",
@@ -64,7 +64,7 @@ const routes = [
     {
         path: '/blogger/login',
         component: BLogIn,
-        title: 'Blogger Login - VUZUK',
+        title: 'Login - VUZUK',
         meta: {
             title: "INDIA'S LARGEST INFLUENCER MARKETING PLATFORM | Vuzuk",
             description: "Vuzuk act as a bridge that connects the bloggers and the readers effortlessly. It is a blogging platform which will cover the Food, Tech, Fashion, Travel and many more aspects of your lifestyle. Vuzuk is a reliable friend and a reliable platform to connect to the readers.",
