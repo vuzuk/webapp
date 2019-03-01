@@ -25,11 +25,16 @@ class BloggerProfile extends Component {
     }
 
     componentDidMount() {
+        const thiss = this;
         axios.get(`/api/secure/generic/isFollowing?bloggerId=${this.state.customData.id}`)
           .then(res => {
+              let follow = true;
             res.data.msg.length ? thiss.setState({
                 follow: true
             }) : null
+            thiss.setState({
+                follow
+            })
         })
     }
 
