@@ -15,10 +15,9 @@ class myCard extends Component {
             likes = "0",
             slug = "#",
             blogger = {},
-            blogger_id: id,
-            id: post_id
+            blogger_id,
+            post_id
         } = props.data;
-
         const {first_name = "Matthew", last_name = "", username = "#", image = "https://react.semantic-ui.com/images/avatar/small/elliot.jpg"} = blogger
 
         images = images[0];
@@ -26,7 +25,7 @@ class myCard extends Component {
 
         this.state = {
             follow: false,
-            id,
+            blogger_id,
             title,
             images,
             date_published,
@@ -47,7 +46,7 @@ class myCard extends Component {
 
     componentDidMount() {
         const thiss = this;
-        axios.get(`/api/secure/generic/isFollowing?bloggerId=${this.state.id}`)
+        axios.get(`/api/secure/generic/isFollowing?bloggerId=${this.state.blogger_id}`)
           .then(res => {
             res.data.msg.length ? thiss.setState({
                 follow: true
@@ -70,7 +69,7 @@ class myCard extends Component {
 
     toggleFollow = () => {
         const thiss = this;
-        axios.get(`/api/secure/generic/toggleFollowBlogger?bloggerId=${this.state.id}`)
+        axios.get(`/api/secure/generic/toggleFollowBlogger?bloggerId=${this.state.blogger_id}`)
             .then(res => {
                 let follow = true;
                 if(res.data.msg === "Un-following now") {
@@ -109,7 +108,7 @@ class myCard extends Component {
     render() {
         const {
             isSaving,
-            follow,id,
+            follow,
             title,
             images,
             date_published,
