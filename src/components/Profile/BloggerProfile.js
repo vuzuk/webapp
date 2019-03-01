@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
-import { Image, Header, Segment, Grid, Divider, Icon, Popup, Modal, List } from 'semantic-ui-react'
+import { Image, Header, Segment, Grid, Divider, Icon, Popup, Modal, List, Button } from 'semantic-ui-react'
 import axios from 'axios';
 import MyCard from '../../helpers/card';
 import './BloggerProfile.css'
@@ -18,8 +18,42 @@ class BloggerProfile extends Component {
             follower_list: [],
             following_list: [],
             followModal: false,
-            followingModal: false
+            followingModal: false,
+            follow: false,
+            isOpen: false
         }
+    }
+
+    componentWillMount() {
+        axios.get(`/api/secure/generic/isFollowing?bloggerId=${this.state.customData.id}`)
+          .then(res => {
+            res.data.msg.length ? thiss.setState({
+                follow: true
+            }) : null
+        })
+    }
+
+    toggleModal = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
+
+    toggleFollow = () => {
+        const thiss = this;
+        axios.get(`/api/secure/generic/toggleFollowBlogger?bloggerId=${this.state.customData.id}`)
+            .then(res => {
+                let follow = true;
+                if(res.data.msg === "Un-following now") {
+                    follow = false
+                }
+                thiss.setState({
+                    follow
+                })
+            })
+            .catch(err => {
+                thiss.toggleModal();
+            })
     }
 
     fetchFollowers = () => {
@@ -103,7 +137,7 @@ class BloggerProfile extends Component {
     }
 
     render() {
-        let { isActive, data, customData, followers, following, isPostFetched, posts } = this.state;
+        let { isActive, data, customData, followers, following, isPostFetched, posts, follow } = this.state;
         const {
             cover_image,
             image,
@@ -112,16 +146,14 @@ class BloggerProfile extends Component {
             facebook,
             instagram,
             twitter,
-            description
+            description,
+            id
         } = customData;
         isActive === "viewed" ? posts = posts.sort((a, b) => {
             return b.views - a.views
         }) : posts = posts.sort((a, b) => {
             return b.likes - a.likes
         })
-
-        console.log(posts);
-
 
         return (
             <div id="profile">
@@ -130,6 +162,7 @@ class BloggerProfile extends Component {
                     <div className="profile">
                         <Image className="profile-pic" src={image} size='small' circular />
                         <Header size='large'>{`${first_name} ${last_name}`}</Header>
+                        <Button size="mini" onClick={this.toggleFollow}>{follow ? 'Following' : 'Follow'}</Button>
                         <div>
                             {facebook && <a href={facebook} target="_blank"><Icon circular name='facebook'/></a>}
                             {twitter && <a href={twitter} target="_blank"><Icon circular name='twitter'/></a>}
@@ -245,6 +278,15 @@ class BloggerProfile extends Component {
                             ))}
                         </List>}
                     </Modal.Content>
+                </Modal>
+                <Modal open={this.state.isOpen} onClose={this.toggleModal} closeIcon>
+                    <Modal.Content>
+                        You must login first!
+                    </Modal.Content>
+                    <Modal.Actions>
+                            <Button href="/blogger/signup" primary>Sign Up</Button>
+                            <Button href="/blogger/login" secondary>Login</Button>
+                    </Modal.Actions>
                 </Modal>
                 <Footer />
             </div>

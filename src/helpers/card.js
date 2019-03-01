@@ -180,26 +180,13 @@ class myCard extends Component {
                         </Grid>
                     </Card.Content>
                     </React.Fragment> : null}
-                    <Modal open={this.state.isOpen} onClose={this.toggleModal}>
+                    <Modal open={this.state.isOpen} onClose={this.toggleModal} closeIcon>
                         <Modal.Content>
                             You must login first!
                         </Modal.Content>
                         <Modal.Actions>
-                            <Modal trigger={<Button primary>Sign Up</Button>} size="mini">
-                                <Modal.Content>
-                                <Button as="a" href="/blogger/signup" primary size="huge" fluid>Blogger</Button>
-                                <Divider horizontal>OR</Divider>
-                                <Button as="a" href="/reader/signup" secondary size="huge" fluid>Reader</Button>
-                                </Modal.Content>
-                            </Modal>
-                            <Modal trigger={<Button secondary>Log In</Button>} size="mini">
-                                <Modal.Content>
-                                    <Button as="a" href="/blogger/login" primary size="huge" fluid>Blogger</Button>
-                                    <Divider horizontal>OR</Divider>
-                                    <Button as="a" href="/reader/login" secondary size="huge" fluid>Reader</Button>
-                                </Modal.Content>
-                            </Modal>
-                            <Button onClick={this.toggleModal}>OK</Button>
+                                <Button href="/blogger/signup" primary>Sign Up</Button>
+                                <Button href="/blogger/login" secondary>Login</Button>
                         </Modal.Actions>
                     </Modal>
                 </Card>
