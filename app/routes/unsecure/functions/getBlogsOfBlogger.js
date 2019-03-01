@@ -19,7 +19,7 @@ module.exports = (req, res) => {
                 attributes: ['comment'],
             },{
                 model: Blogger,
-                attributes: ['username', 'first_name', 'last_name', 'image']
+                attributes: ['username', 'first_name', 'last_name', 'image', 'id']
             }
         ]
         })

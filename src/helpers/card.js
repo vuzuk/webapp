@@ -15,9 +15,9 @@ class myCard extends Component {
             likes = "0",
             slug = "#",
             blogger = {},
-            blogger_id,
-            post_id
         } = props.data;
+        let blogger_id = props.data.blogger_id ? props.data.blogger_id : props.data.blogger.id;
+        let post_id = props.data.post_id ? props.data.post_id : props.data.id;
         const {first_name = "Matthew", last_name = "", username = "#", image = "https://react.semantic-ui.com/images/avatar/small/elliot.jpg"} = blogger
 
         images = images[0];
