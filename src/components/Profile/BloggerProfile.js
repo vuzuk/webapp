@@ -24,20 +24,6 @@ class BloggerProfile extends Component {
         }
     }
 
-    componentDidMount() {
-        const thiss = this;
-        axios.get(`/api/secure/generic/isFollowing?bloggerId=${this.state.customData.id}`)
-          .then(res => {
-              let follow = true;
-            res.data.msg.length ? thiss.setState({
-                follow: true
-            }) : null
-            thiss.setState({
-                follow
-            })
-        })
-    }
-
     toggleModal = () => {
         this.setState({
             isOpen: !this.state.isOpen
@@ -139,6 +125,14 @@ class BloggerProfile extends Component {
                 })
                 console.log(err);
             })
+
+            axios.get(`/api/secure/generic/isFollowing?bloggerId=${this.state.customData.id}`)
+            .then(res => {
+              res.data.msg.length ? thiss.setState({
+                  follow: true
+              }) : null
+          })
+
     }
 
     render() {
