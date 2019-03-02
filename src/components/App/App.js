@@ -41,13 +41,15 @@ export default class App extends Component {
     return (
       <Segment>
         <Navbar data={data}/>
-        {/* <SearchBar /> */}
-        <Announcement />
-        {/* <Trending tags={tags}/> */}
-        <Bloggers latestBloggers={latestBloggers} trendingBloggers={trendingBloggers}/>
-        <Temporary blogs={blogs}/>
-        {/* <Blogs /> */}
-        <Photos blogs={blogs}/>
+          <div id="app-body">
+            {/* <SearchBar /> */}
+            <Announcement />
+            {/* <Trending tags={tags}/> */}
+            <Bloggers latestBloggers={latestBloggers} trendingBloggers={trendingBloggers}/>
+            <Temporary blogs={blogs}/>
+            {/* <Blogs /> */}
+            <Photos blogs={blogs}/>
+          </div>
         <Footer/>
       </Segment>
     );
