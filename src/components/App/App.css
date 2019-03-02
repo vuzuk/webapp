@@ -2,7 +2,7 @@ body {
     font-family: 'Lato' !important;
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1300px) {
     #app-body {
         max-width: 95%;
         margin: auto;
