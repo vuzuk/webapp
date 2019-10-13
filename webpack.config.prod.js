@@ -72,12 +72,6 @@ const webpackConfig = [{
     }),
     new ExtractTextPlugin('bundle.css'),
     new webpack.optimize.ModuleConcatenationPlugin(),
-		// new CopyWebpackPlugin([
-		// 	{
-		// 		from: path.resolve(__dirname, 'src'),
-		// 		to: path.resolve(__dirname, 'dist')
-		// 	}
-		// ]),
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery"
