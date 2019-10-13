@@ -20,6 +20,7 @@ app.use(cookieParser(process.env.SECRET));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+//compress all resources
 app.use(compression());
 
 //disable x-powered-by
