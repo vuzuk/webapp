@@ -14,7 +14,6 @@ const app = express();
 
 const routes = require("./app/routes");
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'uploads', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(cookieParser(process.env.SECRET));
